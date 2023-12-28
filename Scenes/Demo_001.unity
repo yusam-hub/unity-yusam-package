@@ -871,7 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 5
-  speedSlow: 3
+  speedSlow: 1
   speedNormal: 5
   speedSprint: 10
 --- !u!1001 &5348008742803624514
