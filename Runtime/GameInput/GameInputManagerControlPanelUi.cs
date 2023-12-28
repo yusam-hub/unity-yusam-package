@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace YusamPackage
+namespace YusamPackage.GameInput
 {
     public class GameInputManagerControlPanelUi : MonoBehaviour
     {

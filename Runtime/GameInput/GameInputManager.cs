@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace YusamPackage
+namespace YusamPackage.GameInput
 {
     public class GameInputManager : MonoBehaviour, IGameInputManager
     {
