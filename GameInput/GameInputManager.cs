@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using YusamPackage.GameDebug;
 using YusamPackage.GameInput.Ui;
 
 namespace YusamPackage.GameInput
@@ -128,6 +124,7 @@ namespace YusamPackage.GameInput
         {
             return _gameInputActions.DefaultMap.RightBumperPress;
         }
+
         
         /*
          * VECTOR 2
@@ -139,6 +136,26 @@ namespace YusamPackage.GameInput
         public Vector2 GetRightStickVector2Normalized()
         {
             return _gameInputActions.DefaultMap.RightStickVector2.ReadValue<Vector2>();
+        }
+        
+        /*
+         * MOUSE
+         */
+        public Vector2 GetMouseNormalized()
+        {
+            return _gameInputActions.DefaultMap.MouseVector2.ReadValue<Vector2>();
+        }
+        public InputAction GetMouseLeftPressAction()
+        {
+            return _gameInputActions.DefaultMap.MouseLeftPress;
+        }
+        public InputAction GetMouseMiddlePressAction()
+        {
+            return _gameInputActions.DefaultMap.MouseMiddlePress;
+        }
+        public InputAction GetMouseRightPressAction()
+        {
+            return _gameInputActions.DefaultMap.MouseRightPress;
         }
 
         /*

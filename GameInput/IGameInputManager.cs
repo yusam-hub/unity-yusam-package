@@ -5,8 +5,12 @@ namespace YusamPackage.GameInput
 {
     public interface IGameInputManager
     {
+        /*
+         * KEYBOARD + GAMEPAD
+         */
         public Vector2 GetLeftStickVector2Normalized();
         public Vector2 GetRightStickVector2Normalized();
+        
         public InputAction GetLeftTriggerPressAction();
         public InputAction GetLeftBumperPressAction();
         public InputAction GetRightTriggerPressAction();
@@ -23,5 +27,13 @@ namespace YusamPackage.GameInput
         public InputAction GetRightPadDownPressAction();
         public InputAction GetStartPressAction();
         public InputAction GetSelectPressAction();
+
+        /*
+         * MOUSE
+         */
+        public Vector2 GetMouseNormalized();
+        public InputAction GetMouseLeftPressAction();
+        public InputAction GetMouseMiddlePressAction();
+        public InputAction GetMouseRightPressAction();
     }
 }

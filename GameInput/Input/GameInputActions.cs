@@ -32,7 +32,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""eff81156-b7ee-49c6-bb18-a26161dbcda2"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -122,7 +122,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""8415e3b5-0774-4e7e-82f4-569761b2b34f"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -184,6 +184,42 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""RightBumperPress"",
                     ""type"": ""Button"",
                     ""id"": ""a926e437-cee8-41b8-bf3a-b0b9f4a7459b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseVector2"",
+                    ""type"": ""Value"",
+                    ""id"": ""df999d59-01d0-4a81-85dc-523efc191b64"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseLeftPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""a4165dab-774a-4653-b603-d003b38cb2ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseRightPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""8da71c35-56b5-41c2-9549-4eced46a6cdf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseMiddlePress"",
+                    ""type"": ""Button"",
+                    ""id"": ""95eb9dd2-1156-427c-87cd-c80a99a00234"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -608,6 +644,94 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""RightBumperPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""dd66a318-20cc-4336-80c0-8a40edd7460e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseVector2"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d47376ae-43c9-460d-a7c5-cb24ff1322f1"",
+                    ""path"": ""<Mouse>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseVector2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""121960e0-f03d-4316-bfeb-3d0d92eb06b4"",
+                    ""path"": ""<Mouse>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseVector2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""dbd2a9df-af77-4733-908d-b765b77806a6"",
+                    ""path"": ""<Mouse>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseVector2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""357c90b5-5875-4661-98b5-e6b146a48402"",
+                    ""path"": ""<Mouse>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseVector2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffbdd54e-c96d-469b-8e11-80045c9bae4c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLeftPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dfa91314-3df6-4c1b-8d7d-a71a7c62c475"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseRightPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25de6010-b252-46a0-b376-fd93a92dad7d"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseMiddlePress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -634,6 +758,10 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         m_DefaultMap_RightPadRightPress = m_DefaultMap.FindAction("RightPadRightPress", throwIfNotFound: true);
         m_DefaultMap_RightTriggerPress = m_DefaultMap.FindAction("RightTriggerPress", throwIfNotFound: true);
         m_DefaultMap_RightBumperPress = m_DefaultMap.FindAction("RightBumperPress", throwIfNotFound: true);
+        m_DefaultMap_MouseVector2 = m_DefaultMap.FindAction("MouseVector2", throwIfNotFound: true);
+        m_DefaultMap_MouseLeftPress = m_DefaultMap.FindAction("MouseLeftPress", throwIfNotFound: true);
+        m_DefaultMap_MouseRightPress = m_DefaultMap.FindAction("MouseRightPress", throwIfNotFound: true);
+        m_DefaultMap_MouseMiddlePress = m_DefaultMap.FindAction("MouseMiddlePress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -713,6 +841,10 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_DefaultMap_RightPadRightPress;
     private readonly InputAction m_DefaultMap_RightTriggerPress;
     private readonly InputAction m_DefaultMap_RightBumperPress;
+    private readonly InputAction m_DefaultMap_MouseVector2;
+    private readonly InputAction m_DefaultMap_MouseLeftPress;
+    private readonly InputAction m_DefaultMap_MouseRightPress;
+    private readonly InputAction m_DefaultMap_MouseMiddlePress;
     public struct DefaultMapActions
     {
         private @GameInputActions m_Wrapper;
@@ -735,6 +867,10 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         public InputAction @RightPadRightPress => m_Wrapper.m_DefaultMap_RightPadRightPress;
         public InputAction @RightTriggerPress => m_Wrapper.m_DefaultMap_RightTriggerPress;
         public InputAction @RightBumperPress => m_Wrapper.m_DefaultMap_RightBumperPress;
+        public InputAction @MouseVector2 => m_Wrapper.m_DefaultMap_MouseVector2;
+        public InputAction @MouseLeftPress => m_Wrapper.m_DefaultMap_MouseLeftPress;
+        public InputAction @MouseRightPress => m_Wrapper.m_DefaultMap_MouseRightPress;
+        public InputAction @MouseMiddlePress => m_Wrapper.m_DefaultMap_MouseMiddlePress;
         public InputActionMap Get() { return m_Wrapper.m_DefaultMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -798,6 +934,18 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @RightBumperPress.started += instance.OnRightBumperPress;
             @RightBumperPress.performed += instance.OnRightBumperPress;
             @RightBumperPress.canceled += instance.OnRightBumperPress;
+            @MouseVector2.started += instance.OnMouseVector2;
+            @MouseVector2.performed += instance.OnMouseVector2;
+            @MouseVector2.canceled += instance.OnMouseVector2;
+            @MouseLeftPress.started += instance.OnMouseLeftPress;
+            @MouseLeftPress.performed += instance.OnMouseLeftPress;
+            @MouseLeftPress.canceled += instance.OnMouseLeftPress;
+            @MouseRightPress.started += instance.OnMouseRightPress;
+            @MouseRightPress.performed += instance.OnMouseRightPress;
+            @MouseRightPress.canceled += instance.OnMouseRightPress;
+            @MouseMiddlePress.started += instance.OnMouseMiddlePress;
+            @MouseMiddlePress.performed += instance.OnMouseMiddlePress;
+            @MouseMiddlePress.canceled += instance.OnMouseMiddlePress;
         }
 
         private void UnregisterCallbacks(IDefaultMapActions instance)
@@ -856,6 +1004,18 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @RightBumperPress.started -= instance.OnRightBumperPress;
             @RightBumperPress.performed -= instance.OnRightBumperPress;
             @RightBumperPress.canceled -= instance.OnRightBumperPress;
+            @MouseVector2.started -= instance.OnMouseVector2;
+            @MouseVector2.performed -= instance.OnMouseVector2;
+            @MouseVector2.canceled -= instance.OnMouseVector2;
+            @MouseLeftPress.started -= instance.OnMouseLeftPress;
+            @MouseLeftPress.performed -= instance.OnMouseLeftPress;
+            @MouseLeftPress.canceled -= instance.OnMouseLeftPress;
+            @MouseRightPress.started -= instance.OnMouseRightPress;
+            @MouseRightPress.performed -= instance.OnMouseRightPress;
+            @MouseRightPress.canceled -= instance.OnMouseRightPress;
+            @MouseMiddlePress.started -= instance.OnMouseMiddlePress;
+            @MouseMiddlePress.performed -= instance.OnMouseMiddlePress;
+            @MouseMiddlePress.canceled -= instance.OnMouseMiddlePress;
         }
 
         public void RemoveCallbacks(IDefaultMapActions instance)
@@ -893,5 +1053,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         void OnRightPadRightPress(InputAction.CallbackContext context);
         void OnRightTriggerPress(InputAction.CallbackContext context);
         void OnRightBumperPress(InputAction.CallbackContext context);
+        void OnMouseVector2(InputAction.CallbackContext context);
+        void OnMouseLeftPress(InputAction.CallbackContext context);
+        void OnMouseRightPress(InputAction.CallbackContext context);
+        void OnMouseMiddlePress(InputAction.CallbackContext context);
     }
 }
