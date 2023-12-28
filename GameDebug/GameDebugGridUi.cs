@@ -7,7 +7,7 @@ namespace YusamPackage.GameDebug
 {
     public class GameDebugGridUi : MonoBehaviour
     {
-        private static GameDebugGridUi Instance { get; set; }
+        public static GameDebugGridUi Instance { get; private set; }
         
         [SerializeField] private GameDebugCellTemplateSo gameDebugCellTemplateSo;
         [SerializeField] private int rows = 1;
@@ -72,6 +72,11 @@ namespace YusamPackage.GameDebug
         public TextMeshProUGUI GetCellText(int index)
         {
             return GetGameDebugCellTemplate(index).GetCellText();
+        }
+
+        public static bool HasInstance()
+        {
+            return Instance != null;
         }
     }
 }
