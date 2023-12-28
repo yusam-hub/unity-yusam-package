@@ -1,8 +1,8 @@
 {
   "name": "com.github.yusam-hub.unity-yusam-package",
-  "version": "0.0.1",
-  "displayName": "unity-yusam-package",
-  "description": "unity-yusam-package",
+  "version": "0.0.2",
+  "displayName": "YusamPackage",
+  "description": "YusamPackage",
   "unity": "2023.2",
   "unityRelease": "3f1",
   "documentationUrl": "https://github.com/yusam-hub/unity-yusam-package",
