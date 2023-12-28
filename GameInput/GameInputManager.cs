@@ -18,6 +18,9 @@ namespace YusamPackage.GameInput
         
         private GameInputActions _gameInputActions;
         
+        /*
+         * AWAKE
+         */
         private void Awake()
         {
             if (Instance != null)
@@ -37,6 +40,9 @@ namespace YusamPackage.GameInput
             
         }
 
+        /*
+         * DESTROY
+         */
         private void OnDestroy()
         {
             //_gameInputActions.DefaultMap.AInteractAction.performed -= AInteractActionOnPerformed;
@@ -44,6 +50,9 @@ namespace YusamPackage.GameInput
             _gameInputActions.Dispose();
         }
 
+        /*
+         * START
+         */
         private void Start()
         {
             if (gameInputManagerUi)
@@ -52,16 +61,89 @@ namespace YusamPackage.GameInput
             }
         }
         
+        /*
+         * PRESS
+         */
+        public InputAction GetLeftTriggerPressAction()
+        {
+            return _gameInputActions.DefaultMap.LeftTriggerPress;
+        }
+        public InputAction GetLeftBumperPressAction()
+        {
+            return _gameInputActions.DefaultMap.LeftBumperPress;
+        }
+        public InputAction GetLeftStickPressAction()
+        {
+            return _gameInputActions.DefaultMap.LeftStickPress;
+        }
+        public InputAction GetLeftPadLeftPressAction()
+        {
+            return _gameInputActions.DefaultMap.LeftPadLeftPress;
+        }
+        public InputAction GetLeftPadRightPressAction()
+        {
+            return _gameInputActions.DefaultMap.LeftPadRightPress;
+        }
+        public InputAction GetLeftPadUpPressAction()
+        {
+            return _gameInputActions.DefaultMap.LeftPadUpPress;
+        }
+        public InputAction GetLeftPadDownPressAction()
+        {
+            return _gameInputActions.DefaultMap.LeftPadDownPress;
+        }
+        public InputAction GetStartPressAction()
+        {
+            return _gameInputActions.DefaultMap.StartPress;
+        }
+        public InputAction GetSelectPressAction()
+        {
+            return _gameInputActions.DefaultMap.SelectPress;
+        }
+        public InputAction GetRightPadLeftPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightPadLeftPress;
+        }
+        public InputAction GetRightPadRightPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightPadRightPress;
+        }
+        public InputAction GetRightPadUpPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightPadUpPress;
+        }
+        public InputAction GetRightPadDownPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightPadDownPress;
+        }
+        public InputAction GetRightStickPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightStickPress;
+        }
+        public InputAction GetRightTriggerPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightTriggerPress;
+        }
+        public InputAction GetRightBumperPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightBumperPress;
+        }
+        
+        /*
+         * VECTOR 2
+         */
         public Vector2 GetLeftStickVector2Normalized()
         {
             return _gameInputActions.DefaultMap.LeftStickVector2.ReadValue<Vector2>();
         }
-        
         public Vector2 GetRightStickVector2Normalized()
         {
             return _gameInputActions.DefaultMap.RightStickVector2.ReadValue<Vector2>();
         }
 
+        /*
+         * UPDATE
+         */
         private void Update()
         {
             if (showUi && gameInputManagerUi)
