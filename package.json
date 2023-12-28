@@ -1,14 +1,12 @@
 {
-  "name": "com.github.yusam-hub.unity-yusam-package",
-  "version": "0.0.2",
+  "name": "com.yusam.yusam-package",
+  "version": "0.0.1",
   "displayName": "YusamPackage",
-  "description": "YusamPackage",
+  "description": "Yusam Package description",
   "unity": "2023.2",
   "unityRelease": "3f1",
-  "documentationUrl": "https://github.com/yusam-hub/unity-yusam-package",
-  "changelogUrl": "https://github.com/yusam-hub/unity-yusam-packagechangelog.html",
-  "licensesUrl": "https://github.com/yusam-hub/unity-yusam-packagelicensing.html",
   "dependencies": {
+    "com.unity.inputsystem": "1.7.0"
   },
   "keywords": [
     "keyword1",

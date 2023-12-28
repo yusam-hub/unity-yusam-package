@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace YusamPackage.GameInput.Scripts
+namespace YusamPackage
 {
     public class FlyCamera : MonoBehaviour
     {
@@ -26,12 +23,6 @@ namespace YusamPackage.GameInput.Scripts
         
         private Vector3 GetRightStickDirection()
         {
-            /*Vector2 mouseDirection = GameInputManager.Instance.GetMouseNormalized();
-            if (mouseDirection != Vector2.zero)
-            {
-                return new Vector3(-mouseDirection.y, mouseDirection.x, 0);       
-            }*/
-
             Vector2 rightStickDirection = GameInputManager.Instance.GetRightStickVector2Normalized();
             return new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
         }
