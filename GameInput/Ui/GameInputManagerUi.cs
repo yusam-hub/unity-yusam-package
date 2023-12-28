@@ -14,6 +14,7 @@ namespace YusamPackage.GameInput.Ui
         [SerializeField] public GameInputManagerControlPanelUi rightStick;
         [SerializeField] public GameInputManagerControlPanelUi rightPad;
         [SerializeField] public GameInputManagerControlPanelUi rightV;
+        [SerializeField] public GameInputManagerControlPanelUi mouseButton;
      
         [Header("Colors")]
         [SerializeField] public Color defaultColor = Color.white;

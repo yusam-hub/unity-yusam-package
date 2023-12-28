@@ -276,6 +276,19 @@ namespace YusamPackage.GameInput
                 gameInputManagerUi.rightV.bottomImage.color = _gameInputActions.DefaultMap.RightTriggerPress.IsPressed()      
                     ? gameInputManagerUi.selectedColor
                     : gameInputManagerUi.defaultColor;
+                
+                /*
+                 * MOUSE BUTTON
+                 */
+                gameInputManagerUi.mouseButton.leftImage.color = _gameInputActions.DefaultMap.MouseLeftPress.IsPressed()      
+                    ? gameInputManagerUi.selectedColor
+                    : gameInputManagerUi.defaultColor;
+                gameInputManagerUi.mouseButton.centerImage.color = _gameInputActions.DefaultMap.MouseMiddlePress.IsPressed()      
+                    ? gameInputManagerUi.selectedColor
+                    : gameInputManagerUi.defaultColor;
+                gameInputManagerUi.mouseButton.rightImage.color = _gameInputActions.DefaultMap.MouseRightPress.IsPressed()      
+                    ? gameInputManagerUi.selectedColor
+                    : gameInputManagerUi.defaultColor;
             }
         }
     }

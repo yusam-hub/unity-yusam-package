@@ -754,6 +754,61 @@
                     "action": "MouseMiddlePress",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Mouse",
+                    "id": "5dea1fb6-232a-4d29-8cdc-8fcf79cd353a",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightStickVector2",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "316cd20e-69ee-460b-a4df-4be9b1eab3f3",
+                    "path": "<Mouse>/delta/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightStickVector2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "012813c4-89ed-4474-ae50-9a7eb5f9e320",
+                    "path": "<Mouse>/delta/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightStickVector2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "8c7696a2-4cb5-4452-8046-de859f41c69f",
+                    "path": "<Mouse>/delta/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightStickVector2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c301959c-dae9-4f9c-88c7-19b767510c11",
+                    "path": "<Mouse>/delta/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightStickVector2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
