@@ -7,8 +7,7 @@ namespace YusamPackage.GameState
     {
         [SerializeField] private GameStateSo startGameState;
 
-        [HideInInspector]
-        public GameStateSo currentGameStateSo;
+        private GameStateSo _currentGameStateSo;
         
         private void Start()
         {
@@ -20,37 +19,37 @@ namespace YusamPackage.GameState
             GameStateSoUpdate();
         }
         
-        protected virtual void SetGameStateSo(GameStateSo gameStateSo)
+        public virtual void SetGameStateSo(GameStateSo gameStateSo)
         {
-            if (currentGameStateSo)
+            if (_currentGameStateSo)
             {
-                currentGameStateSo.Exit();
+                _currentGameStateSo.Exit();
             }
 
             if (gameStateSo)
             {
-                currentGameStateSo = Instantiate(gameStateSo);
-                currentGameStateSo.parentGameObject = gameObject;
-                currentGameStateSo.Enter();
+                _currentGameStateSo = Instantiate(gameStateSo);
+                _currentGameStateSo.gameStateUpdateMachineSo = this;
+                _currentGameStateSo.Enter();
             }
             else
             {
-                currentGameStateSo = null;
+                _currentGameStateSo = null;
             }
         }
 
         protected virtual void GameStateSoUpdate()
         {
-            if (!currentGameStateSo) return;
+            if (!_currentGameStateSo) return;
             
-            if (!currentGameStateSo.IsFinished)
+            if (!_currentGameStateSo.IsFinished)
             {
-                currentGameStateSo.Update();
-            }             
+                _currentGameStateSo.Update();
+            }
             else
             {
-                SetGameStateSo(currentGameStateSo.nextGameState);
-            } 
+                //do other logic
+            }
         }
     }
 }

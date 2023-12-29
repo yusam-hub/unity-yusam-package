@@ -6,7 +6,8 @@ namespace YusamPackage.GameState.So
     public class Demo1GameStateSo : GameStateSo
     {
         [SerializeField] private float maxTimer = 1f;
-
+        [SerializeField] private Demo2GameStateSo demo2GameStateSo;
+        
         private float _currentTimer = 0;
 
         public override void Update()
@@ -24,7 +25,7 @@ namespace YusamPackage.GameState.So
             _currentTimer += Time.deltaTime;
             if (_currentTimer >= maxTimer)
             {
-                IsFinished = true;
+                gameStateUpdateMachineSo.SetGameStateSo(demo2GameStateSo);
             }
         }
     }

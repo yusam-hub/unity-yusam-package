@@ -4,9 +4,9 @@ namespace YusamPackage.GameState
 {
     public abstract class GameStateSo : ScriptableObject
     {
-        [HideInInspector] public GameObject parentGameObject;
-
-        public GameStateSo nextGameState;
+        [HideInInspector] 
+        public GameStateUpdateMachineSo gameStateUpdateMachineSo;
+        
         public bool IsFinished { get; protected set; }
         
         public virtual void Enter()
@@ -19,5 +19,6 @@ namespace YusamPackage.GameState
             Debug.Log("Exit: " + this); 
         }
         public abstract void Update();
+
     }
 }
