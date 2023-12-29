@@ -5,9 +5,7 @@ namespace YusamPackage.GameState
     public abstract class GameStateSo : ScriptableObject
     {
         [HideInInspector] 
-        public GameStateUpdateMachineSo gameStateUpdateMachineSo;
-        
-        public bool IsFinished { get; protected set; }
+        public GameStateMachineSo gameStateMachineSo;
         
         public virtual void Enter()
         {

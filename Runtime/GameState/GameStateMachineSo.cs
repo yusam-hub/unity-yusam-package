@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace YusamPackage.GameState
 {
-    public class GameStateUpdateMachineSo: MonoBehaviour
+    public class GameStateMachineSo: MonoBehaviour
     {
         [SerializeField] private GameStateSo startGameState;
 
@@ -19,6 +19,16 @@ namespace YusamPackage.GameState
             GameStateSoUpdate();
         }
         
+        public bool HasCurrentGameStateSo()
+        {
+            return _currentGameStateSo != null;
+        }
+        
+        public GameStateSo GetCurrentGameStateSo()
+        {
+            return _currentGameStateSo;
+        }
+        
         public virtual void SetGameStateSo(GameStateSo gameStateSo)
         {
             if (_currentGameStateSo)
@@ -29,7 +39,7 @@ namespace YusamPackage.GameState
             if (gameStateSo)
             {
                 _currentGameStateSo = Instantiate(gameStateSo);
-                _currentGameStateSo.gameStateUpdateMachineSo = this;
+                _currentGameStateSo.gameStateMachineSo = this;
                 _currentGameStateSo.Enter();
             }
             else
@@ -42,14 +52,7 @@ namespace YusamPackage.GameState
         {
             if (!_currentGameStateSo) return;
             
-            if (!_currentGameStateSo.IsFinished)
-            {
-                _currentGameStateSo.Update();
-            }
-            else
-            {
-                //do other logic
-            }
+            _currentGameStateSo.Update();
         }
     }
 }

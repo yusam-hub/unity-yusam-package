@@ -12,11 +12,6 @@ namespace YusamPackage.GameState.So
 
         public override void Update()
         {
-            if (IsFinished)
-            {
-                return;
-            }
-
             DoSomething();
         }
 
@@ -25,7 +20,7 @@ namespace YusamPackage.GameState.So
             _currentTimer += Time.deltaTime;
             if (_currentTimer >= maxTimer)
             {
-                gameStateUpdateMachineSo.SetGameStateSo(demo2GameStateSo);
+                gameStateMachineSo.SetGameStateSo(demo2GameStateSo);
             }
         }
     }

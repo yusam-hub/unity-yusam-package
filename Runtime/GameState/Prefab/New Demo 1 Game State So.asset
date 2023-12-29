@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261609a9948045ce985e92ff8b898968, type: 3}
   m_Name: New Demo 1 Game State So
   m_EditorClassIdentifier: 
-  parentGameObject: {fileID: 0}
-  nextGameState: {fileID: 11400000, guid: 637d47b627cf5544ea23d1f2960dfdf3, type: 2}
+  gameStateMachineSo: {fileID: 0}
   maxTimer: 1
+  demo2GameStateSo: {fileID: 11400000, guid: 637d47b627cf5544ea23d1f2960dfdf3, type: 2}
