@@ -384,7 +384,7 @@ PrefabInstance:
     - target: {fileID: 3981270868776404804, guid: 1be11383d4870504589602445c612789,
         type: 3}
       propertyPath: m_Name
-      value: DemoGameStateMachine
+      value: DemoGameStateMachineSo
       objectReference: {fileID: 0}
     - target: {fileID: 7877243093324513439, guid: 1be11383d4870504589602445c612789,
         type: 3}

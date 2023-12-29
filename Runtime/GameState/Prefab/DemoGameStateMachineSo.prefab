@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7877243093324513439}
-  - component: {fileID: 1653474711566621312}
+  - component: {fileID: 3462981107796182650}
   m_Layer: 0
-  m_Name: DemoGameStateMachine
+  m_Name: DemoGameStateMachineSo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1653474711566621312
+--- !u!114 &3462981107796182650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a27795ab4ebffc4f8e1cae10911c757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGameState: {fileID: 11400000, guid: e8c840f3169068c4d9b3ed81f67c7c1c, type: 2}
+  startGameState: {fileID: 11400000, guid: 5a97755672307474f9cfdf4ca47cdf35, type: 2}
+  currentGameStateSo: {fileID: 0}
