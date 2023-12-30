@@ -1,13 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace YusamPackage.GameInput
 {
+    
     public class GameInputManager : MonoBehaviour, IGameInputManager
     {
-        public static GameInputManager Instance { get; private set; }
-
-        
         [SerializeField] private GameInputManagerUi gameInputManagerUi;
         [SerializeField] private bool showUi = false;
         
@@ -18,21 +17,11 @@ namespace YusamPackage.GameInput
          */
         private void Awake()
         {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-
             _gameInputActions = new GameInputActions();
             _gameInputActions.DefaultMap.Enable();
-            
+ 
             //_gameInputActions.DefaultMap.AInteractAction.performed += AInteractActionOnPerformed;
             //_gameInputActions.DefaultMap.BInteractAction.performed += BInteractActionOnPerformed;
-            
         }
 
         /*

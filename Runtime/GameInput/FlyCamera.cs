@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace YusamPackage.GameInput
 {
-    public class FlyCamera : MonoBehaviour
+    public class FlyCamera : GameInput
     {
         [SerializeField] private float rotateSpeed = 50;
         [SerializeField] private float moveSpeed = 5;
@@ -10,31 +11,42 @@ namespace YusamPackage.GameInput
         private float _rotateSpeedCurrent;
         private float _moveSpeedCurrent;
 
+        /*
+         * Controlled by GameInputManager 
+         */
         private bool IsButtonPressed()
         {
-            return GameInputManager.Instance.GetMouseRightPressAction().IsPressed() || GameInputManager.Instance.GetLeftTriggerPressAction().IsPressed();
+            return GetGameInputProxy().GetGameInputManager().GetMouseRightPressAction().IsPressed() 
+                   || 
+                   GetGameInputProxy().GetGameInputManager().GetLeftTriggerPressAction().IsPressed();
         }
-        
         private Vector3 GetLeftStickDirection()
         {
-            Vector2 leftStickDirection = GameInputManager.Instance.GetLeftStickVector2Normalized();
+            Vector2 leftStickDirection = GetGameInputProxy().GetGameInputManager().GetLeftStickVector2Normalized();
             return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
         }
-        
         private Vector3 GetRightStickDirection()
         {
-            Vector2 rightStickDirection = GameInputManager.Instance.GetRightStickVector2Normalized();
+            Vector2 rightStickDirection = GetGameInputProxy().GetGameInputManager().GetRightStickVector2Normalized();
             return new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
         }
         
+        /*
+         * 
+         */
         private void Update()
         {
+            if (!GetGameInputProxy().GetGameInputEnabled(this)) return;
+
+            /*
+             * todo: need state machine
+             */
             if (IsButtonPressed())
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                Movement();
-                Rotation();
+                UpdateMovement();
+                UpdateRotation();
             }
             else
             {
@@ -43,12 +55,12 @@ namespace YusamPackage.GameInput
             }  
         }
         
-        private void Movement()
+        private void UpdateMovement()
         {
             transform.Translate(GetLeftStickDirection() * moveSpeed * Time.deltaTime);
         }
 
-        private void Rotation()
+        private void UpdateRotation()
         {
             transform.Rotate(GetRightStickDirection() * rotateSpeed * Time.deltaTime);
             Vector3 eulerAngles = transform.rotation.eulerAngles;
