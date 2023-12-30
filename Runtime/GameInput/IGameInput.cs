@@ -3,5 +3,6 @@
     public interface IGameInput
     {
         public GameInputProxy GetGameInputProxy();
+        public bool HasGameInputProxy();
     }
 }

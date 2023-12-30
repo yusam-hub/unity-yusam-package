@@ -10,6 +10,8 @@ namespace YusamPackage.GameInput
          */
         public Vector2 GetLeftStickVector2Normalized();
         public Vector2 GetRightStickVector2Normalized();
+        public InputAction GetLeftStickVector2Action();
+        public InputAction GetRightStickVector2Action();
         
         public InputAction GetLeftTriggerPressAction();
         public InputAction GetLeftBumperPressAction();
@@ -27,7 +29,10 @@ namespace YusamPackage.GameInput
         public InputAction GetRightPadDownPressAction();
         public InputAction GetStartPressAction();
         public InputAction GetSelectPressAction();
-
+        public InputAction GetEnterPressAction();
+        public InputAction GetEscapePressAction();
+        public InputAction GetSpacePressAction();
+        
         /*
          * MOUSE
          */

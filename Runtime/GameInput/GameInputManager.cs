@@ -19,7 +19,6 @@ namespace YusamPackage.GameInput
         {
             _gameInputActions = new GameInputActions();
             _gameInputActions.DefaultMap.Enable();
- 
             //_gameInputActions.DefaultMap.AInteractAction.performed += AInteractActionOnPerformed;
             //_gameInputActions.DefaultMap.BInteractAction.performed += BInteractActionOnPerformed;
         }
@@ -112,18 +111,38 @@ namespace YusamPackage.GameInput
         {
             return _gameInputActions.DefaultMap.RightBumperPress;
         }
-
+        public InputAction GetEnterPressAction()
+        {
+            return _gameInputActions.DefaultMap.EnterPress;
+        }
+        public InputAction GetEscapePressAction()
+        {
+            return _gameInputActions.DefaultMap.EscapePress;
+        }
+        public InputAction GetSpacePressAction()
+        {
+            return _gameInputActions.DefaultMap.SpacePress;
+        }
         
         /*
          * VECTOR 2
          */
+        public InputAction GetLeftStickVector2Action()
+        {
+            return _gameInputActions.DefaultMap.LeftStickVector2;
+        }
+        public InputAction GetRightStickVector2Action()
+        {
+            return _gameInputActions.DefaultMap.RightStickVector2;
+        }
+        
         public Vector2 GetLeftStickVector2Normalized()
         {
-            return _gameInputActions.DefaultMap.LeftStickVector2.ReadValue<Vector2>();
+            return GetLeftStickVector2Action().ReadValue<Vector2>();
         }
         public Vector2 GetRightStickVector2Normalized()
         {
-            return _gameInputActions.DefaultMap.RightStickVector2.ReadValue<Vector2>();
+            return GetRightStickVector2Action().ReadValue<Vector2>();
         }
         
         /*

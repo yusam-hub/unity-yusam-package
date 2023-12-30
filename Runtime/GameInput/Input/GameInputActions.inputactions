@@ -202,6 +202,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "EnterPress",
+                    "type": "Button",
+                    "id": "5735af78-3bae-434d-9ba1-e2a422e7cf10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpacePress",
+                    "type": "Button",
+                    "id": "a0cae4c4-5fdf-42e3-9a42-19f9874a8912",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EscapePress",
+                    "type": "Button",
+                    "id": "64df29dd-3d07-4e87-acb4-ee71a1b5330c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -809,6 +836,39 @@
                     "action": "RightStickVector2",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d7e6e2c4-1ff2-4f5c-935c-cec16f56e4f9",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnterPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51bdd3a4-9e77-41cb-b292-55730ec90ce6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpacePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f501f6e-a723-4295-9369-b1c338a3754e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EscapePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

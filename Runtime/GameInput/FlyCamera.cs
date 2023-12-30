@@ -36,6 +36,7 @@ namespace YusamPackage.GameInput
          */
         private void Update()
         {
+            if (!HasGameInputProxy()) return;
             if (!GetGameInputProxy().GetGameInputEnabled(this)) return;
 
             /*

@@ -17,7 +17,14 @@ namespace YusamPackage.GameInput
         [Dropdown("GetGameInputList()", "name")]
         public GameInput selectedGameInput;
 
-        
+        private void Awake()
+        {
+            if (selectedGameInput == null)
+            {
+                Debug.LogError("Selected Game Input is null");
+            }
+        }
+
         public GameInputManager GetGameInputManager()
         {
             return gameInputManager;
