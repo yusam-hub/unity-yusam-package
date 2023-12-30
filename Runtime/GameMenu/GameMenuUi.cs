@@ -46,6 +46,11 @@ namespace YusamPackage.GameMenu
          */
         private void Awake()
         {
+            if (GameInput.GameInput.Instance == null)
+            {
+                Debug.LogError("GameInput instance not found! " + this);
+            }
+            
             _menuList = new List<GameMenuItemUi>();
             
             foreach (GameMenuItemsUiStruct menuItem in menuArray)
@@ -102,10 +107,13 @@ namespace YusamPackage.GameMenu
          */
         private void Start()
         {
-            GameInput.GameInput.Instance.GetLeftStickVector2Action().performed += OnGetLeftStickVector2Action;
-            GameInput.GameInput.Instance.GetEnterPressAction().performed += OnMenuClick;
-            GameInput.GameInput.Instance.GetSpacePressAction().performed += OnMenuClick;
-            GameInput.GameInput.Instance.GetRightPadDownPressAction().performed += OnMenuClick;
+            if (GameInput.GameInput.Instance)
+            {
+                GameInput.GameInput.Instance.GetLeftStickVector2Action().performed += OnGetLeftStickVector2Action;
+                GameInput.GameInput.Instance.GetEnterPressAction().performed += OnMenuClick;
+                GameInput.GameInput.Instance.GetSpacePressAction().performed += OnMenuClick;
+                GameInput.GameInput.Instance.GetRightPadDownPressAction().performed += OnMenuClick;
+            }
         }
 
         private void OnMenuClick(InputAction.CallbackContext obj)
@@ -147,10 +155,15 @@ namespace YusamPackage.GameMenu
                 gameMenuItemUi.OnMenuExit -= OnMenuExit;
                 Destroy(gameMenuItemUi);
             }
-            GameInput.GameInput.Instance.GetEnterPressAction().performed -= OnMenuClick;
-            GameInput.GameInput.Instance.GetSpacePressAction().performed -= OnMenuClick;
-            GameInput.GameInput.Instance.GetRightPadDownPressAction().performed -= OnMenuClick;
-            GameInput.GameInput.Instance.GetLeftStickVector2Action().performed -= OnGetLeftStickVector2Action;
+
+            if (GameInput.GameInput.Instance)
+            {
+                GameInput.GameInput.Instance.GetEnterPressAction().performed -= OnMenuClick;
+                GameInput.GameInput.Instance.GetSpacePressAction().performed -= OnMenuClick;
+                GameInput.GameInput.Instance.GetRightPadDownPressAction().performed -= OnMenuClick;
+                GameInput.GameInput.Instance.GetLeftStickVector2Action().performed -= OnGetLeftStickVector2Action;
+            }
+
             Debug.Log("OnDestroy: " + this.name);
         }
     }

@@ -11,22 +11,42 @@ namespace YusamPackage.GameInput
         private float _rotateSpeedCurrent;
         private float _moveSpeedCurrent;
 
+        private void Awake()
+        {
+            if (GameInput.Instance == null)
+            {
+                Debug.LogError("GameInput instance not found! " + this);
+            }
+        }
+
         /*
          * Controlled by GameInputManager 
          */
         private bool IsButtonPressed()
         {
+            if (GameInput.Instance == null)
+            {
+                return false;
+            }
             return GameInput.Instance.GetMouseRightPressAction().IsPressed() 
                    || 
                    GameInput.Instance.GetLeftTriggerPressAction().IsPressed();
         }
         private Vector3 GetLeftStickDirection()
         {
+            if (GameInput.Instance == null)
+            {
+                return Vector3.zero;
+            }
             Vector2 leftStickDirection = GameInput.Instance.GetLeftStickVector2Normalized();
             return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
         }
         private Vector3 GetRightStickDirection()
         {
+            if (GameInput.Instance == null)
+            {
+                return Vector3.zero;
+            }
             Vector2 rightStickDirection = GameInput.Instance.GetRightStickVector2Normalized();
             return new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
         }
