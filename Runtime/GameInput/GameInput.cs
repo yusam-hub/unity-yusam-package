@@ -7,11 +7,7 @@ namespace YusamPackage.GameInput
     
     public class GameInput : MonoBehaviour
     {
-        public static GameInput Instance { get; private set; }
-        
-        [SerializeField] private GameInputUi gameInputUi;
-        [SerializeField] private bool showUi = false;
-        
+        private static GameInput Instance { get; set; }
         private GameInputActions _gameInputActions;
 
         /*
@@ -42,15 +38,7 @@ namespace YusamPackage.GameInput
             _gameInputActions.Dispose();
             Debug.Log("OnDestroy: " + this.name);
         }
-
-        /*
-         * START
-         */
-        private void Start()
-        {
-            gameInputUi.gameObject.SetActive(showUi);
-        }
-        
+       
         /*
          * PRESS
          */
@@ -172,138 +160,6 @@ namespace YusamPackage.GameInput
             return _gameInputActions.DefaultMap.MouseRightPress;
         }
 
-        /*
-         * UPDATE
-         */
-        private void Update()
-        {
-            if (showUi && gameInputUi)
-            {
-                /*
-                 * LEFT STICK
-                 */
-                Vector2 leftStick = GetLeftStickVector2Normalized();
 
-                gameInputUi.leftStick.leftImage.color = leftStick.x < 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-
-                gameInputUi.leftStick.rightImage.color = leftStick.x > 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-
-                gameInputUi.leftStick.topImage.color = leftStick.y > 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-
-                gameInputUi.leftStick.bottomImage.color = leftStick.y < 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                gameInputUi.leftStick.centerImage.color = _gameInputActions.DefaultMap.LeftStickPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                /*
-                 * RIGHT STICK
-                 */
-                Vector2 rightStick = GetRightStickVector2Normalized();
-
-                gameInputUi.rightStick.leftImage.color = rightStick.x < 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-
-                gameInputUi.rightStick.rightImage.color = rightStick.x > 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-
-                gameInputUi.rightStick.topImage.color = rightStick.y > 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-
-                gameInputUi.rightStick.bottomImage.color = rightStick.y < 0
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                gameInputUi.rightStick.centerImage.color = _gameInputActions.DefaultMap.RightStickPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                /*
-                 * LEFT PAD
-                 */
-                gameInputUi.leftPad.leftImage.color = _gameInputActions.DefaultMap.LeftPadLeftPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.leftPad.rightImage.color = _gameInputActions.DefaultMap.LeftPadRightPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.leftPad.topImage.color = _gameInputActions.DefaultMap.LeftPadUpPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.leftPad.bottomImage.color = _gameInputActions.DefaultMap.LeftPadDownPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                /*
-                 * RIGHT PAD
-                 */
-                gameInputUi.rightPad.leftImage.color = _gameInputActions.DefaultMap.RightPadLeftPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.rightPad.rightImage.color = _gameInputActions.DefaultMap.RightPadRightPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.rightPad.topImage.color = _gameInputActions.DefaultMap.RightPadUpPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.rightPad.bottomImage.color = _gameInputActions.DefaultMap.RightPadDownPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                /*
-                 * SELECT START
-                 */
-                gameInputUi.selectStart.leftImage.color = _gameInputActions.DefaultMap.SelectPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.selectStart.rightImage.color = _gameInputActions.DefaultMap.StartPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                /*
-                 * LEFT V
-                 */
-                gameInputUi.leftV.topImage.color = _gameInputActions.DefaultMap.LeftBumperPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.leftV.bottomImage.color = _gameInputActions.DefaultMap.LeftTriggerPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                /*
-                 * RIGHT V
-                 */
-                gameInputUi.rightV.topImage.color = _gameInputActions.DefaultMap.RightBumperPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.rightV.bottomImage.color = _gameInputActions.DefaultMap.RightTriggerPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                
-                /*
-                 * MOUSE BUTTON
-                 */
-                gameInputUi.mouseButton.leftImage.color = _gameInputActions.DefaultMap.MouseLeftPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.mouseButton.centerImage.color = _gameInputActions.DefaultMap.MouseMiddlePress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-                gameInputUi.mouseButton.rightImage.color = _gameInputActions.DefaultMap.MouseRightPress.IsPressed()      
-                    ? gameInputUi.selectedColor
-                    : gameInputUi.defaultColor;
-            }
-        }
     }
 }

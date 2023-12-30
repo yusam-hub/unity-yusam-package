@@ -5,6 +5,10 @@ namespace YusamPackage.GameInput
 {
     public class FlyCamera : MonoBehaviour
     {
+        [Header("References")] 
+        [SerializeField] private GameInput gameInput;
+
+        [Header("Settings")] 
         [SerializeField] private float rotateSpeed = 50;
         [SerializeField] private float moveSpeed = 5;
 
@@ -13,7 +17,7 @@ namespace YusamPackage.GameInput
 
         private void Awake()
         {
-            if (GameInput.Instance == null)
+            if (gameInput == null)
             {
                 Debug.LogError("GameInput instance not found! " + this);
             }
@@ -24,30 +28,18 @@ namespace YusamPackage.GameInput
          */
         private bool IsButtonPressed()
         {
-            if (GameInput.Instance == null)
-            {
-                return false;
-            }
-            return GameInput.Instance.GetMouseRightPressAction().IsPressed() 
+            return gameInput.GetMouseRightPressAction().IsPressed() 
                    || 
-                   GameInput.Instance.GetLeftTriggerPressAction().IsPressed();
+                   gameInput.GetLeftTriggerPressAction().IsPressed();
         }
         private Vector3 GetLeftStickDirection()
         {
-            if (GameInput.Instance == null)
-            {
-                return Vector3.zero;
-            }
-            Vector2 leftStickDirection = GameInput.Instance.GetLeftStickVector2Normalized();
+            Vector2 leftStickDirection = gameInput.GetLeftStickVector2Normalized();
             return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
         }
         private Vector3 GetRightStickDirection()
         {
-            if (GameInput.Instance == null)
-            {
-                return Vector3.zero;
-            }
-            Vector2 rightStickDirection = GameInput.Instance.GetRightStickVector2Normalized();
+            Vector2 rightStickDirection = gameInput.GetRightStickVector2Normalized();
             return new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
         }
         
