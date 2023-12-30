@@ -4,11 +4,10 @@ using UnityEngine;
 using YusamPackage.DropdownAttributes.AdvancedReflection;
 using Object = UnityEngine.Object;
 
-public delegate string GetItemNameCallback(object baseMaster, object master);
 
 namespace YusamPackage.DropdownAttributes
 {
-
+    public delegate string GetItemNameCallback(object baseMaster, object master);
 
     /// <summary>
     /// [Dropdown(path, displayProperty)]

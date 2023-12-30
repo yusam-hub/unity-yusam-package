@@ -58,13 +58,20 @@ namespace YusamPackage.DropdownAttributes.AdvancedReflection
 
         private static object GetValue(object baseMaster, object currentMaster, params string[] args)
         {
+            if (currentMaster == null)
+            {
+                return currentMaster;
+            }
+            
             //ReflectionSystem.GetValue("SkillDatabase", "Instance", "SkillList[0]", "skillID");
             //Debug.Log("args length: " + args.Length.ToString());
 
             #region Display path way
 
             string display = "<color=blue><b>↓↓↓↓↓↓↓↓START Reflection↓↓↓↓↓↓↓↓</b></color> \n PATH:    <b>";
+            
             display += $"{baseMaster.ToString()}{arrowSymbol}...{arrowSymbol}{currentMaster.ToString()}{arrowSymbol}";
+            
             foreach (string str in args)
             {
                 display += str + arrowSymbol;

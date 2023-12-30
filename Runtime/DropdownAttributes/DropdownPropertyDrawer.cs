@@ -158,7 +158,7 @@ namespace YusamPackage.DropdownAttributes
                     //Debug.Log($"get name : {name}");
                     if (name == null)
                     {
-                        name = "[ERROR]wrong property name";
+                        name = "[ERROR] property name is null";
                         errorCount++;
                     }
 
@@ -175,8 +175,7 @@ namespace YusamPackage.DropdownAttributes
             return list.IndexOf(obj);
         }
 
-        public int FindSystemObjectSelectedID(List<object> list, object target, GetItemNameCallback GetItemName,
-            object baseMaster)
+        public int FindSystemObjectSelectedID(List<object> list, object target, GetItemNameCallback GetItemName, object baseMaster)
         {
             for (int i = 0; i < list.Count; i++)
             {
@@ -237,6 +236,7 @@ namespace YusamPackage.DropdownAttributes
             try
             {
                 DropdownAttribute dropdownAttribute = (DropdownAttribute)attribute;
+
                 if (dropdownAttribute.ListPath == "")
                 {
                     //PATH EMPTY
@@ -246,10 +246,12 @@ namespace YusamPackage.DropdownAttributes
                 }
 
                 Type itemType = dropdownAttribute.Type; //store the type
+                
                 GetItemNameCallback GetItemName = dropdownAttribute.GetItemName; //store the callback
+                
                 object BaseMaster = property.serializedObject.targetObject; //store the base master
-                object listObj =
-                    ReflectionSystem.GetValue(BaseMaster, dropdownAttribute.ListPath); //get the list from path
+                
+                object listObj = ReflectionSystem.GetValue(BaseMaster, dropdownAttribute.ListPath); //get the list from path
                 if (listObj == null)
                 {
                     //PATH NOT WORKING
@@ -260,40 +262,42 @@ namespace YusamPackage.DropdownAttributes
 
                 //Debug.Log($"the object: {JsonUtility.ToJson(listObj)}");
                 IList ilist = (IList)listObj;
-                if (ilist.Count > 0)
+                
+                if (ilist.Count > 0) 
+                {
                     if (IsUnityObject(ilist[0]))
                     {
                         //Can use UnityObject.Name
                         List<Object> UnityObjectList = CastWholeList<Object>(listObj, typeof(Object));
+
                         Object obj = property.objectReferenceValue;
 
                         #region Draw the list dropdown
 
-                        int SelectedID = FindSelectedID(UnityObjectList, obj); //Update the selectedID
-                        string[]
-                            arr = ListToStringArray(UnityObjectList, GetItemName,
-                                BaseMaster); //convert the objects into name list using GetItemName delegate method
-                        if (arr == null)
-                        {
-                            //Cannot find property name
-                            EditorGUI.LabelField(position, property.name,
-                                $"Cannot find property: \"[item].{dropdownAttribute.ItemNameProperty}\"",
-                                GetGUIColor(Color.red));
-                            return;
-                        }
+                            int SelectedID = FindSelectedID(UnityObjectList, obj); //Update the selectedID
 
-                        if (SelectedID == -1 && arr.Length > 0) SelectedID = 0; //Set it to 0 as default
-                        //int newSelectedID = EditorGUILayout.Popup(dropdown, SelectedID, arr);
-                        int newSelectedID = EditorGUI.Popup(position, property.name, SelectedID, arr);
-                        if (newSelectedID != SelectedID)
-                        {
-                            //changed
-                            SelectedID = newSelectedID;
-                            Object selectedObject = UnityObjectList[SelectedID];
-                            property.objectReferenceValue = selectedObject;
-                            //EditorUtility.SetDirty(property.serializedObject.targetObject);//repaint
-                            //Debug.Log($"changed to {property.objectReferenceValue.name}");
-                        }
+                            string[] arr = ListToStringArray(UnityObjectList, GetItemName, BaseMaster); //convert the objects into name list using GetItemName delegate method
+
+                            if (arr == null)
+                            {
+                                //Cannot find property name
+                                EditorGUI.LabelField(position, property.name,$"Cannot find property: \"[item].{dropdownAttribute.ItemNameProperty}\"", GetGUIColor(Color.red));
+                                return;
+                            }
+
+                            if (SelectedID == -1 && arr.Length > 0) SelectedID = 0; //Set it to 0 as default
+                            
+                            //int newSelectedID = EditorGUILayout.Popup(dropdown, SelectedID, arr);
+                            int newSelectedID = EditorGUI.Popup(position, property.name, SelectedID, arr);
+                            if (newSelectedID != SelectedID)
+                            {
+                                //changed
+                                SelectedID = newSelectedID;
+                                Object selectedObject = UnityObjectList[SelectedID];
+                                property.objectReferenceValue = selectedObject;
+                                //EditorUtility.SetDirty(property.serializedObject.targetObject);//repaint
+                                //Debug.Log($"changed to {property.objectReferenceValue.name}");
+                            }
 
                         #endregion
                     }
@@ -301,39 +305,41 @@ namespace YusamPackage.DropdownAttributes
                     {
                         //Use SystemObject.ToString()
                         List<object> SystemObjectList = CastWholeList<object>(listObj, typeof(object));
+
                         /*foreach(object o in SystemObjectList)
                         {
                             Debug.Log($" object tostring: {(o.ToString())}");
                             Debug.Log($" object name: {dropdownAttribute.GetItemName(o)}");
                         }*/
+
                         object obj = property.GetValue();
 
                         #region Draw the list dropdown
 
-                        int SelectedID =
-                            FindSystemObjectSelectedID(SystemObjectList, obj, GetItemName,
-                                BaseMaster); //Update the selectedID
-                        string[] arr = ListToStringArray(SystemObjectList, GetItemName, BaseMaster);
-                        if (SelectedID == -1 && arr.Length > 0) SelectedID = 0; //Set it to 0 as default
-                        int newSelectedID = EditorGUI.Popup(position, property.name, SelectedID, arr,
-                            GetDropdownStyle(Color.blue));
-                        if (newSelectedID != SelectedID)
-                        {
-                            //changed
-                            SelectedID = newSelectedID;
-                            object selectedObject = SystemObjectList[SelectedID];
-                            property.SetValue(selectedObject); //property.setvalue to the serialized object
+                            int SelectedID = FindSystemObjectSelectedID(SystemObjectList, obj, GetItemName, BaseMaster); //Update the selectedID
 
-                            EditorUtility.SetDirty(property.serializedObject.targetObject); //repaint
-                        }
+                            string[] arr = ListToStringArray(SystemObjectList, GetItemName, BaseMaster);
+
+                            if (SelectedID == -1 && arr.Length > 0) SelectedID = 0; //Set it to 0 as default
+
+                            int newSelectedID = EditorGUI.Popup(position, property.name, SelectedID, arr, GetDropdownStyle(Color.blue));
+
+                            if (newSelectedID != SelectedID)
+                            {
+                                //changed
+                                SelectedID = newSelectedID;
+                                object selectedObject = SystemObjectList[SelectedID];
+                                property.SetValue(selectedObject); //property.setvalue to the serialized object
+
+                                EditorUtility.SetDirty(property.serializedObject.targetObject); //repaint
+                            }
 
                         #endregion
                     }
-                else
+                } 
+                else 
                 {
-                    EditorGUI.LabelField(position, property.name,
-                        $"The list \"{dropdownAttribute.ListPath}\" size is 0",
-                        GetGUIColor(Color.red));
+                    EditorGUI.LabelField(position, property.name, $"The list \"{dropdownAttribute.ListPath}\" is empty", GetGUIColor(Color.white));
                 }
             }
             catch (Exception e)
@@ -347,6 +353,7 @@ namespace YusamPackage.DropdownAttributes
                 GUILayout.TextArea(e.ToString(), style, GUILayout.ExpandHeight(true));
 
                 GUILayout.EndHorizontal();
+                
                 Debug.LogException(e);
             }
         }
