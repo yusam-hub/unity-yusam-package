@@ -2,22 +2,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using YusamPackage.GameInput;
 
 namespace YusamPackage.GameMenu
 {
-    public class GameMenuUi : GameInput.GameInput
+    public class GameMenuUi : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Image backgroundImage;
         [SerializeField] private GameMenuItemsUi gameMenuItemsUi;
         [SerializeField] private GameMenuItemUi prefabGameMenuItemUi;
-
-
         
         [Serializable]
         public struct GameMenuItemsUiStruct
@@ -107,10 +102,10 @@ namespace YusamPackage.GameMenu
          */
         private void Start()
         {
-            GetGameInputProxy().GetGameInputManager().GetLeftStickVector2Action().performed += OnGetLeftStickVector2Action;
-            GetGameInputProxy().GetGameInputManager().GetEnterPressAction().performed += OnMenuClick;
-            GetGameInputProxy().GetGameInputManager().GetSpacePressAction().performed += OnMenuClick;
-            GetGameInputProxy().GetGameInputManager().GetRightPadDownPressAction().performed += OnMenuClick;
+            GameInput.GameInput.Instance.GetLeftStickVector2Action().performed += OnGetLeftStickVector2Action;
+            GameInput.GameInput.Instance.GetEnterPressAction().performed += OnMenuClick;
+            GameInput.GameInput.Instance.GetSpacePressAction().performed += OnMenuClick;
+            GameInput.GameInput.Instance.GetRightPadDownPressAction().performed += OnMenuClick;
         }
 
         private void OnMenuClick(InputAction.CallbackContext obj)
@@ -120,8 +115,6 @@ namespace YusamPackage.GameMenu
 
         private void OnGetLeftStickVector2Action(InputAction.CallbackContext obj)
         {
-            if (!GetGameInputProxy().GetGameInputEnabled(this)) return;
-            
             Vector2 leftStick = obj.ReadValue<Vector2>();
             _menuList[_selectedMenuIndex].SetColorDefault();
             if (leftStick.y < 0)
@@ -154,11 +147,11 @@ namespace YusamPackage.GameMenu
                 gameMenuItemUi.OnMenuExit -= OnMenuExit;
                 Destroy(gameMenuItemUi);
             }
-            GetGameInputProxy().GetGameInputManager().GetEnterPressAction().performed -= OnMenuClick;
-            GetGameInputProxy().GetGameInputManager().GetSpacePressAction().performed -= OnMenuClick;
-            GetGameInputProxy().GetGameInputManager().GetRightPadDownPressAction().performed -= OnMenuClick;
-            GetGameInputProxy().GetGameInputManager().GetLeftStickVector2Action().performed -= OnGetLeftStickVector2Action;
+            GameInput.GameInput.Instance.GetEnterPressAction().performed -= OnMenuClick;
+            GameInput.GameInput.Instance.GetSpacePressAction().performed -= OnMenuClick;
+            GameInput.GameInput.Instance.GetRightPadDownPressAction().performed -= OnMenuClick;
+            GameInput.GameInput.Instance.GetLeftStickVector2Action().performed -= OnGetLeftStickVector2Action;
+            Debug.Log("OnDestroy: " + this.name);
         }
-
     }
 }

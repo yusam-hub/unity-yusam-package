@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 1940631042396929275}
   - component: {fileID: 3696941841965403145}
   m_Layer: 5
-  m_Name: GameInputManagerUI
+  m_Name: GameInputUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: LeftPad_GameInputManagerControlPanelUI
+      value: LeftPad_GameInputControlPanelUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -404,7 +404,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: SelectStart_GameInputManagerControlPanelUI
+      value: SelectStart_GameInputControlPanelUI
       objectReference: {fileID: 0}
     - target: {fileID: 8646625693860324140, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
@@ -550,7 +550,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: RightPad_GameInputManagerControlPanelUI
+      value: RightPad_GameInputControlPanelUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -686,7 +686,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: RightStick_GameInputManagerControlPanelUI
+      value: RightStick_GameInputControlPanelUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -832,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: LeftV_GameInputManagerControlPanelUI
+      value: LeftV_GameInputControlPanelUI
       objectReference: {fileID: 0}
     - target: {fileID: 8334326035713932658, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
@@ -983,7 +983,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: RightV_GameInputManagerControlPanelUI
+      value: RightV_GameInputControlPanelUI
       objectReference: {fileID: 0}
     - target: {fileID: 8334326035713932658, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
@@ -1124,7 +1124,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: LeftStick_GameInputManagerControlPanelUI
+      value: LeftStick_GameInputControlPanelUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1275,7 +1275,7 @@ PrefabInstance:
     - target: {fileID: 7811796845477571302, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}
       propertyPath: m_Name
-      value: MouseButton_GameInputManagerControlPanelUI
+      value: MouseButton_GameInputControlPanelUI
       objectReference: {fileID: 0}
     - target: {fileID: 8334326035713932658, guid: 0c4a48b0378cd624cb4516141fe58c36,
         type: 3}

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace YusamPackage.GameInput
 {
-    public class GameInputManagerControlPanelUi : MonoBehaviour
+    public class GameInputControlPanelUi : MonoBehaviour
     {
         [SerializeField] public Image centerImage;
         [SerializeField] public Image leftImage;

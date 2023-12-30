@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 7255250325694536433}
   - component: {fileID: 7410982899424994261}
   m_Layer: 5
-  m_Name: GameInputManagerControlPanelUI
+  m_Name: GameInputControlPanelUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

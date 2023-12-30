@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace YusamPackage.GameInput
 {
-    public class FlyCamera : GameInput
+    public class FlyCamera : MonoBehaviour
     {
         [SerializeField] private float rotateSpeed = 50;
         [SerializeField] private float moveSpeed = 5;
@@ -16,18 +16,18 @@ namespace YusamPackage.GameInput
          */
         private bool IsButtonPressed()
         {
-            return GetGameInputProxy().GetGameInputManager().GetMouseRightPressAction().IsPressed() 
+            return GameInput.Instance.GetMouseRightPressAction().IsPressed() 
                    || 
-                   GetGameInputProxy().GetGameInputManager().GetLeftTriggerPressAction().IsPressed();
+                   GameInput.Instance.GetLeftTriggerPressAction().IsPressed();
         }
         private Vector3 GetLeftStickDirection()
         {
-            Vector2 leftStickDirection = GetGameInputProxy().GetGameInputManager().GetLeftStickVector2Normalized();
+            Vector2 leftStickDirection = GameInput.Instance.GetLeftStickVector2Normalized();
             return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
         }
         private Vector3 GetRightStickDirection()
         {
-            Vector2 rightStickDirection = GetGameInputProxy().GetGameInputManager().GetRightStickVector2Normalized();
+            Vector2 rightStickDirection = GameInput.Instance.GetRightStickVector2Normalized();
             return new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
         }
         
@@ -36,9 +36,6 @@ namespace YusamPackage.GameInput
          */
         private void Update()
         {
-            if (!HasGameInputProxy()) return;
-            if (!GetGameInputProxy().GetGameInputEnabled(this)) return;
-
             /*
              * todo: need state machine
              */
