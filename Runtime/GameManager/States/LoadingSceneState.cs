@@ -7,7 +7,7 @@ namespace YusamPackage
     public class LoadingSceneState : GameManagerState
     {
         [SerializeField] private GameObject loadingSceneUi;
-        [SerializeField] private int sceneIndex;
+        [SerializeField] private string sceneName;
 
         private bool _isFinished;
         private float _loadingTimer;
@@ -17,13 +17,13 @@ namespace YusamPackage
         public override void Enter()
         {
             loadingSceneUi.SetActive(true);
-            StartCoroutine("AsyncSceneLoading", sceneIndex);
+            StartCoroutine("AsyncSceneLoading", sceneName);
         }
 
-        IEnumerator AsyncSceneLoading(int aSceneIndex)
+        IEnumerator AsyncSceneLoading(string aSceneName)
         {
             float loadingProgress;
-            _asyncOperation = SceneManager.LoadSceneAsync(aSceneIndex);
+            _asyncOperation = SceneManager.LoadSceneAsync(aSceneName);
             _asyncOperation.allowSceneActivation = false;
             while (_asyncOperation.progress < 0.9f)
             {
