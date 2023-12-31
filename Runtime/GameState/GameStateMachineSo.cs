@@ -5,31 +5,23 @@ namespace YusamPackage
 {
     public class GameStateMachineSo: MonoBehaviour
     {
-        [SerializeField] private GameStateSo startGameState;
+        [SerializeField] protected GameStateSo startGameState;
 
-        private GameStateSo _currentGameStateSo;
+        protected GameStateSo _currentGameStateSo;
         
-        private void Start()
+        private void Awake()
         {
             SetGameStateSo(startGameState);
         }
 
         private void Update()
         {
-            GameStateSoUpdate();
+            if (!_currentGameStateSo) return;
+            
+            _currentGameStateSo.Update();
         }
         
-        public bool HasCurrentGameStateSo()
-        {
-            return _currentGameStateSo != null;
-        }
-        
-        public GameStateSo GetCurrentGameStateSo()
-        {
-            return _currentGameStateSo;
-        }
-        
-        public virtual void SetGameStateSo(GameStateSo gameStateSo)
+        public void SetGameStateSo(GameStateSo gameStateSo)
         {
             if (_currentGameStateSo)
             {
@@ -46,13 +38,6 @@ namespace YusamPackage
             {
                 _currentGameStateSo = null;
             }
-        }
-
-        protected virtual void GameStateSoUpdate()
-        {
-            if (!_currentGameStateSo) return;
-            
-            _currentGameStateSo.Update();
         }
     }
 }
