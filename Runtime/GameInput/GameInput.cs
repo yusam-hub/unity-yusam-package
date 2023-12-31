@@ -15,6 +15,7 @@ namespace YusamPackage.GameInput
          */
         private void Awake()
         {
+            Debug.Log("Awake: " + this.name);
             if (Instance)
             {
                 Destroy(Instance);

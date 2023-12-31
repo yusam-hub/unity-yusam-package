@@ -1340,7 +1340,7 @@ PrefabInstance:
     - target: {fileID: 8012971990507093767, guid: 303d4d7672dffd64b969bc925ce88fe2,
         type: 3}
       propertyPath: m_Name
-      value: GameMenuUI
+      value: MainGameMenuUI
       objectReference: {fileID: 0}
     - target: {fileID: 8012971990507093767, guid: 303d4d7672dffd64b969bc925ce88fe2,
         type: 3}
@@ -1457,10 +1457,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 541391594}
+  - {fileID: 3213565}
+  - {fileID: 1490960383}
   - {fileID: 1224231788}
   - {fileID: 187661620}
   - {fileID: 1084386261}
   - {fileID: 650062321}
   - {fileID: 2025038670}
-  - {fileID: 3213565}
-  - {fileID: 1490960383}

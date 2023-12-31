@@ -48,9 +48,14 @@ namespace YusamPackage.GameMenu
         [Header("Menu Events")]
         [SerializeField] private GameMenuKeyEvent gameMenuKeyEvent = new GameMenuKeyEvent();
         
-        //public GameMenuUiKeyEvent gameMenuUiKeyEvent { get { return _gameMenuUiKeyEvent; } set { _gameMenuUiKeyEvent = value; } }
+        public GameMenuKeyEvent OnGameMenuKeyEvent { get { return gameMenuKeyEvent; } set { gameMenuKeyEvent = value; } }
 
         private int _selectedMenuIndex = -1;
+
+        private void Awake()
+        {
+            Debug.Log("Awake: " + this.name);
+        }
 
         /*
          * START
@@ -83,7 +88,6 @@ namespace YusamPackage.GameMenu
                 index = _selectedMenuIndex
             });
             
-            //from UI can input by click button by mouse ????
             gameMenuKeyEvent?.Invoke(gameMenuStructArray[_selectedMenuIndex].menuKey);
         }
 
@@ -93,7 +97,9 @@ namespace YusamPackage.GameMenu
         private void SetSelectedMenuIndex(int index)
         {
             int oldSelectedMenuIndex = _selectedMenuIndex;
+            
             _selectedMenuIndex = index;
+            
             OnSelectGameMenu?.Invoke(this, new OnSelectGameMenuEventArgs
             {
                 oldIndex = oldSelectedMenuIndex,

@@ -25,6 +25,8 @@ namespace YusamPackage.GameMenu
          */
         private void Awake()
         {
+            Debug.Log("Awake: " + this.name);
+            
             if (gameMenu == null)
             {
                 Debug.LogError("GameInput instance not found! " + this);
@@ -34,6 +36,25 @@ namespace YusamPackage.GameMenu
             
             gameMenu.OnChangeGameMenu += GameMenuOnChangeGameMenu;
             gameMenu.OnSelectGameMenu += GameMenuOnSelectGameMenu;
+        }
+
+
+        private void OnDestroy()
+        {
+            gameMenu.OnChangeGameMenu -= GameMenuOnChangeGameMenu;
+            gameMenu.OnSelectGameMenu -= GameMenuOnSelectGameMenu;
+
+            int c = _menuList.Count;
+            for (int i = c - 1; i >= 0; i--)
+            {
+                GameMenuItemUi gameMenuItemUi = _menuList[i];
+                _menuList.RemoveAt(i);
+                gameMenuItemUi.OnMenuClick -= GameMenuItemUiOnMenuClick;
+                gameMenuItemUi.OnMenuEnter -= GameMenuItemUiOnMenuEnter;
+                Destroy(gameMenuItemUi);
+            }
+
+            Debug.Log("OnDestroy: " + this.name);
         }
 
         private void GameMenuOnSelectGameMenu(object sender, GameMenu.OnSelectGameMenuEventArgs e)
@@ -49,8 +70,8 @@ namespace YusamPackage.GameMenu
                 gameMenuItemUi.SetMenuIndex(_menuList.Count); 
                 gameMenuItemUi.SetMenuKey(menuItem.menuKey); 
                 gameMenuItemUi.SetMenuText(menuItem.menuText); 
-                //gameMenuItemUi.OnMenuClick += OnMenuClick;
-                //gameMenuItemUi.OnMenuEnter += OnMenuEnter;
+                gameMenuItemUi.OnMenuClick += GameMenuItemUiOnMenuClick;
+                gameMenuItemUi.OnMenuEnter += GameMenuItemUiOnMenuEnter;
                 _menuList.Add(gameMenuItemUi);
             }
             
@@ -58,6 +79,16 @@ namespace YusamPackage.GameMenu
             {
                 SetSelectedMenuIndex(-1, 0);
             }
+        }
+
+        private void GameMenuItemUiOnMenuEnter(object sender, GameMenuItemUi.OnMenuEventArgs e)
+        {
+            SetSelectedMenuIndex(_selectedMenuIndex, e.menuIndex);
+        }
+
+        private void GameMenuItemUiOnMenuClick(object sender, GameMenuItemUi.OnMenuEventArgs e)
+        {
+            gameMenu.OnGameMenuKeyEvent?.Invoke(e.menuKey);
         }
 
         private void SetSelectedMenuIndex(int oldIndex, int newIndex)
@@ -74,19 +105,6 @@ namespace YusamPackage.GameMenu
             }
         }
 
-        private void OnDestroy()
-        {
-            int c = _menuList.Count;
-            for (int i = c - 1; i >= 0; i--)
-            {
-                GameMenuItemUi gameMenuItemUi = _menuList[i];
-                _menuList.RemoveAt(i);
-                //gameMenuItemUi.OnMenuClick -= OnMenuClick;
-                //gameMenuItemUi.OnMenuEnter -= OnMenuEnter;
-                Destroy(gameMenuItemUi);
-            }
 
-            //Debug.Log("OnDestroy: " + this.name);
-        }
     }
 }

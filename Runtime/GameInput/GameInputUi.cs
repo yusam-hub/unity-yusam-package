@@ -21,6 +21,16 @@ namespace YusamPackage.GameInput
         [SerializeField] public Color defaultColor = Color.white;
         [SerializeField] public Color selectedColor = Color.gray;
         
+        private void Awake()
+        {
+            Debug.Log("Awake: " + this.name);
+        }
+
+        private void OnDestroy()
+        {
+            Debug.Log("OnDestroy: " + this.name);
+        }
+        
         /*
         * UPDATE
         */
