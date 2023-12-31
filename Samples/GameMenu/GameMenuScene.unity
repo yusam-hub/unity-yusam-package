@@ -1418,6 +1418,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
         type: 3}
+      propertyPath: _gameMenuSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 449372ad4eecbbd41ba51a937929039a,
+        type: 2}
+    - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
+        type: 3}
       propertyPath: gameMenuKeyEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

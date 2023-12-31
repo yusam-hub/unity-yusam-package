@@ -12,9 +12,7 @@ namespace YusamPackage
         
         private List<GameMenuItemUi> _menuList;
         
-        /*
-         * AWAKE
-         */
+        //Awake
         private void Awake()
         {
             Debug.Log("Awake: " + this.name);
@@ -30,27 +28,36 @@ namespace YusamPackage
             gameMenu.OnSelectGameMenu += GameMenuOnSelectGameMenu;
         }
 
+        //ClearMenuItemUi
+        private void ClearMenuItemUi()
+        {
+            int c = _menuList.Count;
+            for (int i = c - 1; i >= 0; i--)
+            {
+                GameMenuItemUi gameMenuItemUi = _menuList[i];
+                
+                Debug.Log("Delete: " + gameMenuItemUi.name);
+                
+                _menuList.RemoveAt(i);
+                gameMenuItemUi.OnMenuClick -= GameMenuItemUiOnMenuClick;
+                gameMenuItemUi.OnMenuEnter -= GameMenuItemUiOnMenuEnter;
+                Destroy(gameMenuItemUi.gameObject);
+            }
+        }
 
+        //OnDestroy
         private void OnDestroy()
         {
             gameMenu.OnChangeGameMenu -= GameMenuOnChangeGameMenu;
             gameMenu.OnSelectGameMenu -= GameMenuOnSelectGameMenu;
 
-            int c = _menuList.Count;
-            for (int i = c - 1; i >= 0; i--)
-            {
-                GameMenuItemUi gameMenuItemUi = _menuList[i];
-                _menuList.RemoveAt(i);
-                gameMenuItemUi.OnMenuClick -= GameMenuItemUiOnMenuClick;
-                gameMenuItemUi.OnMenuEnter -= GameMenuItemUiOnMenuEnter;
-                Destroy(gameMenuItemUi);
-            }
+            ClearMenuItemUi();
 
             Debug.Log("OnDestroy: " + this.name);
         }
 
         /**
-         * GameMenuOnSelectGameMenu
+         * изменияем цвета от выбраного меню из главного обработчика
          */
         private void GameMenuOnSelectGameMenu(object sender, GameMenu.OnSelectGameMenuEventArgs e)
         {
@@ -65,8 +72,11 @@ namespace YusamPackage
             }
         }
 
+        //обработчик изменения главного меню
         private void GameMenuOnChangeGameMenu(object sender, GameMenu.OnChangeGameMenuEventArgs e)
         {
+            ClearMenuItemUi();
+            
             foreach (GameMenuSo.GameMenuStruct menuItem in e.GameMenuStructArray)
             {
                 GameMenuItemUi gameMenuItemUi = Instantiate(prefabGameMenuItemUi, gameMenuItemsUi.transform);
@@ -84,11 +94,13 @@ namespace YusamPackage
             }
         }
 
+        //сообщаем главному управлению что мы мышкой зашли в объект
         private void GameMenuItemUiOnMenuEnter(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
             gameMenu.SetSelectedMenuIndex(e.menuIndex);
         }
 
+        //уведомляем о том, что мы мышкой нажали на кнопку
         private void GameMenuItemUiOnMenuClick(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
             gameMenu.OnGameMenuKeyEvent?.Invoke(e.menuKey);

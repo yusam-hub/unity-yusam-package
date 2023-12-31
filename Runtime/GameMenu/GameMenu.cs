@@ -28,8 +28,22 @@ namespace YusamPackage
         
         [Header("References")]
         [SerializeField] private GameInput gameInput;
-        [SerializeField] private GameMenuSo gameMenuSo;
-        
+
+        [SerializeField] private GameMenuSo _gameMenuSo;
+
+        public GameMenuSo gameMenuSo
+        {
+            get
+            {
+                return _gameMenuSo;
+            }
+            set
+            {
+                _gameMenuSo = value;
+                DoGameMenuSoChanged(_gameMenuSo);
+            }
+        }
+
         [Serializable]
         public class GameMenuKeyEvent : UnityEvent <string> {}
 
@@ -38,37 +52,65 @@ namespace YusamPackage
         
         public GameMenuKeyEvent OnGameMenuKeyEvent { get { return gameMenuKeyEvent; } set { gameMenuKeyEvent = value; } }
 
+        private GameMenuSo _lastGameMenuSo;
         private int _selectedMenuIndex = -1;
 
+        //Awake
         private void Awake()
         {
             Debug.Log("Awake: " + this.name);
         }
 
-        /*
-         * START
-         */
+        //Start
         private void Start()
         {
+            Debug.Log("Start: " + name);
+            
             gameInput.GetLeftStickVector2Action().performed += GameInputOnGetLeftStickVector2Action;
             gameInput.GetEnterPressAction().performed += GameInputOnMenuClick;
             gameInput.GetSpacePressAction().performed += GameInputOnMenuClick;
             gameInput.GetRightPadDownPressAction().performed += GameInputOnMenuClick;
+
+            DoGameMenuSoChanged(_gameMenuSo);
+        }
+
+        //OnDestroy
+        private void OnDestroy()
+        {
+            gameInput.GetEnterPressAction().performed -= GameInputOnMenuClick;
+            gameInput.GetSpacePressAction().performed -= GameInputOnMenuClick;
+            gameInput.GetRightPadDownPressAction().performed -= GameInputOnMenuClick;
+            gameInput.GetLeftStickVector2Action().performed -= GameInputOnGetLeftStickVector2Action;
+            Debug.Log("OnDestroy: " + name);
+        }
+
+        private void Update()
+        {
+            if (_lastGameMenuSo != _gameMenuSo)
+            {
+                DoGameMenuSoChanged(_gameMenuSo);
+            }
+        }
+
+        //DoGameMenuSoChanged
+        private void DoGameMenuSoChanged(GameMenuSo newGameMenuSo)
+        {
+            Debug.Log("DoGameMenuSoChanged: " + name);
             
+            _lastGameMenuSo = newGameMenuSo;
+
             OnChangeGameMenu?.Invoke(this, new OnChangeGameMenuEventArgs
             {
-                GameMenuStructArray = gameMenuSo.gameMenuStructArray
+                GameMenuStructArray = _lastGameMenuSo.gameMenuStructArray
             });
 
-            if (gameMenuSo.gameMenuStructArray.Length > 0)
+            if (_lastGameMenuSo.gameMenuStructArray.Length > 0)
             {
                 SetSelectedMenuIndex(0);
             }
         }
-
-        /*
-         * GameInputOnMenuClick
-         */
+        
+        //событие на нажатие клавиш
         private void GameInputOnMenuClick(InputAction.CallbackContext obj)
         {
             OnClickGameMenu?.Invoke(this, new OnClickGameMenuEventArgs
@@ -76,12 +118,10 @@ namespace YusamPackage
                 index = _selectedMenuIndex
             });
             
-            gameMenuKeyEvent?.Invoke(gameMenuSo.gameMenuStructArray[_selectedMenuIndex].menuKey);
+            gameMenuKeyEvent?.Invoke(_lastGameMenuSo.gameMenuStructArray[_selectedMenuIndex].menuKey);
         }
 
-        /*
-         * SetSelectedMenuIndex
-         */
+        //меняем индекс выбранного меню
         public void SetSelectedMenuIndex(int index)
         {
             int oldSelectedMenuIndex = _selectedMenuIndex;
@@ -95,14 +135,7 @@ namespace YusamPackage
             });
         }
 
-        public int GetSelectedMenuIndex()
-        {
-            return _selectedMenuIndex;
-        }
-
-        /*
-         * GameInputOnGetLeftStickVector2Action
-         */
+        //обрабатываем нажатие клавиш и джостика
         private void GameInputOnGetLeftStickVector2Action(InputAction.CallbackContext obj)
         {
             Vector2 leftStick = obj.ReadValue<Vector2>();
@@ -110,9 +143,9 @@ namespace YusamPackage
             if (leftStick.y < 0)
             {
                 newSelectedMenuIndex++;
-                if (newSelectedMenuIndex > gameMenuSo.gameMenuStructArray.Length - 1)
+                if (newSelectedMenuIndex > _lastGameMenuSo.gameMenuStructArray.Length - 1)
                 {
-                    newSelectedMenuIndex = gameMenuSo.gameMenuStructArray.Length - 1;
+                    newSelectedMenuIndex = _lastGameMenuSo.gameMenuStructArray.Length - 1;
                 } 
             } else if (leftStick.y > 0)
             {
@@ -125,15 +158,6 @@ namespace YusamPackage
             SetSelectedMenuIndex(newSelectedMenuIndex);
         }
 
-        /*
-         * OnDestroy
-         */
-        private void OnDestroy()
-        {
-            gameInput.GetEnterPressAction().performed -= GameInputOnMenuClick;
-            gameInput.GetSpacePressAction().performed -= GameInputOnMenuClick;
-            gameInput.GetRightPadDownPressAction().performed -= GameInputOnMenuClick;
-            gameInput.GetLeftStickVector2Action().performed -= GameInputOnGetLeftStickVector2Action;
-        }
+
     }
 }
