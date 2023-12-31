@@ -58,13 +58,13 @@ namespace YusamPackage
         //Awake
         private void Awake()
         {
-            Debug.Log("Awake: " + this.name);
+            GameDebug.Log("Awake: " + this.name);
         }
 
         //Start
         private void Start()
         {
-            Debug.Log("Start: " + name);
+            GameDebug.Log("Start: " + name);
             
             gameInput.GetLeftStickVector2Action().performed += GameInputOnGetLeftStickVector2Action;
             gameInput.GetEnterPressAction().performed += GameInputOnMenuClick;
@@ -81,7 +81,7 @@ namespace YusamPackage
             gameInput.GetSpacePressAction().performed -= GameInputOnMenuClick;
             gameInput.GetRightPadDownPressAction().performed -= GameInputOnMenuClick;
             gameInput.GetLeftStickVector2Action().performed -= GameInputOnGetLeftStickVector2Action;
-            Debug.Log("OnDestroy: " + name);
+            GameDebug.Log("OnDestroy: " + name);
         }
 
         private void Update()
@@ -95,7 +95,7 @@ namespace YusamPackage
         //DoGameMenuSoChanged
         private void DoGameMenuSoChanged(GameMenuSo newGameMenuSo)
         {
-            Debug.Log("DoGameMenuSoChanged: " + name);
+            GameDebug.Log("DoGameMenuSoChanged: " + name);
             
             _lastGameMenuSo = newGameMenuSo;
 

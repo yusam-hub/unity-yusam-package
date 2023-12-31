@@ -23,12 +23,12 @@ namespace YusamPackage
         
         private void Awake()
         {
-            Debug.Log("Awake: " + this.name);
+            GameDebug.Log("Awake: " + this.name);
         }
 
         private void OnDestroy()
         {
-            Debug.Log("OnDestroy: " + this.name);
+            GameDebug.Log("OnDestroy: " + this.name);
         }
         
         /*

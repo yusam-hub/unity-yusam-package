@@ -13,14 +13,14 @@ namespace YusamPackage
 
         public virtual void Enter()
         {
-            Debug.Log("Enter: " + this);  
+            GameDebug.Log("Enter: " + this);  
         }
 
         public abstract void Update();
         
         public virtual void Exit()
         {
-            Debug.Log("Exit: " + this); 
+            GameDebug.Log("Exit: " + this); 
         }
 
         public GameStateMachineDictionary GetGameStateMachine()

@@ -14,13 +14,13 @@ namespace YusamPackage
          */
         private void Awake()
         {
-            Debug.Log("Awake: " + this.name);
+            GameDebug.Log("Awake: " + this.name);
+            
             if (Instance)
             {
                 Destroy(Instance);
             }
             Instance = this;
-            DontDestroyOnLoad(this);
             
             _gameInputActions = new GameInputActions();
             _gameInputActions.DefaultMap.Enable();
@@ -36,7 +36,7 @@ namespace YusamPackage
             //_gameInputActions.DefaultMap.AInteractAction.performed -= AInteractActionOnPerformed;
             //_gameInputActions.DefaultMap.BInteractAction.performed -= BInteractActionOnPerformed;
             _gameInputActions.Dispose();
-            Debug.Log("OnDestroy: " + this.name);
+            GameDebug.Log("OnDestroy: " + this.name);
         }
        
         /*

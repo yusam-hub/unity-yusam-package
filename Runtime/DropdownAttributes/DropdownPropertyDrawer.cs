@@ -16,12 +16,12 @@ namespace YusamPackage
         public List<Object> SerializedPropertyToList(SerializedProperty property)
         {
             if (!property.isArray) return new List<Object>() { property.objectReferenceValue };
-            // Debug.Log($"property is array, size: {property.arraySize}");
+            // GameDebug.Log($"property is array, size: {property.arraySize}");
             List<Object> result = new List<Object>();
             for (int i = 0; i < property.arraySize; i++)
             {
                 SerializedProperty item = property.GetArrayElementAtIndex(i);
-                //Debug.Log($"found item in list: {item.name}");
+                //GameDebug.Log($"found item in list: {item.name}");
                 result.Add(item.objectReferenceValue);
             }
 
@@ -37,7 +37,7 @@ namespace YusamPackage
                 result.Add((Object)o);
             }
 
-            //Debug.Log($"casting object to list: {obj.GetType()}");
+            //GameDebug.Log($"casting object to list: {obj.GetType()}");
             return result;
         }
 
@@ -46,7 +46,7 @@ namespace YusamPackage
             //Find the list in the serializedobject using the path
 
             SerializedProperty foundProperty = obj.FindProperty(path);
-            //Debug.Log($"Found list result: {result.name}");
+            //GameDebug.Log($"Found list result: {result.name}");
             if (foundProperty != null)
             {
                 return SerializedPropertyToList(foundProperty);
@@ -54,34 +54,34 @@ namespace YusamPackage
             else
             {
                 //then try find the list from static class
-                //Debug.Log($"Cannot find list from path: {path}, trying static classes");
+                //GameDebug.Log($"Cannot find list from path: {path}, trying static classes");
                 string[] items = path.Split('.');
                 string typeString = items[0];
                 Type staticClass = Type.GetType(typeString); //static class
-                //Debug.Log($"static class type: {staticClass}");
+                //GameDebug.Log($"static class type: {staticClass}");
 
                 #region Try field
 
                 foreach (var field in staticClass.GetFields())
                 {
-                    Debug.Log($"field: {field}");
+                    GameDebug.Log($"field: {field}");
                 }
 
                 FieldInfo fieldInfo = staticClass.GetField(items[1]); //the instance field
                 if (fieldInfo != null)
                 {
-                    Debug.Log($"searching info: {items[1]}  ");
-                    Debug.Log($"found info: {fieldInfo.Name}");
+                    GameDebug.Log($"searching info: {items[1]}  ");
+                    GameDebug.Log($"found info: {fieldInfo.Name}");
                     object result = fieldInfo.GetValue(null); //the instance object
-                    Debug.Log($"found instance object result: {result.ToString()}");
+                    GameDebug.Log($"found instance object result: {result.ToString()}");
                     for (int i = 2; i < items.Length; i++)
                     {
-                        Debug.Log($"found result: {result.ToString()}");
-                        Debug.Log($"found field: {result.GetType().GetField(items[i])}");
+                        GameDebug.Log($"found result: {result.ToString()}");
+                        GameDebug.Log($"found field: {result.GetType().GetField(items[i])}");
                         result = result.GetType().GetField(items[i]).GetValue(result); //the instance object
                     }
 
-                    Debug.Log($"found result: {result.ToString()}");
+                    GameDebug.Log($"found result: {result.ToString()}");
                     return CastObjectToList(result);
                 }
 
@@ -91,24 +91,24 @@ namespace YusamPackage
 
                 foreach (var p in staticClass.GetProperties())
                 {
-                    Debug.Log($"property: {p}");
+                    GameDebug.Log($"property: {p}");
                 }
 
                 PropertyInfo propertyInfo = staticClass.GetProperty(items[1]); //the instance Property
                 if (propertyInfo != null)
                 {
-                    Debug.Log($"searching info: {items[1]}  ");
-                    Debug.Log($"found info: {propertyInfo.Name}");
+                    GameDebug.Log($"searching info: {items[1]}  ");
+                    GameDebug.Log($"found info: {propertyInfo.Name}");
                     object result = propertyInfo.GetValue(null); //the instance object
-                    Debug.Log($"found instance object result: {result.ToString()}");
+                    GameDebug.Log($"found instance object result: {result.ToString()}");
                     for (int i = 2; i < items.Length; i++)
                     {
-                        Debug.Log($"found result: {result.ToString()}");
-                        Debug.Log($"found Property: {result.GetType().GetProperty(items[i])}");
+                        GameDebug.Log($"found result: {result.ToString()}");
+                        GameDebug.Log($"found Property: {result.GetType().GetProperty(items[i])}");
                         result = result.GetType().GetProperty(items[i]).GetValue(result); //the instance object
                     }
 
-                    Debug.Log($"found result: {result.ToString()}");
+                    GameDebug.Log($"found result: {result.ToString()}");
                     return CastObjectToList(result);
                 }
 
@@ -154,7 +154,7 @@ namespace YusamPackage
                 else
                 {
                     string name = GetItemName(baseMaster, obj);
-                    //Debug.Log($"get name : {name}");
+                    //GameDebug.Log($"get name : {name}");
                     if (name == null)
                     {
                         name = "[ERROR] property name is null";
@@ -258,7 +258,7 @@ namespace YusamPackage
                     return;
                 }
 
-                //Debug.Log($"the object: {JsonUtility.ToJson(listObj)}");
+                //GameDebug.Log($"the object: {JsonUtility.ToJson(listObj)}");
                 IList ilist = (IList)listObj;
                 
                 if (ilist.Count > 0) 
@@ -269,8 +269,8 @@ namespace YusamPackage
                     
                     /*foreach(object o in SystemObjectList)
                     {
-                        Debug.Log($" object tostring: {(o.ToString())}");
-                        Debug.Log($" object name: {dropdownAttribute.GetItemName(o)}");
+                        GameDebug.Log($" object tostring: {(o.ToString())}");
+                        GameDebug.Log($" object name: {dropdownAttribute.GetItemName(o)}");
                     }*/
 
                     object obj = property.GetValue();
@@ -290,7 +290,7 @@ namespace YusamPackage
 
                     if (newSelectedID != selectedID)
                     {
-                        //Debug.Log("changed");
+                        //GameDebug.Log("changed");
                         //changed
                         selectedID = newSelectedID;
                         

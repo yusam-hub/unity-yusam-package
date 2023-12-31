@@ -18,7 +18,7 @@ namespace YusamPackage
         {
             if (ReflectionSystem.DebugMode)
             {
-                Debug.Log(obj);
+                GameDebug.Log(obj);
             }
         }
 
@@ -198,7 +198,7 @@ namespace YusamPackage
                 if (MethodName == i.Name) info = i;
             }
 
-            //Debug.Log($"try: {MethodName}  found method: {info.Name}");
+            //GameDebug.Log($"try: {MethodName}  found method: {info.Name}");
             //MethodInfo info = MasterType?.GetMethod(MethodName);
             if (info == null) return null;
             object result = info.Invoke(Master, parameters);
@@ -351,10 +351,10 @@ namespace YusamPackage
             string collectionName = GetCollectionNameFromTarget();
             object collectionObject = FindInstanceVariable(collectionName); //SkillList
             int[] collectionIndexes = GetCollectionIndexesFromTarget(); //[0,2,5]
-            /*Debug.Log($"collection index length: {collectionIndexes.Length.ToString()}");
+            /*GameDebug.Log($"collection index length: {collectionIndexes.Length.ToString()}");
             foreach(int i in collectionIndexes)
             {
-                Debug.Log($"collection index: {i}");
+                GameDebug.Log($"collection index: {i}");
             }*/
             return FindCollectionItem(collectionObject, collectionIndexes);
         }
@@ -362,11 +362,11 @@ namespace YusamPackage
         private object FindCollectionItem(object collectionObject, int[] collectionIndexes)
         {
             object currentCollectionObject = collectionObject;
-            //Debug.Log($"collection BBB length: {collectionIndexes.Length}");
+            //GameDebug.Log($"collection BBB length: {collectionIndexes.Length}");
             for (int i = 0; i < collectionIndexes.Length; i++)
             {
                 int currentIndex = collectionIndexes[i];
-                //Debug.Log($"collection BBB current index: {currentIndex}");
+                //GameDebug.Log($"collection BBB current index: {currentIndex}");
                 currentCollectionObject = GetValueInCollection(currentCollectionObject, currentIndex);
             }
 
@@ -379,7 +379,7 @@ namespace YusamPackage
             //debug($"is array: {collectionObject.GetType().IsArray},  type: {collectionObject.GetType()}");
             if (collectionObject is string)
             {
-                //Debug.Log($"collection is string: {collectionObject.ToString()}");
+                //GameDebug.Log($"collection is string: {collectionObject.ToString()}");
                 return collectionObject.ToString()[index];
             }
             else
@@ -398,7 +398,7 @@ namespace YusamPackage
         private int[] CollectionPartStringToIntArray(string collectionPart)
         {
             //Assume input: "[0][3][2]", Output: [0, 3, 2]
-            //Debug.Log($"collection part input: {collectionPart}");
+            //GameDebug.Log($"collection part input: {collectionPart}");
             collectionPart = collectionPart.Substring(1, collectionPart.Length - 2); //"[0][3][2]"   ->   "0][3][2"
             string[] stringArray =
                 collectionPart.Split(new string[] { "][" }, StringSplitOptions.None); //"0][3][2"   ->   ["0","3","2"]
@@ -415,7 +415,7 @@ namespace YusamPackage
         {
             string collectionPart = Target.Split(new[] { '[' }, 2)[1]; //"list[0][3][2]"   ->   "0][3][2]"
             collectionPart = "[" + collectionPart; // "0][3][2]" -> "[0][3][2]"
-            //Debug.Log($"collection part: {collectionPart}");
+            //GameDebug.Log($"collection part: {collectionPart}");
             return CollectionPartStringToIntArray(collectionPart);
         }
 
