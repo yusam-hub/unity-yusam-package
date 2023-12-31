@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace YusamPackage.GameInput
+namespace YusamPackage
 {
     public class FlyCamera : MonoBehaviour
     {

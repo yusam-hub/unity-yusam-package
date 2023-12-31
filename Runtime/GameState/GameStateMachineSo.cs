@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace YusamPackage.GameState
+namespace YusamPackage
 {
     public class GameStateMachineSo: MonoBehaviour
     {

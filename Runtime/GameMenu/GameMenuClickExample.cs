@@ -1,14 +1,6 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using YusamPackage.GameInput;
 
-namespace YusamPackage.GameMenu
+namespace YusamPackage
 {
     public class GameMenuClickExample : MonoBehaviour
     {

@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace YusamPackage.GameInput
+namespace YusamPackage
 {
     
     public class GameInput : MonoBehaviour

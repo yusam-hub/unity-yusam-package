@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace YusamPackage.GameState.So
+namespace YusamPackage
 {
     [CreateAssetMenu(menuName = "So/Yusam Package/Game State/Demo/Demo 1")]
     public class Demo1GameStateSo : GameStateSo

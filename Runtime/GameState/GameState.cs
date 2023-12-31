@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace YusamPackage.GameState
+namespace YusamPackage
 {
     public abstract class GameState : IGameState
     {

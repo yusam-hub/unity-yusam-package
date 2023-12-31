@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
-namespace YusamPackage.DropdownAttributes.AdvancedReflection
+namespace YusamPackage
 {
 // Provide simple value get/set methods for SerializedProperty.  Can be used with
 // any data types and with arbitrarily deeply-pathed properties.

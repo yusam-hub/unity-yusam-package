@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace YusamPackage.GameState
+namespace YusamPackage
 {
     public interface IGameState
     {

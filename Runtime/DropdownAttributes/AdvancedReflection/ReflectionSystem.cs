@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace YusamPackage.DropdownAttributes.AdvancedReflection
+namespace YusamPackage
 {
     public class ReflectionSystem
     {

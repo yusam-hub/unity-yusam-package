@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace YusamPackage.DropdownAttributes.AdvancedReflection
+namespace YusamPackage
 {
     public enum ReflectionItemType
     {

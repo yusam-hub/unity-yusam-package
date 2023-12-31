@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using YusamPackage.DropdownAttributes.AdvancedReflection;
 using Object = UnityEngine.Object;
 
 
-namespace YusamPackage.DropdownAttributes
+namespace YusamPackage
 {
     public delegate string GetItemNameCallback(object baseMaster, object master);
 

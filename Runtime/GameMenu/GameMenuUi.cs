@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-namespace YusamPackage.GameMenu
+namespace YusamPackage
 {
     public class GameMenuUi : MonoBehaviour
     {
@@ -64,7 +60,7 @@ namespace YusamPackage.GameMenu
 
         private void GameMenuOnChangeGameMenu(object sender, GameMenu.OnChangeGameMenuEventArgs e)
         {
-            foreach (GameMenu.GameMenuStruct menuItem in e.GameMenuStructArray)
+            foreach (GameMenuSo.GameMenuStruct menuItem in e.GameMenuStructArray)
             {
                 GameMenuItemUi gameMenuItemUi = Instantiate(prefabGameMenuItemUi, gameMenuItemsUi.transform);
                 gameMenuItemUi.SetMenuIndex(_menuList.Count); 

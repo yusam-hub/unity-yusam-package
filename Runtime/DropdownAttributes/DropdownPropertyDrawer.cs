@@ -6,10 +6,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using YusamPackage.DropdownAttributes.AdvancedReflection;
 using Object = UnityEngine.Object;
 
-namespace YusamPackage.DropdownAttributes
+namespace YusamPackage
 {
     [CustomPropertyDrawer(typeof(DropdownAttribute))]
     public class DropdownAttributeDrawer : PropertyDrawer

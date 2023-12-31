@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace YusamPackage.GameMenu
+namespace YusamPackage
 {
     public class GameMenuItemUi : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
     {

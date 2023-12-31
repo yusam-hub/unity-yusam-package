@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace YusamPackage.GameInput
+namespace YusamPackage
 {
     public class GameInputUi : MonoBehaviour
     {

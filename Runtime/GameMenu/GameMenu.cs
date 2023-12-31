@@ -1,25 +1,16 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-namespace YusamPackage.GameMenu
+namespace YusamPackage
 {
     public class GameMenu : MonoBehaviour
     {
-        [Serializable]
-        public struct GameMenuStruct
-        {
-            public string menuKey;
-            public string menuText;
-        }
-        
         public event EventHandler<OnChangeGameMenuEventArgs> OnChangeGameMenu;
         public class OnChangeGameMenuEventArgs : EventArgs
         {
-            public GameMenuStruct[] GameMenuStructArray;
+            public GameMenuSo.GameMenuStruct[] GameMenuStructArray;
         }
         
         public event EventHandler<OnSelectGameMenuEventArgs> OnSelectGameMenu;
@@ -36,11 +27,11 @@ namespace YusamPackage.GameMenu
         }
         
         [Header("References")]
-        [SerializeField] private GameInput.GameInput gameInput;
+        [SerializeField] private GameInput gameInput;
 
 
         [Header("Menu Definitions")]
-        [SerializeField] private GameMenuStruct[] gameMenuStructArray;
+        [SerializeField] private GameMenuSo gameMenuSo;
         
         [Serializable]
         public class GameMenuKeyEvent : UnityEvent <string> {}
@@ -69,13 +60,18 @@ namespace YusamPackage.GameMenu
             
             OnChangeGameMenu?.Invoke(this, new OnChangeGameMenuEventArgs
             {
-                GameMenuStructArray = gameMenuStructArray
+                GameMenuStructArray = gameMenuSo.gameMenuStructArray
             });
 
-            if (gameMenuStructArray.Length > 0)
+            if (gameMenuSo.gameMenuStructArray.Length > 0)
             {
                 SetSelectedMenuIndex(0);
             }
+        }
+
+        public GameMenuSo GetGameMenuSo()
+        {
+            return gameMenuSo;
         }
         
         /*
@@ -88,7 +84,7 @@ namespace YusamPackage.GameMenu
                 index = _selectedMenuIndex
             });
             
-            gameMenuKeyEvent?.Invoke(gameMenuStructArray[_selectedMenuIndex].menuKey);
+            gameMenuKeyEvent?.Invoke(gameMenuSo.gameMenuStructArray[_selectedMenuIndex].menuKey);
         }
 
         /*
@@ -117,9 +113,9 @@ namespace YusamPackage.GameMenu
             if (leftStick.y < 0)
             {
                 newSelectedMenuIndex++;
-                if (newSelectedMenuIndex > gameMenuStructArray.Length - 1)
+                if (newSelectedMenuIndex > gameMenuSo.gameMenuStructArray.Length - 1)
                 {
-                    newSelectedMenuIndex = gameMenuStructArray.Length - 1;
+                    newSelectedMenuIndex = gameMenuSo.gameMenuStructArray.Length - 1;
                 } 
             } else if (leftStick.y > 0)
             {
