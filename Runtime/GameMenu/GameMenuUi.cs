@@ -37,7 +37,7 @@ namespace YusamPackage
             {
                 GameMenuItemUi gameMenuItemUi = _menuList[i];
                 
-                GameDebug.Log("Delete: " + gameMenuItemUi.name);
+                //GameDebug.Log("Delete: " + gameMenuItemUi.name);
                 
                 _menuList.RemoveAt(i);
                 gameMenuItemUi.OnMenuClick -= GameMenuItemUiOnMenuClick;
