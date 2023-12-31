@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,38 @@ namespace YusamPackage
     
     public class GameInput : MonoBehaviour
     {
+        public enum GameInputPerformedEnum
+        {
+            LeftStickVector2,
+            LeftTriggerPress,
+            LeftBumperPress,
+            LeftStickPress,
+            LeftPadLeftPress,
+            LeftPadRightPress,
+            LeftPadUpPress,
+            LeftPadDownPress,
+            
+            StartPress,
+            SelectPress,
+            
+            RightStickVector2,
+            RightPadLeftPress,
+            RightPadRightPress,
+            RightPadUpPress,
+            RightPadDownPress,
+            RightStickPress,
+            RightTriggerPress,
+            RightBumperPress,
+            
+            EnterPress,
+            EscapePress,
+            SpacePress,
+   
+            MouseLeftPress,
+            MouseMiddlePress,
+            MouseRightPress,
+        }
+
         private static GameInput Instance { get; set; }
         private GameInputActions _gameInputActions;
 
@@ -38,7 +71,15 @@ namespace YusamPackage
             _gameInputActions.Dispose();
             GameDebug.Log("OnDestroy: " + this.name);
         }
-       
+
+        //GetActionByEnum
+        public InputAction GetActionByEnum(GameInputPerformedEnum gameInputPerformedEnum)
+        {
+            string method = $"Get{gameInputPerformedEnum.ToString()}Action";
+            MethodInfo methodInfo = GetType().GetMethod(method);
+            return (InputAction) methodInfo.Invoke(method, null);
+        }
+        
         /*
          * PRESS
          */

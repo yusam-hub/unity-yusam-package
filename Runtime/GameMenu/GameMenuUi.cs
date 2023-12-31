@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,39 @@ namespace YusamPackage
             gameMenu.OnSelectGameMenu += GameMenuOnSelectGameMenu;
         }
 
+        private void OnEnable()
+        {
+            RefreshMenuUi();
+        }
+
+        private void RefreshMenuUi()
+        {
+            ClearMenuItemUi();
+            
+            foreach (GameMenuSo.GameMenuStruct menuItem in gameMenu.GetGameMenuStruct())
+            {
+                GameMenuItemUi gameMenuItemUi = Instantiate(prefabGameMenuItemUi, gameMenuItemsUi.transform);
+                gameMenuItemUi.SetMenuIndex(_menuList.Count); 
+                gameMenuItemUi.SetMenuKey(menuItem.menuKey); 
+                gameMenuItemUi.SetMenuText(menuItem.menuText); 
+                gameMenuItemUi.OnMenuClick += GameMenuItemUiOnMenuClick;
+                gameMenuItemUi.OnMenuEnter += GameMenuItemUiOnMenuEnter;
+                gameMenuItemUi.OnMenuExit += GameMenuItemUiOnMenuExit;
+                _menuList.Add(gameMenuItemUi);
+            }
+            
+            if (_menuList.Count > 0)
+            {
+                gameMenu.SetSelectedMenuIndex(0);
+            }
+        }
+        
+        //обработчик изменения главного меню
+        private void GameMenuOnChangeGameMenu(object sender, EventArgs e)
+        {
+            RefreshMenuUi();
+        }
+        
         //ClearMenuItemUi
         private void ClearMenuItemUi()
         {
@@ -42,6 +76,7 @@ namespace YusamPackage
                 _menuList.RemoveAt(i);
                 gameMenuItemUi.OnMenuClick -= GameMenuItemUiOnMenuClick;
                 gameMenuItemUi.OnMenuEnter -= GameMenuItemUiOnMenuEnter;
+                gameMenuItemUi.OnMenuExit -= GameMenuItemUiOnMenuExit;
                 Destroy(gameMenuItemUi.gameObject);
             }
         }
@@ -73,27 +108,7 @@ namespace YusamPackage
             }
         }
 
-        //обработчик изменения главного меню
-        private void GameMenuOnChangeGameMenu(object sender, GameMenu.OnChangeGameMenuEventArgs e)
-        {
-            ClearMenuItemUi();
-            
-            foreach (GameMenuSo.GameMenuStruct menuItem in e.GameMenuStructArray)
-            {
-                GameMenuItemUi gameMenuItemUi = Instantiate(prefabGameMenuItemUi, gameMenuItemsUi.transform);
-                gameMenuItemUi.SetMenuIndex(_menuList.Count); 
-                gameMenuItemUi.SetMenuKey(menuItem.menuKey); 
-                gameMenuItemUi.SetMenuText(menuItem.menuText); 
-                gameMenuItemUi.OnMenuClick += GameMenuItemUiOnMenuClick;
-                gameMenuItemUi.OnMenuEnter += GameMenuItemUiOnMenuEnter;
-                _menuList.Add(gameMenuItemUi);
-            }
-            
-            if (_menuList.Count > 0)
-            {
-                gameMenu.SetSelectedMenuIndex(0);
-            }
-        }
+        
 
         //сообщаем главному управлению что мы мышкой зашли в объект
         private void GameMenuItemUiOnMenuEnter(object sender, GameMenuItemUi.OnMenuEventArgs e)
@@ -106,5 +121,12 @@ namespace YusamPackage
         {
             gameMenu.OnGameMenuKeyEvent?.Invoke(e.menuKey);
         }
+        
+        //если мышка то убираем выбор
+        private void GameMenuItemUiOnMenuExit(object sender, GameMenuItemUi.OnMenuEventArgs e)
+        {
+            _menuList[e.menuIndex].SetColorDefault();
+        }
+        
     }
 }

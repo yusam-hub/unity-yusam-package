@@ -7,11 +7,7 @@ namespace YusamPackage
 {
     public class GameMenu : MonoBehaviour
     {
-        public event EventHandler<OnChangeGameMenuEventArgs> OnChangeGameMenu;
-        public class OnChangeGameMenuEventArgs : EventArgs
-        {
-            public GameMenuSo.GameMenuStruct[] GameMenuStructArray;
-        }
+        public event EventHandler OnChangeGameMenu;
         
         public event EventHandler<OnSelectGameMenuEventArgs> OnSelectGameMenu;
         public class OnSelectGameMenuEventArgs : EventArgs
@@ -99,10 +95,7 @@ namespace YusamPackage
             
             _lastGameMenuSo = newGameMenuSo;
 
-            OnChangeGameMenu?.Invoke(this, new OnChangeGameMenuEventArgs
-            {
-                GameMenuStructArray = _lastGameMenuSo.gameMenuStructArray
-            });
+            OnChangeGameMenu?.Invoke(this, EventArgs.Empty);
 
             if (_lastGameMenuSo.gameMenuStructArray.Length > 0)
             {
@@ -119,6 +112,12 @@ namespace YusamPackage
             });
             
             gameMenuKeyEvent?.Invoke(_lastGameMenuSo.gameMenuStructArray[_selectedMenuIndex].menuKey);
+        }
+
+        //возвращаем список меню
+        public GameMenuSo.GameMenuStruct[] GetGameMenuStruct()
+        {
+            return _gameMenuSo.gameMenuStructArray;
         }
 
         //меняем индекс выбранного меню

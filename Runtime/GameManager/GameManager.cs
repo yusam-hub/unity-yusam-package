@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace YusamPackage
@@ -6,12 +7,15 @@ namespace YusamPackage
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
-        public enum GameManagerState
+        public enum GameManagerStateEnum
         {
-            StaringGame,
+            StartingGame,
             MainScreenLoader,
             MainMenu
         }
+        
+        [SerializeField] private GameManagerStateEnum currentManagerStateEnum = GameManagerStateEnum.StartingGame;
+
         /*
          * Минимальные состояния игры (все состояния могут в любой момент меняться и дополняться)
          * 1) главный экран загрузки игры
@@ -27,10 +31,12 @@ namespace YusamPackage
          *     9.1 не успешный (возврат в главное меню или перегиграть уровень заново
          * 9) загрузка следующего уровня (или сначала)
          */
+
+        private Dictionary<GameManagerStateEnum, IGameManagerState> _states =
+            new Dictionary<GameManagerStateEnum, IGameManagerState>();
+
+        private IGameManagerState _currentGameManagerState;
         
-
-        //private GameManagerState _gameManagerState;
-
         private void Awake()
         {
             if (Instance != null)
@@ -40,31 +46,60 @@ namespace YusamPackage
 
             Instance = this;
             DontDestroyOnLoad(this);
-            
-            //_gameManagerState = GameManagerState.StaringGame;
-            //SetGameStateSo(startGameState);
+
+            IGameManagerState[] states = GetComponentsInChildren<IGameManagerState>();
+
+            foreach (IGameManagerState state in states)
+            {
+                _states.TryAdd(state.GetGameManagerStateEnum(), state);
+            }
         }
 
-        private void Update()
+        private void TryGetCurrentManagerState()
         {
-            /*if (_currentGameStateSo)
+            if (_currentGameManagerState == null)
             {
-                _currentGameStateSo.Update();
+                if (_states.TryGetValue(currentManagerStateEnum, out IGameManagerState gameManagerState))
+                {
+                    _currentGameManagerState = gameManagerState;
+                    _currentGameManagerState.Enter();
+                }
             }
             else
             {
-                switch (_gameManagerState)
+                if (_currentGameManagerState.GetGameManagerStateEnum() != currentManagerStateEnum)
                 {
-                    case GameManagerState.StaringGame:
-                        _gameManagerState = GameManagerState.MainScreenLoader;
-                        SetGameStateSo(mainScreenLoaderSo);
-                        break;
-                    case GameManagerState.MainScreenLoader:
-                        _gameManagerState = GameManagerState.MainMenu;
-                        SetGameStateSo(mainMenuSo);
-                        break;                    
+                    if (_states.TryGetValue(currentManagerStateEnum, out IGameManagerState gameManagerState))
+                    {
+                        _currentGameManagerState.Exit();
+                        _currentGameManagerState = gameManagerState;
+                        _currentGameManagerState.Enter();
+                    }
                 }
-            }*/
+            }
+        }
+        private void Update()
+        {
+            TryGetCurrentManagerState();
+
+            if (_currentGameManagerState == null) return;
+
+            if (!_currentGameManagerState.IsFinished())
+            {
+                _currentGameManagerState.Update();
+            }
+            else
+            {
+                switch (currentManagerStateEnum)
+                {
+                    case GameManagerStateEnum.StartingGame:
+                        currentManagerStateEnum = GameManagerStateEnum.MainScreenLoader;
+                        break;
+                    case GameManagerStateEnum.MainScreenLoader:
+                        currentManagerStateEnum = GameManagerStateEnum.MainMenu;
+                        break;
+                }    
+            }
         }
     }
 }

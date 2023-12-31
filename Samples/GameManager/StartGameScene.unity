@@ -138,6 +138,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 449372ad4eecbbd41ba51a937929039a,
         type: 2}
+    - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
+        type: 3}
+      propertyPath: gameMenuKeyEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
+        type: 3}
+      propertyPath: gameMenuKeyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 208998509}
+    - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
+        type: 3}
+      propertyPath: gameMenuKeyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
+        type: 3}
+      propertyPath: gameMenuKeyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGameMenuKeyEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
+        type: 3}
+      propertyPath: gameMenuKeyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: YusamPackage.MainMenuState, Yusam.YusamPackage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097570929866416850, guid: 135be182e8a482d48a9a79deabac0819,
+        type: 3}
+      propertyPath: gameMenuKeyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4238559051474295896, guid: 135be182e8a482d48a9a79deabac0819,
         type: 3}
       propertyPath: m_Name
@@ -220,6 +250,9 @@ GameObject:
   m_Component:
   - component: {fileID: 208998508}
   - component: {fileID: 208998507}
+  - component: {fileID: 208998511}
+  - component: {fileID: 208998510}
+  - component: {fileID: 208998509}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -239,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf1d73d2c474820bcb1c41f7393d467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentManagerStateEnum: 1
 --- !u!4 &208998508
 Transform:
   m_ObjectHideFlags: 0
@@ -254,6 +288,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &208998509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208998506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2a404e010c46b1b188cebbff2bc5b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameMenuUI: {fileID: 8012971989958691795}
+--- !u!114 &208998510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208998506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec81415c7024245b88ed211fb9e885e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainScreenLoadeUi: {fileID: 5068099958391062255}
+  timerMax: 4
+--- !u!114 &208998511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208998506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fe7e47317f4df198891b7ac3e77edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingGameUi: {fileID: 708941762943534366}
+  timerMax: 2
 --- !u!1 &541391591
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +1032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4404133818459890247}
   m_Layer: 5
-  m_Name: StartGameUI
+  m_Name: StartingGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
