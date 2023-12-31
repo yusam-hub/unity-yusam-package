@@ -11,10 +11,11 @@ namespace YusamPackage
         {
             StartingGame,
             MainScreenLoader,
-            MainMenu
+            MainMenu,
+            LoadingScene
         }
         
-        [SerializeField] private GameManagerStateEnum currentManagerStateEnum = GameManagerStateEnum.StartingGame;
+        public GameManagerStateEnum currentManagerStateEnum = GameManagerStateEnum.StartingGame;
 
         /*
          * Минимальные состояния игры (все состояния могут в любой момент меняться и дополняться)
@@ -45,7 +46,6 @@ namespace YusamPackage
             }
 
             Instance = this;
-            DontDestroyOnLoad(this);
 
             IGameManagerState[] states = GetComponentsInChildren<IGameManagerState>();
 
@@ -98,6 +98,9 @@ namespace YusamPackage
                     case GameManagerStateEnum.MainScreenLoader:
                         currentManagerStateEnum = GameManagerStateEnum.MainMenu;
                         break;
+                    case GameManagerStateEnum.MainMenu:
+                        currentManagerStateEnum = GameManagerStateEnum.LoadingScene;
+                        break;                    
                 }    
             }
         }
