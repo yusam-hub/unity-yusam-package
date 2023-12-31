@@ -19,7 +19,8 @@ namespace YusamPackage
             
             if (gameMenu == null)
             {
-                Debug.LogError("GameInput instance not found! " + this);
+                Debug.LogError("GameInput instance not found in [ " + this + "]");
+                gameObject.SetActive(false);
             }
             
             _menuList = new List<GameMenuItemUi>();
