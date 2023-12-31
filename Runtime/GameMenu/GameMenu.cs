@@ -28,15 +28,12 @@ namespace YusamPackage
         
         [Header("References")]
         [SerializeField] private GameInput gameInput;
-
-
-        [Header("Menu Definitions")]
         [SerializeField] private GameMenuSo gameMenuSo;
         
         [Serializable]
         public class GameMenuKeyEvent : UnityEvent <string> {}
 
-        [Header("Menu Events")]
+        [Header("Events")]
         [SerializeField] private GameMenuKeyEvent gameMenuKeyEvent = new GameMenuKeyEvent();
         
         public GameMenuKeyEvent OnGameMenuKeyEvent { get { return gameMenuKeyEvent; } set { gameMenuKeyEvent = value; } }
@@ -69,11 +66,6 @@ namespace YusamPackage
             }
         }
 
-        public GameMenuSo GetGameMenuSo()
-        {
-            return gameMenuSo;
-        }
-        
         /*
          * GameInputOnMenuClick
          */
@@ -90,7 +82,7 @@ namespace YusamPackage
         /*
          * SetSelectedMenuIndex
          */
-        private void SetSelectedMenuIndex(int index)
+        public void SetSelectedMenuIndex(int index)
         {
             int oldSelectedMenuIndex = _selectedMenuIndex;
             
@@ -101,6 +93,11 @@ namespace YusamPackage
                 oldIndex = oldSelectedMenuIndex,
                 newIndex = index
             });
+        }
+
+        public int GetSelectedMenuIndex()
+        {
+            return _selectedMenuIndex;
         }
 
         /*

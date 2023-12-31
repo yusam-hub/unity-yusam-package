@@ -10,11 +10,7 @@ namespace YusamPackage
         [SerializeField] private GameMenuItemsUi gameMenuItemsUi;
         [SerializeField] private GameMenuItemUi prefabGameMenuItemUi;
         
-        /*
-         * PRIVATE
-         */
         private List<GameMenuItemUi> _menuList;
-        private int _selectedMenuIndex = -1;
         
         /*
          * AWAKE
@@ -53,9 +49,20 @@ namespace YusamPackage
             Debug.Log("OnDestroy: " + this.name);
         }
 
+        /**
+         * GameMenuOnSelectGameMenu
+         */
         private void GameMenuOnSelectGameMenu(object sender, GameMenu.OnSelectGameMenuEventArgs e)
         {
-            SetSelectedMenuIndex(e.oldIndex, e.newIndex);
+            if (e.oldIndex >= 0 && e.oldIndex < _menuList.Count)
+            {
+                _menuList[e.oldIndex].SetColorDefault();
+            }
+            
+            if (e.newIndex >= 0 && e.newIndex < _menuList.Count)
+            {
+                _menuList[e.newIndex].SetColorHover();
+            }
         }
 
         private void GameMenuOnChangeGameMenu(object sender, GameMenu.OnChangeGameMenuEventArgs e)
@@ -73,34 +80,18 @@ namespace YusamPackage
             
             if (_menuList.Count > 0)
             {
-                SetSelectedMenuIndex(-1, 0);
+                gameMenu.SetSelectedMenuIndex(0);
             }
         }
 
         private void GameMenuItemUiOnMenuEnter(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
-            SetSelectedMenuIndex(_selectedMenuIndex, e.menuIndex);
+            gameMenu.SetSelectedMenuIndex(e.menuIndex);
         }
 
         private void GameMenuItemUiOnMenuClick(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
             gameMenu.OnGameMenuKeyEvent?.Invoke(e.menuKey);
         }
-
-        private void SetSelectedMenuIndex(int oldIndex, int newIndex)
-        {
-            if (oldIndex >= 0 && oldIndex < _menuList.Count)
-            {
-                _menuList[oldIndex].SetColorDefault();
-            }
-            
-            if (newIndex >= 0 && newIndex < _menuList.Count)
-            {
-                _selectedMenuIndex = newIndex;
-                _menuList[newIndex].SetColorHover();
-            }
-        }
-
-
     }
 }
