@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "displayName": "YusamPackage",
   "description": "Yusam Package description",
-  "unity": "2023.2",
-  "unityRelease": "3f1",
+  "unity": "2022.3",
+  "unityRelease": "15f1",
   "dependencies": {
     "com.unity.inputsystem": "1.7.0"
   },
