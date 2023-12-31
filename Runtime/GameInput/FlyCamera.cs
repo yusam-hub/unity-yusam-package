@@ -48,9 +48,6 @@ namespace YusamPackage
          */
         private void Update()
         {
-            /*
-             * todo: need state machine
-             */
             if (IsButtonPressed())
             {
                 Cursor.visible = false;

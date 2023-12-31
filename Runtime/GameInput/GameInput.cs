@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,8 +41,9 @@ namespace YusamPackage
         }
 
         private static GameInput Instance { get; set; }
-        private GameInputActions _gameInputActions;
 
+        private GameInputActions _gameInputActions;
+        
         /*
          * AWAKE
          */

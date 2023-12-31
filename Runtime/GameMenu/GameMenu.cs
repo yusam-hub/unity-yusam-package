@@ -61,33 +61,32 @@ namespace YusamPackage
         private void Start()
         {
             GameDebug.Log("Start: " + name);
-            
-            gameInput.GetLeftStickVector2Action().performed += GameInputOnGetLeftStickVector2Action;
-            gameInput.GetEnterPressAction().performed += GameInputOnMenuClick;
-            gameInput.GetSpacePressAction().performed += GameInputOnMenuClick;
-            gameInput.GetRightPadDownPressAction().performed += GameInputOnMenuClick;
-
             DoGameMenuSoChanged(_gameMenuSo);
         }
 
         private void OnEnable()
         {
             GameDebug.Log("OnEnable: " + name);
+            
+            gameInput.GetLeftStickVector2Action().performed += GameInputOnGetLeftStickVector2Action;
+            gameInput.GetEnterPressAction().performed += GameInputOnMenuClick;
+            gameInput.GetSpacePressAction().performed += GameInputOnMenuClick;
+            gameInput.GetRightPadDownPressAction().performed += GameInputOnMenuClick;
         }
 
         private void OnDisable()
-        {
-            GameDebug.Log("OnDisable: " + name); 
-        }
-
-        //OnDestroy
-        private void OnDestroy()
         {
             gameInput.GetEnterPressAction().performed -= GameInputOnMenuClick;
             gameInput.GetSpacePressAction().performed -= GameInputOnMenuClick;
             gameInput.GetRightPadDownPressAction().performed -= GameInputOnMenuClick;
             gameInput.GetLeftStickVector2Action().performed -= GameInputOnGetLeftStickVector2Action;
             
+            GameDebug.Log("OnDisable: " + name); 
+        }
+
+        //OnDestroy
+        private void OnDestroy()
+        {
             GameDebug.Log("OnDestroy: " + name);
         }
 
