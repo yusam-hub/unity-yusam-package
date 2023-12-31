@@ -57,8 +57,6 @@ namespace YusamPackage
             
             _gameInputActions = new GameInputActions();
             _gameInputActions.DefaultMap.Enable();
-            //_gameInputActions.DefaultMap.AInteractAction.performed += AInteractActionOnPerformed;
-            //_gameInputActions.DefaultMap.BInteractAction.performed += BInteractActionOnPerformed;
         }
 
         /*
@@ -66,8 +64,6 @@ namespace YusamPackage
          */
         private void OnDestroy()
         {
-            //_gameInputActions.DefaultMap.AInteractAction.performed -= AInteractActionOnPerformed;
-            //_gameInputActions.DefaultMap.BInteractAction.performed -= BInteractActionOnPerformed;
             _gameInputActions.Dispose();
             GameDebug.Log("OnDestroy: " + this.name);
         }

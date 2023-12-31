@@ -70,6 +70,16 @@ namespace YusamPackage
             DoGameMenuSoChanged(_gameMenuSo);
         }
 
+        private void OnEnable()
+        {
+            GameDebug.Log("OnEnable: " + name);
+        }
+
+        private void OnDisable()
+        {
+            GameDebug.Log("OnDisable: " + name); 
+        }
+
         //OnDestroy
         private void OnDestroy()
         {
@@ -77,6 +87,7 @@ namespace YusamPackage
             gameInput.GetSpacePressAction().performed -= GameInputOnMenuClick;
             gameInput.GetRightPadDownPressAction().performed -= GameInputOnMenuClick;
             gameInput.GetLeftStickVector2Action().performed -= GameInputOnGetLeftStickVector2Action;
+            
             GameDebug.Log("OnDestroy: " + name);
         }
 
