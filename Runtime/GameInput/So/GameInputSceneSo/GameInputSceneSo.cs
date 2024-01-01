@@ -4,7 +4,7 @@ using UnityEngine;
 namespace YusamPackage
 {
     [CreateAssetMenu(menuName = "So/Yusam Package/Game Input/Scene")]
-    public class GameInputSceneSo : ScriptableObject
+    public class GameInputSceneSo : ScriptableObject, IGameInputScene
     {
         [YusamHelpBox("Слои на сцене для GameInput")]
         [Space]
@@ -12,6 +12,16 @@ namespace YusamPackage
         public string title;
         public string desc;
         public GameInputLayerSo[] availableLayerSoArray;
-        public string defaultSceneKey;
+        public string defaultLayerKey;
+
+        public void Enter()
+        {
+            Debug.Log($"Enter on {name} {key} {title}");
+        }
+
+        public void Exit()
+        {
+            Debug.Log($"Exit on {name} {key} {title}");   
+        }
     }
 }
