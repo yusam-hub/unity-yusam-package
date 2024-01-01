@@ -37,6 +37,18 @@ namespace YusamPackage
         {
             return _availableList;
         }
+
+        public virtual void DoEditorChangeLayerIndex(int index)
+        {
+            //Debug.Log($"DoEditorChangeLayerIndex on {name} {key} {title}");
+            if (_gameInputLayerDictionary != null && _gameInputLayerDictionary.Count > 0)
+            {
+                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[index].key, out IGameInputLayer gameInputLayer))
+                {
+                    _lastGameInputLayer = gameInputLayer;
+                }
+            }
+        }
         
         public virtual void DoEnter()
         {
@@ -95,7 +107,9 @@ namespace YusamPackage
                 {
                     _activeGameInputLayer.DoExit();
                 }
+                
                 _activeGameInputLayer = _lastGameInputLayer;
+                
                 if (_activeGameInputLayer != null)
                 {
                     _activeGameInputLayer.DoEnter();

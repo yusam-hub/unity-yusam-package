@@ -9,5 +9,6 @@ namespace YusamPackage
         public void DoUpdate();
         public List<string> AvailableLayerStringList();
         public void StoreLayerEditorChanged();
+        public void DoEditorChangeLayerIndex(int index);
     }
 }

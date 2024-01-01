@@ -65,7 +65,7 @@ namespace YusamPackage
         
         private void OnValidate()
         {
-            Debug.Log("OnValidate");
+            //Debug.Log("OnValidate");
             StoreSceneEditorChanged();
             
             if (Application.isPlaying)
@@ -86,6 +86,11 @@ namespace YusamPackage
                     {
                         _lastGameInputScene = gameInputScene;
                     }
+                }
+
+                if (_activeGameInputScene != null)
+                {
+                    _activeGameInputScene.DoEditorChangeLayerIndex(activeLayerIndex);
                 }
             }
         }
