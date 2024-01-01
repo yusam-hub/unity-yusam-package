@@ -8,6 +8,7 @@ namespace YusamPackage
 {
     public class GameInputScene : MonoBehaviour
     {
+        private static GameInputScene Instance { get; set; }
         public event EventHandler<OnSceneLayerChangedEventArgs> OnSceneLayerChanged;
 
         public class OnSceneLayerChangedEventArgs : EventArgs
@@ -15,7 +16,9 @@ namespace YusamPackage
             public string SceneKey;
             public string LayerKey;
         }
-        
+        [Space(10)]
+        [YusamHelpBox("GameInputScene - управляет слоями доступа к GameInput, должен быть статичным и один на сцене")]   
+        [Space(10)]
         [Header("References")] 
         [Space(10)]
         [YusamHelpBox("Список доступных Scriptable Objects")]
@@ -123,6 +126,13 @@ namespace YusamPackage
 
         private void Awake()
         {
+            
+            if (Instance)
+            {
+                Destroy(Instance);
+            }
+            Instance = this;
+            
             _gameInputSceneDictionary = new Dictionary<string, GameInputSceneSo>();
 
             int index = 0;

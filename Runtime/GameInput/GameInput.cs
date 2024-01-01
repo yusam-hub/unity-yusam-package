@@ -7,7 +7,7 @@ namespace YusamPackage
     public class GameInput : MonoBehaviour
     {
         [Space(10)]
-        [YusamHelpBox("GameInput контроллер управления")]
+        [YusamHelpBox("GameInput - контроллер управления, быть статичным статичным и один на сцене")]
         [Space(10)]
         [YusamHelpBox("Project Settings -> Player -> Active Input Handling = Both | Input System Package (New)")]
         [Space(10)]
