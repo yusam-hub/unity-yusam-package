@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace YusamPackage
 {
@@ -15,6 +17,7 @@ namespace YusamPackage
         }
         
         [Header("References")] 
+        [Space(10)]
         [YusamHelpBox("Список доступных Scriptable Objects")]
         [Space(10)]
         [SerializeField] private GameInputSceneSo[] availableGameInputSceneArray;
@@ -28,7 +31,20 @@ namespace YusamPackage
         [Space(10)]
         [YusamDropdownInt("AvailableLayerStringList()")]
         [SerializeField] private int activeLayerIndex;
+        
+        [Serializable] public class SceneLayerChangedEvent : UnityEvent <string,string> {}
 
+        [Space(20)]
+        [Header("Events")] 
+        [Space(10)]
+        [YusamHelpBox("public void MethodName(string sceneKey, string layerKey)")]
+        [Space(10)]
+        [SerializeField] private SceneLayerChangedEvent sceneLayerChangedEvent = new SceneLayerChangedEvent();
+        public SceneLayerChangedEvent OnSceneLayerChangedEvent { get { return sceneLayerChangedEvent; } set { sceneLayerChangedEvent = value; } }
+
+        /*
+         * PRIVATE LOCAL
+         */
         private List<String> _availableList = new List<string>();
         private Dictionary<string, GameInputSceneSo> _gameInputSceneDictionary;
         private GameInputSceneSo _activeGameInputScene;
@@ -173,6 +189,7 @@ namespace YusamPackage
                 SceneKey = sceneKey,
                 LayerKey = layerKey
             });
+            sceneLayerChangedEvent?.Invoke(sceneKey, layerKey);
         }
     }
 }
