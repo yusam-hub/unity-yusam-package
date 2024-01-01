@@ -1,6 +1,3 @@
-using System;
-using System.ComponentModel;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +6,14 @@ namespace YusamPackage
     
     public class GameInput : MonoBehaviour
     {
+        [Space(10)]
+        [YusamHelpBox("GameInput контроллер управления")]
+        [Space(10)]
+        [YusamHelpBox("Project Settings -> Player -> Active Input Handling = Both | Input System Package (New)")]
+        [Space(10)]
+        [SerializeField]
+        private string desc;
+        
         private static GameInput Instance { get; set; }
 
         private GameInputActions _gameInputActions;
