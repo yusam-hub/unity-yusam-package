@@ -16,12 +16,15 @@ namespace YusamPackage
         [YusamDropdownInt("AvailableSceneStringList()")]
         [SerializeField] private int activeGameInputSceneIndex;
 
+        [YusamDropdownInt("AvailableLayerStringList()")]
+        [SerializeField] private int activeGameInputLayerIndex;
+
         private List<String> _availableList = new List<string>();
         private Dictionary<string, IGameInputScene> _gameInputSceneDictionary;
         private IGameInputScene _activeGameInputScene;
         private IGameInputScene _lastGameInputScene;
         
-        public void StoreEditorChanged()
+        public void StoreSceneEditorChanged()
         {
             _availableList.Clear();
             foreach (GameInputSceneSo gameInputSceneSo in availableGameInputSceneArray)
@@ -31,6 +34,11 @@ namespace YusamPackage
                     _availableList.Add(gameInputSceneSo.title);
                 }
             }
+
+            if (_activeGameInputScene != null)
+            {
+                _activeGameInputScene.StoreLayerEditorChanged();
+            }
         }
         
         public List<string> AvailableSceneStringList()
@@ -38,9 +46,18 @@ namespace YusamPackage
             return _availableList;
         }
         
+        public List<string> AvailableLayerStringList()
+        {
+            if (_activeGameInputScene != null)
+            {
+                return _activeGameInputScene.AvailableLayerStringList();
+            }
+            return new List<string>();
+        }
+        
         private void OnValidate()
         {
-            StoreEditorChanged();
+            StoreSceneEditorChanged();
             if (Application.isPlaying && (_gameInputSceneDictionary != null) && (availableGameInputSceneArray != null))
             {
                 if (activeGameInputSceneIndex >= 0 && activeGameInputSceneIndex < availableGameInputSceneArray.Length)
@@ -96,7 +113,7 @@ namespace YusamPackage
                 _activeGameInputScene = _lastGameInputScene;
                 if (_activeGameInputScene != null)
                 {
-                    _lastGameInputScene.DoEnter();
+                    _activeGameInputScene.DoEnter();
                 }
             } else if (_activeGameInputScene != null)
             {
