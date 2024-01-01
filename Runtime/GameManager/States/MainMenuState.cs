@@ -4,6 +4,7 @@ namespace YusamPackage
 {
     public class MainMenuState : GameManagerState
     {
+        [SerializeField] private GameMenu gameMenu;
         [SerializeField] private GameObject gameMenuUI;
         [SerializeField] private GameManager gameManager;
 
@@ -17,11 +18,13 @@ namespace YusamPackage
         public override void Enter()
         {
             gameMenuUI.SetActive(true);
+            gameMenu.gameObject.SetActive(true);
         }
         
         public override void Exit()
         {
             gameMenuUI.SetActive(false);
+            gameMenu.gameObject.SetActive(false);
         }
 
         public override bool IsFinished()
@@ -36,12 +39,13 @@ namespace YusamPackage
         
         public void OnGameMenuKeyEvent(string menuKey)
         {
-            //бывает два раза прилетает событие одно и тоже
-            GameDebug.Log(this.name + " : " + menuKey);
             switch (menuKey)
             {
                 case "start":
-                    gameManager.currentManagerStateEnum = GameManager.GameManagerStateEnum.LoadingScene;
+                    if (gameManager.currentManagerStateEnum != GameManager.GameManagerStateEnum.LoadingScene)
+                    {
+                        gameManager.currentManagerStateEnum = GameManager.GameManagerStateEnum.LoadingScene;
+                    }
                     break;
                 case "exit":
                 case "quit":

@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Reflection;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace YusamPackage
     {
         public enum GameInputPerformedEnum
         {
+            None,
             LeftStickVector2,
             LeftTriggerPress,
             LeftBumperPress,
@@ -73,9 +75,16 @@ namespace YusamPackage
         //GetActionByEnum
         public InputAction GetActionByEnum(GameInputPerformedEnum gameInputPerformedEnum)
         {
-            string method = $"Get{gameInputPerformedEnum.ToString()}Action";
-            MethodInfo methodInfo = GetType().GetMethod(method);
-            return (InputAction) methodInfo.Invoke(method, null);
+            switch (gameInputPerformedEnum)
+            {
+                case GameInputPerformedEnum.StartPress:
+                    return GetStartPressAction();
+                case GameInputPerformedEnum.EnterPress:
+                    return GetEnterPressAction();
+                case GameInputPerformedEnum.RightPadDownPress:
+                    return GetRightPadDownPressAction();
+            }
+            return null;
         }
         
         /*
