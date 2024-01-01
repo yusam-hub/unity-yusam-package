@@ -449,8 +449,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 2055454156957312578}
+  gameInputScene: {fileID: 798258428}
+  availableLayerSoArray:
+  - {fileID: 11400000, guid: da4e5f6f7f362bc4f9cda913be6bc597, type: 2}
   rotateSpeed: 50
   moveSpeed: 5
+--- !u!1 &798258427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798258429}
+  - component: {fileID: 798258428}
+  m_Layer: 0
+  m_Name: GameInputScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798258428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798258427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950061e1728e41579b937a0e28e9bd92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableGameInputSceneArray:
+  - {fileID: 11400000, guid: c119f9f96b8e8e44baec4d59a1a5a1ec, type: 2}
+  - {fileID: 11400000, guid: 3ffb1df30abf0384fbbebcea3d7d78e4, type: 2}
+  activeSceneIndex: 0
+  activeLayerIndex: 0
+--- !u!4 &798258429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798258427}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027471548
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 2055454156957312578}
+  gameInputScene: {fileID: 0}
+  availableLayerSoArray: []
   rotateSpeed: 50
   moveSpeed: 5
 --- !u!1 &1224231786
@@ -1898,7 +1952,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3463248447525181272}
   - component: {fileID: 2055454156957312578}
-  - component: {fileID: 7092733352647329417}
   m_Layer: 0
   m_Name: GameInput
   m_TagString: Untagged
@@ -1906,23 +1959,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &7092733352647329417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7092733352647329416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 950061e1728e41579b937a0e28e9bd92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableGameInputSceneArray:
-  - {fileID: 11400000, guid: c119f9f96b8e8e44baec4d59a1a5a1ec, type: 2}
-  - {fileID: 11400000, guid: 3ffb1df30abf0384fbbebcea3d7d78e4, type: 2}
-  activeSceneIndex: 0
-  activeLayerIndex: 0
 --- !u!1001 &7145180810343001662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2243,3 +2279,4 @@ SceneRoots:
   - {fileID: 1609463544}
   - {fileID: 447965873}
   - {fileID: 3463248447525181272}
+  - {fileID: 798258429}

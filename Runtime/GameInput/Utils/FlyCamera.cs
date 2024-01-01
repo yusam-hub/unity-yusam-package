@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace YusamPackage
@@ -6,7 +7,9 @@ namespace YusamPackage
     {
         [Header("References")] 
         [SerializeField] private GameInput gameInput;
-
+        [SerializeField] private GameInputScene gameInputScene;
+        [SerializeField] private GameInputLayerSo[] availableLayerSoArray;
+        
         [Header("Settings")] 
         [SerializeField] private float rotateSpeed = 50;
         [SerializeField] private float moveSpeed = 5;
@@ -21,8 +24,13 @@ namespace YusamPackage
                 Debug.LogError("GameInput instance not found in [ " + this + "]");
                 gameObject.SetActive(false);
             }
+            if (gameInputScene == null)
+            {
+                Debug.LogError("gameInputScene instance not found in [ " + this + "]");
+                gameObject.SetActive(false);
+            }
         }
-
+        
         /*
          * Controlled by GameInputManager 
          */
@@ -42,7 +50,7 @@ namespace YusamPackage
             Vector2 rightStickDirection = gameInput.GetRightStickVector2Normalized();
             return new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
         }
-        
+
         /*
          * 
          */
