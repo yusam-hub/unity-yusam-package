@@ -616,14 +616,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027471548}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2ff4f07e4b034b4b93c1017b1f0a7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 2055454156957312578}
-  gameInputScene: {fileID: 0}
-  availableLayerSoArray: []
+  gameInputScene: {fileID: 798258428}
+  availableLayerSoArray:
+  - {fileID: 11400000, guid: cfebacb3e0ec6564ba9e73e4954c3692, type: 2}
   rotateSpeed: 50
   moveSpeed: 5
 --- !u!1 &1224231786
