@@ -14,14 +14,19 @@ namespace YusamPackage
         public GameInputLayerSo[] availableLayerSoArray;
         public string defaultLayerKey;
 
-        public void Enter()
+        public virtual void DoEnter()
         {
             Debug.Log($"Enter on {name} {key} {title}");
         }
 
-        public void Exit()
+        public virtual void DoExit()
         {
             Debug.Log($"Exit on {name} {key} {title}");   
+        }
+        
+        public virtual void DoUpdate()
+        {
+
         }
     }
 }

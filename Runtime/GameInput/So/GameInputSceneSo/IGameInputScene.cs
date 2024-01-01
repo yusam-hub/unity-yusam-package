@@ -2,7 +2,8 @@
 {
     public interface IGameInputScene
     {
-        public void Enter();
-        public void Exit();
+        public void DoEnter();
+        public void DoExit();
+        public void DoUpdate();
     }
 }

@@ -21,7 +21,6 @@ namespace YusamPackage
         private IGameInputScene _activeGameInputScene;
         private IGameInputScene _lastGameInputScene;
         
-        
         public void StoreEditorChanged()
         {
             _availableList.Clear();
@@ -90,9 +89,18 @@ namespace YusamPackage
         {
             if (_activeGameInputScene != _lastGameInputScene)
             {
-                _lastGameInputScene.Exit();
+                if (_lastGameInputScene != null)
+                {
+                    _lastGameInputScene.DoExit();
+                }
                 _activeGameInputScene = _lastGameInputScene;
-                _lastGameInputScene.Enter();
+                if (_activeGameInputScene != null)
+                {
+                    _lastGameInputScene.DoEnter();
+                }
+            } else if (_activeGameInputScene != null)
+            {
+                _activeGameInputScene.DoUpdate();
             }
         }
 
@@ -100,7 +108,7 @@ namespace YusamPackage
         {
             if (_activeGameInputScene != null)
             {
-                _activeGameInputScene.Exit();
+                _activeGameInputScene.DoExit();
             }
         }
     }
