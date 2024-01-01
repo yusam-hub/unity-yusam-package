@@ -10,14 +10,18 @@ namespace YusamPackage
 
     public class GameInputScene : MonoBehaviour
     {
-       
+        [YusamHelpBox("Add to available list Scriptable Objects","",2, "#FF8000")]
         [SerializeField] private GameInputSceneSo[] availableGameInputSceneArray;
-
+        
+        [Space]
+        [YusamHelpBox("Active scene can change any time","",2, "#FF8000")]
         [YusamDropdownInt("AvailableSceneStringList()")]
-        [SerializeField] private int activeGameInputSceneIndex;
+        [SerializeField] private int activeSceneIndex;
 
+        [Space]
+        [YusamHelpBox("Active layer can change only in runtime","",2, "#FF8000")]
         [YusamDropdownInt("AvailableLayerStringList()")]
-        [SerializeField] private int activeGameInputLayerIndex;
+        [SerializeField] private int activeLayerIndex;
 
         private List<String> _availableList = new List<string>();
         private Dictionary<string, IGameInputScene> _gameInputSceneDictionary;
@@ -27,11 +31,15 @@ namespace YusamPackage
         public void StoreSceneEditorChanged()
         {
             _availableList.Clear();
-            foreach (GameInputSceneSo gameInputSceneSo in availableGameInputSceneArray)
+
+            if (availableGameInputSceneArray != null)
             {
-                if (gameInputSceneSo != null)
+                foreach (GameInputSceneSo gameInputSceneSo in availableGameInputSceneArray)
                 {
-                    _availableList.Add(gameInputSceneSo.title);
+                    if (gameInputSceneSo != null)
+                    {
+                        _availableList.Add(gameInputSceneSo.title);
+                    }
                 }
             }
 
@@ -57,13 +65,23 @@ namespace YusamPackage
         
         private void OnValidate()
         {
+            Debug.Log("OnValidate");
             StoreSceneEditorChanged();
-            if (Application.isPlaying && (_gameInputSceneDictionary != null) && (availableGameInputSceneArray != null))
+            
+            if (Application.isPlaying)
             {
-                if (activeGameInputSceneIndex >= 0 && activeGameInputSceneIndex < availableGameInputSceneArray.Length)
+                if (
+                    _gameInputSceneDictionary != null 
+                    && 
+                    availableGameInputSceneArray != null 
+                    && 
+                    activeSceneIndex >= 0 
+                    && 
+                    activeSceneIndex < availableGameInputSceneArray.Length
+                    )
                 {
                     if (_gameInputSceneDictionary.TryGetValue(
-                            availableGameInputSceneArray[activeGameInputSceneIndex].key,
+                            availableGameInputSceneArray[activeSceneIndex].key,
                             out IGameInputScene gameInputScene))
                     {
                         _lastGameInputScene = gameInputScene;
@@ -84,7 +102,7 @@ namespace YusamPackage
                     IGameInputScene temp = Instantiate(gameInputSceneSo);
                     _gameInputSceneDictionary.Add(gameInputSceneSo.key, temp);
                     
-                    if (activeGameInputSceneIndex == index)
+                    if (activeSceneIndex == index)
                     {
                         _lastGameInputScene = temp;
                     }
@@ -106,9 +124,9 @@ namespace YusamPackage
         {
             if (_activeGameInputScene != _lastGameInputScene)
             {
-                if (_lastGameInputScene != null)
+                if (_activeGameInputScene != null)
                 {
-                    _lastGameInputScene.DoExit();
+                    _activeGameInputScene.DoExit();
                 }
                 _activeGameInputScene = _lastGameInputScene;
                 if (_activeGameInputScene != null)

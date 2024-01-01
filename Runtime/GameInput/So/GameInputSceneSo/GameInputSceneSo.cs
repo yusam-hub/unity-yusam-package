@@ -91,9 +91,9 @@ namespace YusamPackage
         {
             if (_activeGameInputLayer != _lastGameInputLayer)
             {
-                if (_lastGameInputLayer != null)
+                if (_activeGameInputLayer != null)
                 {
-                    _lastGameInputLayer.DoExit();
+                    _activeGameInputLayer.DoExit();
                 }
                 _activeGameInputLayer = _lastGameInputLayer;
                 if (_activeGameInputLayer != null)
