@@ -9,7 +9,7 @@ namespace YusamPackage
         SerializedProperty inEdit;
         SerializedProperty comment;
         SerializedProperty header;
-        GUIContent textContent, headerContent, editButtonContent;
+        GUIContent textContent, headerContent;
         GUIStyle window, iconStyle, textStyle;
         GUISkin skin;
 
@@ -21,14 +21,16 @@ namespace YusamPackage
             
             skin = Resources.Load("YusamSkin") as GUISkin;
             textContent = new GUIContent();
-            editButtonContent = new GUIContent("", Resources.Load("yusam_edit_icon") as Texture2D, "Enable or Disable Edit Mode");
-            //editButtonContent = new GUIContent("&", null, "Enable or Disable Edit Mode");
             headerContent = new GUIContent();
         }
 
         private void OnDisable()
         {
-            inEdit.boolValue = false; if (serializedObject != null && serializedObject.targetObject != null) serializedObject.ApplyModifiedProperties();
+            inEdit.boolValue = false;
+            if (serializedObject != null && serializedObject.targetObject != null)
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
         }
 
         public override bool UseDefaultMargins()
@@ -53,7 +55,11 @@ namespace YusamPackage
                     {
                         GenericMenu menu = new GenericMenu();
                         menu.AddSeparator("");
-                        menu.AddItem(new GUIContent(!inEdit.boolValue ? "Edit" : "Save"), false, () => { inEdit.boolValue = !inEdit.boolValue; serializedObject.ApplyModifiedProperties(); });
+                        menu.AddItem(new GUIContent(!inEdit.boolValue ? "Edit" : "Save"), false, () =>
+                        {
+                            inEdit.boolValue = !inEdit.boolValue; 
+                            serializedObject.ApplyModifiedProperties();
+                        });
                         menu.AddSeparator("");
                         menu.ShowAsContext();
                     }

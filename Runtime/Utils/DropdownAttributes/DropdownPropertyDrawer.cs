@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 
 namespace YusamPackage
 {
-    [CustomPropertyDrawer(typeof(DropdownAttribute))]
+    [CustomPropertyDrawer(typeof(YusamDropdownAttribute))]
     public class DropdownAttributeDrawer : PropertyDrawer
     {
         public List<Object> SerializedPropertyToList(SerializedProperty property)
@@ -234,7 +234,7 @@ namespace YusamPackage
         {
             try
             {
-                DropdownAttribute dropdownAttribute = (DropdownAttribute)attribute;
+                YusamDropdownAttribute dropdownAttribute = (YusamDropdownAttribute)attribute;
 
                 if (dropdownAttribute.ListPath == "")
                 {

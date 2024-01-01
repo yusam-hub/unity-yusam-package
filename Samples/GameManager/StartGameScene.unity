@@ -1486,6 +1486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3463248448442526912}
   - component: {fileID: 2055454155731230170}
+  - component: {fileID: 7092733351704116497}
   m_Layer: 0
   m_Name: GameInput
   m_TagString: Untagged
@@ -1493,6 +1494,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!114 &7092733351704116497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092733351704116496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950061e1728e41579b937a0e28e9bd92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableGameInputSceneArray:
+  - {fileID: 11400000, guid: 3ffb1df30abf0384fbbebcea3d7d78e4, type: 2}
+  - {fileID: 11400000, guid: c119f9f96b8e8e44baec4d59a1a5a1ec, type: 2}
+  activeSceneKey: 
+  testInt: 0
+  testString: item1
 --- !u!114 &7406614998606681428
 MonoBehaviour:
   m_ObjectHideFlags: 0

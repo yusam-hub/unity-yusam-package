@@ -13,12 +13,12 @@ namespace YusamPackage
         {
             if (property.propertyType == SerializedPropertyType.Boolean)
             {
-                var toogle = attribute as YusamDropdownBoolAttribute;
-                if (toogle.label != "") label.text = toogle.label;
+                var boolAttribute = attribute as YusamDropdownBoolAttribute;
+                if (boolAttribute.label != "") label.text = boolAttribute.label;
                 var options = new GUIContent[]
                 {
-                    new GUIContent(toogle.falseValue), 
-                    new GUIContent(toogle.trueValue)
+                    new GUIContent(boolAttribute.falseValue), 
+                    new GUIContent(boolAttribute.trueValue)
                 };
                 property.boolValue =
                     Convert.ToBoolean(EditorGUI.Popup(position, label, Convert.ToInt32(property.boolValue), options));

@@ -9,7 +9,7 @@ namespace YusamPackage
     public class LoadingSceneState : GameManagerState
     {
         [SerializeField] private GameInput gameInput;
-        [SerializeField] private GameInput.GameInputPerformedEnum[] pressKeyArray;
+        [SerializeField] private GameInputPerformedEnum[] pressKeyArray;
         [SerializeField] private GameObject loadingSceneUi;
         [SerializeField] private string sceneName;
 
@@ -22,9 +22,9 @@ namespace YusamPackage
         {
             loadingSceneUi.SetActive(true);
             StartCoroutine("AsyncSceneLoading", sceneName);
-            foreach (GameInput.GameInputPerformedEnum gameInputPerformedEnum in pressKeyArray)
+            foreach (GameInputPerformedEnum gameInputPerformedEnum in pressKeyArray)
             {
-                if (gameInputPerformedEnum == GameInput.GameInputPerformedEnum.None) continue;
+                if (gameInputPerformedEnum == GameInputPerformedEnum.None) continue;
                 gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnPerformed;
             }
         }
@@ -62,9 +62,9 @@ namespace YusamPackage
         
         public override void Exit()
         {
-            foreach (GameInput.GameInputPerformedEnum gameInputPerformedEnum in pressKeyArray)
+            foreach (GameInputPerformedEnum gameInputPerformedEnum in pressKeyArray)
             {
-                if (gameInputPerformedEnum == GameInput.GameInputPerformedEnum.None) continue;
+                if (gameInputPerformedEnum == GameInputPerformedEnum.None) continue;
                 gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnPerformed;
             }
             loadingSceneUi.SetActive(false);

@@ -15,7 +15,7 @@ namespace YusamPackage
     /// - displayProperty: the property you want to display in the dropdown selection
     /// 
     /// </summary>
-    public class DropdownAttribute : PropertyAttribute
+    public class YusamDropdownAttribute : PropertyAttribute
     {
         public Type Type = null;
         public string ListPath = "";
@@ -24,7 +24,7 @@ namespace YusamPackage
         public int SelectedID = -1;
         public GetItemNameCallback GetItemName = null;
 
-        public DropdownAttribute(string listPath, string ItemNameProperty)
+        public YusamDropdownAttribute(string listPath, string ItemNameProperty)
         {
             //With property name to get name
             //[Dropdown("SkillDatabase.Instance.SkillList", "skillID")]
@@ -36,7 +36,7 @@ namespace YusamPackage
             this.ItemNameProperty = ItemNameProperty;
         }
 
-        public DropdownAttribute(string listPath)
+        public YusamDropdownAttribute(string listPath)
         {
             ListPath = listPath;
             GetItemName = ((baseMaster, master) =>
