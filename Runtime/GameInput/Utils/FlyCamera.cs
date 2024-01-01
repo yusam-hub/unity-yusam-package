@@ -52,7 +52,7 @@ namespace YusamPackage
          */
         private void GameInputSceneOnOnSceneLayerChanged(object sender, GameInputScene.OnSceneLayerChangedEventArgs e)
         {
-            Debug.Log($"{e.SceneKey} -> {e.LayerKey}");
+            Debug.Log($"{name} = {e.SceneKey} -> {e.LayerKey}");
             
             _canUseGameInput = false;
 

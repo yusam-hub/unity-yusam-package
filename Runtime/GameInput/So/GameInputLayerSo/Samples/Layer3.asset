@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32b58013bc4d43b68a216f40ab463409, type: 3}
-  m_Name: MenuLayer
+  m_Name: Layer3
   m_EditorClassIdentifier: 
-  key: menuLayer
-  title: Menu Layer
+  key: layer3
+  title: Layer 3
   desc: 

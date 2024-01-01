@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32b58013bc4d43b68a216f40ab463409, type: 3}
-  m_Name: GameLayer
+  m_Name: Layer1
   m_EditorClassIdentifier: 
-  key: gameLayer
-  title: Game Layer
+  key: layer1
+  title: Layer 1
   desc: 

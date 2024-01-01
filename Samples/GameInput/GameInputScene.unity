@@ -484,8 +484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableGameInputSceneArray:
-  - {fileID: 11400000, guid: c119f9f96b8e8e44baec4d59a1a5a1ec, type: 2}
   - {fileID: 11400000, guid: 3ffb1df30abf0384fbbebcea3d7d78e4, type: 2}
+  - {fileID: 11400000, guid: c119f9f96b8e8e44baec4d59a1a5a1ec, type: 2}
   activeSceneIndex: 0
   activeLayerIndex: 0
 --- !u!4 &798258429

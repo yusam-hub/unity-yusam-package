@@ -32,6 +32,11 @@ namespace YusamPackage
         {
             _gameInputScene = gameInputScene;
         }
+
+        public void Reset()
+        {
+            _lastGameInputLayer = null;
+        }
         
         public void StoreLayerEditorChanged()
         {

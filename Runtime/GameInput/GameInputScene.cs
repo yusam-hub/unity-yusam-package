@@ -94,8 +94,12 @@ namespace YusamPackage
                     }
                 }
 
-                if (_activeGameInputScene != null)
+                /*
+                 * todo - короче нужно сбросить activeLayerIndex при смене сцены
+                 */
+                if (_activeGameInputScene != null && activeLayerIndex >= 0)
                 {
+                    
                     _activeGameInputScene.DoEditorChangeLayerIndex(activeLayerIndex);
                 }
             }
@@ -140,7 +144,10 @@ namespace YusamPackage
                 {
                     _activeGameInputScene.DoExit();
                 }
+                
                 _activeGameInputScene = _lastGameInputScene;
+                activeLayerIndex = 0;//todo - or defaultKey in layer
+                
                 if (_activeGameInputScene != null)
                 {
                     _activeGameInputScene.DoEnter();
