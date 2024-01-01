@@ -7,18 +7,15 @@ namespace YusamPackage
     public class YusamHelpBoxAttribute : PropertyAttribute
     {
         public string text;
-        public string toolTip;
         public int rows;
         public string color;
 
-        public YusamHelpBoxAttribute(string text, string toolTip = "", int rows = 3, string color = "#FFFFFF")
+        public YusamHelpBoxAttribute(string text, int rows = 3, string color = "#FF8000")
         {
             this.text = text;
-            this.toolTip = toolTip;
             this.rows = rows;
             this.color = color;
         }
-        
-        public int lineSpace;
+
     }
 }

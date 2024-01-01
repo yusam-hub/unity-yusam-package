@@ -14,16 +14,18 @@ namespace YusamPackage
             public string LayerKey;
         }
         
-        [YusamHelpBox("Add to available list Scriptable Objects","",2, "#FF8000")]
+        [Header("References")] 
+        [YusamHelpBox("Список доступных Scriptable Objects")]
+        [Space(10)]
         [SerializeField] private GameInputSceneSo[] availableGameInputSceneArray;
-        
-        [Space]
-        [YusamHelpBox("Active scene can change any time","",2, "#FF8000")]
+        [Space(10)]
+        [YusamHelpBox("Можно выбирать сцену в редакторе и в игре")]
+        [Space(10)]
         [YusamDropdownInt("AvailableSceneStringList()")]
         [SerializeField] private int activeSceneIndex;
-
-        [Space]
-        [YusamHelpBox("Active layer can change only in runtime","",2, "#FF8000")]
+        [Space(10)]
+        [YusamHelpBox("Можно менять и видеть результ только в игре")]
+        [Space(10)]
         [YusamDropdownInt("AvailableLayerStringList()")]
         [SerializeField] private int activeLayerIndex;
 

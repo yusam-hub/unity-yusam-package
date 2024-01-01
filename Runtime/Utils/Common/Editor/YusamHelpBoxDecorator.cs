@@ -28,7 +28,7 @@ namespace YusamPackage
             {
                 if (_content == null)
                 {
-                    _content = new GUIContent(helpBox.text, helpBox.toolTip);
+                    _content = new GUIContent(helpBox.text);
                 }
 
                 return _content;

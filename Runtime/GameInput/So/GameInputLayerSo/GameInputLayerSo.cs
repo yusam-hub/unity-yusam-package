@@ -5,8 +5,9 @@ namespace YusamPackage
     [CreateAssetMenu(menuName = "So/Yusam Package/Game Input/Layer")]
     public class GameInputLayerSo : ScriptableObject, IGameInputLayer
     {
+        [Space(10)]
         [YusamHelpBox("Слой доступа к GameInput")]
-        [Space]
+        [Space(10)]
         public string key;
         public string title;
         public string desc;

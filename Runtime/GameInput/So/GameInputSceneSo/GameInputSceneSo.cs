@@ -8,13 +8,18 @@ namespace YusamPackage
     [CreateAssetMenu(menuName = "So/Yusam Package/Game Input/Scene")]
     public class GameInputSceneSo : ScriptableObject, IGameInputScene
     {
-        [YusamHelpBox("Слои на сцене для GameInput")]
-        [Space]
+        [Space(10)]
+        [YusamHelpBox("Список слоев для GameInput")]
+        public GameInputLayerSo[] availableLayerSoArray;
+        [Space(10)]
+        public string defaultLayerKey;
+        [Space(20)]
+        [YusamHelpBox("Settings")] 
+        [Space(10)]
         public string key;
         public string title;
         public string desc;
-        public GameInputLayerSo[] availableLayerSoArray;
-        public string defaultLayerKey;
+
 
         private List<String> _availableList = new List<string>();
         private Dictionary<string, GameInputLayerSo> _gameInputLayerDictionary;

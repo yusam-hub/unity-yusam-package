@@ -6,10 +6,20 @@ namespace YusamPackage
     public class FlyCamera : MonoBehaviour
     {
         [Header("References")] 
+        [Space(10)]
+        [YusamHelpBox("GameInput нужен для подключения к контролеру управления")]
+        [Space(10)]
         [SerializeField] private GameInput gameInput;
+        [Space(10)]
+        [YusamHelpBox("GameInputScene нужен для подключения к событию об изменении сцены и слоя")]
+        [Space(10)]
         [SerializeField] private GameInputScene gameInputScene;
+        [Space(10)]
+        [YusamHelpBox("Массив GameInputLayerSo нужен для проверки может ли данный скрипт упраляться в данных слоях")]
+        [Space(10)]
         [SerializeField] private GameInputLayerSo[] availableLayerSoArray;
-        
+        [Space(20)]
+
         [Header("Settings")] 
         [SerializeField] private float rotateSpeed = 50;
         [SerializeField] private float moveSpeed = 5;
