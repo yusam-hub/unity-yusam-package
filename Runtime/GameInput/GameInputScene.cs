@@ -8,7 +8,7 @@ namespace YusamPackage
 {
     public class GameInputScene : MonoBehaviour
     {
-        private static GameInputScene Instance { get; set; }
+        public static GameInputScene Instance { get; private set; }
         public event EventHandler<OnSceneLayerChangedEventArgs> OnSceneLayerChanged;
 
         public class OnSceneLayerChangedEventArgs : EventArgs

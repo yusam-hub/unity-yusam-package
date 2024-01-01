@@ -14,7 +14,7 @@ namespace YusamPackage
         [SerializeField]
         private string desc;
         
-        private static GameInput Instance { get; set; }
+        public static GameInput Instance { get; private set; }
 
         private GameInputActions _gameInputActions;
         
