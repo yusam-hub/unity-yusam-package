@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Reflection;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace YusamPackage
 {
-
     public class GameInputScene : MonoBehaviour
     {
+        public event EventHandler<OnSceneLayerChangedEventArgs> OnSceneLayerChanged;
+
+        public class OnSceneLayerChangedEventArgs : EventArgs
+        {
+            public string SceneKey;
+            public string LayerKey;
+        }
+        
         [YusamHelpBox("Add to available list Scriptable Objects","",2, "#FF8000")]
         [SerializeField] private GameInputSceneSo[] availableGameInputSceneArray;
         
@@ -24,9 +28,9 @@ namespace YusamPackage
         [SerializeField] private int activeLayerIndex;
 
         private List<String> _availableList = new List<string>();
-        private Dictionary<string, IGameInputScene> _gameInputSceneDictionary;
-        private IGameInputScene _activeGameInputScene;
-        private IGameInputScene _lastGameInputScene;
+        private Dictionary<string, GameInputSceneSo> _gameInputSceneDictionary;
+        private GameInputSceneSo _activeGameInputScene;
+        private GameInputSceneSo _lastGameInputScene;
         
         public void StoreSceneEditorChanged()
         {
@@ -82,7 +86,7 @@ namespace YusamPackage
                 {
                     if (_gameInputSceneDictionary.TryGetValue(
                             availableGameInputSceneArray[activeSceneIndex].key,
-                            out IGameInputScene gameInputScene))
+                            out GameInputSceneSo gameInputScene))
                     {
                         _lastGameInputScene = gameInputScene;
                     }
@@ -97,14 +101,15 @@ namespace YusamPackage
 
         private void Awake()
         {
-            _gameInputSceneDictionary = new Dictionary<string, IGameInputScene>();
+            _gameInputSceneDictionary = new Dictionary<string, GameInputSceneSo>();
 
             int index = 0;
             foreach (GameInputSceneSo gameInputSceneSo in availableGameInputSceneArray)
             {
                 if (gameInputSceneSo != null)
                 {
-                    IGameInputScene temp = Instantiate(gameInputSceneSo);
+                    GameInputSceneSo temp = Instantiate(gameInputSceneSo);
+                    temp.SetGameInputScene(this);
                     _gameInputSceneDictionary.Add(gameInputSceneSo.key, temp);
                     
                     if (activeSceneIndex == index)
@@ -118,7 +123,7 @@ namespace YusamPackage
 
             if (_lastGameInputScene == null && _gameInputSceneDictionary.Count > 0)
             {
-                if (_gameInputSceneDictionary.TryGetValue(availableGameInputSceneArray[0].key, out IGameInputScene gameInputScene))
+                if (_gameInputSceneDictionary.TryGetValue(availableGameInputSceneArray[0].key, out GameInputSceneSo gameInputScene))
                 {
                     _lastGameInputScene = gameInputScene;
                 }
@@ -150,6 +155,15 @@ namespace YusamPackage
             {
                 _activeGameInputScene.DoExit();
             }
+        }
+
+        public void DoOnSceneLayerChanged(string sceneKey, string layerKey)
+        {
+            OnSceneLayerChanged?.Invoke(this, new OnSceneLayerChangedEventArgs
+            {
+                SceneKey = sceneKey,
+                LayerKey = layerKey
+            });
         }
     }
 }

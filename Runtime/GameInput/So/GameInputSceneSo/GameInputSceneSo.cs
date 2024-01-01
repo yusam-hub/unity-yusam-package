@@ -17,9 +17,16 @@ namespace YusamPackage
         public string defaultLayerKey;
 
         private List<String> _availableList = new List<string>();
-        private Dictionary<string, IGameInputLayer> _gameInputLayerDictionary;
-        private IGameInputLayer _activeGameInputLayer;
-        private IGameInputLayer _lastGameInputLayer;
+        private Dictionary<string, GameInputLayerSo> _gameInputLayerDictionary;
+        private GameInputLayerSo _activeGameInputLayer;
+        private GameInputLayerSo _lastGameInputLayer;
+
+        private GameInputScene _gameInputScene;
+
+        public void SetGameInputScene(GameInputScene gameInputScene)
+        {
+            _gameInputScene = gameInputScene;
+        }
         
         public void StoreLayerEditorChanged()
         {
@@ -38,12 +45,12 @@ namespace YusamPackage
             return _availableList;
         }
 
-        public virtual void DoEditorChangeLayerIndex(int index)
+        public void DoEditorChangeLayerIndex(int index)
         {
             //Debug.Log($"DoEditorChangeLayerIndex on {name} {key} {title}");
             if (_gameInputLayerDictionary != null && _gameInputLayerDictionary.Count > 0)
             {
-                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[index].key, out IGameInputLayer gameInputLayer))
+                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[index].key, out GameInputLayerSo gameInputLayer))
                 {
                     _lastGameInputLayer = gameInputLayer;
                 }
@@ -58,11 +65,11 @@ namespace YusamPackage
             
             if (_gameInputLayerDictionary == null)
             {
-                _gameInputLayerDictionary = new Dictionary<string, IGameInputLayer>();
+                _gameInputLayerDictionary = new Dictionary<string, GameInputLayerSo>();
             }
             else
             {
-                foreach (KeyValuePair<string, IGameInputLayer> p in _gameInputLayerDictionary)
+                foreach (KeyValuePair<string, GameInputLayerSo> p in _gameInputLayerDictionary)
                 {
                     Object temp = p.Value as Object;
                     Destroy(temp);
@@ -77,7 +84,8 @@ namespace YusamPackage
             {
                 if (gameInputLayerSo != null)
                 {
-                    IGameInputLayer temp = Instantiate(gameInputLayerSo);
+                    GameInputLayerSo temp = Instantiate(gameInputLayerSo);
+                    //temp - can doit somethis
                     _gameInputLayerDictionary.Add(gameInputLayerSo.key, temp);
                     
                     if (defaultLayerKey == gameInputLayerSo.key)
@@ -91,7 +99,7 @@ namespace YusamPackage
 
             if (_lastGameInputLayer == null && _gameInputLayerDictionary.Count > 0)
             {
-                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[0].key, out IGameInputLayer gameInputLayer))
+                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[0].key, out GameInputLayerSo gameInputLayer))
                 {
                     _lastGameInputLayer = gameInputLayer;
                 }
@@ -113,6 +121,7 @@ namespace YusamPackage
                 if (_activeGameInputLayer != null)
                 {
                     _activeGameInputLayer.DoEnter();
+                    _gameInputScene.DoOnSceneLayerChanged(key, _activeGameInputLayer.key);
                 }
             } else if (_activeGameInputLayer != null)
             {

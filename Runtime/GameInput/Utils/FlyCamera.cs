@@ -16,6 +16,7 @@ namespace YusamPackage
 
         private float _rotateSpeedCurrent;
         private float _moveSpeedCurrent;
+        private bool _canUseGameInput;
 
         private void Awake()
         {
@@ -29,10 +30,33 @@ namespace YusamPackage
                 Debug.LogError("gameInputScene instance not found in [ " + this + "]");
                 gameObject.SetActive(false);
             }
+
+            if (gameInputScene != null)
+            {
+                gameInputScene.OnSceneLayerChanged += GameInputSceneOnOnSceneLayerChanged;
+            }
         }
-        
+
+        /**
+         * GameInputSceneOnOnSceneLayerChanged
+         */
+        private void GameInputSceneOnOnSceneLayerChanged(object sender, GameInputScene.OnSceneLayerChangedEventArgs e)
+        {
+            Debug.Log($"{e.SceneKey} -> {e.LayerKey}");
+            
+            _canUseGameInput = false;
+
+            foreach ( GameInputLayerSo gameInputLayerSo in availableLayerSoArray)
+            {
+                if (gameInputLayerSo.key == e.LayerKey)
+                {
+                    _canUseGameInput = true;
+                }
+            }
+        }
+
         /*
-         * Controlled by GameInputManager 
+         * Controlled by GameInputManager
          */
         private bool IsButtonPressed()
         {
@@ -56,6 +80,8 @@ namespace YusamPackage
          */
         private void Update()
         {
+            if (!_canUseGameInput) return;
+            
             if (IsButtonPressed())
             {
                 Cursor.visible = false;
@@ -82,5 +108,12 @@ namespace YusamPackage
             transform.rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, 0);
         }
 
+        private void OnDestroy()
+        {
+            if (gameInputScene != null)
+            {
+                gameInputScene.OnSceneLayerChanged -= GameInputSceneOnOnSceneLayerChanged;
+            }
+        }
     }
 }
