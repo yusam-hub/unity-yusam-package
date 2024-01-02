@@ -9,6 +9,7 @@ namespace YusamPackage
         [SerializeField] private DamageSo damageSo;
 
         private IHealth _health;
+            
         private void Awake()
         {
             if (damageSo == null)
@@ -16,6 +17,7 @@ namespace YusamPackage
                 Debug.LogError("Damage So prefab not found in [ " + this + "]");
                 gameObject.SetActive(false);
             }
+            
             _health = GetComponent<IHealth>();
         }
 
