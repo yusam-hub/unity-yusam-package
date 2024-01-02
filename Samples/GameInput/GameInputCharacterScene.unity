@@ -668,6 +668,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube_3x3x3
       objectReference: {fileID: 0}
+    - target: {fileID: 3002339374892934472, guid: bff6675fb840b6b43aacbf616ff60351,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5064343381771490122, guid: bff6675fb840b6b43aacbf616ff60351,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -5,6 +5,13 @@ namespace YusamPackage
 {
     public class ShootBullet : MonoBehaviour
     {
+        public enum ShootBulletTrajectory
+        {
+            LinerTrajectory,
+            ParabolaTrajectory
+        }
+
+        [SerializeField] private ShootBulletTrajectory trajectory = ShootBulletTrajectory.LinerTrajectory;
         [SerializeField] private bool turnToTrajectory = true;
         [SerializeField] private float arcHeight = 2;
         [SerializeField] private float speed = 20;
@@ -19,11 +26,58 @@ namespace YusamPackage
         {
             _fromPosition = fromPosition;
             _toPosition = toPosition;
+
+            if (trajectory == ShootBulletTrajectory.LinerTrajectory)
+            {
+                StartCoroutine(LinerCoroutine());
+            }
+            else
+            {
+                StartCoroutine(ParabolaCoroutine());
+            }
+        }
+
+        private IEnumerator LinerCoroutine()
+        {
+            Vector3 startPos = _fromPosition;
+            Vector3 direction = _toPosition - startPos;
             
-            StartCoroutine( GravityArcCoroutine());
+            float distance = direction.magnitude;
+
+            float currentPath = 0;
+            while (currentPath <= distance) {
+                float part = currentPath / distance;
+                Vector3 pos = Vector3.Lerp( startPos, _toPosition, part );
+                
+                if (turnToTrajectory) {
+                    Vector3 lookDir = pos - transform.position;
+                    if (lookDir.sqrMagnitude >= Mathf.Epsilon) {
+                        transform.rotation = Quaternion.LookRotation( lookDir );
+                    }
+                }
+
+                RaycastHit? hitTest;
+                hitTest = CheckMainHit( transform.position, pos );
+                if (hitTest.HasValue) {
+                    SelfDestroy( hitTest );
+                    yield break;
+                }/* else {
+                    hitTest = CheckSpeculativeHit( transform.position, pos );
+                    if (hitTest.HasValue) {
+                        SelfDestroy( hitTest );
+                        yield break;
+                    }
+                }*/
+
+                transform.position = pos;
+                currentPath += speed * Time.deltaTime;
+                yield return null;
+            }
+
+            SelfDestroy( null );
         }
         
-        private IEnumerator GravityArcCoroutine()
+        private IEnumerator ParabolaCoroutine()
         {
             Vector3 startPos = _fromPosition;
             Vector3 direction = _toPosition - startPos;
@@ -67,6 +121,10 @@ namespace YusamPackage
         
         private void SelfDestroy(RaycastHit? hitInfo)
         {
+            if (hitInfo != null)
+            {
+                Debug.Log($"Hit info {hitInfo.Value.transform.gameObject.name}");
+            }
             /*if (hitInfo.HasValue) 
             {
                 if (_missileSetup.hitEffect) {
@@ -93,14 +151,9 @@ namespace YusamPackage
         
         private RaycastHit? CheckMainHit(Vector3 point1, Vector3 point2)
         {
-            Ray castRay = new Ray( point1, point2 - point1 );
+            Ray castRay = new Ray( point1, point2 - point1 );   
 
-            if (Physics.SphereCast(castRay,
-                    hitBoxRadius,
-                    out RaycastHit hitInfo,
-                    ( point1 - point2 ).magnitude,
-                    hitLayerMask,
-                    QueryTriggerInteraction.Collide )) {
+            if (Physics.SphereCast(castRay, hitBoxRadius, out RaycastHit hitInfo, ( point1 - point2 ).magnitude, hitLayerMask)) {
                 return hitInfo;
             } else {
                 return null;

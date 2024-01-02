@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f726eaec8b247b189b2c18abbfb16a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trajectory: 0
   turnToTrajectory: 1
   arcHeight: 2
   speed: 5
