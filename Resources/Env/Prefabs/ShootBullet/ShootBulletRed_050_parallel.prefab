@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8539843961736475826}
   - component: {fileID: 5126319274386993121}
   m_Layer: 0
-  m_Name: ShootBulletRed_050
+  m_Name: ShootBulletRed_050_parallel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,4 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f726eaec8b247b189b2c18abbfb16a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootBulletSo: {fileID: 11400000, guid: 90a49738331d0bc49a366b7552df7b0c, type: 2}
+  shootBulletSo: {fileID: 11400000, guid: bcf64db16e26b0e49aad28a66b87da59, type: 2}

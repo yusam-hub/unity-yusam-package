@@ -49,7 +49,7 @@ namespace YusamPackage
         public void Shoot()
         {
             ShootBullet shootBullet = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
-            shootBullet.Shoot(nozzlePoint.position, _rotationToMousePointByRay.GetMouseLookPosition());
+            shootBullet.Shoot(nozzlePoint, _rotationToMousePointByRay.GetMouseLookPosition());
 
             if (_debugProperties.debugEnabled)
             {
