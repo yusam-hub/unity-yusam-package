@@ -39,7 +39,7 @@ namespace YusamPackage
             if (currentTrajectory == ShootBulletSo.ShootBulletTrajectory.ParallelTrajectory)
             {
                 endPos.y = startPos.y;
-                endPos = TransformHelper.NewEndPosition(startPos, endPos, shootBulletSo.parallelMaxDistance);
+                endPos = TransformHelper.NewEndPositionCalculateFromStartPosition(startPos, endPos, shootBulletSo.parallelMaxDistance);
                 currentDirection = endPos - startPos;
                 maxDistance = currentDirection.magnitude;
                 
