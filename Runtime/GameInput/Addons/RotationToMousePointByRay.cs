@@ -27,9 +27,9 @@ namespace YusamPackage
 
         private void RotateToMouse()
         {
-            _lookPosition = GetMouseLookPositionByRay(_lookPosition, Input.mousePosition, _camera, 100);
+            _lookPosition = MouseHelper.GetMouseLookPositionByRay(_lookPosition, Input.mousePosition, _camera, 100);
         
-            Vector3 lookAt = LookAt(transform.position, _lookPosition);
+            Vector3 lookAt = TransformHelper.LookAt(transform.position, _lookPosition);
         
             _targetRotation = Quaternion.LookRotation(
                 lookAt - new Vector3(transform.position.x, 0, transform.position.z)
@@ -46,36 +46,16 @@ namespace YusamPackage
             if (_debugProperties.debugEnabled)
             {
                 Debug.DrawLine(transform.position, lookAt, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
+                Vector3 zeroY = new Vector3(lookAt.x, 0, lookAt.z);
+                
+                if (lookAt.y != 0)
+                {
+                    Debug.DrawLine(lookAt, zeroY, _debugProperties.debugDefaultColor,
+                        _debugProperties.debugDefaultDuration);
+                }
+                DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
             }
         }
-        
-        public static Vector3 GetMouseLookPositionByRay(Vector3 lookPosition, Vector3 inputMousePosition, Camera camera, float distance, int layerMask)
-        {
-            Ray ray = camera.ScreenPointToRay(inputMousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
-            {
-                lookPosition = hit.point;
-            }
-            
-            return lookPosition;
-        }
-        
-        public static Vector3 GetMouseLookPositionByRay(Vector3 lookPosition, Vector3 inputMousePosition, Camera camera, float distance)
-        {
-            Ray ray = camera.ScreenPointToRay(inputMousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, distance))
-            {
-                lookPosition = hit.point;
-            }
-            
-            return lookPosition;
-        }
-
-        public static Vector3 LookAt(Vector3 sourcePosition, Vector3 lookPosition)
-        {
-            return sourcePosition + (lookPosition - sourcePosition);
-        }
+ 
     }
 }
