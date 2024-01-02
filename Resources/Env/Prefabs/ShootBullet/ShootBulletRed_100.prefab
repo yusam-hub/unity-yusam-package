@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5265730200057175781}
   - component: {fileID: 4058438469053060286}
   - component: {fileID: 3349002768857889818}
+  - component: {fileID: -3349396428987065120}
   m_Layer: 0
   m_Name: ShootBulletRed_100
   m_TagString: Untagged
@@ -83,3 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3349396428987065120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6076675771605054391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f726eaec8b247b189b2c18abbfb16a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnToTrajectory: 1
+  arcHeight: 2
+  speed: 5
+  hitBoxRadius: 0.2
+  hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 0

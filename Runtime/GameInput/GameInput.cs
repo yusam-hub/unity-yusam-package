@@ -57,14 +57,50 @@ namespace YusamPackage
                     return GetMouseMiddlePressAction();
                 case GameInputPerformedEnum.MouseRightPress:
                     return GetMouseRightPressAction();
-                case GameInputPerformedEnum.SpacePress:
-                    return GetSpacePressAction();
-                case GameInputPerformedEnum.StartPress:
-                    return GetStartPressAction();
+                
+                case GameInputPerformedEnum.EscapePress:
+                    return GetEscapePressAction();
                 case GameInputPerformedEnum.EnterPress:
                     return GetEnterPressAction();
+                case GameInputPerformedEnum.SpacePress:
+                    return GetSpacePressAction();
+
+                case GameInputPerformedEnum.StartPress:
+                    return GetStartPressAction();
+                case GameInputPerformedEnum.SelectPress:
+                    return GetSelectPressAction();
+                
+                case GameInputPerformedEnum.RightPadUpPress:
+                    return GetRightPadUpPressAction();
                 case GameInputPerformedEnum.RightPadDownPress:
                     return GetRightPadDownPressAction();
+                case GameInputPerformedEnum.RightPadLeftPress:
+                    return GetRightPadLeftPressAction();
+                case GameInputPerformedEnum.RightPadRightPress:
+                    return GetRightPadRightPressAction();      
+                
+                case GameInputPerformedEnum.LeftPadUpPress:
+                    return GetLeftPadUpPressAction();
+                case GameInputPerformedEnum.LeftPadDownPress:
+                    return GetLeftPadDownPressAction();
+                case GameInputPerformedEnum.LeftPadLeftPress:
+                    return GetLeftPadLeftPressAction();
+                case GameInputPerformedEnum.LeftPadRightPress:
+                    return GetLeftPadRightPressAction();   
+                
+                case GameInputPerformedEnum.LeftBumperPress:
+                    return GetLeftBumperPressAction();
+                case GameInputPerformedEnum.LeftTriggerPress:
+                    return GetLeftTriggerPressAction();
+                case GameInputPerformedEnum.RightBumperPress:
+                    return GetRightBumperPressAction();
+                case GameInputPerformedEnum.RightTriggerPress:
+                    return GetRightTriggerPressAction();    
+                
+                case GameInputPerformedEnum.LeftStickPress:
+                    return GetLeftStickPressAction();  
+                case GameInputPerformedEnum.RightStickPress:
+                    return GetRightStickPressAction();                  
             }
             Debug.LogError($"{gameInputPerformedEnum} is not implemented");
             return null;
