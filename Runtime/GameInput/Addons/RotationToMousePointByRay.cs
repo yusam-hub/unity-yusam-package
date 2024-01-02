@@ -9,13 +9,14 @@ namespace YusamPackage
     public class RotationToMousePointByRay : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed = 450;
+        [SerializeField] private float rayCastDistance = 100f;
+        private GameInputController _gameInputController;
 
         private YusamDebugProperties _debugProperties;
         private Vector3 _lookPosition;
         private Camera _camera;
         private Quaternion _targetRotation;
         
-        private GameInputController _gameInputController;
         
         private void Awake()
         {
@@ -43,34 +44,43 @@ namespace YusamPackage
 
         private void RotateToMouse()
         {
-            _lookPosition = MouseHelper.GetMouseLookPositionByRay(_lookPosition, GetInputMousePosition(), _camera, 100);
+            _lookPosition = MouseHelper.GetMouseLookPositionByRay(_lookPosition, GetInputMousePosition(), _camera, rayCastDistance);
         
             Vector3 lookAt = TransformHelper.LookAt(transform.position, _lookPosition);
-        
-            _targetRotation = Quaternion.LookRotation(
-                lookAt - new Vector3(transform.position.x, 0, transform.position.z)
-            );
-        
-            transform.eulerAngles = Vector3.up *
-                                    Mathf.MoveTowardsAngle(
-                                        transform.eulerAngles.y, 
-                                        _targetRotation.eulerAngles.y, 
-                                        rotationSpeed * Time.deltaTime
-                                    );
 
-
-            if (_debugProperties.debugEnabled)
+            if (lookAt != Vector3.zero)
             {
-                Debug.DrawLine(transform.position, lookAt, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
-                Vector3 zeroY = new Vector3(lookAt.x, 0, lookAt.z);
-                
-                if (lookAt.y != 0)
+                _targetRotation = Quaternion.LookRotation(
+                    lookAt - new Vector3(transform.position.x, 0, transform.position.z)
+                );
+    
+
+                transform.eulerAngles = Vector3.up *
+                                        Mathf.MoveTowardsAngle(
+                                            transform.eulerAngles.y, 
+                                            _targetRotation.eulerAngles.y, 
+                                            rotationSpeed * Time.deltaTime
+                                        );
+
+
+                if (_debugProperties.debugEnabled)
                 {
-                    Debug.DrawLine(lookAt, zeroY, _debugProperties.debugDefaultColor,
-                        _debugProperties.debugDefaultDuration);
+                    Debug.DrawLine(transform.position, lookAt, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
+                    Vector3 zeroY = new Vector3(lookAt.x, 0, lookAt.z);
+                    
+                    if (lookAt.y != 0)
+                    {
+                        Debug.DrawLine(lookAt, zeroY, _debugProperties.debugDefaultColor,
+                            _debugProperties.debugDefaultDuration);
+                    }
+                    DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
                 }
-                DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
             }
+        }
+
+        public Vector3 GetMouseLookPosition()
+        {
+            return _lookPosition;
         }
  
     }

@@ -51,6 +51,14 @@ namespace YusamPackage
             //todo: all
             switch (gameInputPerformedEnum)
             {
+                case GameInputPerformedEnum.MouseLeftPress:
+                    return GetMouseLeftPressAction();
+                case GameInputPerformedEnum.MouseMiddlePress:
+                    return GetMouseMiddlePressAction();
+                case GameInputPerformedEnum.MouseRightPress:
+                    return GetMouseRightPressAction();
+                case GameInputPerformedEnum.SpacePress:
+                    return GetSpacePressAction();
                 case GameInputPerformedEnum.StartPress:
                     return GetStartPressAction();
                 case GameInputPerformedEnum.EnterPress:
@@ -58,6 +66,7 @@ namespace YusamPackage
                 case GameInputPerformedEnum.RightPadDownPress:
                     return GetRightPadDownPressAction();
             }
+            Debug.LogError($"{gameInputPerformedEnum} is not implemented");
             return null;
         }
         

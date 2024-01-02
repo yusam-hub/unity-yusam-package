@@ -7,6 +7,7 @@ namespace YusamPackage
     {
         [SerializeField] private GameObject prefab;
         [SerializeField] private Transform spawnPoint;
+        
         private void Awake()
         {
             if (prefab != null && spawnPoint != null)

@@ -14,7 +14,6 @@
         StartPress,
         SelectPress,
             
-        
         RightPadLeftPress,
         RightPadRightPress,
         RightPadUpPress,
@@ -26,12 +25,6 @@
         EnterPress,
         EscapePress,
         SpacePress,
-   
-        LeftStickDirection,
-        RightStickDirection,
-        
-        MouseDeltaDirection,
-        MousePosition,
         
         MouseLeftPress,
         MouseMiddlePress,
