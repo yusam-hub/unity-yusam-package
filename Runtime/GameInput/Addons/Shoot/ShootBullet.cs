@@ -26,11 +26,11 @@ namespace YusamPackage
             maxDistance = currentDirection.magnitude;
             
             if (
-                shootBulletSo.parabolaMinDistance > 0
+                shootBulletSo.parallelMinDistance > 0
                 &&
-                currentTrajectory == ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory
+                currentTrajectory != ShootBulletSo.ShootBulletTrajectory.ParallelTrajectory
                 &&
-                maxDistance < shootBulletSo.parabolaMinDistance
+                maxDistance < shootBulletSo.parallelMinDistance
                 )
             {
                 currentTrajectory = ShootBulletSo.ShootBulletTrajectory.ParallelTrajectory;
@@ -42,8 +42,6 @@ namespace YusamPackage
                 endPos = TransformHelper.NewEndPositionCalculateFromStartPosition(startPos, endPos, shootBulletSo.parallelMaxDistance);
                 currentDirection = endPos - startPos;
                 maxDistance = currentDirection.magnitude;
-                
-                
             }
 
             float currentDistance = 0;
@@ -70,7 +68,7 @@ namespace YusamPackage
                         break;                        
                 }
                 
-                if (shootBulletSo.turnToTrajectory) {
+                if (shootBulletSo.rotateToTrajectory) {
                     Vector3 lookDir = currentPosition - transform.position;
                     if (lookDir.sqrMagnitude >= Mathf.Epsilon) {
                         transform.rotation = Quaternion.LookRotation( lookDir );
