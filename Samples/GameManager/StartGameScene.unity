@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf1d73d2c474820bcb1c41f7393d467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentManagerStateEnum: 3
+  currentManagerStateEnum: 0
 --- !u!4 &208998508
 Transform:
   m_ObjectHideFlags: 0
@@ -261,24 +261,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950061e1728e41579b937a0e28e9bd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableGameInputSceneArray: []
+  availableGameInputSceneArray:
+  - {fileID: 11400000, guid: 3ffb1df30abf0384fbbebcea3d7d78e4, type: 2}
+  - {fileID: 11400000, guid: c119f9f96b8e8e44baec4d59a1a5a1ec, type: 2}
+  - {fileID: 11400000, guid: d8fe57dfb931fb7448f3fdb86ed3000c, type: 2}
   activeSceneIndex: 0
   activeLayerIndex: 0
   sceneLayerChangedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &298205069
 Transform:
   m_ObjectHideFlags: 0
