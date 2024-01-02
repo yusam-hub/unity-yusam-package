@@ -48,6 +48,5 @@ namespace YusamPackage
             move += Vector3.up * -8;
             _characterController.Move(move * Time.deltaTime);
         }
-
     }
 }

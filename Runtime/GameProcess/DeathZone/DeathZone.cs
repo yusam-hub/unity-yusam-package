@@ -14,6 +14,8 @@ namespace YusamPackage
                 Debug.LogError("Death Zone So prefab not found in [ " + this + "]");
                 gameObject.SetActive(false);
             }
+            
+            //Physics.BoxCast()
         }
     }
 }
