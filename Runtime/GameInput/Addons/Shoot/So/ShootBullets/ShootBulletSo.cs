@@ -45,11 +45,31 @@ namespace YusamPackage
         [Space(10)]
         [YusamHelpBox("Радиус проверки на столкновения",3)]
         [Space(10)]
-        public float bulletHitRadius = .2f;
+        public float bulletHitRadius = .05f;
 
         [Space(10)]
         [YusamHelpBox("Какие слои проверяются на столкновения",3)]
         [Space(10)]
         public LayerMask bulletHitLayerMask;
+        
+        [Space(10)]
+        [YusamHelpBox("Эффект при попадании", 1)]
+        [Space(10)]
+        public GameObject hitEffectPrefab;
+        
+        [Space(10)]
+        [YusamHelpBox("Проложительность жизни скрипта эффекта", 2)]
+        [Space(10)]
+        public float hitEffectDestroyTime = 1f;
+        
+        [Space(10)]
+        [YusamHelpBox("Объем повреждения здоровья от столкновения", 2)]
+        [Space(10)]
+        public float hitDamageVolume = 10f;
+        
+        [Space(10)]
+        [YusamHelpBox("Сила повреждения от столкновения", 2)]
+        [Space(10)]
+        public float hitDamageForce = 1f;
     }
 }

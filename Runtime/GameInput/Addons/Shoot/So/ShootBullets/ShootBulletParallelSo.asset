@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: ShootBulletParallelSo
   m_EditorClassIdentifier: 
   trajectory: 2
-  turnToTrajectory: 1
+  rotateToTrajectory: 1
   parallelMaxDistance: 20
   parallelMinDistance: 5
   parabolaHeight: 2
   bulletSpeed: 5
-  bulletHitRadius: 0.2
+  bulletHitRadius: 0.05
   bulletHitLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  hitEffectPrefab: {fileID: 0}
+  hitEffectDestroyTime: 1
+  hitDamageVolume: 10

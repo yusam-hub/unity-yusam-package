@@ -54,31 +54,31 @@ namespace YusamPackage
                 {
                     case ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory:
                         currentTransition = currentDistance / maxDistance;
-                        float parabolicHeight = 4f * shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition );
-                        currentPosition = Vector3.Lerp( startPos, endPos, currentTransition );
+                        float parabolicHeight = 4f * shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition);
+                        currentPosition = Vector3.Lerp(startPos, endPos, currentTransition);
                         currentPosition.y += parabolicHeight;
                         break;
                     case ShootBulletSo.ShootBulletTrajectory.LinerTrajectory:
                         currentTransition = currentDistance / maxDistance;
-                        currentPosition = Vector3.Lerp( startPos, endPos, currentTransition );
+                        currentPosition = Vector3.Lerp(startPos, endPos, currentTransition);
                         break;
                     default:
                         currentTransition = currentDistance / maxDistance;
-                        currentPosition = Vector3.Lerp( startPos, endPos, currentTransition );
+                        currentPosition = Vector3.Lerp(startPos, endPos, currentTransition);
                         break;                        
                 }
                 
                 if (shootBulletSo.rotateToTrajectory) {
                     Vector3 lookDir = currentPosition - transform.position;
                     if (lookDir.sqrMagnitude >= Mathf.Epsilon) {
-                        transform.rotation = Quaternion.LookRotation( lookDir );
+                        transform.rotation = Quaternion.LookRotation(lookDir);
                     }
                 }
 
                 RaycastHit? hitTest;
-                hitTest = CheckMainHit( transform.position, currentPosition );
+                hitTest = TryGetHitInfo(transform.position, currentPosition);
                 if (hitTest.HasValue) {
-                    SelfDestroy( hitTest );
+                    SelfDestroy(hitTest);
                     yield break;
                 }
 
@@ -94,43 +94,45 @@ namespace YusamPackage
         
         private void SelfDestroy(RaycastHit? hitInfo)
         {
-            if (hitInfo != null)
+            if (hitInfo.HasValue) 
             {
-                Debug.Log($"Hit info {hitInfo.Value.transform.gameObject.name}");
-            }
-            /*if (hitInfo.HasValue) 
-            {
-                if (_missileSetup.hitEffect) {
-                    Destroy(Instantiate( _missileSetup.hitEffect, hitInfo.Value.point, Quaternion.identity ), 1f);
+                //создаем эффект в точки рейкаста на определенное время
+                if (shootBulletSo.hitEffectPrefab) {
+                    Destroy(
+                        Instantiate(shootBulletSo.hitEffectPrefab, hitInfo.Value.point, Quaternion.identity),
+                        shootBulletSo.hitEffectDestroyTime
+                        );
                 }
-            } 
-            else 
-            {
-                if (_missileSetup.hitEffect) 
+                
+                //проверяем есть ли скрип с Интерфейсом IDamage
+                if (hitInfo.Value.collider.TryGetComponent(out IDamage damage))
                 {
-                    Destroy(Instantiate( _missileSetup.hitEffect, transform.position, Quaternion.identity ), 1f);
+                    damage.DoDamage(hitInfo.Value.collider, shootBulletSo.hitDamageVolume, shootBulletSo.hitDamageForce);
                 }
             }
-            if(hitInfo.HasValue)
-            {
-                hitInfo.Value.collider.GetComponent<IDamagable>()?.TakeDamage(hitInfo.Value.collider, _missileSetup.damage);
-            }
-            foreach (var spell in _missileSetup.GetChainedSpells()) {
-                CreateSpell.CreateChainedSpell( spell, transform.position, transform.rotation, _fraction );
-            }*/
-
+            
             Destroy(gameObject);
         }
         
-        private RaycastHit? CheckMainHit(Vector3 point1, Vector3 point2)
+        /**
+         * 
+         */
+        private RaycastHit? TryGetHitInfo(Vector3 fromPosition, Vector3 toPosition)
         {
-            Ray castRay = new Ray( point1, point2 - point1 );   
+            Ray castRay = new Ray( fromPosition, toPosition - fromPosition );
 
-            if (Physics.SphereCast(castRay, shootBulletSo.bulletHitRadius, out RaycastHit hitInfo, ( point1 - point2 ).magnitude, shootBulletSo.bulletHitLayerMask)) {
+            if (Physics.SphereCast(
+                    castRay, 
+                    shootBulletSo.bulletHitRadius, 
+                    out RaycastHit hitInfo
+                    ,( fromPosition - toPosition ).magnitude
+                    ,shootBulletSo.bulletHitLayerMask
+                    )
+                ) {
                 return hitInfo;
-            } else {
-                return null;
             }
+            
+            return null;
         }
     }
 }
