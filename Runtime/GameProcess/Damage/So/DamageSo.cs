@@ -2,7 +2,7 @@
 
 namespace YusamPackage
 {
-    [CreateAssetMenu(menuName = "So/Yusam Package/Game Input/Damage")]
+    [CreateAssetMenu(menuName = "So/Yusam Package/Game Process/Damage")]
     public class DamageSo : ScriptableObject
     {
         [Space(10)]

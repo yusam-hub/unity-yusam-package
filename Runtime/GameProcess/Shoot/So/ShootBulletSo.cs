@@ -2,7 +2,7 @@
 
 namespace YusamPackage
 {
-    [CreateAssetMenu(menuName = "So/Yusam Package/Game Input/ShootBullet")]
+    [CreateAssetMenu(menuName = "So/Yusam Package/Game Process/Shoot Bullet")]
     public class ShootBulletSo : ScriptableObject
     {
         public enum ShootBulletTrajectory
