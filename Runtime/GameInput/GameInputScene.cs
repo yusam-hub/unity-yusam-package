@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     public class GameInputScene : MonoBehaviour
     {
         public static GameInputScene Instance { get; private set; }

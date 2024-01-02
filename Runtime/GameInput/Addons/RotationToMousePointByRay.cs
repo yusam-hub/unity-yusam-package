@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace YusamPackage
 {
-    [DisallowMultipleComponent]
     [RequireComponent(typeof(YusamDebugProperties))]
+    [RequireComponent(typeof(GameInputController))]
+    [DisallowMultipleComponent]
     public class RotationToMousePointByRay : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed = 450;
@@ -14,20 +15,34 @@ namespace YusamPackage
         private Camera _camera;
         private Quaternion _targetRotation;
         
+        private GameInputController _gameInputController;
+        
         private void Awake()
         {
             _debugProperties = GetComponent<YusamDebugProperties>();
+            _gameInputController = GetComponent<GameInputController>();
             _camera = Camera.main;
+            if (_camera == null)
+            {
+                Debug.LogError("Camera.main instance not found in [ " + this + "]");
+                gameObject.SetActive(false);
+            }
         }
 
+        private Vector3 GetInputMousePosition()
+        {
+            return Input.mousePosition;
+        }
+        
         private void Update()
         {
+            if (!_gameInputController.CanUseGameInput()) return;
             RotateToMouse();
         }
 
         private void RotateToMouse()
         {
-            _lookPosition = MouseHelper.GetMouseLookPositionByRay(_lookPosition, Input.mousePosition, _camera, 100);
+            _lookPosition = MouseHelper.GetMouseLookPositionByRay(_lookPosition, GetInputMousePosition(), _camera, 100);
         
             Vector3 lookAt = TransformHelper.LookAt(transform.position, _lookPosition);
         

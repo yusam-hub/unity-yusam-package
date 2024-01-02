@@ -4,6 +4,7 @@ using UnityEngine;
 namespace YusamPackage
 {
     [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
     public class MovementCharacterController : MonoBehaviour
     {
@@ -11,23 +12,30 @@ namespace YusamPackage
         [SerializeField] private bool isometricEnabled;
         
         private CharacterController _characterController;
-        private Camera _camera;
-
+        private GameInputController _gameInputController;
+        
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-            _camera = Camera.main;
-        }
-
-        private void Update()
-        {
-            Move();
+            _gameInputController = GetComponent<GameInputController>();
         }
         
-        private void Move()
+        private void Update()
         {
-            Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            if (!_gameInputController.CanUseGameInput()) return;
+            Movement();
+        }
 
+        private Vector3 GetInputMovement()
+        {
+            //return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            return _gameInputController.GetLeftStickDirection();
+        }
+        
+        private void Movement()
+        {
+            Vector3 input = GetInputMovement();
+            
             if (isometricEnabled)
             {
                 Matrix4x4 isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));

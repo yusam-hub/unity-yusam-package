@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 namespace YusamPackage
 {
     
+    [DisallowMultipleComponent]
     public class GameInput : MonoBehaviour
     {
         [Space(10)]
