@@ -68,7 +68,7 @@ namespace YusamPackage
         {
             GameDebug.Log("OnEnable: " + name);
             
-            gameInput.GetLeftStickVector2Action().performed += GameInputOnGetLeftStickVector2Action;
+            gameInput.GetLeftStickDirectionAction().performed += GameInputOnGetLeftStickVector2Action;
             gameInput.GetEnterPressAction().performed += GameInputOnMenuClick;
             gameInput.GetSpacePressAction().performed += GameInputOnMenuClick;
             gameInput.GetRightPadDownPressAction().performed += GameInputOnMenuClick;
@@ -79,7 +79,7 @@ namespace YusamPackage
             gameInput.GetEnterPressAction().performed -= GameInputOnMenuClick;
             gameInput.GetSpacePressAction().performed -= GameInputOnMenuClick;
             gameInput.GetRightPadDownPressAction().performed -= GameInputOnMenuClick;
-            gameInput.GetLeftStickVector2Action().performed -= GameInputOnGetLeftStickVector2Action;
+            gameInput.GetLeftStickDirectionAction().performed -= GameInputOnGetLeftStickVector2Action;
             
             GameDebug.Log("OnDisable: " + name); 
         }

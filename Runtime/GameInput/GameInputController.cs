@@ -61,12 +61,12 @@ namespace YusamPackage
         
         public Vector3 GetLeftStickDirection()
         {
-            Vector2 leftStickDirection = gameInput.GetLeftStickVector2Normalized();
+            Vector2 leftStickDirection = gameInput.GetLeftStickDirection();
             return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
         }
         public Vector3 GetRightStickDirection()
         {
-            Vector2 rightStickDirection = gameInput.GetRightStickVector2Normalized();
+            Vector2 rightStickDirection = gameInput.GetRightStickDirection();
             return new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
         }
         

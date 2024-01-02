@@ -3,7 +3,6 @@
     public enum GameInputPerformedEnum
     {
         None,
-        LeftStickVector2,
         LeftTriggerPress,
         LeftBumperPress,
         LeftStickPress,
@@ -15,7 +14,7 @@
         StartPress,
         SelectPress,
             
-        RightStickVector2,
+        
         RightPadLeftPress,
         RightPadRightPress,
         RightPadUpPress,
@@ -28,6 +27,12 @@
         EscapePress,
         SpacePress,
    
+        LeftStickDirection,
+        RightStickDirection,
+        
+        MouseDeltaDirection,
+        MousePosition,
+        
         MouseLeftPress,
         MouseMiddlePress,
         MouseRightPress,

@@ -31,7 +31,8 @@ namespace YusamPackage
 
         private Vector3 GetInputMousePosition()
         {
-            return Input.mousePosition;
+            //return Input.mousePosition;
+            return _gameInputController.gameInput.GetMousePosition();
         }
         
         private void Update()

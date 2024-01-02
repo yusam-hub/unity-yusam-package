@@ -48,6 +48,7 @@ namespace YusamPackage
         //GetActionByEnum
         public InputAction GetActionByEnum(GameInputPerformedEnum gameInputPerformedEnum)
         {
+            //todo: all
             switch (gameInputPerformedEnum)
             {
                 case GameInputPerformedEnum.StartPress:
@@ -141,32 +142,36 @@ namespace YusamPackage
         }
         
         /*
-         * VECTOR 2
+         * STICK
          */
-        public InputAction GetLeftStickVector2Action()
+        public InputAction GetLeftStickDirectionAction()
         {
-            return _gameInputActions.DefaultMap.LeftStickVector2;
+            return _gameInputActions.DefaultMap.LeftStickDirection;
         }
-        public InputAction GetRightStickVector2Action()
+        public InputAction GetRightStickDirectionAction()
         {
-            return _gameInputActions.DefaultMap.RightStickVector2;
+            return _gameInputActions.DefaultMap.RightStickDirection;
         }
         
-        public Vector2 GetLeftStickVector2Normalized()
+        public Vector2 GetLeftStickDirection()
         {
-            return GetLeftStickVector2Action().ReadValue<Vector2>();
+            return GetLeftStickDirectionAction().ReadValue<Vector2>();
         }
-        public Vector2 GetRightStickVector2Normalized()
+        public Vector2 GetRightStickDirection()
         {
-            return GetRightStickVector2Action().ReadValue<Vector2>();
+            return GetRightStickDirectionAction().ReadValue<Vector2>();
         }
         
         /*
          * MOUSE
          */
-        public Vector2 GetMouseNormalized()
+        public Vector2 GetMouseDirection()
         {
-            return _gameInputActions.DefaultMap.MouseVector2.ReadValue<Vector2>();
+            return _gameInputActions.DefaultMap.MouseDirection.ReadValue<Vector2>();
+        }
+        public Vector2 GetMousePosition()
+        {
+            return _gameInputActions.DefaultMap.MousePosition.ReadValue<Vector2>();
         }
         public InputAction GetMouseLeftPressAction()
         {

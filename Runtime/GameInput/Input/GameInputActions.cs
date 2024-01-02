@@ -28,7 +28,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             ""id"": ""a650b00e-4fb3-497a-aedf-475c265387b6"",
             ""actions"": [
                 {
-                    ""name"": ""LeftStickVector2"",
+                    ""name"": ""LeftStickDirection"",
                     ""type"": ""Value"",
                     ""id"": ""eff81156-b7ee-49c6-bb18-a26161dbcda2"",
                     ""expectedControlType"": ""Vector2"",
@@ -118,7 +118,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightStickVector2"",
+                    ""name"": ""RightStickDirection"",
                     ""type"": ""Value"",
                     ""id"": ""8415e3b5-0774-4e7e-82f4-569761b2b34f"",
                     ""expectedControlType"": ""Vector2"",
@@ -190,7 +190,16 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MouseVector2"",
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""376a9b61-d003-4b7a-b72d-1e6ce0e6e687"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseDirection"",
                     ""type"": ""Value"",
                     ""id"": ""df999d59-01d0-4a81-85dc-523efc191b64"",
                     ""expectedControlType"": ""Vector2"",
@@ -261,7 +270,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -272,7 +281,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -283,7 +292,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -294,7 +303,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -305,7 +314,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -316,7 +325,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -327,7 +336,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -338,7 +347,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -349,7 +358,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -360,7 +369,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftStickVector2"",
+                    ""action"": ""LeftStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -459,7 +468,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -470,7 +479,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -481,7 +490,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -492,7 +501,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -503,7 +512,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -514,7 +523,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -525,7 +534,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -536,7 +545,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -547,7 +556,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -558,7 +567,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -723,7 +732,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouseVector2"",
+                    ""action"": ""MouseDirection"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -734,7 +743,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouseVector2"",
+                    ""action"": ""MouseDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -745,7 +754,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouseVector2"",
+                    ""action"": ""MouseDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -756,7 +765,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouseVector2"",
+                    ""action"": ""MouseDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -767,7 +776,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouseVector2"",
+                    ""action"": ""MouseDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -811,7 +820,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -822,7 +831,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -833,7 +842,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -844,7 +853,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -855,7 +864,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RightStickVector2"",
+                    ""action"": ""RightStickDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -891,6 +900,17 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""EscapePress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d87f0c03-204f-47da-8189-21362b28434e"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -899,7 +919,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
 }");
         // DefaultMap
         m_DefaultMap = asset.FindActionMap("DefaultMap", throwIfNotFound: true);
-        m_DefaultMap_LeftStickVector2 = m_DefaultMap.FindAction("LeftStickVector2", throwIfNotFound: true);
+        m_DefaultMap_LeftStickDirection = m_DefaultMap.FindAction("LeftStickDirection", throwIfNotFound: true);
         m_DefaultMap_LeftStickPress = m_DefaultMap.FindAction("LeftStickPress", throwIfNotFound: true);
         m_DefaultMap_LeftPadUpPress = m_DefaultMap.FindAction("LeftPadUpPress", throwIfNotFound: true);
         m_DefaultMap_LeftPadDownPress = m_DefaultMap.FindAction("LeftPadDownPress", throwIfNotFound: true);
@@ -909,7 +929,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         m_DefaultMap_LeftBumperPress = m_DefaultMap.FindAction("LeftBumperPress", throwIfNotFound: true);
         m_DefaultMap_SelectPress = m_DefaultMap.FindAction("SelectPress", throwIfNotFound: true);
         m_DefaultMap_StartPress = m_DefaultMap.FindAction("StartPress", throwIfNotFound: true);
-        m_DefaultMap_RightStickVector2 = m_DefaultMap.FindAction("RightStickVector2", throwIfNotFound: true);
+        m_DefaultMap_RightStickDirection = m_DefaultMap.FindAction("RightStickDirection", throwIfNotFound: true);
         m_DefaultMap_RightStickPress = m_DefaultMap.FindAction("RightStickPress", throwIfNotFound: true);
         m_DefaultMap_RightPadUpPress = m_DefaultMap.FindAction("RightPadUpPress", throwIfNotFound: true);
         m_DefaultMap_RightPadDownPress = m_DefaultMap.FindAction("RightPadDownPress", throwIfNotFound: true);
@@ -917,7 +937,8 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         m_DefaultMap_RightPadRightPress = m_DefaultMap.FindAction("RightPadRightPress", throwIfNotFound: true);
         m_DefaultMap_RightTriggerPress = m_DefaultMap.FindAction("RightTriggerPress", throwIfNotFound: true);
         m_DefaultMap_RightBumperPress = m_DefaultMap.FindAction("RightBumperPress", throwIfNotFound: true);
-        m_DefaultMap_MouseVector2 = m_DefaultMap.FindAction("MouseVector2", throwIfNotFound: true);
+        m_DefaultMap_MousePosition = m_DefaultMap.FindAction("MousePosition", throwIfNotFound: true);
+        m_DefaultMap_MouseDirection = m_DefaultMap.FindAction("MouseDirection", throwIfNotFound: true);
         m_DefaultMap_MouseLeftPress = m_DefaultMap.FindAction("MouseLeftPress", throwIfNotFound: true);
         m_DefaultMap_MouseRightPress = m_DefaultMap.FindAction("MouseRightPress", throwIfNotFound: true);
         m_DefaultMap_MouseMiddlePress = m_DefaultMap.FindAction("MouseMiddlePress", throwIfNotFound: true);
@@ -985,7 +1006,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     // DefaultMap
     private readonly InputActionMap m_DefaultMap;
     private List<IDefaultMapActions> m_DefaultMapActionsCallbackInterfaces = new List<IDefaultMapActions>();
-    private readonly InputAction m_DefaultMap_LeftStickVector2;
+    private readonly InputAction m_DefaultMap_LeftStickDirection;
     private readonly InputAction m_DefaultMap_LeftStickPress;
     private readonly InputAction m_DefaultMap_LeftPadUpPress;
     private readonly InputAction m_DefaultMap_LeftPadDownPress;
@@ -995,7 +1016,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_DefaultMap_LeftBumperPress;
     private readonly InputAction m_DefaultMap_SelectPress;
     private readonly InputAction m_DefaultMap_StartPress;
-    private readonly InputAction m_DefaultMap_RightStickVector2;
+    private readonly InputAction m_DefaultMap_RightStickDirection;
     private readonly InputAction m_DefaultMap_RightStickPress;
     private readonly InputAction m_DefaultMap_RightPadUpPress;
     private readonly InputAction m_DefaultMap_RightPadDownPress;
@@ -1003,7 +1024,8 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_DefaultMap_RightPadRightPress;
     private readonly InputAction m_DefaultMap_RightTriggerPress;
     private readonly InputAction m_DefaultMap_RightBumperPress;
-    private readonly InputAction m_DefaultMap_MouseVector2;
+    private readonly InputAction m_DefaultMap_MousePosition;
+    private readonly InputAction m_DefaultMap_MouseDirection;
     private readonly InputAction m_DefaultMap_MouseLeftPress;
     private readonly InputAction m_DefaultMap_MouseRightPress;
     private readonly InputAction m_DefaultMap_MouseMiddlePress;
@@ -1014,7 +1036,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     {
         private @GameInputActions m_Wrapper;
         public DefaultMapActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LeftStickVector2 => m_Wrapper.m_DefaultMap_LeftStickVector2;
+        public InputAction @LeftStickDirection => m_Wrapper.m_DefaultMap_LeftStickDirection;
         public InputAction @LeftStickPress => m_Wrapper.m_DefaultMap_LeftStickPress;
         public InputAction @LeftPadUpPress => m_Wrapper.m_DefaultMap_LeftPadUpPress;
         public InputAction @LeftPadDownPress => m_Wrapper.m_DefaultMap_LeftPadDownPress;
@@ -1024,7 +1046,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         public InputAction @LeftBumperPress => m_Wrapper.m_DefaultMap_LeftBumperPress;
         public InputAction @SelectPress => m_Wrapper.m_DefaultMap_SelectPress;
         public InputAction @StartPress => m_Wrapper.m_DefaultMap_StartPress;
-        public InputAction @RightStickVector2 => m_Wrapper.m_DefaultMap_RightStickVector2;
+        public InputAction @RightStickDirection => m_Wrapper.m_DefaultMap_RightStickDirection;
         public InputAction @RightStickPress => m_Wrapper.m_DefaultMap_RightStickPress;
         public InputAction @RightPadUpPress => m_Wrapper.m_DefaultMap_RightPadUpPress;
         public InputAction @RightPadDownPress => m_Wrapper.m_DefaultMap_RightPadDownPress;
@@ -1032,7 +1054,8 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         public InputAction @RightPadRightPress => m_Wrapper.m_DefaultMap_RightPadRightPress;
         public InputAction @RightTriggerPress => m_Wrapper.m_DefaultMap_RightTriggerPress;
         public InputAction @RightBumperPress => m_Wrapper.m_DefaultMap_RightBumperPress;
-        public InputAction @MouseVector2 => m_Wrapper.m_DefaultMap_MouseVector2;
+        public InputAction @MousePosition => m_Wrapper.m_DefaultMap_MousePosition;
+        public InputAction @MouseDirection => m_Wrapper.m_DefaultMap_MouseDirection;
         public InputAction @MouseLeftPress => m_Wrapper.m_DefaultMap_MouseLeftPress;
         public InputAction @MouseRightPress => m_Wrapper.m_DefaultMap_MouseRightPress;
         public InputAction @MouseMiddlePress => m_Wrapper.m_DefaultMap_MouseMiddlePress;
@@ -1048,9 +1071,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_DefaultMapActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_DefaultMapActionsCallbackInterfaces.Add(instance);
-            @LeftStickVector2.started += instance.OnLeftStickVector2;
-            @LeftStickVector2.performed += instance.OnLeftStickVector2;
-            @LeftStickVector2.canceled += instance.OnLeftStickVector2;
+            @LeftStickDirection.started += instance.OnLeftStickDirection;
+            @LeftStickDirection.performed += instance.OnLeftStickDirection;
+            @LeftStickDirection.canceled += instance.OnLeftStickDirection;
             @LeftStickPress.started += instance.OnLeftStickPress;
             @LeftStickPress.performed += instance.OnLeftStickPress;
             @LeftStickPress.canceled += instance.OnLeftStickPress;
@@ -1078,9 +1101,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @StartPress.started += instance.OnStartPress;
             @StartPress.performed += instance.OnStartPress;
             @StartPress.canceled += instance.OnStartPress;
-            @RightStickVector2.started += instance.OnRightStickVector2;
-            @RightStickVector2.performed += instance.OnRightStickVector2;
-            @RightStickVector2.canceled += instance.OnRightStickVector2;
+            @RightStickDirection.started += instance.OnRightStickDirection;
+            @RightStickDirection.performed += instance.OnRightStickDirection;
+            @RightStickDirection.canceled += instance.OnRightStickDirection;
             @RightStickPress.started += instance.OnRightStickPress;
             @RightStickPress.performed += instance.OnRightStickPress;
             @RightStickPress.canceled += instance.OnRightStickPress;
@@ -1102,9 +1125,12 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @RightBumperPress.started += instance.OnRightBumperPress;
             @RightBumperPress.performed += instance.OnRightBumperPress;
             @RightBumperPress.canceled += instance.OnRightBumperPress;
-            @MouseVector2.started += instance.OnMouseVector2;
-            @MouseVector2.performed += instance.OnMouseVector2;
-            @MouseVector2.canceled += instance.OnMouseVector2;
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
+            @MouseDirection.started += instance.OnMouseDirection;
+            @MouseDirection.performed += instance.OnMouseDirection;
+            @MouseDirection.canceled += instance.OnMouseDirection;
             @MouseLeftPress.started += instance.OnMouseLeftPress;
             @MouseLeftPress.performed += instance.OnMouseLeftPress;
             @MouseLeftPress.canceled += instance.OnMouseLeftPress;
@@ -1127,9 +1153,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IDefaultMapActions instance)
         {
-            @LeftStickVector2.started -= instance.OnLeftStickVector2;
-            @LeftStickVector2.performed -= instance.OnLeftStickVector2;
-            @LeftStickVector2.canceled -= instance.OnLeftStickVector2;
+            @LeftStickDirection.started -= instance.OnLeftStickDirection;
+            @LeftStickDirection.performed -= instance.OnLeftStickDirection;
+            @LeftStickDirection.canceled -= instance.OnLeftStickDirection;
             @LeftStickPress.started -= instance.OnLeftStickPress;
             @LeftStickPress.performed -= instance.OnLeftStickPress;
             @LeftStickPress.canceled -= instance.OnLeftStickPress;
@@ -1157,9 +1183,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @StartPress.started -= instance.OnStartPress;
             @StartPress.performed -= instance.OnStartPress;
             @StartPress.canceled -= instance.OnStartPress;
-            @RightStickVector2.started -= instance.OnRightStickVector2;
-            @RightStickVector2.performed -= instance.OnRightStickVector2;
-            @RightStickVector2.canceled -= instance.OnRightStickVector2;
+            @RightStickDirection.started -= instance.OnRightStickDirection;
+            @RightStickDirection.performed -= instance.OnRightStickDirection;
+            @RightStickDirection.canceled -= instance.OnRightStickDirection;
             @RightStickPress.started -= instance.OnRightStickPress;
             @RightStickPress.performed -= instance.OnRightStickPress;
             @RightStickPress.canceled -= instance.OnRightStickPress;
@@ -1181,9 +1207,12 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @RightBumperPress.started -= instance.OnRightBumperPress;
             @RightBumperPress.performed -= instance.OnRightBumperPress;
             @RightBumperPress.canceled -= instance.OnRightBumperPress;
-            @MouseVector2.started -= instance.OnMouseVector2;
-            @MouseVector2.performed -= instance.OnMouseVector2;
-            @MouseVector2.canceled -= instance.OnMouseVector2;
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
+            @MouseDirection.started -= instance.OnMouseDirection;
+            @MouseDirection.performed -= instance.OnMouseDirection;
+            @MouseDirection.canceled -= instance.OnMouseDirection;
             @MouseLeftPress.started -= instance.OnMouseLeftPress;
             @MouseLeftPress.performed -= instance.OnMouseLeftPress;
             @MouseLeftPress.canceled -= instance.OnMouseLeftPress;
@@ -1221,7 +1250,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     public DefaultMapActions @DefaultMap => new DefaultMapActions(this);
     public interface IDefaultMapActions
     {
-        void OnLeftStickVector2(InputAction.CallbackContext context);
+        void OnLeftStickDirection(InputAction.CallbackContext context);
         void OnLeftStickPress(InputAction.CallbackContext context);
         void OnLeftPadUpPress(InputAction.CallbackContext context);
         void OnLeftPadDownPress(InputAction.CallbackContext context);
@@ -1231,7 +1260,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         void OnLeftBumperPress(InputAction.CallbackContext context);
         void OnSelectPress(InputAction.CallbackContext context);
         void OnStartPress(InputAction.CallbackContext context);
-        void OnRightStickVector2(InputAction.CallbackContext context);
+        void OnRightStickDirection(InputAction.CallbackContext context);
         void OnRightStickPress(InputAction.CallbackContext context);
         void OnRightPadUpPress(InputAction.CallbackContext context);
         void OnRightPadDownPress(InputAction.CallbackContext context);
@@ -1239,7 +1268,8 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         void OnRightPadRightPress(InputAction.CallbackContext context);
         void OnRightTriggerPress(InputAction.CallbackContext context);
         void OnRightBumperPress(InputAction.CallbackContext context);
-        void OnMouseVector2(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
+        void OnMouseDirection(InputAction.CallbackContext context);
         void OnMouseLeftPress(InputAction.CallbackContext context);
         void OnMouseRightPress(InputAction.CallbackContext context);
         void OnMouseMiddlePress(InputAction.CallbackContext context);
