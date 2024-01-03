@@ -427,6 +427,9 @@ MonoBehaviour:
   swordSo: {fileID: 11400000, guid: 418577c05ea2ad346a6ac594ac86c12c, type: 2}
   startPoint: {fileID: 1485291756}
   endPoint: {fileID: 720144892}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &187337583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3221,7 +3224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1766109215
 Transform:
   m_ObjectHideFlags: 0

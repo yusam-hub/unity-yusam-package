@@ -8,12 +8,12 @@ namespace YusamPackage
         [Space(10)]
         [YusamHelpBox("Повреждение", 2)]
         [Space(10)]
-        public float damage = 1f;
+        public float damageVolume = 1f;
 
         [Space(10)]
         [YusamHelpBox("Сила", 2)]
         [Space(10)]
-        public float force = 1f;
+        public float damageForce = 1f;
         
         [Space(10)]
         [YusamHelpBox("Интервал для нанесения следующего урона", 3)]

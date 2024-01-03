@@ -39,7 +39,7 @@ namespace YusamPackage
                 IDamage[] damages = other.GetComponents<IDamage>();
                 foreach (IDamage damage in damages)
                 {
-                    damage.DoDamage(_collider, deathZoneSo.damage, deathZoneSo.force);
+                    damage.DoDamage(_collider, deathZoneSo.damageVolume, deathZoneSo.damageForce);
                 }   
             }
         }
