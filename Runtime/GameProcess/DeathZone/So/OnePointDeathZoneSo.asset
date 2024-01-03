@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: OnePointDeathZoneSo
   m_EditorClassIdentifier: 
   damage: 1
+  force: 1
+  damageReUseInterval: 0.25

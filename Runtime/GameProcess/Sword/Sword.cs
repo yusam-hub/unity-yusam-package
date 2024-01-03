@@ -4,7 +4,7 @@ using UnityEngine;
 namespace YusamPackage
 {
     [RequireComponent(typeof(YusamDebugProperties))]
-    public class Kosa : MonoBehaviour
+    public class Sword : MonoBehaviour
     {
         [SerializeField] public Transform startPoint;
         [SerializeField] public Transform endPoint;
@@ -16,12 +16,8 @@ namespace YusamPackage
             _debugProperties = GetComponent<YusamDebugProperties>();
         }
 
-        
-        
         private void Update()
         {
-            Collider[] collider = Physics.OverlapSphere(transform.position, 3f, 0);
-            
             if (_debugProperties.enabled)
             {
                 Debug.DrawLine(startPoint.position, endPoint.position, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
