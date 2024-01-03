@@ -24,7 +24,7 @@ namespace YusamPackage
          */
         private void Awake()
         {
-            //GameDebug.Log("Awake: " + this.name);
+            //Debug.Log("Awake: " + this.name);
             
             if (Instance)
             {
@@ -42,7 +42,7 @@ namespace YusamPackage
         private void OnDestroy()
         {
             _gameInputActions.Dispose();
-            //GameDebug.Log("OnDestroy: " + this.name);
+            //Debug.Log("OnDestroy: " + this.name);
         }
 
         //GetActionByEnum

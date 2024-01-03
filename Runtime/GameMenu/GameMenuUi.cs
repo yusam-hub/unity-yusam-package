@@ -16,7 +16,7 @@ namespace YusamPackage
         //Awake
         private void Awake()
         {
-            GameDebug.Log("Awake: " + this.name);
+            Debug.Log("Awake: " + this.name);
             
             if (gameMenu == null)
             {
@@ -71,7 +71,7 @@ namespace YusamPackage
             {
                 GameMenuItemUi gameMenuItemUi = _menuList[i];
                 
-                //GameDebug.Log("Delete: " + gameMenuItemUi.name);
+                //Debug.Log("Delete: " + gameMenuItemUi.name);
                 
                 _menuList.RemoveAt(i);
                 gameMenuItemUi.OnMenuClick -= GameMenuItemUiOnMenuClick;
@@ -89,7 +89,7 @@ namespace YusamPackage
 
             ClearMenuItemUi();
 
-            GameDebug.Log("OnDestroy: " + this.name);
+            Debug.Log("OnDestroy: " + this.name);
         }
 
         /**

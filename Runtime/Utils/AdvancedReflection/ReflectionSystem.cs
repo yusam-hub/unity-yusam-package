@@ -38,7 +38,7 @@ namespace YusamPackage
         {
             if (DebugMode)
             {
-                GameDebug.Log(obj);
+                Debug.Log(obj);
             }
         }
 
@@ -64,7 +64,7 @@ namespace YusamPackage
             }
             
             //ReflectionSystem.GetValue("SkillDatabase", "Instance", "SkillList[0]", "skillID");
-            //GameDebug.Log("args length: " + args.Length.ToString());
+            //Debug.Log("args length: " + args.Length.ToString());
 
             #region Display path way
 

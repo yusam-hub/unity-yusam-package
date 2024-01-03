@@ -72,7 +72,7 @@ namespace YusamPackage
                     if (!IndexIsInBrackets(str, i))
                     {
                         splitIndexList.Add(i);
-                        //GameDebug.Log($"will split at: {i} in \"{str}\"");
+                        //Debug.Log($"will split at: {i} in \"{str}\"");
                     }
                 }
             }
@@ -197,7 +197,7 @@ namespace YusamPackage
                         //'2' is not in a bracket, i == 1
                         result = result.Substring(0, i) +
                                  result.Substring(i + 1, result.Length - (i + 1)); //"12345" -> "1"+"345"
-                        //GameDebug.Log($"removing progess >{result}<");
+                        //Debug.Log($"removing progess >{result}<");
                     }
                 }
             }
