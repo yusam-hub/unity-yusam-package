@@ -24,12 +24,12 @@ namespace YusamPackage
 		[SerializeField] private float offset = .001f;
 		[SerializeField] private LayerMask rayCastLayerMask;
 
-		[Serializable] public class RayCastBoxCollisionEvent : UnityEvent <RaycastHit> {}
+		[Serializable] public class RayCastBoxCollisionEvent : UnityEvent <RaycastHit[]> {}
 
 		[Space(20)]
 		[Header("Events")] 
 		[Space(10)]
-		[YusamHelpBox("public void MethodName(RaycastHit hit)")]
+		[YusamHelpBox("public void MethodName(RaycastHit[] hit)")]
 		
 		[Space(10)]
 		[SerializeField] private RayCastBoxCollisionEvent rayCastBoxCollisionEnter = new RayCastBoxCollisionEvent();
@@ -54,17 +54,17 @@ namespace YusamPackage
 			_collider = GetComponent<Collider>();
 		}
 
-		public void MethodNameEnter(RaycastHit hit)
+		public void MethodNameEnter(RaycastHit[] hits)
 		{
 			Debug.Log("MethodNameEnter");
 		}
 
-		public void MethodNameExit(RaycastHit hit)
+		public void MethodNameExit(RaycastHit[] hits)
 		{
 			Debug.Log("MethodNameExit");
 		}
 		
-		public void MethodNameStay(RaycastHit hit)
+		public void MethodNameStay(RaycastHit[] hits)
 		{
 			Debug.Log("MethodNameStay");
 		}
@@ -78,7 +78,7 @@ namespace YusamPackage
 				if (_collisionStay == false)
 				{
 					_collisionStay = true;
-					OnRayCastBoxCollisionEnter?.Invoke(hit.Value);
+					OnRayCastBoxCollisionEnter?.Invoke(new []{hit.Value});
 				}
 			}
 			else
@@ -86,13 +86,13 @@ namespace YusamPackage
 				if (_lastHit != null)
 				{
 					_collisionStay = false;
-					OnRayCastBoxCollisionExit?.Invoke(_lastHit.Value);
+					OnRayCastBoxCollisionExit?.Invoke(new []{_lastHit.Value});
 				}
 			}
 
 			if (hit != null)
 			{
-				OnRayCastBoxCollisionStay?.Invoke(hit.Value);
+				OnRayCastBoxCollisionStay?.Invoke(new []{hit.Value});
 			}
 
 			_lastHit = hit;
