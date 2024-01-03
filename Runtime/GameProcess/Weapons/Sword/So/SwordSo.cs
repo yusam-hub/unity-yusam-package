@@ -19,10 +19,5 @@ namespace YusamPackage
         [YusamHelpBox("Длительность удара/анимации", 2)]
         [Space(10)]
         public float hitDamageDuration = 0.2f;
-        
-        [Space(10)]
-        [YusamHelpBox("Максимальная длина RayCast", 2)]
-        [Space(10)]
-        public float rayCastMaxDistance = 3f;
     }
 }

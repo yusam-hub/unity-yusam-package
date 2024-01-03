@@ -50,7 +50,7 @@ namespace YusamPackage
                 timer -= Time.deltaTime;
 
                 Vector3 dir = endPoint.position - startPoint.position;
-                RaycastHit[] hits = Physics.RaycastAll(startPoint.position, dir, swordSo.rayCastMaxDistance, layerMask);
+                RaycastHit[] hits = Physics.RaycastAll(startPoint.position, dir, dir.magnitude * 2f, layerMask);
                 foreach (RaycastHit hit in hits)
                 {
                     if (list.IndexOf(hit.collider) < 0)
