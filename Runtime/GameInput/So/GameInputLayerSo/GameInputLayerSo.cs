@@ -14,12 +14,12 @@ namespace YusamPackage
         
         public virtual void DoEnter()
         {
-            Debug.Log($"Enter on {name} {key} {title}");
+            //Debug.Log($"Enter on {name} {key} {title}");
         }
 
         public virtual void DoExit()
         {
-            Debug.Log($"Exit on {name} {key} {title}");   
+            //Debug.Log($"Exit on {name} {key} {title}");   
         }
         
         public virtual void DoUpdate()

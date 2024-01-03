@@ -14,7 +14,7 @@ namespace YusamPackage
         {
             if (healthSo == null)
             {
-                Debug.LogError("Health So prefab not found in [ " + this + "]");
+                //Debug.LogError("Health So prefab not found in [ " + this + "]");
                 gameObject.SetActive(false);
             }
             
@@ -25,7 +25,7 @@ namespace YusamPackage
             
             _healthVolume = healthSo.maxHealth;
 
-            Debug.Log($"Start health {_healthVolume}");
+            //Debug.Log($"Start health {_healthVolume}");
         }
 
         private void Start()
@@ -57,7 +57,7 @@ namespace YusamPackage
 
             DoUpdateProgress();
             
-            Debug.Log($"{name} plus health {volume} and current health became {_healthVolume} of max {healthSo.maxHealth}");  
+            //Debug.Log($"{name} plus health {volume} and current health became {_healthVolume} of max {healthSo.maxHealth}");  
         }
 
         public void MinusHealth(float volume)
@@ -71,7 +71,7 @@ namespace YusamPackage
             
             DoUpdateProgress();
 
-            Debug.Log($"{name} minus health {volume} and current health became {_healthVolume} of max {healthSo.maxHealth}");    
+            //Debug.Log($"{name} minus health {volume} and current health became {_healthVolume} of max {healthSo.maxHealth}");    
         }
     }
 }

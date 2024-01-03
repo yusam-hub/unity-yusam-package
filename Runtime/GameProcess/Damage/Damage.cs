@@ -14,7 +14,7 @@ namespace YusamPackage
         {
             if (damageSo == null)
             {
-                Debug.LogError("Damage So prefab not found in [ " + this + "]");
+                //Debug.LogError("Damage So prefab not found in [ " + this + "]");
                 gameObject.SetActive(false);
             }
             
@@ -23,13 +23,13 @@ namespace YusamPackage
 
         public void DoDamage(Collider collider, float volume, float force)
         {
-            Debug.Log($"{name} received damage {volume} from {collider.name}");
+            //Debug.Log($"{name} received damage {volume} from {collider.name}");
 
             _health.MinusHealth(volume);
 
             if (_health.GetHealth() == 0)
             {
-                Debug.Log($"Destroy {name}");
+                //Debug.Log($"Destroy {name}");
                 SelfDestroy(collider, force);
             }
         }

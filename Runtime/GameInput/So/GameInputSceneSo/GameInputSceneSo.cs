@@ -69,7 +69,7 @@ namespace YusamPackage
         
         public virtual void DoEnter()
         {
-            Debug.Log($"Enter on {name} {key} {title}");
+            //Debug.Log($"Enter on {name} {key} {title}");
             
             StoreLayerEditorChanged();
             
@@ -146,7 +146,7 @@ namespace YusamPackage
                 _activeGameInputLayer.DoExit();
             }
             
-            Debug.Log($"Exit on {name} {key} {title}");   
+            //Debug.Log($"Exit on {name} {key} {title}");   
         }
         
 
