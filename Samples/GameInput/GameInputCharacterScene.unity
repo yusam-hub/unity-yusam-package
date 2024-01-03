@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46b40c8894648bcb1172696f84c932d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugEnabled: 1
+  debugEnabled: 0
   debugDefaultColor: {r: 1, g: 0, b: 0, a: 1}
   debugDefaultDuration: 0.1
   debugDisplayEnabled: 1
@@ -3616,7 +3616,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: cb2312439d876944fba22b35aff8d9fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

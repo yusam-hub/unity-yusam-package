@@ -50,7 +50,7 @@ namespace YusamPackage
                 timer -= Time.deltaTime;
 
                 Vector3 dir = endPoint.position - startPoint.position;
-                RaycastHit[] hits = Physics.RaycastAll(startPoint.position, dir, dir.magnitude * 2f, layerMask);
+                RaycastHit[] hits = Physics.RaycastAll(startPoint.position, dir, dir.magnitude, layerMask);
                 foreach (RaycastHit hit in hits)
                 {
                     if (list.IndexOf(hit.collider) < 0)
@@ -69,7 +69,7 @@ namespace YusamPackage
             
             foreach (Collider collider in list)
             {
-                Debug.Log($"{collider.name}");
+                //Debug.Log($"{collider.name}");
                 collider.GetComponent<IDamage>()?.DoDamage(collider, swordSo.hitDamageVolume, swordSo.hitDamageForce);
             }
             
