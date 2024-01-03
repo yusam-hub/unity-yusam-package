@@ -19,3 +19,5 @@ MonoBehaviour:
     menuText: OPTIONS
   - menuKey: develops
     menuText: DEVELOPS
+  - menuKey: return
+    menuText: RETURN
