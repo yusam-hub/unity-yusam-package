@@ -4,8 +4,10 @@ using UnityEngine;
 namespace YusamPackage
 {
     [RequireComponent(typeof(YusamDebugProperties))]
-    public class Shield : MonoBehaviour
+    public class Shield : MonoBehaviour, IShield
     {
+        [SerializeField] private ShieldSo shieldSo;
+        
         private YusamDebugProperties _debugProperties;
 
         private void Awake()

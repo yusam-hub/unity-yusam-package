@@ -6,8 +6,9 @@ namespace YusamPackage
     [RequireComponent(typeof(YusamDebugProperties))]
     public class Sword : MonoBehaviour
     {
-        [SerializeField] public Transform startPoint;
-        [SerializeField] public Transform endPoint;
+        [SerializeField] private SwordSo swordSo;
+        [SerializeField] private Transform startPoint;
+        [SerializeField] private Transform endPoint;
 
         private YusamDebugProperties _debugProperties;
 

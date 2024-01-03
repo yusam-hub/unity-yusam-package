@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 187337583}
   - component: {fileID: 187337582}
   m_Layer: 0
-  m_Name: Kosa
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a607a880a73169468f1b72beeda2e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordSo: {fileID: 11400000, guid: 418577c05ea2ad346a6ac594ac86c12c, type: 2}
   startPoint: {fileID: 1485291756}
   endPoint: {fileID: 720144892}
 --- !u!114 &187337583
@@ -2462,8 +2463,10 @@ GameObject:
   - component: {fileID: 1766109218}
   - component: {fileID: 1766109217}
   - component: {fileID: 1766109216}
+  - component: {fileID: 1766109220}
+  - component: {fileID: 1766109219}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2555,6 +2558,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766109214}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1766109219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766109214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33dc48ccd2c48868b1aad1662aacb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldSo: {fileID: 11400000, guid: 1c6c19f88cf11b54a90c7591cc8f57d4, type: 2}
+--- !u!114 &1766109220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766109214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46b40c8894648bcb1172696f84c932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugEnabled: 1
+  debugDefaultColor: {r: 1, g: 0, b: 0, a: 1}
+  debugDefaultDuration: 0.1
+  debugDisplayEnabled: 1
+  debugDisplay:
+    serializedVersion: 2
+    x: 20
+    y: 20
+    width: 250
+    height: 120
 --- !u!1 &1928793334
 GameObject:
   m_ObjectHideFlags: 0
