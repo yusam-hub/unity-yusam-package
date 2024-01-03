@@ -23,8 +23,6 @@ namespace YusamPackage
 
         public void DoDamage(Collider collider, float volume, float force)
         {
-            //Debug.Log($"{name} received damage {volume} from {collider.name}");
-
             _health.MinusHealth(volume);
 
             if (_health.GetHealth() == 0)

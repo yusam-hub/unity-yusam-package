@@ -11,7 +11,7 @@ namespace YusamPackage
         public GameObject hitEffectPrefab;
         
         [Space(10)]
-        [YusamHelpBox("Проложительность жизни скрипта эффекта", 2)]
+        [YusamHelpBox("Продолжительность жизни скрипта эффекта", 3)]
         [Space(10)]
         public float hitEffectDestroyTime = 1f;
     }
