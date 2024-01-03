@@ -15,7 +15,7 @@ namespace YusamPackage
         private YusamDebugProperties _debugProperties;
         private Vector3 _lookPosition;
         private Camera _camera;
-        private Quaternion _targetRotation;
+
         
         
         private void Awake()
@@ -50,7 +50,7 @@ namespace YusamPackage
 
             if (lookAt != Vector3.zero)
             {
-                _targetRotation = Quaternion.LookRotation(
+                Quaternion targetRotation = Quaternion.LookRotation(
                     lookAt - new Vector3(transform.position.x, 0, transform.position.z)
                 );
     
@@ -58,7 +58,7 @@ namespace YusamPackage
                 transform.eulerAngles = Vector3.up *
                                         Mathf.MoveTowardsAngle(
                                             transform.eulerAngles.y, 
-                                            _targetRotation.eulerAngles.y, 
+                                            targetRotation.eulerAngles.y, 
                                             rotationSpeed * Time.deltaTime
                                         );
 
@@ -70,8 +70,7 @@ namespace YusamPackage
                     
                     if (lookAt.y != 0)
                     {
-                        Debug.DrawLine(lookAt, zeroY, _debugProperties.debugDefaultColor,
-                            _debugProperties.debugDefaultDuration);
+                        Debug.DrawLine(lookAt, zeroY, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
                     }
                     DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
                 }

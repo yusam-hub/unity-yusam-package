@@ -53,12 +53,15 @@ namespace YusamPackage
         
         private void UpdateMovement()
         {
-            transform.Translate(_gameInputController.GetLeftStickDirection() * moveSpeed * Time.deltaTime);
+            transform.Translate(_gameInputController.gameInput.GetLeftStickDirection3() * moveSpeed * Time.deltaTime);
         }
 
         private void UpdateRotation()
         {
-            transform.Rotate(_gameInputController.GetRightStickDirection() * rotateSpeed * Time.deltaTime);
+            Vector2 rightStickDirection = _gameInputController.gameInput.GetMouseDirection();
+            Vector3 input = new Vector3(-rightStickDirection.y, rightStickDirection.x, 0);
+            
+            transform.Rotate( input * rotateSpeed * Time.deltaTime);
             Vector3 eulerAngles = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, 0);
         }

@@ -202,6 +202,7 @@ namespace YusamPackage
         {
             return GetLeftStickDirectionAction().ReadValue<Vector2>();
         }
+        
         public Vector2 GetRightStickDirection()
         {
             return GetRightStickDirectionAction().ReadValue<Vector2>();
@@ -231,5 +232,10 @@ namespace YusamPackage
             return _gameInputActions.DefaultMap.MouseRightPress;
         }
 
+        public Vector3 GetLeftStickDirection3()
+        {
+            Vector2 leftStickDirection = GetLeftStickDirection();
+            return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
+        }
     }
 }

@@ -24,6 +24,8 @@ namespace YusamPackage
             GUILayout.BeginArea(debugDisplay);
             
             GUILayout.Label("Position: " + transform.position);
+            
+            //GUILayout.Label("Mouse Position: " + Input.mousePosition);
 
             /*GUILayout.Label("Label 2");
             
