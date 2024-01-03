@@ -198,7 +198,6 @@ namespace YusamPackage
 				rayDir = Vector3.up;
 			}
 
-
 			for (var i = 0; i < numberOfRays; i++)
 			{
 
@@ -210,8 +209,10 @@ namespace YusamPackage
 				}
 
 				/*
-				 * todo: нужно собрать все колизии 
+				 * todo: нужно собрать все колизии сдесь оставить как рисовальщик, а проверку делать по box cast
 				 */
+				//Physics.BoxCast()
+				//Physics.BoxCastAll()
 				if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, rayCastLayerMask))
 				{
 					return hit;
