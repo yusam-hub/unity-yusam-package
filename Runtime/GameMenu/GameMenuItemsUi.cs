@@ -6,12 +6,12 @@ namespace YusamPackage
     {
         private void Awake()
         {
-            Debug.Log("Awake: " + this.name);
+            Debug.Log($"{GetType()} - Awake");
         }
 
         private void OnDestroy()
         {
-            Debug.Log("OnDestroy: " + this.name);
+            Debug.Log($"{GetType()} - OnDestroy");
         }
     }
 }

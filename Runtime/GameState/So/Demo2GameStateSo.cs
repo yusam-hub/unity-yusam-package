@@ -7,11 +7,7 @@ namespace YusamPackage
     {
         public override void Update()
         {
-            DoSomething();
-        }
-
-        private void DoSomething()
-        {
+            //DoSomething();
         }
     }
 }

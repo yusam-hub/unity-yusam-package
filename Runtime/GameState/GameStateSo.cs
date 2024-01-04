@@ -7,16 +7,20 @@ namespace YusamPackage
         [HideInInspector] 
         public GameStateMachineSo gameStateMachineSo;
         
-        public virtual void Enter()
+        public void Enter()
         {
-            Debug.Log("Enter: " + this);  
+            Debug.Log($"{GetType()} - Enter");
         }
 
-        public virtual void Exit()
+        public void Exit()
         {
-            Debug.Log("Exit: " + this); 
+            Debug.Log($"{GetType()} - Edit");
         }
-        public abstract void Update();
+
+        public virtual void Update()
+        {
+            
+        }
 
     }
 }

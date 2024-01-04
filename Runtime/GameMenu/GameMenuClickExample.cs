@@ -6,7 +6,7 @@ namespace YusamPackage
     {
         public void OnGameMenuUiKeyEvent(string menuKey)
         {
-            Debug.Log(this.name + " : " + menuKey);
+            Debug.Log($"{GetType()} - OnGameMenuUiKeyEvent {menuKey}");
             switch (menuKey)
             {
                 case "exit":

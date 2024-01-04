@@ -6,7 +6,7 @@ namespace YusamPackage
     {
         [SerializeField] protected GameStateSo startGameState;
 
-        protected GameStateSo _currentGameStateSo;
+        private GameStateSo _currentGameStateSo;
         
         private void Awake()
         {

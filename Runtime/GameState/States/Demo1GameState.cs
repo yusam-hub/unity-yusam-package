@@ -13,9 +13,5 @@ namespace YusamPackage
             GetGameStateMachine().Run<Demo2GameState>();
         }
         
-        public override void Update()
-        {
-          
-        }
     }
 }

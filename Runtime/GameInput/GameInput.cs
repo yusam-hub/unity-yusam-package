@@ -56,13 +56,33 @@ namespace YusamPackage
             _gameInputActions = new YusamPackageGameInputActions();
             _gameInputActions.DefaultMap.Enable();
             
+            Debug.Log($"{GetType()} - Awake AddDevice 1 ");
+            /*
+             * todo: при загрузке новой сцены сюда ругается
+             *      Could not find active control after binding resolution
+             *      UnityEngine.InputSystem.InputSystem:AddDevice (string,string,string)
+             */
             _virtualMouse = (Mouse)InputSystem.AddDevice("VirtualMouse");
+            Debug.Log($" {GetType()} - Awake AddDevice 2");
             
             InputState.Change(_virtualMouse.position, GetMousePosition());
             
             InputSystem.onAfterUpdate += InputSystemOnAfterUpdate;
         }
 
+        /*
+         * DESTROY
+         */
+        private void OnDestroy()
+        {
+            InputSystem.onAfterUpdate -= InputSystemOnAfterUpdate;
+            InputSystem.RemoveDevice(_virtualMouse);
+            
+            _gameInputActions.Dispose();
+            
+            Debug.Log($"{GetType()} - OnDestroy");
+        }
+        
         private void Update()
         {
             CursorAnchored(GetRightStickMousePosition()); 
@@ -100,16 +120,7 @@ namespace YusamPackage
             gameInputCursor.GetRectTransformCursor().anchoredPosition = newPosition;   
         }
         
-        /*
-         * DESTROY
-         */
-        private void OnDestroy()
-        {
-            InputSystem.onAfterUpdate -= InputSystemOnAfterUpdate;
-            InputSystem.RemoveDevice(_virtualMouse);
-            
-            _gameInputActions.Dispose();
-        }
+
 
         //GetActionByEnum
         public InputAction GetActionByEnum(GameInputPerformedEnum gameInputPerformedEnum)
@@ -173,7 +184,6 @@ namespace YusamPackage
                     return GetRightStickMouseSecondaryPressAction();     
             }
             LogErrorHelper.NotImplementedWhatIn(typeof(GameInputPerformedEnum).ToString() + $" : {gameInputPerformedEnum}", this);
-            Debug.LogError($"{gameInputPerformedEnum} is not implemented");
             return null;
         }
         

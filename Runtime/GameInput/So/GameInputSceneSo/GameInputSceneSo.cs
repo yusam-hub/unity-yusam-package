@@ -45,7 +45,7 @@ namespace YusamPackage
         public void StoreLayerEditorChanged()
         {
             _availableList.Clear();
-            foreach (GameInputLayerSo gameInputLayerSo in availableLayerSoArray)
+            foreach (var gameInputLayerSo in availableLayerSoArray)
             {
                 if (gameInputLayerSo != null)
                 {

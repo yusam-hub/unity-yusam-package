@@ -73,7 +73,7 @@ namespace YusamPackage
 
             if (availableGameInputSceneArray != null)
             {
-                foreach (GameInputSceneSo gameInputSceneSo in availableGameInputSceneArray)
+                foreach (var gameInputSceneSo in availableGameInputSceneArray)
                 {
                     if (gameInputSceneSo != null)
                     {
@@ -150,7 +150,7 @@ namespace YusamPackage
             _gameInputSceneDictionary = new Dictionary<string, GameInputSceneSo>();
 
             int index = 0;
-            foreach (GameInputSceneSo gameInputSceneSo in availableGameInputSceneArray)
+            foreach (var gameInputSceneSo in availableGameInputSceneArray)
             {
                 if (gameInputSceneSo != null)
                 {

@@ -16,7 +16,7 @@ namespace YusamPackage
         public List<Object> SerializedPropertyToList(SerializedProperty property)
         {
             if (!property.isArray) return new List<Object>() { property.objectReferenceValue };
-            // Debug.Log($"property is array, size: {property.arraySize}");
+            //Debug.Log($"property is array, size: {property.arraySize}");
             List<Object> result = new List<Object>();
             for (int i = 0; i < property.arraySize; i++)
             {

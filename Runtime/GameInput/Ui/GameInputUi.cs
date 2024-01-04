@@ -41,7 +41,7 @@ namespace YusamPackage
             /*
              * LEFT STICK
              */
-            Vector2 gameInputLeftStick = gameInput.GetLeftStickDirection();
+            var gameInputLeftStick = gameInput.GetLeftStickDirection();
 
             leftStick.leftImage.color = gameInputLeftStick.x < 0
                 ? selectedColor
@@ -66,7 +66,7 @@ namespace YusamPackage
             /*
              * RIGHT STICK
              */
-            Vector2 gameInputRightStick = gameInput.GetRightStickDirection();
+            var gameInputRightStick = gameInput.GetRightStickDirection();
 
             rightStick.leftImage.color = gameInputRightStick.x < 0
                 ? selectedColor

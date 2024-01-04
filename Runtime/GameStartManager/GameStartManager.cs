@@ -8,7 +8,7 @@ namespace YusamPackage
 {
     public class GameStartManager : MonoBehaviour
     {
-        public static GameStartManager Instance { get; private set; }
+        private static GameStartManager Instance { get; set; }
         public enum GameStartManagerStateEnum
         {
             StartingGame,
@@ -22,10 +22,11 @@ namespace YusamPackage
         
         public GameStartManagerStateEnum currentManagerStateEnum = GameStartManagerStateEnum.StartingGame;
         
-        private Dictionary<GameStartManagerStateEnum, GameStartManagerState> _states = new Dictionary<GameStartManagerStateEnum, GameStartManagerState>();
+        private readonly Dictionary<GameStartManagerStateEnum, GameStartManagerState> _states = new();
         private GameStartManagerState _currentGameManagerState;
 
         private float _loadingTimer;
+        private float _loadingProgress;
         private AsyncOperation _asyncOperation;
         
         private void Awake()
@@ -63,15 +64,15 @@ namespace YusamPackage
         
         IEnumerator AsyncStartLoadingScene(string aSceneName)
         {
-            float loadingProgress;
+
  
             _asyncOperation = SceneManager.LoadSceneAsync(aSceneName);
             _asyncOperation.allowSceneActivation = false;
             while (_asyncOperation.progress < 0.9f)
             {
                 _loadingTimer += Time.deltaTime;
-                loadingProgress = Mathf.Clamp01(_asyncOperation.progress / 0.9f);
-                Debug.Log($"Loading: {(loadingProgress * 100).ToString("0")}%");
+                _loadingProgress = Mathf.Clamp01(_asyncOperation.progress / 0.9f);
+                Debug.Log($"{GetType()} - Loading {(_loadingProgress * 100).ToString("0")}%");
                 yield return true;
             }
 
