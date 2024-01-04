@@ -1,5 +1,5 @@
 {
-    "name": "GameInputActions",
+    "name": "YusamPackageGameInputActions",
     "maps": [
         {
             "name": "DefaultMap",
@@ -186,6 +186,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "MouseScroll",
+                    "type": "PassThrough",
+                    "id": "2bcb66ab-3eff-4e0f-818c-bc0b1e900d63",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "MouseLeftPress",
                     "type": "Button",
                     "id": "a4165dab-774a-4653-b603-d003b38cb2ba",
@@ -234,6 +243,42 @@
                     "name": "EscapePress",
                     "type": "Button",
                     "id": "64df29dd-3d07-4e87-acb4-ee71a1b5330c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "VirtualMousePosition",
+                    "type": "PassThrough",
+                    "id": "66ff333f-6d74-47f1-93d4-052c94073497",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "BothMousePosition",
+                    "type": "PassThrough",
+                    "id": "ca0b32e3-31c2-496a-b2b3-cb5ee5d37666",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BothPrimaryPress",
+                    "type": "Button",
+                    "id": "bc937ef9-a0ba-4e19-8432-88d3de27e65e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BothSecondaryPress",
+                    "type": "Button",
+                    "id": "74655d7a-3041-42f9-be5a-996de7cc6526",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -550,61 +595,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Mouse",
-                    "id": "c7045ef7-8b0c-4ea0-b34e-dfa90d087be9",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightStickDirection",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "dc1e2c98-eb2c-4198-bf40-615a8c67f329",
-                    "path": "<Mouse>/delta/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightStickDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "2eceaf6d-256d-4171-89cc-fcc8de245e8a",
-                    "path": "<Mouse>/delta/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightStickDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "09490c0b-fb6e-46db-a342-c67130ebe9e3",
-                    "path": "<Mouse>/delta/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightStickDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "1ddd5453-e84b-4c21-b0a7-2963509a37f6",
-                    "path": "<Mouse>/delta/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightStickDirection",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "8d0dd167-6d0c-491b-b4a1-ea2254691aa9",
                     "path": "<Keyboard>/rightShift",
@@ -887,6 +877,127 @@
                     "processors": "",
                     "groups": "",
                     "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf09ff65-09ac-49bf-981a-d7dc9a40ab91",
+                    "path": "<VirtualMouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseLeftPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "619cb9b9-6b37-439e-b970-9811b75995d2",
+                    "path": "<Pen>/tip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseLeftPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4aea16c-b5ca-4ca6-bcae-b6deaf024f5f",
+                    "path": "<VirtualMouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3718ffc6-1389-48eb-b32b-34f64a91347e",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bac59b7f-0265-4a83-8aed-ab6b9f7dc1f0",
+                    "path": "<VirtualMouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VirtualMousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "909623d9-c9f4-4c71-9388-327431f350f5",
+                    "path": "<VirtualMouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BothMousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e62633af-4e8d-4fd3-a385-643fe3b44e9d",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BothMousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ecd12c4-4cd5-4fa7-9da1-6392058c2dba",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BothPrimaryPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab7f692e-d0a6-4a7c-adcb-b2f574c54aea",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BothPrimaryPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82fbf8de-de46-4a08-aca7-c9fa4f95bb1b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BothSecondaryPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f087c48-3108-4547-815b-3ad417f33693",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BothSecondaryPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

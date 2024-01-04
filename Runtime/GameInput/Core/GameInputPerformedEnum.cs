@@ -29,5 +29,8 @@
         MouseLeftPress,
         MouseMiddlePress,
         MouseRightPress,
+        
+        BothPrimaryPress,
+        BothSecondaryPress,
     }
 }

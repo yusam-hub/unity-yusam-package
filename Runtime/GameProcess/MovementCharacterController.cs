@@ -29,7 +29,7 @@ namespace YusamPackage
         private Vector3 GetInputMovement()
         {
             //return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            return _gameInputController.gameInput.GetLeftStickDirection3();
+            return _gameInputController.gameInput.GetLeftStickDirectionAsVector3();
         }
         
         private void Movement()

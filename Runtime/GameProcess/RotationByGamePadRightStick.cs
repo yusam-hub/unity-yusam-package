@@ -21,7 +21,6 @@ namespace YusamPackage
             _gameInputController = GetComponent<GameInputController>();
         }
 
-       
         private void Update()
         {
             if (!_gameInputController.CanUseGameInput()) return;

@@ -53,7 +53,7 @@ namespace YusamPackage
         
         private void UpdateMovement()
         {
-            transform.Translate(_gameInputController.gameInput.GetLeftStickDirection3() * moveSpeed * Time.deltaTime);
+            transform.Translate(_gameInputController.gameInput.GetLeftStickDirectionAsVector3() * moveSpeed * Time.deltaTime);
         }
 
         private void UpdateRotation()

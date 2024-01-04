@@ -9,11 +9,10 @@ namespace YusamPackage
     public class Sword : MonoBehaviour
     {
         [SerializeField] private SwordSo swordSo;
-        
         [SerializeField] private Transform startPoint;
         [SerializeField] private Transform endPoint;
         [SerializeField] private LayerMask layerMask;
-
+        
         private YusamDebugProperties _debugProperties;
         private bool _attackInProcess;
 
