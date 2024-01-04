@@ -21,3 +21,5 @@ MonoBehaviour:
     menuText: DEVELOPS
   - menuKey: return
     menuText: RETURN
+  - menuKey: exit
+    menuText: EXIT

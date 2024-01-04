@@ -92,6 +92,16 @@ namespace YusamPackage
         {
             return _availableList;
         }
+
+        public void SetActiveLayerIndex(int value)
+        {
+            activeLayerIndex = value;
+            if (_activeGameInputScene != null && activeLayerIndex >= 0)
+            {
+                    
+                _activeGameInputScene.DoEditorChangeLayerIndex(activeLayerIndex);
+            }
+        }
         
         public List<string> AvailableLayerStringList()
         {
@@ -130,11 +140,7 @@ namespace YusamPackage
                 /*
                  * todo - короче нужно сбросить activeLayerIndex при смене сцены
                  */
-                if (_activeGameInputScene != null && activeLayerIndex >= 0)
-                {
-                    
-                    _activeGameInputScene.DoEditorChangeLayerIndex(activeLayerIndex);
-                }
+                SetActiveLayerIndex(activeLayerIndex);
             }
         }
 

@@ -40,13 +40,9 @@ namespace YusamPackage
             }
         }
 
-        [Serializable]
-        public class GameMenuKeyEvent : UnityEvent <string> {} //todo = replace StringUnityEvent
-
-        [Header("Events")]
-        [SerializeField] private GameMenuKeyEvent gameMenuKeyEvent = new();
-        
-        public GameMenuKeyEvent OnGameMenuKeyEvent { get { return gameMenuKeyEvent; } set { gameMenuKeyEvent = value; } }
+        [Header("Output Events")]
+        [SerializeField] private StringUnityEvent gameMenuKeyEvent = new();
+        public StringUnityEvent OnGameMenuKeyEvent { get { return gameMenuKeyEvent; } set { gameMenuKeyEvent = value; } }
 
         private GameMenuSo _lastGameMenuSo;
         private int _selectedMenuIndex = -1;

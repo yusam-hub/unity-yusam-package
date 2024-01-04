@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace YusamPackage
 {
@@ -10,6 +11,12 @@ namespace YusamPackage
         [SerializeField] private GameMenu gameMenu;
         [SerializeField] private GameMenuItemsUi gameMenuItemsUi;
         [SerializeField] private GameMenuItemUi prefabGameMenuItemUi;
+        
+        [Header("Output Events")]    
+        [SerializeField] private GameObjectUnityEvent OnEnabledEvent = new();
+        [SerializeField] private GameObjectStringUnityEvent OnClickedEvent = new();
+        [SerializeField] private GameObjectUnityEvent OnDisabledEvent = new();
+
         
         private List<GameMenuItemUi> _menuList;
         
@@ -29,20 +36,16 @@ namespace YusamPackage
             gameMenu.OnChangeGameMenu += GameMenuOnChangeGameMenu;
             gameMenu.OnSelectGameMenu += GameMenuOnSelectGameMenu;
         }
-        
-        public void ExternalToggleSetActive()
-        {
-            gameObject.SetActive(!gameObject.activeSelf);
-        }
-        
-        public void ExternalToggleTimeScale()
-        {
-            Time.timeScale = Mathf.RoundToInt(Time.timeScale) == 1 ? 0 : 1;
-        }
-        
+
         private void OnEnable()
         {
             RefreshMenuUi();
+            OnEnabledEvent?.Invoke(gameObject);
+        }
+
+        private void OnDisable()
+        {
+            OnDisabledEvent?.Invoke(gameObject);
         }
 
         private void RefreshMenuUi()
@@ -127,6 +130,7 @@ namespace YusamPackage
         //уведомляем о том, что мы мышкой нажали на кнопку
         private void GameMenuItemUiOnMenuClick(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
+            OnClickedEvent?.Invoke(gameObject, e.menuKey);
             gameMenu.OnGameMenuKeyEvent?.Invoke(e.menuKey);
         }
         

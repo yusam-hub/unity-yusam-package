@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8333104062053523055}
   - component: {fileID: 1589390531981496261}
+  - component: {fileID: 1541151991895659954}
   m_Layer: 5
   m_Name: GameMenuUI
   m_TagString: Untagged
@@ -200,13 +201,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdefdb1894cf49379b1096bcb5ce98fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameInputProxy: {fileID: 0}
-  backgroundImage: {fileID: 707581452079480733}
+  gameMenu: {fileID: 0}
   gameMenuItemsUi: {fileID: 5872001366260417768}
   prefabGameMenuItemUi: {fileID: 7766019414281112046, guid: 432531c130024614a96b6eeda51bd270,
     type: 3}
-  menuArray:
-  - menuKey: start
-    menuText: START
-  - menuKey: exit
-    menuText: EXIT
+  OnEnabledEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClickedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDisabledEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1541151991895659954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8012971990507093767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d6aff9aeab4e38a363506fd695b2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

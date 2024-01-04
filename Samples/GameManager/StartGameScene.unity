@@ -1514,6 +1514,15 @@ MonoBehaviour:
   gameMenuItemsUi: {fileID: 5872001365739270204}
   prefabGameMenuItemUi: {fileID: 7766019414281112046, guid: 432531c130024614a96b6eeda51bd270,
     type: 3}
+  OnEnabledEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClickedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDisabledEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!222 &1723500995431247552
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1721,19 +1730,7 @@ MonoBehaviour:
   _gameMenuSo: {fileID: 11400000, guid: 449372ad4eecbbd41ba51a937929039a, type: 2}
   gameMenuKeyEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 208998509}
-        m_TargetAssemblyTypeName: YusamPackage.MainMenuState, Yusam.YusamPackage
-        m_MethodName: OnGameMenuKeyEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4238559051321800035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,6 +1741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5461856462048849250}
   - component: {fileID: 4097570930049321961}
+  - component: {fileID: 5461856462048849251}
   m_Layer: 0
   m_Name: GameMenu
   m_TagString: Untagged
@@ -1821,6 +1819,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5461856462048849251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4238559051321800035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fbf3e82d49487893cc7235ce929387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5660889792216777186
 RectTransform:
   m_ObjectHideFlags: 0
