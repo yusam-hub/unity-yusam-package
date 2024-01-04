@@ -1813,8 +1813,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugEnabled: 0
-  debugDefaultColor: {r: 1, g: 0, b: 0, a: 1}
-  debugDefaultDuration: 0.1
+  debugLineColor: {r: 1, g: 0, b: 0, a: 1}
+  debugTextColor: {r: 1, g: 0, b: 0, a: 1}
+  debugDuration: 0.1
 --- !u!114 &1100545467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2928,6 +2929,111 @@ Transform:
   - {fileID: 1188504829}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1674758487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1674758488}
+  - component: {fileID: 1674758490}
+  - component: {fileID: 1674758489}
+  m_Layer: 0
+  m_Name: YusamDebugDisplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1674758488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674758487}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674758489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674758487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f005eae7ae4411a0a98512dc295e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayLines:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+--- !u!114 &1674758490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674758487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46b40c8894648bcb1172696f84c932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugEnabled: 1
+  debugLineColor: {r: 1, g: 0, b: 0, a: 1}
+  debugTextColor: {r: 1, g: 0, b: 0, a: 1}
+  debugDuration: 0.1
 --- !u!1001 &1680856749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5868,3 +5974,4 @@ SceneRoots:
   - {fileID: 3564318826047734820}
   - {fileID: 1100545461}
   - {fileID: 1652616026}
+  - {fileID: 1674758488}

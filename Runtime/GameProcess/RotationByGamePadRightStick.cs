@@ -52,7 +52,7 @@ namespace YusamPackage
                                         );
                 if (_debugProperties.debugEnabled)
                 {
-                    Debug.DrawRay(transform.position, lookAt, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
+                    Debug.DrawRay(transform.position, lookAt, _debugProperties.debugLineColor, _debugProperties.debugDuration);
 
                 }                
             }

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.LowLevel;
 
 namespace YusamPackage
 {
-    
     [DisallowMultipleComponent]
     public class GameInput : MonoBehaviour
     {
@@ -21,12 +20,8 @@ namespace YusamPackage
         [Space(10)]
         [YusamHelpBox("Project Settings -> Player -> Active Input Handling = Both | Input System Package (New)")]
         [Space(10)]
-        [SerializeField]
-        private bool debugEnabled;
-        [SerializeField]
-        private Color debugColor = Color.red;  
-
         [SerializeField] private GameInputCursor gameInputCursor;
+        [Space(10)]
         [SerializeField] private float virtualCursorSpeed = 1000;
 
         public static GameInput Instance { get; private set; }
@@ -35,7 +30,11 @@ namespace YusamPackage
         private Mouse _virtualMouse;
         private GameInputRightStickState _currentGameInputRightStickState;
         private GameInputRightStickState _lastGameInputRightStickState;
-        
+        private YusamDebugProperties _yusamDebugProperties;
+        public static bool HasInstance()
+        {
+            return Instance;
+        }
         
         /*
          * AWAKE
@@ -47,6 +46,8 @@ namespace YusamPackage
                 Destroy(Instance);
             }
             Instance = this;
+
+            _yusamDebugProperties = GetComponent<YusamDebugProperties>();
             
             _gameInputActions = new YusamPackageGameInputActions();
             _gameInputActions.DefaultMap.Enable();
@@ -359,19 +360,23 @@ namespace YusamPackage
             return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
         }
         
-        void OnGUI()
+        private void OnGUI()
         {
-            if (!debugEnabled) return;            
-            GUILayout.BeginArea(new Rect(0,0, Screen.width, Screen.height));
+            if (!YusamDebugDisplay.HasInstance()) return;
+            if (!YusamDebugDisplay.Instance.DebugEnabled()) return;
             
-            GUIStyle style = GUI.skin.label;
-            style.normal.textColor = debugColor;
-            
-            GUILayout.Label("Mouse Position: " + GetMousePosition(), style);
-            GUILayout.Label("Virtual Mouse Position: " + GetVirtualMousePosition(), style);           
-            GUILayout.Label("Right Stick && Mouse Position: " + GetRightStickMousePosition(), style);           
-
-            GUILayout.EndArea();
+            YusamDebugDisplay.Instance.PutValueIntoDisplayLineByIndex(
+                YusamDebugDisplay.GAME_INPUT_GET_MOUSE_POSITION,
+                $"Mouse Position: {GetMousePosition()}"
+                );
+            YusamDebugDisplay.Instance.PutValueIntoDisplayLineByIndex(
+                YusamDebugDisplay.GAME_INPUT_GET_VIRTUAL_MOUSE_POSITION, 
+                $"Virtual Mouse Position: {GetVirtualMousePosition()}"
+                );
+            YusamDebugDisplay.Instance.PutValueIntoDisplayLineByIndex(
+                YusamDebugDisplay.GAME_INPUT_GET_RIGHT_STICK_MOUSE_POSITION, 
+                $"Right Stick && Mouse Position: {GetRightStickMousePosition()}"
+                );
         }
     }
 }

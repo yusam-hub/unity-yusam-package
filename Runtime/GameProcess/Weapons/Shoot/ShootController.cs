@@ -16,6 +16,7 @@ namespace YusamPackage
         private GameInputController _gameInputController;
         private RotationToMousePointByRay _rotationToMousePointByRay;
         private float _reloadTimer;
+        private bool _isReloading;
         private void Awake()
         {
             if (nozzlePoint == null)
@@ -36,13 +37,26 @@ namespace YusamPackage
             }
         }
 
+        private void Update()
+        {
+            if (_isReloading)
+            {
+                _reloadTimer -= Time.deltaTime;
+                if (_reloadTimer < 0)
+                {
+                    _reloadTimer = 0;
+                    _isReloading = false;
+                }
+            }
+        }
+
         private void OnInputAction(InputAction.CallbackContext obj)
         {
             if (!_gameInputController.CanUseGameInput()) return;
             
-            _reloadTimer -= Time.deltaTime;
-            if (_reloadTimer <= 0)
+            if (!_isReloading)
             {
+                _isReloading = true;
                 ShootBullet shootBullet = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
                 _reloadTimer = shootBullet.GetBulletReloadTime();
                 shootBullet.WeaponActionToPoint(nozzlePoint, _rotationToMousePointByRay.GetMouseLookPosition());

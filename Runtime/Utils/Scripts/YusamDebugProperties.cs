@@ -9,7 +9,8 @@ namespace YusamPackage
         [YusamHelpBox("Debug Draw",1)]
         [Space(10)]
         public bool debugEnabled = true;
-        public Color debugDefaultColor = Color.red;
-        public float debugDefaultDuration = 0.1f;
+        public Color debugLineColor = Color.red;
+        public Color debugTextColor = Color.red;
+        public float debugDuration = 0.1f;
     }
 }

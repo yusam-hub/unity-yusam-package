@@ -65,14 +65,14 @@ namespace YusamPackage
 
                 if (_debugProperties.debugEnabled)
                 {
-                    Debug.DrawLine(transform.position, lookAt, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
+                    Debug.DrawLine(transform.position, lookAt, _debugProperties.debugLineColor, _debugProperties.debugDuration);
                     Vector3 zeroY = new Vector3(lookAt.x, 0, lookAt.z);
                     
                     if (lookAt.y != 0)
                     {
-                        Debug.DrawLine(lookAt, zeroY, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
+                        Debug.DrawLine(lookAt, zeroY, _debugProperties.debugLineColor, _debugProperties.debugDuration);
                     }
-                    DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
+                    DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties.debugLineColor, _debugProperties.debugDuration);
                 }
             }
         }
