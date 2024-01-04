@@ -23,9 +23,28 @@ namespace YusamPackage
             }
         }
         
+        private void StartEffect(Transform sourceTransform)
+        {
+            if (swordSo.startEffectPrefab) {
+                Destroy(
+                    Instantiate(swordSo.startEffectPrefab, sourceTransform.transform), swordSo.startEffectDestroyTime
+                );
+            }
+        }
+        
+        private void HitEffect(Vector3 point)
+        {
+            if (swordSo.hitEffectPrefab) {
+                Destroy(
+                    Instantiate(swordSo.hitEffectPrefab, point, Quaternion.identity), swordSo.hitEffectDestroyTime
+                );
+            }
+        }
+        
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
-
+            StartEffect(sourceTransform);
+            
             float timer = swordSo.hitDamageDuration;
             List<Collider> list = new List<Collider>();
             
@@ -48,9 +67,11 @@ namespace YusamPackage
             
             foreach (Collider collider in list)
             {
-
                 if (collider != null)
                 {
+                    
+                    HitEffect(collider.transform.position);
+                    
                     collider.GetComponent<IDamage>()
                         ?.DoDamage(collider, swordSo.hitDamageVolume, swordSo.hitDamageForce);
                 }

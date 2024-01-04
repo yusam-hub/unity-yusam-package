@@ -6,6 +6,10 @@ namespace YusamPackage
     public class DamageSo : ScriptableObject
     {
         [Space(10)]
+        [YusamHelpBox("DAMAGE",3, "#FFFFFF", 16)]
+        [Space(10)]
+        
+        [Space(10)]
         [YusamHelpBox("Эффект при попадании", 1)]
         [Space(10)]
         public GameObject hitEffectPrefab;

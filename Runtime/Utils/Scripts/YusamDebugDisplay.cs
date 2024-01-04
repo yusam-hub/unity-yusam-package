@@ -15,9 +15,10 @@ namespace YusamPackage
     [RequireComponent(typeof(YusamDebugProperties))]
     public class YusamDebugDisplay : MonoBehaviour
     {
-        public const int GAME_INPUT_GET_MOUSE_POSITION = -3;
-        public const int GAME_INPUT_GET_VIRTUAL_MOUSE_POSITION = -2;
-        public const int GAME_INPUT_GET_RIGHT_STICK_MOUSE_POSITION = -1;
+
+        public const int GAME_INPUT_GET_MOUSE_POSITION = -4;
+        public const int GAME_INPUT_GET_VIRTUAL_MOUSE_POSITION = -3;
+        public const int GAME_INPUT_GET_RIGHT_STICK_MOUSE_POSITION = -2;
         
         [SerializeField] private int countLines = 42;
         

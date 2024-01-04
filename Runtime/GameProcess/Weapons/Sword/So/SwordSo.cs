@@ -14,5 +14,10 @@ namespace YusamPackage
         [YusamHelpBox("Длительность удара/анимации", 2)]
         [Space(10)]
         public float hitDamageDuration = 0.2f;
+        
+        [Space(10)]
+        [YusamHelpBox("Скорость атаки",3)]
+        [Space(10)]
+        public float attackSpeed = 0.1f;
     }
 }

@@ -6,6 +6,10 @@ namespace YusamPackage
     public class DeathZoneSo : ScriptableObject
     {
         [Space(10)]
+        [YusamHelpBox("DEATH ZONE",3, "#FFFFFF", 16)]
+        [Space(10)]
+        
+        [Space(10)]
         [YusamHelpBox("Повреждение", 2)]
         [Space(10)]
         public float damageVolume = 1f;

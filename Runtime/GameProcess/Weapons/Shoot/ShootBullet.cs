@@ -29,6 +29,8 @@ namespace YusamPackage
 
         private IEnumerator MoveBulletCoroutine(Transform fromTransform, Vector3 toPosition, ShootBulletSo.ShootBulletTrajectory trajectory)
         {
+            StartEffect(fromTransform);
+            
             Vector3 currentDirection;
             float maxDistance;
             
@@ -58,7 +60,7 @@ namespace YusamPackage
                 maxDistance = currentDirection.magnitude;
             }
 
-            StartEffect(fromTransform);
+
             float lifeTimer = shootBulletSo.scriptLifeTime;
             float currentDistance = 0;
             while (currentDistance <= maxDistance)
