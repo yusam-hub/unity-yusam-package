@@ -29,7 +29,17 @@ namespace YusamPackage
             gameMenu.OnChangeGameMenu += GameMenuOnChangeGameMenu;
             gameMenu.OnSelectGameMenu += GameMenuOnSelectGameMenu;
         }
-
+        
+        public void ExternalToggleSetActive()
+        {
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
+        
+        public void ExternalToggleTimeScale()
+        {
+            Time.timeScale = Mathf.RoundToInt(Time.timeScale) == 1 ? 0 : 1;
+        }
+        
         private void OnEnable()
         {
             RefreshMenuUi();
@@ -107,8 +117,6 @@ namespace YusamPackage
                 _menuList[e.newIndex].SetColorHover();
             }
         }
-
-        
 
         //сообщаем главному управлению что мы мышкой зашли в объект
         private void GameMenuItemUiOnMenuEnter(object sender, GameMenuItemUi.OnMenuEventArgs e)

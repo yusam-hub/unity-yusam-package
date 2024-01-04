@@ -41,7 +41,7 @@ namespace YusamPackage
         }
 
         [Serializable]
-        public class GameMenuKeyEvent : UnityEvent <string> {}
+        public class GameMenuKeyEvent : UnityEvent <string> {} //todo = replace StringUnityEvent
 
         [Header("Events")]
         [SerializeField] private GameMenuKeyEvent gameMenuKeyEvent = new();
