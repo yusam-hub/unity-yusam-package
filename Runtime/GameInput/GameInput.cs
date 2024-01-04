@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+
 
 namespace YusamPackage
 {
@@ -17,23 +19,20 @@ namespace YusamPackage
         private bool debugEnabled;
         [SerializeField]
         private Color debugColor = Color.red;  
+
+        [SerializeField] private GameInputCursor gameInputCursor;
         [SerializeField] private float virtualCursorSpeed = 1000;
-        [SerializeField] private RectTransform cursorRectTransform;
-        [SerializeField] private RectTransform canvasRectTransform;
 
         public static GameInput Instance { get; private set; }
 
         private YusamPackageGameInputActions _gameInputActions;
-        private Canvas _canvas;
-        private Camera _camera;
         private Mouse _virtualMouse;
+
         /*
          * AWAKE
          */
         private void Awake()
         {
-            _camera = Camera.main;
-            
             if (Instance)
             {
                 Destroy(Instance);
@@ -45,28 +44,17 @@ namespace YusamPackage
             
             _virtualMouse = (Mouse)InputSystem.AddDevice("VirtualMouse");
             
-            if (canvasRectTransform != null)
-            {
-                _canvas = canvasRectTransform.GetComponent<Canvas>();
-            }
- 
-            if (cursorRectTransform != null && _virtualMouse != null)
-            {
-                cursorRectTransform.gameObject.SetActive(true);
-                InputState.Change(_virtualMouse.position, cursorRectTransform.anchoredPosition);
-            }
-            
             InputSystem.onAfterUpdate += InputSystemOnAfterUpdate;
+        }
+
+        private void Start()
+        {
+            InputState.Change(_virtualMouse.position, gameInputCursor.GetRectTransformCursor().anchoredPosition);
         }
 
         private void InputSystemOnAfterUpdate()
         {
-            if (_virtualMouse == null && Gamepad.current == null)
-            {
-                return;
-            }
-            
-            Vector2 deltaValue = GetRightStickDirection();
+            Vector2 deltaValue = GetRightStickDirection(); 
             deltaValue *= virtualCursorSpeed * Time.deltaTime;
 
             Vector2 currentPosition = _virtualMouse.position.ReadValue();
@@ -78,35 +66,19 @@ namespace YusamPackage
             InputState.Change(_virtualMouse.position, newPosition);
             InputState.Change(_virtualMouse.delta, deltaValue);
 
-            /*bool aButtonIsPressed = Gamepad.current.aButton.IsPressed();
-            if (_previousMouseState != aButtonIsPressed)
-            {
-                _virtualMouse.CopyState<MouseState>(out var mouseState);
-                mouseState.WithButton(MouseButton.Left, aButtonIsPressed);
-                InputState.Change(_virtualMouse, mouseState);
-                _previousMouseState = aButtonIsPressed;
-            }*/
-            
-            AnchorCursor(newPosition);
-        }
-        
-        private void AnchorCursor(Vector2 position)
-        {
-            if (cursorRectTransform == null) return;
-            
-            Vector2 anchoredPosition = position;
-
-            if (canvasRectTransform != null && _canvas != null)
-            {
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    canvasRectTransform,
-                    position,
-                    _canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : _camera, 
+            Vector2 anchoredPosition;
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    gameInputCursor.GetRectTransformCanvas(),
+                    newPosition,
+                    gameInputCursor.GetCanvas().renderMode == RenderMode.ScreenSpaceOverlay ? null : Camera.main,
                     out anchoredPosition
-                );
+                ))
+            {
+                gameInputCursor.GetRectTransformCursor().anchoredPosition = anchoredPosition;
+                return;
             }
         
-            cursorRectTransform.anchoredPosition = anchoredPosition;        
+            gameInputCursor.GetRectTransformCursor().anchoredPosition = newPosition;   
         }
         
         /*
@@ -115,7 +87,6 @@ namespace YusamPackage
         private void OnDestroy()
         {
             InputSystem.onAfterUpdate -= InputSystemOnAfterUpdate;
-
             InputSystem.RemoveDevice(_virtualMouse);
             
             _gameInputActions.Dispose();
@@ -386,7 +357,7 @@ namespace YusamPackage
             
             GUILayout.Label("Mouse Position: " + GetMousePosition(), style);
             GUILayout.Label("Virtual Mouse Position: " + GetVirtualMousePosition(), style);           
-            //GUILayout.Label("Both Mouse Position: " + GetBothMousePosition(), style);           
+            GUILayout.Label("Right Stick && Mouse Position: " + GetRightStickMousePosition(), style);           
 
             GUILayout.EndArea();
         }

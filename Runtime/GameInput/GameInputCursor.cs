@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace YusamPackage
 {
@@ -12,18 +10,16 @@ namespace YusamPackage
         [SerializeField] private Color cursorColor = Color.red;
 
         private GameInputCursorUi _gameInputCursorUi;
+
         private void Awake()
         {
-            if (gameInputCursorUiPrefab != null && cursorSprite != null && canvas != null)
-            {
-                _gameInputCursorUi = Instantiate(gameInputCursorUiPrefab, canvas.transform);
-                _gameInputCursorUi.gameObject.SetActive(false);
-            }
+            _gameInputCursorUi = Instantiate(gameInputCursorUiPrefab, canvas.transform);
+            _gameInputCursorUi.gameObject.SetActive(false);
         }
 
         public void DoUpdateImageSpriteColor()
         {
-            if (_gameInputCursorUi)
+            if (_gameInputCursorUi != null)
             {
                 _gameInputCursorUi.SetImage(cursorSprite);
                 _gameInputCursorUi.SetImageColor(cursorColor);
@@ -32,7 +28,7 @@ namespace YusamPackage
 
         private void OnValidate()
         {
-            if (Application.isPlaying)
+            if (Application.isPlaying && _gameInputCursorUi != null)
             {
                 DoUpdateImageSpriteColor();
             }
@@ -42,6 +38,7 @@ namespace YusamPackage
         {
             if (_gameInputCursorUi != null)
             {
+                //Cursor.visible = false;
                 DoUpdateImageSpriteColor();
                 _gameInputCursorUi.gameObject.SetActive(true);
             }
@@ -51,6 +48,7 @@ namespace YusamPackage
         {
             if (_gameInputCursorUi != null)
             {
+                //Cursor.visible = true;
                 _gameInputCursorUi.gameObject.SetActive(false);
             }
         }
@@ -58,7 +56,6 @@ namespace YusamPackage
         public RectTransform GetRectTransformCursor()
         {
             return _gameInputCursorUi.GetRectTransformCursor();
-
         }
         
         public RectTransform GetRectTransformCanvas()
