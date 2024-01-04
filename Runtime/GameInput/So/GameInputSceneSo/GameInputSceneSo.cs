@@ -9,12 +9,16 @@ namespace YusamPackage
     public class GameInputSceneSo : ScriptableObject
     {
         [Space(10)]
+#if UNITY_EDITOR
         [YusamHelpBox("Список слоев для GameInput")]
+#endif        
         public GameInputLayerSo[] availableLayerSoArray;
         [Space(10)]
         public string defaultLayerKey;
         [Space(20)]
-        [YusamHelpBox("Settings")] 
+#if UNITY_EDITOR        
+        [YusamHelpBox("Settings")]
+#endif        
         [Space(10)]
         public string key;
         public string title;

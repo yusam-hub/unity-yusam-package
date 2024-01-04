@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 using System.Linq;
@@ -50,3 +52,4 @@ namespace YusamPackage
     }
 }
 
+#endif

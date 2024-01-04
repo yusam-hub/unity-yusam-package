@@ -6,12 +6,16 @@ namespace YusamPackage
     public class Shield : MonoBehaviour, IWeaponAction, IShield
     {
         [Space(10)]
+#if UNITY_EDITOR
         [YusamHelpBox("Настройки обекта", 2)]
+#endif        
         [Space(10)]
         [SerializeField] private ShieldSo shieldSo;
         
         [Space(10)]
+#if UNITY_EDITOR        
         [YusamHelpBox("Объект который будет создаваться", 2)]
+#endif        
         [Space(10)]
         public GameObject prefabToBeSpawn;
         

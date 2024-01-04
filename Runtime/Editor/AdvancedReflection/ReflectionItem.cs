@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Reflection;
@@ -442,3 +444,5 @@ namespace YusamPackage
         #endregion
     }
 }
+
+#endif

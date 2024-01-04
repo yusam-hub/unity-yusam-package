@@ -7,15 +7,21 @@ namespace YusamPackage
     {
         [Header("References")] 
         [Space(10)]
+#if UNITY_EDITOR        
         [YusamHelpBox("GameInput нужен для подключения к контролеру управления")]
+#endif        
         [Space(10)]
         public GameInput gameInput;
         [Space(10)]
+#if UNITY_EDITOR        
         [YusamHelpBox("GameInputScene нужен для подключения к событию об изменении сцены и слоя")]
+#endif        
         [Space(10)]
         public GameInputScene gameInputScene;
         [Space(10)]
+#if UNITY_EDITOR        
         [YusamHelpBox("Массив GameInputLayerSo нужен для проверки может ли данный скрипт упраляться в данных слоях")]
+#endif        
         [Space(10)]
         public GameInputLayerSo[] availableLayerSoArray;
         

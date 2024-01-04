@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using System;
 
 namespace YusamPackage
@@ -21,3 +23,5 @@ namespace YusamPackage
 
     }
 }
+
+#endif

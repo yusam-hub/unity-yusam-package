@@ -6,7 +6,9 @@ namespace YusamPackage
     public class GameInputLayerSo : ScriptableObject
     {
         [Space(10)]
+#if UNITY_EDITOR        
         [YusamHelpBox("Слой доступа к GameInput")]
+#endif        
         [Space(10)]
         public string key;
         public string title;

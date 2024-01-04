@@ -1,4 +1,6 @@
-﻿namespace YusamPackage
+﻿#if UNITY_EDITOR
+
+namespace YusamPackage
 {
     public enum ReflectionItemType
     {
@@ -12,3 +14,5 @@
         InstanceOrClass
     }
 }
+
+#endif
