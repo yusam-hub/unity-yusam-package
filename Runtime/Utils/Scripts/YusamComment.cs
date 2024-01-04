@@ -10,7 +10,6 @@ namespace YusamPackage
         [SerializeField] protected string comment = "Comment value";
 
         [SerializeField] protected bool inEdit;
-
 #endif
     }
 }
