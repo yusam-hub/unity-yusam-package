@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(YusamDebugProperties))]
     public class Shield : MonoBehaviour, IWeaponAction, IShield
     {
         [Space(10)]
@@ -17,14 +16,8 @@ namespace YusamPackage
         [Space(10)]
         public GameObject prefabToBeSpawn;
         
-        private YusamDebugProperties _debugProperties;
         private bool _weaponActionInProcess;
         
-        private void Awake()
-        {
-            _debugProperties = GetComponent<YusamDebugProperties>();
-        }
-
         public void WeaponAction(Transform sourceTransform)
         {
             if (!_weaponActionInProcess)

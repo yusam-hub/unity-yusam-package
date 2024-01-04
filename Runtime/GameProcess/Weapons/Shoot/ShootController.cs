@@ -6,7 +6,6 @@ namespace YusamPackage
 {
     [RequireComponent(typeof(GameInputController))]
     [RequireComponent(typeof(RotationToMousePointByRay))]
-    [RequireComponent(typeof(YusamDebugProperties))]
     [DisallowMultipleComponent]
     public class ShootController : MonoBehaviour
     {
@@ -16,7 +15,6 @@ namespace YusamPackage
 
         private GameInputController _gameInputController;
         private RotationToMousePointByRay _rotationToMousePointByRay;
-        private YusamDebugProperties _debugProperties;
         
         private void Awake()
         {
@@ -31,7 +29,6 @@ namespace YusamPackage
             
             _gameInputController = GetComponent<GameInputController>();
             _rotationToMousePointByRay = GetComponent<RotationToMousePointByRay>();
-            _debugProperties = GetComponent<YusamDebugProperties>();
 
             foreach(GameInputPerformedEnum gameInputPerformedEnum in inputs)
             {
@@ -45,11 +42,6 @@ namespace YusamPackage
             
             IWeaponActionToPoint weaponActionToPoint = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
             weaponActionToPoint.WeaponActionToPoint(nozzlePoint, _rotationToMousePointByRay.GetMouseLookPosition());
-
-            if (_debugProperties.debugEnabled)
-            {
-                Debug.DrawLine(nozzlePoint.position, _rotationToMousePointByRay.GetMouseLookPosition(), _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
-            }
         }
 
         private void OnDestroy()

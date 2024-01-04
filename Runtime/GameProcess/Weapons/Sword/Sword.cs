@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(YusamDebugProperties))]
     public class Sword : MonoBehaviour, IWeaponAction, ISword
     {
         [SerializeField] private SwordSo swordSo;
@@ -13,13 +12,7 @@ namespace YusamPackage
         [SerializeField] private Transform endPoint;
         [SerializeField] private LayerMask layerMask;
         
-        private YusamDebugProperties _debugProperties;
         private bool _weaponActionInProcess;
-
-        private void Awake()
-        {
-            _debugProperties = GetComponent<YusamDebugProperties>();
-        }
 
         public void WeaponAction(Transform sourceTransform)
         {
@@ -48,11 +41,6 @@ namespace YusamPackage
                     {
                         list.Add(hit.collider);
                     } 
-                }
-
-                if (_debugProperties.enabled)
-                {
-                    Debug.DrawRay(startPoint.position, dir, _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
                 }
                 
                 yield return null;
