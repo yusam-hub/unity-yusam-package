@@ -38,7 +38,7 @@ namespace YusamPackage
         {
             if (_gameInputCursorUi != null)
             {
-                //Cursor.visible = false;
+                Cursor.visible = false;
                 DoUpdateImageSpriteColor();
                 _gameInputCursorUi.gameObject.SetActive(true);
             }
@@ -48,7 +48,7 @@ namespace YusamPackage
         {
             if (_gameInputCursorUi != null)
             {
-                //Cursor.visible = true;
+                Cursor.visible = true;
                 _gameInputCursorUi.gameObject.SetActive(false);
             }
         }

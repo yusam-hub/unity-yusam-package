@@ -10,6 +10,12 @@ namespace YusamPackage
     [DisallowMultipleComponent]
     public class GameInput : MonoBehaviour
     {
+        private enum GameInputRightStickState
+        {
+            Mouse,
+            Gamepad
+        } 
+        
         [Space(10)]
         [YusamHelpBox("GameInput - контроллер управления, быть статичным статичным и один на сцене")]
         [Space(10)]
@@ -27,7 +33,10 @@ namespace YusamPackage
 
         private YusamPackageGameInputActions _gameInputActions;
         private Mouse _virtualMouse;
-
+        private GameInputRightStickState _currentGameInputRightStickState;
+        private GameInputRightStickState _lastGameInputRightStickState;
+        
+        
         /*
          * AWAKE
          */
@@ -43,13 +52,13 @@ namespace YusamPackage
             _gameInputActions.DefaultMap.Enable();
             
             _virtualMouse = (Mouse)InputSystem.AddDevice("VirtualMouse");
-            
+            InputState.Change(_virtualMouse.position, GetMousePosition());
             InputSystem.onAfterUpdate += InputSystemOnAfterUpdate;
         }
 
-        private void Start()
+        private void Update()
         {
-            InputState.Change(_virtualMouse.position, gameInputCursor.GetRectTransformCursor().anchoredPosition);
+            CursorAnchored(GetRightStickMousePosition()); 
         }
 
         private void InputSystemOnAfterUpdate()
@@ -65,7 +74,10 @@ namespace YusamPackage
         
             InputState.Change(_virtualMouse.position, newPosition);
             InputState.Change(_virtualMouse.delta, deltaValue);
+        }
 
+        private void CursorAnchored(Vector2 newPosition)
+        {
             Vector2 anchoredPosition;
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
                     gameInputCursor.GetRectTransformCanvas(),
