@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace YusamPackage
 {
@@ -44,7 +41,7 @@ namespace YusamPackage
             if (_loadingSceneFinished && !isFinished)
             {
                 Exit();
-                GetGameStartManager().asyncOperation.allowSceneActivation = true;
+                GetGameStartManager().DoSceneLoadedConfirm();
             }
         }
         

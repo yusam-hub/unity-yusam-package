@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace YusamPackage
 {
@@ -15,14 +17,16 @@ namespace YusamPackage
             LoadingScene,
             LoadedScene
         }
-        
-        public AsyncOperation asyncOperation;
+
+        public event EventHandler OnSceneLoaded;
         
         public GameStartManagerStateEnum currentManagerStateEnum = GameStartManagerStateEnum.StartingGame;
-
+        
         private Dictionary<GameStartManagerStateEnum, GameStartManagerState> _states = new Dictionary<GameStartManagerStateEnum, GameStartManagerState>();
-
         private GameStartManagerState _currentGameManagerState;
+
+        private float _loadingTimer;
+        private AsyncOperation _asyncOperation;
         
         private void Awake()
         {
@@ -40,6 +44,47 @@ namespace YusamPackage
                 _states.TryAdd(state.GetGameStartManagerStateEnum(), state);
             }
         }
+        
+        public void DoStartLoadingScene(string sceneName)
+        {
+            if (_asyncOperation == null)
+            {
+                StartCoroutine(AsyncStartLoadingScene(sceneName));
+            }
+        }
+
+        public void DoSceneLoadedConfirm()
+        {
+            if (_asyncOperation != null)
+            {
+                _asyncOperation.allowSceneActivation = true;
+            }
+        }
+        
+        IEnumerator AsyncStartLoadingScene(string aSceneName)
+        {
+            float loadingProgress;
+ 
+            _asyncOperation = SceneManager.LoadSceneAsync(aSceneName);
+            _asyncOperation.allowSceneActivation = false;
+            while (_asyncOperation.progress < 0.9f)
+            {
+                _loadingTimer += Time.deltaTime;
+                loadingProgress = Mathf.Clamp01(_asyncOperation.progress / 0.9f);
+                Debug.Log($"Loading: {(loadingProgress * 100).ToString("0")}%");
+                yield return true;
+            }
+
+            while (_loadingTimer < 2f)
+            {
+                _loadingTimer += Time.deltaTime;
+                yield return true;
+            }
+            
+            OnSceneLoaded?.Invoke(this, EventArgs.Empty);
+        }
+        
+
 
         private void TryGetCurrentManagerState()
         {
@@ -59,7 +104,9 @@ namespace YusamPackage
                     if (_states.TryGetValue(currentManagerStateEnum, out GameStartManagerState gameManagerState))
                     {
                         _currentGameManagerState.Exit();
+                        
                         _currentGameManagerState = gameManagerState;
+                        _currentGameManagerState.SetGameStartManager(this);
                         _currentGameManagerState.Enter();
                     }
                 }
@@ -67,6 +114,11 @@ namespace YusamPackage
         }
         private void Update()
         {
+            if (_asyncOperation != null && _asyncOperation.allowSceneActivation)
+            {
+                return;
+            }
+            
             TryGetCurrentManagerState();
 
             if (_currentGameManagerState == null) return;
