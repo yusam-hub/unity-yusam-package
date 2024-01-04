@@ -1710,11 +1710,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1100545461}
   - component: {fileID: 1100545463}
+  - component: {fileID: 1100545466}
+  - component: {fileID: 1100545467}
   - component: {fileID: 1100545473}
   - component: {fileID: 1100545468}
   - component: {fileID: 1100545472}
-  - component: {fileID: 1100545466}
-  - component: {fileID: 1100545467}
   - component: {fileID: 1100545464}
   - component: {fileID: 1100545465}
   - component: {fileID: 1100545471}
@@ -2974,50 +2974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f005eae7ae4411a0a98512dc295e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayLines:
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
-  - 7
-  - 8
-  - 9
-  - 10
-  - 11
-  - 12
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
-  - 13
+  countLines: 40
 --- !u!114 &1674758490
 MonoBehaviour:
   m_ObjectHideFlags: 0

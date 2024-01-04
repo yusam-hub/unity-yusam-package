@@ -30,13 +30,12 @@ namespace YusamPackage
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
             float timer = shieldSo.scriptLifeTime;
-
+            
             GameObject newGameObject = Instantiate(prefabToBeSpawn, sourceTransform);
             
             while (timer > 0)
             {
                 timer -= Time.deltaTime;
-
                 yield return null;
             }
             

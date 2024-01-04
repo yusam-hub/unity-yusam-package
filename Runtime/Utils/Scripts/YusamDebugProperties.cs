@@ -6,7 +6,7 @@ namespace YusamPackage
     public class YusamDebugProperties : MonoBehaviour
     {
         [Space(10)]
-        [YusamHelpBox("Debug Draw",1)]
+        [YusamHelpBox("Yusam Debug Properties",3, "#FFFFFF", 16)]
         [Space(10)]
         public bool debugEnabled = true;
         public Color debugLineColor = Color.red;

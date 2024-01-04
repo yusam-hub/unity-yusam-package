@@ -21,4 +21,4 @@ MonoBehaviour:
   hitEffectDestroyTime: 1
   hitDamageVolume: 10
   hitDamageForce: 1
-  scriptLifeTime: 0
+  scriptLifeTime: 5

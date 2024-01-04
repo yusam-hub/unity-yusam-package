@@ -365,15 +365,15 @@ namespace YusamPackage
             if (!YusamDebugDisplay.HasInstance()) return;
             if (!YusamDebugDisplay.Instance.DebugEnabled()) return;
             
-            YusamDebugDisplay.Instance.PutValueIntoDisplayLineByIndex(
+            YusamDebugDisplay.Instance.DisplayLog(
                 YusamDebugDisplay.GAME_INPUT_GET_MOUSE_POSITION,
                 $"Mouse Position: {GetMousePosition()}"
                 );
-            YusamDebugDisplay.Instance.PutValueIntoDisplayLineByIndex(
+            YusamDebugDisplay.Instance.DisplayLog(
                 YusamDebugDisplay.GAME_INPUT_GET_VIRTUAL_MOUSE_POSITION, 
                 $"Virtual Mouse Position: {GetVirtualMousePosition()}"
                 );
-            YusamDebugDisplay.Instance.PutValueIntoDisplayLineByIndex(
+            YusamDebugDisplay.Instance.DisplayLog(
                 YusamDebugDisplay.GAME_INPUT_GET_RIGHT_STICK_MOUSE_POSITION, 
                 $"Right Stick && Mouse Position: {GetRightStickMousePosition()}"
                 );

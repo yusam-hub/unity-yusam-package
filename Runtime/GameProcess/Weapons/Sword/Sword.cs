@@ -48,7 +48,7 @@ namespace YusamPackage
             
             foreach (Collider collider in list)
             {
-                //Debug.Log($"{collider.name}");
+
                 if (collider != null)
                 {
                     collider.GetComponent<IDamage>()
