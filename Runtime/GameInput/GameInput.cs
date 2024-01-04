@@ -7,12 +7,6 @@ namespace YusamPackage
     [DisallowMultipleComponent]
     public class GameInput : MonoBehaviour
     {
-        private enum GameInputRightStickState
-        {
-            Mouse,
-            Gamepad
-        } 
-        
         [Space(10)]
 #if UNITY_EDITOR        
         [YusamHelpBox("GameInput - контроллер управления, быть статичным статичным и один на сцене")]
@@ -30,8 +24,6 @@ namespace YusamPackage
 
         private YusamPackageGameInputActions _gameInputActions;
         private Mouse _virtualMouse;
-        private GameInputRightStickState _currentGameInputRightStickState;
-        private GameInputRightStickState _lastGameInputRightStickState;
         private YusamDebugProperties _yusamDebugProperties;
         public static bool HasInstance()
         {

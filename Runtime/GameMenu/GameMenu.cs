@@ -26,7 +26,7 @@ namespace YusamPackage
         [SerializeField] private GameInput gameInput;
 
         [SerializeField] private GameMenuSo _gameMenuSo;
-
+        
         public GameMenuSo gameMenuSo
         {
             get
@@ -44,7 +44,7 @@ namespace YusamPackage
         public class GameMenuKeyEvent : UnityEvent <string> {}
 
         [Header("Events")]
-        [SerializeField] private GameMenuKeyEvent gameMenuKeyEvent = new GameMenuKeyEvent();
+        [SerializeField] private GameMenuKeyEvent gameMenuKeyEvent = new();
         
         public GameMenuKeyEvent OnGameMenuKeyEvent { get { return gameMenuKeyEvent; } set { gameMenuKeyEvent = value; } }
 
