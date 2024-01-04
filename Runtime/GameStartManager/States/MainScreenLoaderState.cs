@@ -2,13 +2,12 @@
 
 namespace YusamPackage
 {
-    public class MainScreenLoaderState : GameManagerState
+    public class MainScreenLoaderState : GameStartManagerState
     {
         [SerializeField] private GameObject mainScreenLoadeUi;
         [SerializeField] private float timerMax = 4f;
 
         private float _timer;
-        private bool _isFinished = false;
 
         public override void Enter()
         {
@@ -23,23 +22,19 @@ namespace YusamPackage
 
         public override void Update()
         {
-            if (_isFinished) return;
+            if (isFinished) return;
             
             _timer += Time.deltaTime;
             if (_timer >= timerMax)
             {
-                _isFinished = true;
+                isFinished = true;
             }
         }
 
-        public override bool IsFinished()
-        {
-            return _isFinished;
-        }
         
-        public override GameManager.GameManagerStateEnum GetGameManagerStateEnum()
+        public override GameStartManager.GameStartManagerStateEnum GetGameStartManagerStateEnum()
         {
-            return GameManager.GameManagerStateEnum.MainScreenLoader;
+            return GameStartManager.GameStartManagerStateEnum.MainScreenLoader;
         }
 
     }

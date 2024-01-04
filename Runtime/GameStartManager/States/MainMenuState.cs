@@ -2,19 +2,11 @@
 
 namespace YusamPackage
 {
-    public class MainMenuState : GameManagerState
+    public class MainMenuState : GameStartManagerState
     {
         [SerializeField] private GameMenu gameMenu;
         [SerializeField] private GameObject gameMenuUI;
-        [SerializeField] private GameManager gameManager;
 
-        private bool _isFinished = false;
-        
-        public override GameManager.GameManagerStateEnum GetGameManagerStateEnum()
-        {
-            return GameManager.GameManagerStateEnum.MainMenu;
-        }
-        
         public override void Enter()
         {
             gameMenuUI.SetActive(true);
@@ -27,31 +19,25 @@ namespace YusamPackage
             gameMenu.gameObject.SetActive(false);
         }
 
-        public override bool IsFinished()
-        {
-            return _isFinished;
-        }
-
-        public override void Update()
-        {
-            
-        }
-        
         public void OnGameMenuKeyEvent(string menuKey)
         {
             switch (menuKey)
             {
                 case "start":
-                    if (gameManager.currentManagerStateEnum != GameManager.GameManagerStateEnum.LoadingScene)
-                    {
-                        gameManager.currentManagerStateEnum = GameManager.GameManagerStateEnum.LoadingScene;
-                    }
+                    isFinished = true;
+                    //GetGameStartManager().currentManagerStateEnum = GameStartManager.GameStartManagerStateEnum.LoadingScene;
+                    //Exit();
                     break;
                 case "exit":
                 case "quit":
                     Application.Quit();
                     break;
             }
+        }
+        
+        public override GameStartManager.GameStartManagerStateEnum GetGameStartManagerStateEnum()
+        {
+            return GameStartManager.GameStartManagerStateEnum.MainMenu;
         }
     }
 }

@@ -25,16 +25,9 @@ namespace YusamPackage
         
         private void Awake()
         {
-            if (gameInput == null)
-            {
-                Debug.LogError("GameInput instance not found in [ " + this + "]");
-                gameObject.SetActive(false);
-            }
-            if (gameInputScene == null)
-            {
-                Debug.LogError("gameInputScene instance not found in [ " + this + "]");
-                gameObject.SetActive(false);
-            }
+            LogErrorHelper.NotFoundWhatInIf(gameInput == null,typeof(GameInput).ToString(), this);
+            LogErrorHelper.NotFoundWhatInIf(gameInputScene == null, typeof(GameInputScene).ToString(), this);
+            
             if (gameInputScene != null)
             {
                 gameInputScene.OnSceneLayerChanged += GameInputSceneOnOnSceneLayerChanged;

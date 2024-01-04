@@ -47,13 +47,17 @@ namespace YusamPackage
             }
             Instance = this;
 
+            LogErrorHelper.NotFoundWhatInIf(gameInputCursor == null, typeof(GameInputCursor).ToString(), this);
+            
             _yusamDebugProperties = GetComponent<YusamDebugProperties>();
             
             _gameInputActions = new YusamPackageGameInputActions();
             _gameInputActions.DefaultMap.Enable();
             
             _virtualMouse = (Mouse)InputSystem.AddDevice("VirtualMouse");
+            
             InputState.Change(_virtualMouse.position, GetMousePosition());
+            
             InputSystem.onAfterUpdate += InputSystemOnAfterUpdate;
         }
 
@@ -166,6 +170,7 @@ namespace YusamPackage
                 case GameInputPerformedEnum.RightStickMouseSecondaryPress:
                     return GetRightStickMouseSecondaryPressAction();     
             }
+            LogErrorHelper.NotImplementedWhatIn(typeof(GameInputPerformedEnum).ToString() + $" : {gameInputPerformedEnum}", this);
             Debug.LogError($"{gameInputPerformedEnum} is not implemented");
             return null;
         }

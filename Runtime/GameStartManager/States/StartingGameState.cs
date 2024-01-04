@@ -2,14 +2,13 @@
 
 namespace YusamPackage
 {
-    public class StartingGameState : GameManagerState
+    public class StartingGameState : GameStartManagerState
     {
         [SerializeField] private GameObject startingGameUi;
         [SerializeField] private float timerMax = 2f;
 
         private float _timer;
-        private bool _isFinished = false;
-
+ 
         public override void Enter()
         {
             _timer = 0;
@@ -23,23 +22,19 @@ namespace YusamPackage
 
         public override void Update()
         {
-            if (_isFinished) return;
+            if (isFinished) return;
             
             _timer += Time.deltaTime;
             if (_timer >= timerMax)
             {
-                _isFinished = true;
+                isFinished = true;
             }
         }
 
-        public override bool IsFinished()
-        {
-            return _isFinished;
-        }
         
-        public override GameManager.GameManagerStateEnum GetGameManagerStateEnum()
+        public override GameStartManager.GameStartManagerStateEnum GetGameStartManagerStateEnum()
         {
-            return GameManager.GameManagerStateEnum.StartingGame;
+            return GameStartManager.GameStartManagerStateEnum.StartingGame;
         }
     }
 }
