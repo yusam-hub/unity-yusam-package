@@ -13,6 +13,11 @@ namespace YusamPackage
         }
 
         [Space(10)]
+        [YusamHelpBox("Какие слои проверяются на столкновения",3)]
+        [Space(10)]
+        public LayerMask bulletHitLayerMask;
+
+        [Space(10)]
         [YusamHelpBox("Тип траектории",1)]
         [Space(10)]
         public ShootBulletTrajectory trajectory = ShootBulletTrajectory.LinerTrajectory;
@@ -23,7 +28,7 @@ namespace YusamPackage
         public bool rotateToTrajectory = true;
 
         [Space(10)]
-        [YusamHelpBox("Максимальная дистанция пули при палаллельном типе траектории",3)]
+        [YusamHelpBox("Максимальная дистанция при палаллельном типе траектории",3)]
         [Space(10)]
         public float parallelMaxDistance = 20f;
 
@@ -38,19 +43,30 @@ namespace YusamPackage
         public float parabolaHeight = 2;
         
         [Space(10)]
-        [YusamHelpBox("Скорость пули",3)]
+        [YusamHelpBox("Скорость снаряда",3)]
         [Space(10)]
         public float bulletSpeed = 20;
-        
+       
         [Space(10)]
         [YusamHelpBox("Радиус проверки на столкновения",3)]
         [Space(10)]
         public float bulletHitRadius = .05f;
+        
+        [Space(10)]
+        [YusamHelpBox("Время жизни снаряда",3)]
+        [Space(10)]
+        public float bulletLifeTime = 1f;
+
 
         [Space(10)]
-        [YusamHelpBox("Какие слои проверяются на столкновения",3)]
+        [YusamHelpBox("Эффект при старте", 1)]
         [Space(10)]
-        public LayerMask bulletHitLayerMask;
+        public GameObject startEffectPrefab;
+        
+        [Space(10)]
+        [YusamHelpBox("Время жизни эффекта при старте", 2)]
+        [Space(10)]
+        public float startEffectDestroyTime = 1f;
         
         [Space(10)]
         [YusamHelpBox("Эффект при попадании", 1)]
@@ -58,7 +74,7 @@ namespace YusamPackage
         public GameObject hitEffectPrefab;
         
         [Space(10)]
-        [YusamHelpBox("Проложительность жизни скрипта эффекта", 2)]
+        [YusamHelpBox("Время жизни эффекта при попадании", 2)]
         [Space(10)]
         public float hitEffectDestroyTime = 1f;
         

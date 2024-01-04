@@ -13,6 +13,15 @@ namespace YusamPackage
             StartCoroutine(MoveBulletCoroutine(sourceTransform, destinationPoint, shootBulletSo.trajectory));
         }
 
+        private void StartEffect(Transform sourceTransform)
+        {
+            if (shootBulletSo.startEffectPrefab) {
+                Destroy(
+                    Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime
+                );
+            }
+        }
+
         private IEnumerator MoveBulletCoroutine(Transform fromTransform, Vector3 toPosition, ShootBulletSo.ShootBulletTrajectory trajectory)
         {
             Vector3 currentDirection;
@@ -44,8 +53,17 @@ namespace YusamPackage
                 maxDistance = currentDirection.magnitude;
             }
 
+            StartEffect(fromTransform);
+            float lifeTimer = shootBulletSo.bulletLifeTime;
             float currentDistance = 0;
-            while (currentDistance <= maxDistance) {
+            while (currentDistance <= maxDistance)
+            {
+                lifeTimer -= Time.deltaTime;
+                if (lifeTimer <= 0)
+                {
+                    SelfDestroy(null);
+                    yield break; 
+                }
                 
                 float currentTransition;
                 Vector3 currentPosition;
@@ -92,19 +110,21 @@ namespace YusamPackage
         }
         
         
+        private void HitEffect(Vector3 point)
+        {
+            if (shootBulletSo.hitEffectPrefab) {
+                Destroy(
+                    Instantiate(shootBulletSo.hitEffectPrefab, point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
+                );
+            }
+        }
+        
         private void SelfDestroy(RaycastHit? hitInfo)
         {
-            if (hitInfo.HasValue) 
+            if (hitInfo.HasValue)
             {
-                //создаем эффект в точки рейкаста на определенное время
-                if (shootBulletSo.hitEffectPrefab) {
-                    Destroy(
-                        Instantiate(shootBulletSo.hitEffectPrefab, hitInfo.Value.point, Quaternion.identity),
-                        shootBulletSo.hitEffectDestroyTime
-                        );
-                }
+                HitEffect(hitInfo.Value.point);
                 
-                //проверяем есть ли скрип с Интерфейсом IDamage
                 if (hitInfo.Value.collider.TryGetComponent(out IDamage damage))
                 {
                     damage.DoDamage(hitInfo.Value.collider, shootBulletSo.hitDamageVolume, shootBulletSo.hitDamageForce);
@@ -114,9 +134,6 @@ namespace YusamPackage
             Destroy(gameObject);
         }
         
-        /**
-         * 
-         */
         private RaycastHit? TryGetHitInfo(Vector3 fromPosition, Vector3 toPosition)
         {
             Ray castRay = new Ray( fromPosition, toPosition - fromPosition );
