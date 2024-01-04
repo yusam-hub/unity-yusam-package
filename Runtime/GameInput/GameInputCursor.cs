@@ -10,6 +10,7 @@ namespace YusamPackage
         [SerializeField] private Color cursorColor = Color.red;
 
         private GameInputCursorUi _gameInputCursorUi;
+        private RectTransform _canvasRectTransform;
 
         private void Awake()
         {
@@ -17,9 +18,9 @@ namespace YusamPackage
             _gameInputCursorUi.gameObject.SetActive(false);
         }
 
-        public void DoUpdateImageSpriteColor()
+        private void DoUpdateImageSpriteColor()
         {
-            if (_gameInputCursorUi != null)
+            if (_gameInputCursorUi)
             {
                 _gameInputCursorUi.SetImage(cursorSprite);
                 _gameInputCursorUi.SetImageColor(cursorColor);
@@ -36,7 +37,7 @@ namespace YusamPackage
 
         private void OnEnable()
         {
-            if (_gameInputCursorUi != null)
+            if (_gameInputCursorUi)
             {
                 Cursor.visible = false;
                 DoUpdateImageSpriteColor();
@@ -46,7 +47,7 @@ namespace YusamPackage
         
         private void OnDisable()
         {
-            if (_gameInputCursorUi != null)
+            if (_gameInputCursorUi)
             {
                 Cursor.visible = true;
                 _gameInputCursorUi.gameObject.SetActive(false);
@@ -60,7 +61,12 @@ namespace YusamPackage
         
         public RectTransform GetRectTransformCanvas()
         {
-            return canvas.GetComponent<RectTransform>();
+            if (!_canvasRectTransform)
+            {
+                _canvasRectTransform = canvas.GetComponent<RectTransform>();
+            }
+
+            return _canvasRectTransform;
         }
 
         public Canvas GetCanvas()

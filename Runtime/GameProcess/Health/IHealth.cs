@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace YusamPackage
+﻿namespace YusamPackage
 {
     public interface IHealth
     {

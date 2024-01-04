@@ -9,7 +9,7 @@ namespace YusamPackage
         {
             LinerTrajectory, //от точки а до б
             ParabolaTrajectory, //от точки а до б по параболе
-            ParallelTrajectory, //от точки а и по направлению Б параллельно
+            ParallelTrajectory //от точки а и по направлению Б параллельно
         }
 
         [Space(10)]

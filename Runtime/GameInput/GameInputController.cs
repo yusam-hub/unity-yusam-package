@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace YusamPackage
 {
@@ -38,7 +36,7 @@ namespace YusamPackage
         {
             _canUseGameInput = false;
 
-            foreach ( GameInputLayerSo gameInputLayerSo in availableLayerSoArray)
+            foreach ( var gameInputLayerSo in availableLayerSoArray)
             {
                 if (gameInputLayerSo.key == e.LayerKey)
                 {

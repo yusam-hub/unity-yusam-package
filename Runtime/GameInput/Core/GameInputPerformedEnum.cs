@@ -31,6 +31,6 @@
         MouseRightPress,
         
         RightStickMousePrimaryPress,
-        RightStickMouseSecondaryPress,
+        RightStickMouseSecondaryPress
     }
 }

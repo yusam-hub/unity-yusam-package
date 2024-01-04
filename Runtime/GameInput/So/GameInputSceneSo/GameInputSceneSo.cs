@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 namespace YusamPackage
 {
     [CreateAssetMenu(menuName = "So/Yusam Package/Game Input/Scene")]
-    public class GameInputSceneSo : ScriptableObject, IGameInputScene
+    public class GameInputSceneSo : ScriptableObject
     {
         [Space(10)]
         [YusamHelpBox("Список слоев для GameInput")]

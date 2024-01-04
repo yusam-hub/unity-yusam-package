@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace YusamPackage
@@ -10,7 +9,7 @@ namespace YusamPackage
             LookAt,
             LookAtInverted,
             CameraForward,
-            CameraForwardInverted,
+            CameraForwardInverted
         }
 
         [SerializeField] private Mode mode;
