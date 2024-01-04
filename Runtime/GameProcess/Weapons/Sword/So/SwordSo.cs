@@ -3,17 +3,12 @@
 namespace YusamPackage
 {
     [CreateAssetMenu(menuName = "So/Yusam Package/Game Process/Sword")]
-    public class SwordSo : ScriptableObject
+    public class SwordSo : BaseWeaponSo
     {
         [Space(10)]
-        [YusamHelpBox("Объем повреждения здоровья от удара", 2)]
         [Space(10)]
-        public float hitDamageVolume = 10f;
-        
+        [YusamHelpBox("SWORD",3, "#FFFFFF", 16)]
         [Space(10)]
-        [YusamHelpBox("Сила повреждения от удара", 2)]
-        [Space(10)]
-        public float hitDamageForce = 1f;
         
         [Space(10)]
         [YusamHelpBox("Длительность удара/анимации", 2)]

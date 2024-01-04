@@ -15,7 +15,7 @@ namespace YusamPackage
 
         private GameInputController _gameInputController;
         private RotationToMousePointByRay _rotationToMousePointByRay;
-        
+        private float _reloadTimer;
         private void Awake()
         {
             if (nozzlePoint == null)
@@ -40,8 +40,13 @@ namespace YusamPackage
         {
             if (!_gameInputController.CanUseGameInput()) return;
             
-            IWeaponActionToPoint weaponActionToPoint = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
-            weaponActionToPoint.WeaponActionToPoint(nozzlePoint, _rotationToMousePointByRay.GetMouseLookPosition());
+            _reloadTimer -= Time.deltaTime;
+            if (_reloadTimer <= 0)
+            {
+                ShootBullet shootBullet = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
+                _reloadTimer = shootBullet.GetBulletReloadTime();
+                shootBullet.WeaponActionToPoint(nozzlePoint, _rotationToMousePointByRay.GetMouseLookPosition());
+            }
         }
 
         private void OnDestroy()

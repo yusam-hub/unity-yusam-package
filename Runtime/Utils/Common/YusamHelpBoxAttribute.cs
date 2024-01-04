@@ -9,12 +9,14 @@ namespace YusamPackage
         public string text;
         public int rows;
         public string color;
+        public int fontSize;
 
-        public YusamHelpBoxAttribute(string text, int rows = 3, string color = "#FF8000")
+        public YusamHelpBoxAttribute(string text, int rows = 3, string color = "#FF8000", int fontSize = 12)
         {
             this.text = text;
             this.rows = rows;
             this.color = color;
+            this.fontSize = fontSize;
         }
 
     }

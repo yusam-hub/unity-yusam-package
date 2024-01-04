@@ -13,6 +13,11 @@ namespace YusamPackage
             StartCoroutine(MoveBulletCoroutine(sourceTransform, destinationPoint, shootBulletSo.trajectory));
         }
 
+        public float GetBulletReloadTime()
+        {
+            return shootBulletSo.bulletReloadTime;
+        }
+        
         private void StartEffect(Transform sourceTransform)
         {
             if (shootBulletSo.startEffectPrefab) {
@@ -54,7 +59,7 @@ namespace YusamPackage
             }
 
             StartEffect(fromTransform);
-            float lifeTimer = shootBulletSo.bulletLifeTime;
+            float lifeTimer = shootBulletSo.scriptLifeTime;
             float currentDistance = 0;
             while (currentDistance <= maxDistance)
             {
@@ -143,7 +148,7 @@ namespace YusamPackage
                     shootBulletSo.bulletHitRadius, 
                     out RaycastHit hitInfo
                     ,( fromPosition - toPosition ).magnitude
-                    ,shootBulletSo.bulletHitLayerMask
+                    ,shootBulletSo.hitLayerMask
                     )
                 ) {
                 return hitInfo;

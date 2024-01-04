@@ -29,7 +29,7 @@ namespace YusamPackage
 
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
-            float timer = shieldSo.prefabLifeTime;
+            float timer = shieldSo.scriptLifeTime;
 
             GameObject newGameObject = Instantiate(prefabToBeSpawn, sourceTransform);
             

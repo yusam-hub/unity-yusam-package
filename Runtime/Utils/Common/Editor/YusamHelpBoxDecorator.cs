@@ -42,7 +42,7 @@ namespace YusamPackage
             GUIStyle style = new GUIStyle(EditorStyles.helpBox);
             style.wordWrap = true;
             style.richText = true;
-            style.fontSize = 12;  
+            style.fontSize = _helpBox.fontSize;  
             style.fontStyle = FontStyle.Bold;
             style.alignment = TextAnchor.MiddleCenter; 
             style.normal.textColor = Color.white;
