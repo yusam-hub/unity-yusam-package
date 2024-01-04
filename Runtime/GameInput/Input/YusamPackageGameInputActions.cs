@@ -280,7 +280,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""BothMousePosition"",
+                    ""name"": ""RightStickMousePosition"",
                     ""type"": ""PassThrough"",
                     ""id"": ""ca0b32e3-31c2-496a-b2b3-cb5ee5d37666"",
                     ""expectedControlType"": ""Vector2"",
@@ -289,7 +289,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BothPrimaryPress"",
+                    ""name"": ""RightStickMousePrimaryPress"",
                     ""type"": ""Button"",
                     ""id"": ""bc937ef9-a0ba-4e19-8432-88d3de27e65e"",
                     ""expectedControlType"": ""Button"",
@@ -298,7 +298,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BothSecondaryPress"",
+                    ""name"": ""RightStickMouseSecondaryPress"",
                     ""type"": ""Button"",
                     ""id"": ""74655d7a-3041-42f9-be5a-996de7cc6526"",
                     ""expectedControlType"": ""Button"",
@@ -964,7 +964,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BothMousePosition"",
+                    ""action"": ""RightStickMousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -975,7 +975,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BothMousePosition"",
+                    ""action"": ""RightStickMousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -986,7 +986,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BothPrimaryPress"",
+                    ""action"": ""RightStickMousePrimaryPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -997,7 +997,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BothPrimaryPress"",
+                    ""action"": ""RightStickMousePrimaryPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1008,7 +1008,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BothSecondaryPress"",
+                    ""action"": ""RightStickMouseSecondaryPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1019,7 +1019,7 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BothSecondaryPress"",
+                    ""action"": ""RightStickMouseSecondaryPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1058,9 +1058,9 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
         m_DefaultMap_SpacePress = m_DefaultMap.FindAction("SpacePress", throwIfNotFound: true);
         m_DefaultMap_EscapePress = m_DefaultMap.FindAction("EscapePress", throwIfNotFound: true);
         m_DefaultMap_VirtualMousePosition = m_DefaultMap.FindAction("VirtualMousePosition", throwIfNotFound: true);
-        m_DefaultMap_BothMousePosition = m_DefaultMap.FindAction("BothMousePosition", throwIfNotFound: true);
-        m_DefaultMap_BothPrimaryPress = m_DefaultMap.FindAction("BothPrimaryPress", throwIfNotFound: true);
-        m_DefaultMap_BothSecondaryPress = m_DefaultMap.FindAction("BothSecondaryPress", throwIfNotFound: true);
+        m_DefaultMap_RightStickMousePosition = m_DefaultMap.FindAction("RightStickMousePosition", throwIfNotFound: true);
+        m_DefaultMap_RightStickMousePrimaryPress = m_DefaultMap.FindAction("RightStickMousePrimaryPress", throwIfNotFound: true);
+        m_DefaultMap_RightStickMouseSecondaryPress = m_DefaultMap.FindAction("RightStickMouseSecondaryPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1150,9 +1150,9 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
     private readonly InputAction m_DefaultMap_SpacePress;
     private readonly InputAction m_DefaultMap_EscapePress;
     private readonly InputAction m_DefaultMap_VirtualMousePosition;
-    private readonly InputAction m_DefaultMap_BothMousePosition;
-    private readonly InputAction m_DefaultMap_BothPrimaryPress;
-    private readonly InputAction m_DefaultMap_BothSecondaryPress;
+    private readonly InputAction m_DefaultMap_RightStickMousePosition;
+    private readonly InputAction m_DefaultMap_RightStickMousePrimaryPress;
+    private readonly InputAction m_DefaultMap_RightStickMouseSecondaryPress;
     public struct DefaultMapActions
     {
         private @YusamPackageGameInputActions m_Wrapper;
@@ -1185,9 +1185,9 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
         public InputAction @SpacePress => m_Wrapper.m_DefaultMap_SpacePress;
         public InputAction @EscapePress => m_Wrapper.m_DefaultMap_EscapePress;
         public InputAction @VirtualMousePosition => m_Wrapper.m_DefaultMap_VirtualMousePosition;
-        public InputAction @BothMousePosition => m_Wrapper.m_DefaultMap_BothMousePosition;
-        public InputAction @BothPrimaryPress => m_Wrapper.m_DefaultMap_BothPrimaryPress;
-        public InputAction @BothSecondaryPress => m_Wrapper.m_DefaultMap_BothSecondaryPress;
+        public InputAction @RightStickMousePosition => m_Wrapper.m_DefaultMap_RightStickMousePosition;
+        public InputAction @RightStickMousePrimaryPress => m_Wrapper.m_DefaultMap_RightStickMousePrimaryPress;
+        public InputAction @RightStickMouseSecondaryPress => m_Wrapper.m_DefaultMap_RightStickMouseSecondaryPress;
         public InputActionMap Get() { return m_Wrapper.m_DefaultMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1281,15 +1281,15 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
             @VirtualMousePosition.started += instance.OnVirtualMousePosition;
             @VirtualMousePosition.performed += instance.OnVirtualMousePosition;
             @VirtualMousePosition.canceled += instance.OnVirtualMousePosition;
-            @BothMousePosition.started += instance.OnBothMousePosition;
-            @BothMousePosition.performed += instance.OnBothMousePosition;
-            @BothMousePosition.canceled += instance.OnBothMousePosition;
-            @BothPrimaryPress.started += instance.OnBothPrimaryPress;
-            @BothPrimaryPress.performed += instance.OnBothPrimaryPress;
-            @BothPrimaryPress.canceled += instance.OnBothPrimaryPress;
-            @BothSecondaryPress.started += instance.OnBothSecondaryPress;
-            @BothSecondaryPress.performed += instance.OnBothSecondaryPress;
-            @BothSecondaryPress.canceled += instance.OnBothSecondaryPress;
+            @RightStickMousePosition.started += instance.OnRightStickMousePosition;
+            @RightStickMousePosition.performed += instance.OnRightStickMousePosition;
+            @RightStickMousePosition.canceled += instance.OnRightStickMousePosition;
+            @RightStickMousePrimaryPress.started += instance.OnRightStickMousePrimaryPress;
+            @RightStickMousePrimaryPress.performed += instance.OnRightStickMousePrimaryPress;
+            @RightStickMousePrimaryPress.canceled += instance.OnRightStickMousePrimaryPress;
+            @RightStickMouseSecondaryPress.started += instance.OnRightStickMouseSecondaryPress;
+            @RightStickMouseSecondaryPress.performed += instance.OnRightStickMouseSecondaryPress;
+            @RightStickMouseSecondaryPress.canceled += instance.OnRightStickMouseSecondaryPress;
         }
 
         private void UnregisterCallbacks(IDefaultMapActions instance)
@@ -1378,15 +1378,15 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
             @VirtualMousePosition.started -= instance.OnVirtualMousePosition;
             @VirtualMousePosition.performed -= instance.OnVirtualMousePosition;
             @VirtualMousePosition.canceled -= instance.OnVirtualMousePosition;
-            @BothMousePosition.started -= instance.OnBothMousePosition;
-            @BothMousePosition.performed -= instance.OnBothMousePosition;
-            @BothMousePosition.canceled -= instance.OnBothMousePosition;
-            @BothPrimaryPress.started -= instance.OnBothPrimaryPress;
-            @BothPrimaryPress.performed -= instance.OnBothPrimaryPress;
-            @BothPrimaryPress.canceled -= instance.OnBothPrimaryPress;
-            @BothSecondaryPress.started -= instance.OnBothSecondaryPress;
-            @BothSecondaryPress.performed -= instance.OnBothSecondaryPress;
-            @BothSecondaryPress.canceled -= instance.OnBothSecondaryPress;
+            @RightStickMousePosition.started -= instance.OnRightStickMousePosition;
+            @RightStickMousePosition.performed -= instance.OnRightStickMousePosition;
+            @RightStickMousePosition.canceled -= instance.OnRightStickMousePosition;
+            @RightStickMousePrimaryPress.started -= instance.OnRightStickMousePrimaryPress;
+            @RightStickMousePrimaryPress.performed -= instance.OnRightStickMousePrimaryPress;
+            @RightStickMousePrimaryPress.canceled -= instance.OnRightStickMousePrimaryPress;
+            @RightStickMouseSecondaryPress.started -= instance.OnRightStickMouseSecondaryPress;
+            @RightStickMouseSecondaryPress.performed -= instance.OnRightStickMouseSecondaryPress;
+            @RightStickMouseSecondaryPress.canceled -= instance.OnRightStickMouseSecondaryPress;
         }
 
         public void RemoveCallbacks(IDefaultMapActions instance)
@@ -1434,8 +1434,8 @@ public partial class @YusamPackageGameInputActions: IInputActionCollection2, IDi
         void OnSpacePress(InputAction.CallbackContext context);
         void OnEscapePress(InputAction.CallbackContext context);
         void OnVirtualMousePosition(InputAction.CallbackContext context);
-        void OnBothMousePosition(InputAction.CallbackContext context);
-        void OnBothPrimaryPress(InputAction.CallbackContext context);
-        void OnBothSecondaryPress(InputAction.CallbackContext context);
+        void OnRightStickMousePosition(InputAction.CallbackContext context);
+        void OnRightStickMousePrimaryPress(InputAction.CallbackContext context);
+        void OnRightStickMouseSecondaryPress(InputAction.CallbackContext context);
     }
 }

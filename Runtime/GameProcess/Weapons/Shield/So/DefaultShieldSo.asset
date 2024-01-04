@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3cc20c5e60e42af99fcf90d5da0a986, type: 3}
   m_Name: DefaultShieldSo
   m_EditorClassIdentifier: 
+  prefabToBeSpawn: {fileID: 4049849970367427501, guid: 90b20808fecdf6f439dad58778d9cbe2,
+    type: 3}
+  prefabLifeTime: 5

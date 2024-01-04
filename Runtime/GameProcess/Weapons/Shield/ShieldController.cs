@@ -8,10 +8,9 @@ namespace YusamPackage
     [RequireComponent(typeof(RotationToMousePointByRay))]
     [RequireComponent(typeof(YusamDebugProperties))]
     [DisallowMultipleComponent]
-    public class ShootController : MonoBehaviour
+    public class ShieldController : MonoBehaviour
     {
-        [SerializeField] private Transform nozzlePoint;
-        [SerializeField] private ShootBullet prefabToBeSpawn;
+        [SerializeField] private Shield prefabToBeSpawn;
         [SerializeField] private GameInputPerformedEnum[] inputs;
 
         private GameInputController _gameInputController;
@@ -20,10 +19,6 @@ namespace YusamPackage
         
         private void Awake()
         {
-            if (nozzlePoint == null)
-            {
-                Debug.LogError($"Nozzle Point property is null in component {name}");
-            }
             if (prefabToBeSpawn == null)
             {
                 Debug.LogError($"Prefab To Be Spawn property is null in component {name}");
@@ -43,14 +38,10 @@ namespace YusamPackage
         {
             if (!_gameInputController.CanUseGameInput()) return;
             
-            IWeaponActionToPoint weaponActionToPoint = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
-            weaponActionToPoint.WeaponActionToPoint(nozzlePoint, _rotationToMousePointByRay.GetMouseLookPosition());
-
-            if (_debugProperties.debugEnabled)
-            {
-                Debug.DrawLine(nozzlePoint.position, _rotationToMousePointByRay.GetMouseLookPosition(), _debugProperties.debugDefaultColor, _debugProperties.debugDefaultDuration);
-            }
+            IWeaponAction weaponAction = Instantiate(prefabToBeSpawn, transform.position, transform.rotation);
+            weaponAction.WeaponAction(transform);
         }
+
 
         private void OnDestroy()
         {

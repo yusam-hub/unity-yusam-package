@@ -258,7 +258,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "BothMousePosition",
+                    "name": "RightStickMousePosition",
                     "type": "PassThrough",
                     "id": "ca0b32e3-31c2-496a-b2b3-cb5ee5d37666",
                     "expectedControlType": "Vector2",
@@ -267,7 +267,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BothPrimaryPress",
+                    "name": "RightStickMousePrimaryPress",
                     "type": "Button",
                     "id": "bc937ef9-a0ba-4e19-8432-88d3de27e65e",
                     "expectedControlType": "Button",
@@ -276,7 +276,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BothSecondaryPress",
+                    "name": "RightStickMouseSecondaryPress",
                     "type": "Button",
                     "id": "74655d7a-3041-42f9-be5a-996de7cc6526",
                     "expectedControlType": "Button",
@@ -942,7 +942,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BothMousePosition",
+                    "action": "RightStickMousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -953,7 +953,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BothMousePosition",
+                    "action": "RightStickMousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -964,7 +964,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BothPrimaryPress",
+                    "action": "RightStickMousePrimaryPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -975,7 +975,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BothPrimaryPress",
+                    "action": "RightStickMousePrimaryPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -986,7 +986,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BothSecondaryPress",
+                    "action": "RightStickMouseSecondaryPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -997,7 +997,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BothSecondaryPress",
+                    "action": "RightStickMouseSecondaryPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

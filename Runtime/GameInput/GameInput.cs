@@ -177,10 +177,10 @@ namespace YusamPackage
                 case GameInputPerformedEnum.RightStickPress:
                     return GetRightStickPressAction();       
                 
-                case GameInputPerformedEnum.BothPrimaryPress:
-                    return GetBothPrimaryPressAction();  
-                case GameInputPerformedEnum.BothSecondaryPress:
-                    return GetBothSecondaryPressAction();     
+                case GameInputPerformedEnum.RightStickMousePrimaryPress:
+                    return GetRightStickMousePrimaryPressAction();  
+                case GameInputPerformedEnum.RightStickMouseSecondaryPress:
+                    return GetRightStickMouseSecondaryPressAction();     
             }
             Debug.LogError($"{gameInputPerformedEnum} is not implemented");
             return null;
@@ -300,15 +300,7 @@ namespace YusamPackage
             return GetVirtualMousePositionAction().ReadValue<Vector2>();
         }
         
-        public InputAction GetBothMousePositionAction()
-        {
-            return _gameInputActions.DefaultMap.BothMousePosition;
-        }
-        
-        public Vector2 GetBothMousePosition()
-        {
-            return GetBothMousePositionAction().ReadValue<Vector2>();
-        }
+
         
         /*
          * MOUSE
@@ -356,14 +348,26 @@ namespace YusamPackage
             return _gameInputActions.DefaultMap.MouseRightPress;
         }
         
-        public InputAction GetBothPrimaryPressAction()
+        
+        public InputAction GetRightStickMousePositionAction()
         {
-            return _gameInputActions.DefaultMap.BothPrimaryPress;
+            return _gameInputActions.DefaultMap.RightStickMousePosition;
         }
         
-        public InputAction GetBothSecondaryPressAction()
+        public Vector2 GetRightStickMousePosition()
         {
-            return _gameInputActions.DefaultMap.BothSecondaryPress;
+            return GetRightStickMousePositionAction().ReadValue<Vector2>();
+        }
+        
+        
+        public InputAction GetRightStickMousePrimaryPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightStickMousePrimaryPress;
+        }
+        
+        public InputAction GetRightStickMouseSecondaryPressAction()
+        {
+            return _gameInputActions.DefaultMap.RightStickMouseSecondaryPress;
         }
 
         public Vector3 GetLeftStickDirectionAsVector3()
@@ -382,7 +386,7 @@ namespace YusamPackage
             
             GUILayout.Label("Mouse Position: " + GetMousePosition(), style);
             GUILayout.Label("Virtual Mouse Position: " + GetVirtualMousePosition(), style);           
-            GUILayout.Label("Both Mouse Position: " + GetBothMousePosition(), style);           
+            //GUILayout.Label("Both Mouse Position: " + GetBothMousePosition(), style);           
 
             GUILayout.EndArea();
         }

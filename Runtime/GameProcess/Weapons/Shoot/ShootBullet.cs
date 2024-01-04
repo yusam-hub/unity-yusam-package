@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace YusamPackage
 {
-    public class ShootBullet : MonoBehaviour
+    public class ShootBullet : MonoBehaviour, IWeaponActionToPoint, IShootBullet
     {
         [SerializeField] private ShootBulletSo shootBulletSo;
 
-        public void Shoot(Transform fromTransform, Vector3 toPosition)
+        public void WeaponActionToPoint(Transform sourceTransform, Vector3 destinationPoint)
         {
-            StartCoroutine(MoveBulletCoroutine(fromTransform, toPosition, shootBulletSo.trajectory));
+            StartCoroutine(MoveBulletCoroutine(sourceTransform, destinationPoint, shootBulletSo.trajectory));
         }
 
         private IEnumerator MoveBulletCoroutine(Transform fromTransform, Vector3 toPosition, ShootBulletSo.ShootBulletTrajectory trajectory)

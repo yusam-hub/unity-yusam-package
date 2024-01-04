@@ -30,7 +30,7 @@
         MouseMiddlePress,
         MouseRightPress,
         
-        BothPrimaryPress,
-        BothSecondaryPress,
+        RightStickMousePrimaryPress,
+        RightStickMouseSecondaryPress,
     }
 }

@@ -28,7 +28,7 @@ namespace YusamPackage
         public float parallelMaxDistance = 20f;
 
         [Space(10)]
-        [YusamHelpBox("Если расстония меньше чем тут указано, то включается параллельний тип траектории, 0 - отключает проверку",3)]
+        [YusamHelpBox("Если расстояние меньше чем тут указано, то включается параллельний тип траектории, 0 - отключает проверку",3)]
         [Space(10)]
         public float parallelMinDistance = 2f;
         

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace YusamPackage
 {
     [RequireComponent(typeof(YusamDebugProperties))]
-    public class Sword : MonoBehaviour
+    public class Sword : MonoBehaviour, IWeaponAction, ISword
     {
         [SerializeField] private SwordSo swordSo;
         [SerializeField] private Transform startPoint;
@@ -14,32 +14,24 @@ namespace YusamPackage
         [SerializeField] private LayerMask layerMask;
         
         private YusamDebugProperties _debugProperties;
-        private bool _attackInProcess;
+        private bool _weaponActionInProcess;
 
         private void Awake()
         {
             _debugProperties = GetComponent<YusamDebugProperties>();
         }
 
-        private void Update()
+        public void WeaponAction(Transform sourceTransform)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (!_weaponActionInProcess)
             {
-                DoAttack();
-            }
-        }
-
-        private void DoAttack()
-        {
-            if (!_attackInProcess)
-            {
-                StartCoroutine(AttackCoroutine());
+                StartCoroutine(ExecuteCoroutine(sourceTransform));
             }
         }
         
-        private IEnumerator AttackCoroutine()
+        private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
-            _attackInProcess = true;
+            _weaponActionInProcess = true;
             
             float timer = swordSo.hitDamageDuration;
             List<Collider> list = new List<Collider>();
@@ -69,10 +61,14 @@ namespace YusamPackage
             foreach (Collider collider in list)
             {
                 //Debug.Log($"{collider.name}");
-                collider.GetComponent<IDamage>()?.DoDamage(collider, swordSo.hitDamageVolume, swordSo.hitDamageForce);
+                if (collider != null)
+                {
+                    collider.GetComponent<IDamage>()
+                        ?.DoDamage(collider, swordSo.hitDamageVolume, swordSo.hitDamageForce);
+                }
             }
             
-            _attackInProcess = false;
+            _weaponActionInProcess = false;
         }
     }
 }
