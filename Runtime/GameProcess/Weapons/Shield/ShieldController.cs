@@ -16,7 +16,7 @@ namespace YusamPackage
         private GameInputController _gameInputController;
         private RotationToMousePointByRay _rotationToMousePointByRay;
         private YusamDebugProperties _debugProperties;
-        
+        private IWeaponAction _weaponAction;
         private void Awake()
         {
             if (prefabToBeSpawn == null)
@@ -32,14 +32,14 @@ namespace YusamPackage
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
             }
+            _weaponAction = Instantiate(prefabToBeSpawn, transform);
         }
 
         private void OnInputAction(InputAction.CallbackContext obj)
         {
             if (!_gameInputController.CanUseGameInput()) return;
-            
-            IWeaponAction weaponAction = Instantiate(prefabToBeSpawn, transform.position, transform.rotation);
-            weaponAction.WeaponAction(transform);
+
+            _weaponAction.WeaponAction(transform);
         }
 
 

@@ -25,14 +25,14 @@ namespace YusamPackage
         {
             if (!_weaponActionInProcess)
             {
+                _weaponActionInProcess = true;
                 StartCoroutine(ExecuteCoroutine(sourceTransform));
             }
         }
         
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
-            _weaponActionInProcess = true;
-            
+
             float timer = swordSo.hitDamageDuration;
             List<Collider> list = new List<Collider>();
             

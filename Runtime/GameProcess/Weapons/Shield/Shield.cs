@@ -29,14 +29,13 @@ namespace YusamPackage
         {
             if (!_weaponActionInProcess)
             {
+                _weaponActionInProcess = true;
                 StartCoroutine(ExecuteCoroutine(sourceTransform));
             }
         }
 
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
-            _weaponActionInProcess = true;
-            
             float timer = shieldSo.prefabLifeTime;
 
             GameObject newGameObject = Instantiate(prefabToBeSpawn, sourceTransform);
