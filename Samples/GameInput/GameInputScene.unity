@@ -123,6 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &52617682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5889750610966120534, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 391930741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee15dbb956034f0d97de803d9535e142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &315530676
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +203,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &391930741
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5098168549816532895, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_Name
+      value: GameInputCursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5889750610966120534, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 2129192880}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8eb657aca8c62964f8b62a8ec2971fd5, type: 3}
 --- !u!1 &447965869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7dee586e4590d24a9391bc294a1d2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desc: 
+  gameInputCursor: {fileID: 52617682}
+  virtualCursorSpeed: 1000
 --- !u!224 &2778482648675789614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2279,3 +2365,4 @@ SceneRoots:
   - {fileID: 447965873}
   - {fileID: 3463248447525181272}
   - {fileID: 798258429}
+  - {fileID: 391930741}
