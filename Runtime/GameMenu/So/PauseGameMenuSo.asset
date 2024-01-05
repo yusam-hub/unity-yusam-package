@@ -19,7 +19,7 @@ MonoBehaviour:
     menuText: OPTIONS
   - menuKey: develops
     menuText: DEVELOPS
-  - menuKey: return
-    menuText: RETURN
+  - menuKey: mainmenu
+    menuText: MAIN MENU
   - menuKey: exit
     menuText: EXIT

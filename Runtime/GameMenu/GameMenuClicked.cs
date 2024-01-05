@@ -4,19 +4,32 @@ namespace YusamPackage
 {
     public class GameMenuClicked : MonoBehaviour
     {
-        public void OnGameMenuClicked(string menuKey)
+        public void OnDebugClicked(GameObject sender, string menuKey)
         {
-            Debug.Log($"{GetType()} - OnGameMenuClicked {menuKey}");
+            Debug.Log($"{GetType()} - {menuKey}");
+        }
+     
+        public void OnIfResumeDoDisable(GameObject sender, string menuKey)
+        {
+            if (menuKey == "resume")
+            {
+                sender.SetActive(false);
+            }
+        }
+        
+        public void OnIfExitDoExitApplication(GameObject sender, string menuKey)
+        {
             switch (menuKey)
             {
-                case "return":
-                    Debug.Log($"Load main menu scene");
-                    break;
-                case "exit":
+                case "exit":                
+                case "quit":
+                    if (Application.isEditor)
+                    {
+                        Debug.Log($"Application.Quit from {sender.name}");
+                    }
                     Application.Quit();
                     break;
             }
         }
-        
     }
 }
