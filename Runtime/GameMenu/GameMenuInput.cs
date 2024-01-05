@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace YusamPackage
@@ -10,14 +9,14 @@ namespace YusamPackage
         public event EventHandler<OnGameMenuInputSelectedArgs> OnGameMenuInputSelected;
         public class OnGameMenuInputSelectedArgs : EventArgs
         {
-            public int oldIndex;
-            public int newIndex;
+            public int OldIndex;
+            public int NewIndex;
         }
         
         public event EventHandler<OnGameMenuInputClickedArgs> OnGameMenuInputClicked;
         public class OnGameMenuInputClickedArgs : EventArgs
         {
-            public int index;
+            public int Index;
         }
         
         [SerializeField] private GameInput gameInput;
@@ -38,28 +37,36 @@ namespace YusamPackage
         {
             OnGameMenuInputClicked?.Invoke(this, new OnGameMenuInputClickedArgs
             {
-                index = _selectedMenuIndex
+                Index = _selectedMenuIndex
             });
         }
 
         private void GameInputOnGetLeftStickVector2Action(InputAction.CallbackContext obj)
         {
-            int newSelectedMenuIndex = _selectedMenuIndex;
+            var newSelectedMenuIndex = _selectedMenuIndex;
 
             var leftStick = obj.ReadValue<Vector2>();
-            if (leftStick.y < 0)
+            switch (leftStick.y)
             {
-                newSelectedMenuIndex++;
-                if (newSelectedMenuIndex > gameMenuSo.gameMenuStructArray.Length - 1)
+                case < 0:
                 {
-                    newSelectedMenuIndex = gameMenuSo.gameMenuStructArray.Length - 1;
-                } 
-            } else if (leftStick.y > 0)
-            {
-                newSelectedMenuIndex--;
-                if (newSelectedMenuIndex < 0)
+                    newSelectedMenuIndex++;
+                    if (newSelectedMenuIndex > gameMenuSo.gameMenuStructArray.Length - 1)
+                    {
+                        newSelectedMenuIndex = gameMenuSo.gameMenuStructArray.Length - 1;
+                    }
+
+                    break;
+                }
+                case > 0:
                 {
-                    newSelectedMenuIndex = 0;
+                    newSelectedMenuIndex--;
+                    if (newSelectedMenuIndex < 0)
+                    {
+                        newSelectedMenuIndex = 0;
+                    }
+
+                    break;
                 }
             }
             SetSelectedMenuIndex(newSelectedMenuIndex);
@@ -79,14 +86,14 @@ namespace YusamPackage
 
         public void SetSelectedMenuIndex(int index)
         {
-            int oldSelectedMenuIndex = _selectedMenuIndex;
+            var oldSelectedMenuIndex = _selectedMenuIndex;
             
             _selectedMenuIndex = index;
             
             OnGameMenuInputSelected?.Invoke(this, new OnGameMenuInputSelectedArgs
             {
-                oldIndex = oldSelectedMenuIndex,
-                newIndex = index
+                OldIndex = oldSelectedMenuIndex,
+                NewIndex = index
             });
         }
     }

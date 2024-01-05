@@ -16,16 +16,11 @@ namespace YusamPackage
         private RotationToMousePointByRay _rotationToMousePointByRay;
         private float _reloadTimer;
         private bool _isReloading;
+        
         private void Awake()
         {
-            if (nozzlePoint == null)
-            {
-                Debug.LogError($"Nozzle Point property is null in component {name}");
-            }
-            if (prefabToBeSpawn == null)
-            {
-                Debug.LogError($"Prefab To Be Spawn property is null in component {name}");
-            }
+            LogErrorHelper.NotFoundWhatInIf(nozzlePoint == null,typeof(Transform) + " : Nozzle Point", this);
+            LogErrorHelper.NotFoundWhatInIf(nozzlePoint == null,typeof(ShootBullet) + " : Prefab To Be Spawn", this);
             
             _gameInputController = GetComponent<GameInputController>();
             _rotationToMousePointByRay = GetComponent<RotationToMousePointByRay>();

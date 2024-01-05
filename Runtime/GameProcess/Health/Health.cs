@@ -34,7 +34,7 @@ namespace YusamPackage
 
         private void DoUpdateProgress()
         {
-            if (_hasProgress != null)
+            if (_hasProgress)
             {
                 _hasProgress.DoProgressChanged(_healthVolume/healthSo.maxHealth);
             }

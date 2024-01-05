@@ -15,18 +15,11 @@ namespace YusamPackage
         private Vector3 _lookPosition;
         private Camera _camera;
 
-        
-        
         private void Awake()
         {
             _debugProperties = GetComponent<DebugProperties>();
             _gameInputController = GetComponent<GameInputController>();
             _camera = Camera.main;
-            if (_camera == null)
-            {
-                Debug.LogError("Camera.main instance not found in [ " + this + "]");
-                gameObject.SetActive(false);
-            }
         }
 
         private Vector3 GetInputMousePosition()
@@ -45,7 +38,7 @@ namespace YusamPackage
         {
             _lookPosition = MouseHelper.GetMouseLookPositionByRay(_lookPosition, GetInputMousePosition(), _camera, rayCastDistance);
         
-            Vector3 lookAt = TransformHelper.LookAt(transform.position, _lookPosition);
+            var lookAt = TransformHelper.LookAt(transform.position, _lookPosition);
 
             if (lookAt != Vector3.zero)
             {
@@ -65,7 +58,7 @@ namespace YusamPackage
                 if (_debugProperties.debugEnabled)
                 {
                     Debug.DrawLine(transform.position, lookAt, _debugProperties.debugLineColor, _debugProperties.debugDuration);
-                    Vector3 zeroY = new Vector3(lookAt.x, 0, lookAt.z);
+                    var zeroY = new Vector3(lookAt.x, 0, lookAt.z);
                     
                     if (lookAt.y != 0)
                     {

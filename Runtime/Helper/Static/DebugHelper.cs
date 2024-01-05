@@ -11,14 +11,14 @@ namespace YusamPackage
                 return;
             }
 
-            float angleStep = (360.0f / segments);
+            var angleStep = (360.0f / segments);
  
             angleStep *= Mathf.Deg2Rad;
  
-            Vector3 lineStart = Vector3.zero;
-            Vector3 lineEnd = Vector3.zero;
+            var lineStart = Vector3.zero;
+            var lineEnd = Vector3.zero;
  
-            for (int i = 0; i < segments; i++)
+            for (var i = 0; i < segments; i++)
             {
                 lineStart.x = Mathf.Cos(angleStep * i) ;
                 lineStart.z = Mathf.Sin(angleStep * i);

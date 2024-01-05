@@ -74,7 +74,7 @@ namespace YusamPackage
 
         public void SetEmptyForAll()
         {
-            for (int i = 0; i < _displayLines.Length; i++)
+            for (var i = 0; i < _displayLines.Length; i++)
             {
                 _displayLines[i] = "";
             }
@@ -86,14 +86,14 @@ namespace YusamPackage
             
             GUILayout.BeginArea(new Rect(10,10, Screen.width-20, Screen.height-20));
             
-            GUIStyle style = GUI.skin.label;
+            var style = GUI.skin.label;
             style.fontSize = 12;
             style.normal.textColor = _debugProperties.debugTextColor;
             style.active.textColor = _debugProperties.debugTextColor;
             style.hover.textColor = _debugProperties.debugTextColor;
             style.focused.textColor = _debugProperties.debugTextColor;
 
-            foreach (string value in _displayLines)
+            foreach (var value in _displayLines)
             {
                 if (value != "")
                 {

@@ -1,35 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.SceneManagement;
 
 namespace YusamPackage
 {
     [DisallowMultipleComponent]
     public class GameInput : MonoBehaviour
     {
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("GameInput - контроллер управления, быть статичным статичным и один на сцене")]
-#endif        
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Project Settings -> Player -> Active Input Handling = Both | Input System Package (New)")]
-#endif        
-        [Space(10)]
         [SerializeField] private GameInputCursor gameInputCursor;
-        [Space(10)]
         [SerializeField] private float virtualCursorSpeed = 1000;
 
         public static GameInput Instance { get; private set; }
 
         private YusamPackageGameInputActions _gameInputActions;
         private Mouse _virtualMouse;
-        private DebugProperties _debugProperties;
-        public static bool HasInstance()
-        {
-            return Instance;
-        }
+        private Camera _camera;
         
         /*
          * AWAKE
@@ -45,9 +30,8 @@ namespace YusamPackage
             Instance = this;
             
             LogErrorHelper.NotFoundWhatInIf(gameInputCursor == null, typeof(GameInputCursor).ToString(), this);
-            
-            _debugProperties = GetComponent<DebugProperties>();
-            
+
+            _camera = Camera.main;
             _gameInputActions = new YusamPackageGameInputActions();
             _gameInputActions.DefaultMap.Enable();
             
@@ -84,11 +68,11 @@ namespace YusamPackage
 
         private void InputSystemOnAfterUpdate()
         {
-            Vector2 deltaValue = GetRightStickDirection(); 
+            var deltaValue = GetRightStickDirection(); 
             deltaValue *= virtualCursorSpeed * Time.deltaTime;
 
-            Vector2 currentPosition = _virtualMouse.position.ReadValue();
-            Vector2 newPosition = currentPosition + deltaValue;
+            var currentPosition = _virtualMouse.position.ReadValue();
+            var newPosition = currentPosition + deltaValue;
 
             newPosition.x = Mathf.Clamp(newPosition.x, 0, Screen.width);
             newPosition.y = Mathf.Clamp(newPosition.y, 0, Screen.height);
@@ -99,12 +83,12 @@ namespace YusamPackage
 
         private void CursorAnchored(Vector2 newPosition)
         {
-            Vector2 anchoredPosition;
+    
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
                     gameInputCursor.GetRectTransformCanvas(),
                     newPosition,
-                    gameInputCursor.GetCanvas().renderMode == RenderMode.ScreenSpaceOverlay ? null : Camera.main,
-                    out anchoredPosition
+                    gameInputCursor.GetCanvas().renderMode == RenderMode.ScreenSpaceOverlay ? null : _camera,
+                    out var anchoredPosition
                 ))
             {
                 gameInputCursor.GetRectTransformCursor().anchoredPosition = anchoredPosition;
@@ -177,7 +161,7 @@ namespace YusamPackage
                 case GameInputPerformedEnum.RightStickMouseSecondaryPress:
                     return GetRightStickMouseSecondaryPressAction();     
             }
-            LogErrorHelper.NotImplementedWhatIn(typeof(GameInputPerformedEnum).ToString() + $" : {gameInputPerformedEnum}", this);
+            LogErrorHelper.NotImplementedWhatIn(typeof(GameInputPerformedEnum) + $" : {gameInputPerformedEnum}", this);
             return null;
         }
         
@@ -367,7 +351,7 @@ namespace YusamPackage
 
         public Vector3 GetLeftStickDirectionAsVector3()
         {
-            Vector2 leftStickDirection = GetLeftStickDirection();
+            var leftStickDirection = GetLeftStickDirection();
             return new Vector3(leftStickDirection.x, 0, leftStickDirection.y);
         }
         

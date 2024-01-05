@@ -9,20 +9,18 @@ namespace YusamPackage
     {
         [SerializeField] private Shield prefabToBeSpawn;
         [SerializeField] private GameInputPerformedEnum[] inputs;
-
+        
         private GameInputController _gameInputController;
         private IWeaponAction _weaponAction;
 
+
         private void Awake()
         {
-            if (prefabToBeSpawn == null)
-            {
-                Debug.LogError($"Prefab To Be Spawn property is null in component {name}");
-            }
+            LogErrorHelper.NotFoundWhatInIf(prefabToBeSpawn == null,typeof(Shield).ToString(), this);
             
             _gameInputController = GetComponent<GameInputController>();
 
-            foreach(GameInputPerformedEnum gameInputPerformedEnum in inputs)
+            foreach(var gameInputPerformedEnum in inputs)
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
             }
@@ -39,7 +37,7 @@ namespace YusamPackage
 
         private void OnDestroy()
         {
-            foreach(GameInputPerformedEnum gameInputPerformedEnum in inputs)
+            foreach(var gameInputPerformedEnum in inputs)
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
             }

@@ -15,16 +15,6 @@ namespace YusamPackage
             _collider.isTrigger = true;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            //Debug.Log($"OnTriggerEnter");
-        }
-        
-        private void OnTriggerExit(Collider other)
-        {
-            //Debug.Log($"OnTriggerExit");       
-        }
-
         private void OnTriggerStay(Collider other)
         {
             //Debug.Log($"OnTriggerStay");
@@ -36,7 +26,7 @@ namespace YusamPackage
                 _damageReUseTimer = deathZoneSo.damageReUseInterval;
                 
                 IDamage[] damages = other.GetComponents<IDamage>();
-                foreach (IDamage damage in damages)
+                foreach (var damage in damages)
                 {
                     damage.DoDamage(_collider, deathZoneSo.damageVolume, deathZoneSo.damageForce);
                 }   

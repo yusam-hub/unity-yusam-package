@@ -16,53 +16,18 @@ namespace YusamPackage
             public string SceneKey;
             public string LayerKey;
         }
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("GameInputScene - управляет слоями доступа к GameInput, должен быть статичным и один на сцене")]
-#endif        
-        [Space(10)]
-        [Header("References")] 
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Список доступных Scriptable Objects")]
-#endif        
-        [Space(10)]
         [SerializeField] private GameInputSceneSo[] availableGameInputSceneArray;
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Можно выбирать сцену в редакторе и в игре")]
-#endif        
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamDropdownInt("AvailableSceneStringList()")]
-#endif        
         [SerializeField] private int activeSceneIndex;
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Можно менять и видеть результ только в игре")]
-#endif        
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamDropdownInt("AvailableLayerStringList()")]
-#endif        
         [SerializeField] private int activeLayerIndex;
         
         [Serializable] public class SceneLayerChangedEvent : UnityEvent <string,string> {}
-
-        [Space(20)]
-        [Header("Events")] 
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("public void MethodName(string sceneKey, string layerKey)")]
-#endif        
-        [Space(10)]
-        [SerializeField] private SceneLayerChangedEvent sceneLayerChangedEvent = new SceneLayerChangedEvent();
+        [SerializeField] private SceneLayerChangedEvent sceneLayerChangedEvent = new();
         public SceneLayerChangedEvent OnSceneLayerChangedEvent { get { return sceneLayerChangedEvent; } set { sceneLayerChangedEvent = value; } }
 
         /*
          * PRIVATE LOCAL
          */
-        private List<String> _availableList = new List<string>();
+        private readonly List<String> _availableList = new();
         private Dictionary<string, GameInputSceneSo> _gameInputSceneDictionary;
         private GameInputSceneSo _activeGameInputScene;
         private GameInputSceneSo _lastGameInputScene;
@@ -131,7 +96,7 @@ namespace YusamPackage
                 {
                     if (_gameInputSceneDictionary.TryGetValue(
                             availableGameInputSceneArray[activeSceneIndex].key,
-                            out GameInputSceneSo gameInputScene))
+                            out var gameInputScene))
                     {
                         _lastGameInputScene = gameInputScene;
                     }
@@ -158,7 +123,7 @@ namespace YusamPackage
             int index = 0;
             foreach (var gameInputSceneSo in availableGameInputSceneArray)
             {
-                if (gameInputSceneSo != null)
+                if (gameInputSceneSo)
                 {
                     GameInputSceneSo temp = Instantiate(gameInputSceneSo);
                     temp.SetGameInputScene(this);
@@ -173,9 +138,9 @@ namespace YusamPackage
                 }
             }
 
-            if (_lastGameInputScene == null && _gameInputSceneDictionary.Count > 0)
+            if (!_lastGameInputScene && _gameInputSceneDictionary.Count > 0)
             {
-                if (_gameInputSceneDictionary.TryGetValue(availableGameInputSceneArray[0].key, out GameInputSceneSo gameInputScene))
+                if (_gameInputSceneDictionary.TryGetValue(availableGameInputSceneArray[0].key, out var gameInputScene))
                 {
                     _lastGameInputScene = gameInputScene;
                 }
@@ -186,7 +151,7 @@ namespace YusamPackage
         {
             if (_activeGameInputScene != _lastGameInputScene)
             {
-                if (_activeGameInputScene != null)
+                if (_activeGameInputScene)
                 {
                     _activeGameInputScene.DoExit();
                 }
@@ -194,11 +159,11 @@ namespace YusamPackage
                 _activeGameInputScene = _lastGameInputScene;
                 activeLayerIndex = 0;//todo - or defaultKey in layer
                 
-                if (_activeGameInputScene != null)
+                if (_activeGameInputScene)
                 {
                     _activeGameInputScene.DoEnter();
                 }
-            } else if (_activeGameInputScene != null)
+            } else if (_activeGameInputScene)
             {
                 _activeGameInputScene.DoUpdate();
             }

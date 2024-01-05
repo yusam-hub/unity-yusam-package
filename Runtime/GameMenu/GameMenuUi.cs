@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace YusamPackage
 {
@@ -49,9 +47,9 @@ namespace YusamPackage
         {
             ClearMenuItemUi();
             
-            foreach (GameMenuSo.GameMenuStruct menuItem in _gameMenuInput.GetGameMenuStruct())
+            foreach (var menuItem in _gameMenuInput.GetGameMenuStruct())
             {
-                GameMenuItemUi gameMenuItemUi = Instantiate(prefabGameMenuItemUi, gameMenuItemsUi.transform);
+                var gameMenuItemUi = Instantiate(prefabGameMenuItemUi, gameMenuItemsUi.transform);
                 gameMenuItemUi.SetMenuIndex(_menuList.Count); 
                 gameMenuItemUi.SetMenuKey(menuItem.menuKey); 
                 gameMenuItemUi.SetMenuText(menuItem.menuText); 
@@ -69,10 +67,10 @@ namespace YusamPackage
 
         private void ClearMenuItemUi()
         {
-            int c = _menuList.Count;
-            for (int i = c - 1; i >= 0; i--)
+            var c = _menuList.Count;
+            for (var i = c - 1; i >= 0; i--)
             {
-                GameMenuItemUi gameMenuItemUi = _menuList[i];
+                var  gameMenuItemUi = _menuList[i];
                 _menuList.RemoveAt(i);
                 gameMenuItemUi.OnMenuClick -= GameMenuItemUiOnMenuClick;
                 gameMenuItemUi.OnMenuEnter -= GameMenuItemUiOnMenuEnter;
@@ -83,36 +81,35 @@ namespace YusamPackage
 
         private void OnGameMenuInputSelected(object sender, GameMenuInput.OnGameMenuInputSelectedArgs e)
         {
-            if (e.oldIndex >= 0 && e.oldIndex < _menuList.Count)
+            if (e.OldIndex >= 0 && e.OldIndex < _menuList.Count)
             {
-                _menuList[e.oldIndex].SetColorDefault();
+                _menuList[e.OldIndex].SetColorDefault();
             }
             
-            if (e.newIndex >= 0 && e.newIndex < _menuList.Count)
+            if (e.NewIndex >= 0 && e.NewIndex < _menuList.Count)
             {
-                _menuList[e.newIndex].SetColorHover();
+                _menuList[e.NewIndex].SetColorHover();
             }
         }
 
         private void GameMenuItemUiOnMenuEnter(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
-            _gameMenuInput.SetSelectedMenuIndex(e.menuIndex);
+            _gameMenuInput.SetSelectedMenuIndex(e.MenuIndex);
         }
 
         private void OnGameMenuInputClicked(object sender, GameMenuInput.OnGameMenuInputClickedArgs e)
         {
-            string menuKey = _gameMenuInput.GetGameMenuStruct()[e.index].menuKey;
-            onClickedEvent?.Invoke(gameObject, menuKey);
+            onClickedEvent?.Invoke(gameObject, _gameMenuInput.GetGameMenuStruct()[e.Index].menuKey);
         }
         
         private void GameMenuItemUiOnMenuClick(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
-            onClickedEvent?.Invoke(gameObject, e.menuKey);
+            onClickedEvent?.Invoke(gameObject, e.MenuKey);
         }
         
         private void GameMenuItemUiOnMenuExit(object sender, GameMenuItemUi.OnMenuEventArgs e)
         {
-            _menuList[e.menuIndex].SetColorDefault();
+            _menuList[e.MenuIndex].SetColorDefault();
         }
     }
 }

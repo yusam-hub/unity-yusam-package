@@ -15,6 +15,9 @@ namespace YusamPackage
             Debug.LogError(String.Format("{0} not found in [ {1} : {2} ]", what, inObj.GetType(), inObj.name));
         }
         
+        /*
+         * LogErrorHelper.NotFoundWhatInIf(1=1,typeof(class).ToString(), this);
+         */
         public static void NotFoundWhatInIf(bool condition, string what, Object inObj)
         {
             if (condition)

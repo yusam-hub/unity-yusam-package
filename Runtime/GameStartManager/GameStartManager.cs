@@ -38,9 +38,9 @@ namespace YusamPackage
 
             Instance = this;
 
-            GameStartManagerState[] states = GetComponentsInChildren<GameStartManagerState>();
+            var states = GetComponentsInChildren<GameStartManagerState>();
 
-            foreach (GameStartManagerState state in states)
+            foreach (var state in states)
             {
                 _states.TryAdd(state.GetGameStartManagerStateEnum(), state);
             }
@@ -62,11 +62,9 @@ namespace YusamPackage
             }
         }
         
-        IEnumerator AsyncStartLoadingScene(string aSceneName)
+        IEnumerator AsyncStartLoadingScene(string pSceneName)
         {
-
- 
-            _asyncOperation = SceneManager.LoadSceneAsync(aSceneName);
+            _asyncOperation = SceneManager.LoadSceneAsync(pSceneName);
             _asyncOperation.allowSceneActivation = false;
             while (_asyncOperation.progress < 0.9f)
             {
@@ -89,9 +87,9 @@ namespace YusamPackage
 
         private void TryGetCurrentManagerState()
         {
-            if (_currentGameManagerState == null)
+            if (!_currentGameManagerState)
             {
-                if (_states.TryGetValue(currentManagerStateEnum, out GameStartManagerState gameManagerState))
+                if (_states.TryGetValue(currentManagerStateEnum, out var gameManagerState))
                 {
                     _currentGameManagerState = gameManagerState;
                     _currentGameManagerState.SetGameStartManager(this);
@@ -102,7 +100,7 @@ namespace YusamPackage
             {
                 if (_currentGameManagerState.GetGameStartManagerStateEnum() != currentManagerStateEnum)
                 {
-                    if (_states.TryGetValue(currentManagerStateEnum, out GameStartManagerState gameManagerState))
+                    if (_states.TryGetValue(currentManagerStateEnum, out var gameManagerState))
                     {
                         _currentGameManagerState.Exit();
                         

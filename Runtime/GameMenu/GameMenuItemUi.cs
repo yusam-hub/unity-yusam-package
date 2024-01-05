@@ -9,8 +9,8 @@ namespace YusamPackage
     {
         public class OnMenuEventArgs : EventArgs
         {
-            public int menuIndex;
-            public string menuKey;
+            public int MenuIndex;
+            public string MenuKey;
         }
         
         public EventHandler<OnMenuEventArgs> OnMenuClick;
@@ -50,15 +50,10 @@ namespace YusamPackage
         }
         private void OnButtonClick()
         {
-            DoMenuClick();
-        }
-        
-        public void DoMenuClick()
-        {
             OnMenuClick?.Invoke(this, new OnMenuEventArgs
             {
-                menuIndex = _menuIndex,
-                menuKey = _menuKey
+                MenuIndex = _menuIndex,
+                MenuKey = _menuKey
             });
         }
 
@@ -66,8 +61,8 @@ namespace YusamPackage
         {
             OnMenuEnter?.Invoke(this, new OnMenuEventArgs
             {
-                menuIndex = _menuIndex,
-                menuKey = _menuKey
+                MenuIndex = _menuIndex,
+                MenuKey = _menuKey
             });
         }
 
@@ -75,8 +70,8 @@ namespace YusamPackage
         {
             OnMenuExit?.Invoke(this, new OnMenuEventArgs
             {
-                menuIndex = _menuIndex,
-                menuKey = _menuKey
+                MenuIndex = _menuIndex,
+                MenuKey = _menuKey
             });
         }
 

@@ -3,20 +3,9 @@ using UnityEngine;
 
 namespace YusamPackage
 {
-    public class Shield : MonoBehaviour, IWeaponAction, IShield
+    public class Shield : MonoBehaviour, IWeaponAction
     {
-        [Space(10)]
-#if UNITY_EDITOR
-        [YusamHelpBox("Настройки обекта", 2)]
-#endif        
-        [Space(10)]
         [SerializeField] private ShieldSo shieldSo;
-        
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Объект который будет создаваться", 2)]
-#endif        
-        [Space(10)]
         public GameObject prefabToBeSpawn;
         
         private bool _weaponActionInProcess;
@@ -32,13 +21,13 @@ namespace YusamPackage
 
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
-            float timer = shieldSo.scriptLifeTime;
+            var activeLifeTime = shieldSo.activeLifeTime;
             
-            GameObject newGameObject = Instantiate(prefabToBeSpawn, sourceTransform);
+            var newGameObject = Instantiate(prefabToBeSpawn, sourceTransform);
             
-            while (timer > 0)
+            while (activeLifeTime > 0)
             {
-                timer -= Time.deltaTime;
+                activeLifeTime -= Time.deltaTime;
                 yield return null;
             }
             

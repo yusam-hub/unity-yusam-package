@@ -23,7 +23,7 @@ namespace YusamPackage
                 case "start":
                     isFinished = true;
                     break;                
- }
+            }
         }
         
         

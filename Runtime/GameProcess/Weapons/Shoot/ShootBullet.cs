@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace YusamPackage
 {
-    public class ShootBullet : MonoBehaviour, IWeaponActionToPoint, IShootBullet
+    [RequireComponent(typeof(DebugProperties))]
+    public class ShootBullet : MonoBehaviour
     {
         [SerializeField] private ShootBulletSo shootBulletSo;
+
+        private DebugProperties _debugProperties;
+        private void Awake()
+        {
+            _debugProperties = GetComponent<DebugProperties>();
+        }
 
         public void WeaponActionToPoint(Transform sourceTransform, Vector3 destinationPoint)
         {
@@ -33,9 +41,10 @@ namespace YusamPackage
             Vector3 currentDirection;
             float maxDistance;
             
-            Vector3 startPos = fromTransform.position;
-            Vector3 endPos = toPosition;
-            ShootBulletSo.ShootBulletTrajectory currentTrajectory = trajectory;
+            var startPos = fromTransform.position;
+            var endPos = toPosition;
+            
+            var currentTrajectory = trajectory;
 
             currentDirection = endPos - startPos;
             maxDistance = currentDirection.magnitude;
@@ -60,16 +69,16 @@ namespace YusamPackage
             }
 
 
-            float lifeTimer = shootBulletSo.scriptLifeTime;
+            //var lifeTimer = shootBulletSo.scriptLifeTime;
             float currentDistance = 0;
             while (currentDistance <= maxDistance)
             {
-                lifeTimer -= Time.deltaTime;
+                /*lifeTimer -= Time.deltaTime;
                 if (lifeTimer <= 0)
                 {
                     SelfDestroy(null);
                     yield break; 
-                }
+                }*/
                 
                 float currentTransition;
                 Vector3 currentPosition;
@@ -78,7 +87,7 @@ namespace YusamPackage
                 {
                     case ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory:
                         currentTransition = currentDistance / maxDistance;
-                        float parabolicHeight = 4f * shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition);
+                        var parabolicHeight = 4f * shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition);
                         currentPosition = Vector3.Lerp(startPos, endPos, currentTransition);
                         currentPosition.y += parabolicHeight;
                         break;
@@ -93,7 +102,7 @@ namespace YusamPackage
                 }
                 
                 if (shootBulletSo.rotateToTrajectory) {
-                    Vector3 lookDir = currentPosition - transform.position;
+                    var lookDir = currentPosition - transform.position;
                     if (lookDir.sqrMagnitude >= Mathf.Epsilon) {
                         transform.rotation = Quaternion.LookRotation(lookDir);
                     }
@@ -102,7 +111,7 @@ namespace YusamPackage
                 RaycastHit? hitTest;
                 hitTest = TryGetHitInfo(transform.position, currentPosition);
                 if (hitTest.HasValue) {
-                    SelfDestroy(hitTest);
+                    HitAndSelfDestroy(hitTest.Value);
                     yield break;
                 }
 
@@ -112,44 +121,67 @@ namespace YusamPackage
                 yield return null;
             }
 
-            SelfDestroy( null );
-        }
-        
-        
-        private void HitEffect(Vector3 point)
-        {
-            if (shootBulletSo.hitEffectPrefab) {
-                Destroy(
-                    Instantiate(shootBulletSo.hitEffectPrefab, point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
-                );
-            }
-        }
-        
-        private void SelfDestroy(RaycastHit? hitInfo)
-        {
-            if (hitInfo.HasValue)
+            if (_debugProperties.debugEnabled)
             {
-                HitEffect(hitInfo.Value.point);
+                Debug.Log($"Raycast not found for [ Hit Damage Layer Mask ] in scriptable object [ {shootBulletSo.name} ]");
+            }
+
+            Destroy(gameObject);
+        }
+        
+        private void HitAndSelfDestroy(RaycastHit hit)
+        {
+            if (_debugProperties.debugEnabled)
+            {
+                Debug.Log($"Raycast hit on {hit.collider.name} from {GetType()}");
+            }
+            
+            TryHitEffect(hit.point);
                 
-                if (hitInfo.Value.collider.TryGetComponent(out IDamage damage))
-                {
-                    damage.DoDamage(hitInfo.Value.collider, shootBulletSo.hitDamageVolume, shootBulletSo.hitDamageForce);
-                }
+            if (hit.collider.TryGetComponent(out IDamage damage))
+            {
+                damage.DoDamage(hit.collider, shootBulletSo.hitDamageVolume, shootBulletSo.hitDamageForce);
             }
             
             Destroy(gameObject);
         }
         
+        private void TryHitEffect(Vector3 point)
+        {
+            if (_debugProperties.debugEnabled)
+            {
+                Debug.Log($"TryHitEffect on point {point}");
+            }
+            
+            if (shootBulletSo.hitEffectPrefab) {
+                if (_debugProperties.debugEnabled)
+                {
+                    Debug.Log($"Instantiate prefab and will destroy throw time: {shootBulletSo.hitEffectDestroyTime}");
+                }
+                Destroy(
+                    Instantiate(shootBulletSo.hitEffectPrefab, point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
+                );
+            }
+            else
+            {
+                if (_debugProperties.debugEnabled)
+                {
+                    Debug.Log($"Hit Effect Prefab not found in {typeof(ShootBulletSo)}");
+                }
+
+            }
+        }
+        
         private RaycastHit? TryGetHitInfo(Vector3 fromPosition, Vector3 toPosition)
         {
-            Ray castRay = new Ray( fromPosition, toPosition - fromPosition );
+            var castRay = new Ray( fromPosition, toPosition - fromPosition );
 
             if (Physics.SphereCast(
                     castRay, 
                     shootBulletSo.bulletHitRadius, 
-                    out RaycastHit hitInfo
+                    out var hitInfo
                     ,( fromPosition - toPosition ).magnitude
-                    ,shootBulletSo.hitLayerMask
+                    ,shootBulletSo.hitDamageLayerMask
                     )
                 ) {
                 return hitInfo;

@@ -14,6 +14,7 @@ namespace YusamPackage
 
         private void Awake()
         {
+            _canvasRectTransform = canvas.GetComponent<RectTransform>();
             _gameInputCursorUi = Instantiate(gameInputCursorUiPrefab, canvas.transform);
             _gameInputCursorUi.gameObject.SetActive(false);
         }
@@ -61,11 +62,6 @@ namespace YusamPackage
         
         public RectTransform GetRectTransformCanvas()
         {
-            if (!_canvasRectTransform)
-            {
-                _canvasRectTransform = canvas.GetComponent<RectTransform>();
-            }
-
             return _canvasRectTransform;
         }
 

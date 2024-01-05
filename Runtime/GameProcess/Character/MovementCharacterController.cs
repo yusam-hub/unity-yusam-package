@@ -33,7 +33,7 @@ namespace YusamPackage
         
         private void Movement()
         {
-            Vector3 input = GetInputMovement();
+            var input = GetInputMovement();
             
             if (isometricEnabled)
             {
@@ -41,8 +41,8 @@ namespace YusamPackage
                 input = isoMatrix.MultiplyPoint3x4(input);
             }
         
-            Vector3 move = input;
-            move *= (Mathf.Abs(input.x) == 1 && Mathf.Abs(input.z) == 1) ? .7f : 1;
+            var move = input;
+            move *= Mathf.Abs(input.x) == 1 && Mathf.Abs(input.z) == 1 ? .7f : 1;
             move *= moveSpeed;
             move += Vector3.up * -8;
             _characterController.Move(move * Time.deltaTime);
