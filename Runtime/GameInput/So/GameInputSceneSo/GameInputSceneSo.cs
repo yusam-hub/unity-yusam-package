@@ -22,10 +22,8 @@ namespace YusamPackage
         [Space(10)]
         public string key;
         public string title;
-        public string desc;
 
-
-        private List<String> _availableList = new List<string>();
+        private readonly List<String> _availableList = new();
         private Dictionary<string, GameInputLayerSo> _gameInputLayerDictionary;
         private GameInputLayerSo _activeGameInputLayer;
         private GameInputLayerSo _lastGameInputLayer;
@@ -47,7 +45,7 @@ namespace YusamPackage
             _availableList.Clear();
             foreach (var gameInputLayerSo in availableLayerSoArray)
             {
-                if (gameInputLayerSo != null)
+                if (gameInputLayerSo)
                 {
                     _availableList.Add(gameInputLayerSo.title);
                 }
@@ -64,14 +62,14 @@ namespace YusamPackage
             //Debug.Log($"DoEditorChangeLayerIndex on {name} {key} {title}");
             if (_gameInputLayerDictionary != null && _gameInputLayerDictionary.Count > 0)
             {
-                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[index].key, out GameInputLayerSo gameInputLayer))
+                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[index].key, out var gameInputLayer))
                 {
                     _lastGameInputLayer = gameInputLayer;
                 }
             }
         }
         
-        public virtual void DoEnter()
+        public void DoEnter()
         {
             //Debug.Log($"Enter on {name} {key} {title}");
             
@@ -83,22 +81,21 @@ namespace YusamPackage
             }
             else
             {
-                foreach (KeyValuePair<string, GameInputLayerSo> p in _gameInputLayerDictionary)
+                foreach (var p in _gameInputLayerDictionary)
                 {
-                    Object temp = p.Value as Object;
-                    Destroy(temp);
+                    Destroy(p.Value);
                 }
 
                 _gameInputLayerDictionary.Clear();
             }
 
 
-            int index = 0;
-            foreach (GameInputLayerSo gameInputLayerSo in availableLayerSoArray)
+            var index = 0;
+            foreach (var gameInputLayerSo in availableLayerSoArray)
             {
-                if (gameInputLayerSo != null)
+                if (gameInputLayerSo)
                 {
-                    GameInputLayerSo temp = Instantiate(gameInputLayerSo);
+                    var temp = Instantiate(gameInputLayerSo);
                     //temp - can doit somethis
                     _gameInputLayerDictionary.Add(gameInputLayerSo.key, temp);
                     
@@ -111,9 +108,9 @@ namespace YusamPackage
                 }
             }
 
-            if (_lastGameInputLayer == null && _gameInputLayerDictionary.Count > 0)
+            if (!_lastGameInputLayer && _gameInputLayerDictionary.Count > 0)
             {
-                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[0].key, out GameInputLayerSo gameInputLayer))
+                if (_gameInputLayerDictionary.TryGetValue(availableLayerSoArray[0].key, out var gameInputLayer))
                 {
                     _lastGameInputLayer = gameInputLayer;
                 }
@@ -121,31 +118,31 @@ namespace YusamPackage
             
         }
 
-        public virtual void DoUpdate()
+        public void DoUpdate()
         {
             if (_activeGameInputLayer != _lastGameInputLayer)
             {
-                if (_activeGameInputLayer != null)
+                if (_activeGameInputLayer)
                 {
                     _activeGameInputLayer.DoExit();
                 }
                 
                 _activeGameInputLayer = _lastGameInputLayer;
                 
-                if (_activeGameInputLayer != null)
+                if (_activeGameInputLayer)
                 {
                     _activeGameInputLayer.DoEnter();
                     _gameInputScene.DoOnSceneLayerChanged(key, _activeGameInputLayer.key);
                 }
-            } else if (_activeGameInputLayer != null)
+            } else if (_activeGameInputLayer)
             {
                 _activeGameInputLayer.DoUpdate();
             }
         }
         
-        public virtual void DoExit()
+        public void DoExit()
         {
-            if (_activeGameInputLayer != null)
+            if (_activeGameInputLayer)
             {
                 _activeGameInputLayer.DoExit();
             }

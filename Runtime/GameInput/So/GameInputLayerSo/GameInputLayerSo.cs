@@ -13,17 +13,17 @@ namespace YusamPackage
         public string key;
         public string title;
         
-        public virtual void DoEnter()
+        public void DoEnter()
         {
             //Debug.Log($"Enter on {name} {key} {title}");
         }
 
-        public virtual void DoExit()
+        public void DoExit()
         {
             //Debug.Log($"Exit on {name} {key} {title}");   
         }
         
-        public virtual void DoUpdate()
+        public void DoUpdate()
         {
 
         }

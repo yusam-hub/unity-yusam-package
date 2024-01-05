@@ -6,9 +6,9 @@ namespace YusamPackage
     {
         public static Vector3 GetMouseLookPositionByRay(Vector3 lookPosition, Vector3 inputMousePosition, Camera camera, float distance, int layerMask)
         {
-            Ray ray = camera.ScreenPointToRay(inputMousePosition);
+            var ray = camera.ScreenPointToRay(inputMousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
+            if (Physics.Raycast(ray, out var hit, distance, layerMask))
             {
                 lookPosition = hit.point;
             }
@@ -18,9 +18,9 @@ namespace YusamPackage
         
         public static Vector3 GetMouseLookPositionByRay(Vector3 lookPosition, Vector3 inputMousePosition, Camera camera, float distance)
         {
-            Ray ray = camera.ScreenPointToRay(inputMousePosition);
+            var ray = camera.ScreenPointToRay(inputMousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, distance))
+            if (Physics.Raycast(ray, out var hit, distance))
             {
                 lookPosition = hit.point;
             }

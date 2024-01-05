@@ -33,9 +33,10 @@ namespace YusamPackage
             Vector3 currentDirection;
             float maxDistance;
             
-            Vector3 startPos = fromTransform.position;
-            Vector3 endPos = toPosition;
-            ShootBulletSo.ShootBulletTrajectory currentTrajectory = trajectory;
+            var startPos = fromTransform.position;
+            var endPos = toPosition;
+            
+            var currentTrajectory = trajectory;
 
             currentDirection = endPos - startPos;
             maxDistance = currentDirection.magnitude;
@@ -60,7 +61,7 @@ namespace YusamPackage
             }
 
 
-            float lifeTimer = shootBulletSo.scriptLifeTime;
+            var lifeTimer = shootBulletSo.scriptLifeTime;
             float currentDistance = 0;
             while (currentDistance <= maxDistance)
             {
@@ -78,7 +79,7 @@ namespace YusamPackage
                 {
                     case ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory:
                         currentTransition = currentDistance / maxDistance;
-                        float parabolicHeight = 4f * shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition);
+                        var parabolicHeight = 4f * shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition);
                         currentPosition = Vector3.Lerp(startPos, endPos, currentTransition);
                         currentPosition.y += parabolicHeight;
                         break;
@@ -93,7 +94,7 @@ namespace YusamPackage
                 }
                 
                 if (shootBulletSo.rotateToTrajectory) {
-                    Vector3 lookDir = currentPosition - transform.position;
+                    var lookDir = currentPosition - transform.position;
                     if (lookDir.sqrMagnitude >= Mathf.Epsilon) {
                         transform.rotation = Quaternion.LookRotation(lookDir);
                     }
@@ -142,12 +143,12 @@ namespace YusamPackage
         
         private RaycastHit? TryGetHitInfo(Vector3 fromPosition, Vector3 toPosition)
         {
-            Ray castRay = new Ray( fromPosition, toPosition - fromPosition );
+            var castRay = new Ray( fromPosition, toPosition - fromPosition );
 
             if (Physics.SphereCast(
                     castRay, 
                     shootBulletSo.bulletHitRadius, 
-                    out RaycastHit hitInfo
+                    out var hitInfo
                     ,( fromPosition - toPosition ).magnitude
                     ,shootBulletSo.hitLayerMask
                     )

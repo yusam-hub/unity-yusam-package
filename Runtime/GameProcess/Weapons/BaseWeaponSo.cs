@@ -26,7 +26,7 @@ namespace YusamPackage
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Какие слои проверяются на столкновения",3)]
+        [YusamHelpBox("Какие слои проверяются на столкновения")]
 #endif        
         [Space(10)]
         public LayerMask hitLayerMask;
@@ -61,7 +61,7 @@ namespace YusamPackage
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Время жизни скрипта",3)]
+        [YusamHelpBox("Время жизни скрипта")]
 #endif        
         [Space(10)]
         public float scriptLifeTime = 100f;

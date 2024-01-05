@@ -29,19 +29,19 @@ namespace YusamPackage
 
         private void RotateByRightStick()
         {
-            Vector2 rightStick = _gameInputController.gameInput.GetRightStickDirection();
+            var rightStick = _gameInputController.gameInput.GetRightStickDirection();
      
-            Vector3 lookAt = Vector3.right * rightStick.x + Vector3.forward * rightStick.y;
+            var lookAt = Vector3.right * rightStick.x + Vector3.forward * rightStick.y;
 
             if (isometricEnabled)
             {
-                Matrix4x4 isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+                var isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
                 lookAt = isoMatrix.MultiplyPoint3x4(lookAt);
             }
 
             if (lookAt != Vector3.zero)
             {
-                Quaternion newRotation = Quaternion.LookRotation(lookAt, Vector3.up);
+                var newRotation = Quaternion.LookRotation(lookAt, Vector3.up);
 
                 transform.eulerAngles = Vector3.up *
                                         Mathf.MoveTowardsAngle(
@@ -52,7 +52,6 @@ namespace YusamPackage
                 if (_debugProperties.debugEnabled)
                 {
                     Debug.DrawRay(transform.position, lookAt, _debugProperties.debugLineColor, _debugProperties.debugDuration);
-
                 }                
             }
         }

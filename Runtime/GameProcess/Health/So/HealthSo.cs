@@ -13,14 +13,14 @@ namespace YusamPackage
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Максимальное значение здоровья",3)]
+        [YusamHelpBox("Максимальное значение здоровья")]
 #endif        
         [Space(10)]
         public float maxHealth = 100f;
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Эффект смерти",3)]
+        [YusamHelpBox("Эффект смерти")]
 #endif        
         [Space(10)]
         public GameObject dieEffectPrefab;
@@ -37,7 +37,7 @@ namespace YusamPackage
         [YusamHelpBox("Поворот объекта вокруг оси Y (0 - 360)", 2)]
 #endif        
         [Space(10)]
-        public float dieEffectRotateAngleStartY = 0f;
-        public float dieEffectRotateAngleEndY = 0f;
+        public float dieEffectRotateAngleStartY;
+        public float dieEffectRotateAngleEndY;
     }
 }

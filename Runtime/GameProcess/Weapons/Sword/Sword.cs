@@ -44,16 +44,16 @@ namespace YusamPackage
         {
             StartEffect(sourceTransform);
             
-            float timer = swordSo.hitDamageDuration;
+            var timer = swordSo.hitDamageDuration;
             List<Collider> list = new List<Collider>();
             
             while (timer > 0)
             {
                 timer -= Time.deltaTime;
 
-                Vector3 dir = endPoint.position - startPoint.position;
-                RaycastHit[] hits = Physics.RaycastAll(startPoint.position, dir, dir.magnitude, layerMask);
-                foreach (RaycastHit hit in hits)
+                var dir = endPoint.position - startPoint.position;
+                var hits = Physics.RaycastAll(startPoint.position, dir, dir.magnitude, layerMask);
+                foreach (var hit in hits)
                 {
                     if (list.IndexOf(hit.collider) < 0)
                     {
@@ -64,9 +64,9 @@ namespace YusamPackage
                 yield return null;
             }
             
-            foreach (Collider collider in list)
+            foreach (var collider in list)
             {
-                if (collider != null)
+                if (collider)
                 {
                     
                     HitEffect(collider.transform.position);

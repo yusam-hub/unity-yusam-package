@@ -14,7 +14,7 @@ namespace YusamPackage
         public override void Enter()
         {
             loadedSceneUi.SetActive(true);
-            foreach (GameInputPerformedEnum gameInputPerformedEnum in pressKeyArray)
+            foreach (var gameInputPerformedEnum in pressKeyArray)
             {
                 if (gameInputPerformedEnum == GameInputPerformedEnum.None) continue;
                 gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnPerformed;
@@ -28,7 +28,7 @@ namespace YusamPackage
        
         public override void Exit()
         {
-            foreach (GameInputPerformedEnum gameInputPerformedEnum in pressKeyArray)
+            foreach (var gameInputPerformedEnum in pressKeyArray)
             {
                 if (gameInputPerformedEnum == GameInputPerformedEnum.None) continue;
                 gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnPerformed;

@@ -27,7 +27,7 @@ namespace YusamPackage
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Интервал для нанесения следующего урона", 3)]
+        [YusamHelpBox("Интервал для нанесения следующего урона")]
 #endif        
         [Space(10)]
         public float damageReUseInterval = 0.5f;

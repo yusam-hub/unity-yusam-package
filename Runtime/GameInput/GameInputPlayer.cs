@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -18,7 +17,7 @@ namespace YusamPackage
         {
             _gameInputController = GetComponent<GameInputController>();
 
-            foreach(GameInputPerformedEnum gameInputPerformedEnum in inputs)
+            foreach(var gameInputPerformedEnum in inputs)
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
             }
@@ -33,7 +32,7 @@ namespace YusamPackage
 
         private void OnDestroy()
         {
-            foreach(GameInputPerformedEnum gameInputPerformedEnum in inputs)
+            foreach(var gameInputPerformedEnum in inputs)
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
             }

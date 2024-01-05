@@ -20,7 +20,7 @@ namespace YusamPackage
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Продолжительность жизни скрипта эффекта", 3)]
+        [YusamHelpBox("Продолжительность жизни скрипта эффекта")]
 #endif        
         [Space(10)]
         public float hitEffectDestroyTime = 1f;

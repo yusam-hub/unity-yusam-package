@@ -30,8 +30,9 @@ namespace YusamPackage
                     transform.LookAt(_camera.transform);
                     break;
                 case Mode.LookAtInverted:
-                    Vector3 dirFromCamera = transform.position - _camera.transform.position;
-                    transform.LookAt(transform.position + dirFromCamera);
+                    var pos = transform.position;
+                    var dirFromCamera = pos - _camera.transform.position;
+                    transform.LookAt(pos + dirFromCamera);
                     break;
                 case Mode.CameraForward:
                     transform.forward = _camera.transform.forward;

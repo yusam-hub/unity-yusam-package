@@ -21,7 +21,7 @@ namespace YusamPackage
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Скорость атаки",3)]
+        [YusamHelpBox("Скорость атаки")]
 #endif        
         [Space(10)]
         public float attackSpeed = 0.1f;

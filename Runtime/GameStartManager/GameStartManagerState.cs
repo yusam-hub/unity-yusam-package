@@ -15,7 +15,7 @@ namespace YusamPackage
             _gameStartManager = gameStartManager;
         }
 
-        public GameStartManager GetGameStartManager()
+        protected GameStartManager GetGameStartManager()
         {
             return _gameStartManager;
         }

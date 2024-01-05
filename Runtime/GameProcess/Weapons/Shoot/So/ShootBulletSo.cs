@@ -49,28 +49,28 @@ namespace YusamPackage
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Высота параболической траектории",3)]
+        [YusamHelpBox("Высота параболической траектории")]
 #endif        
         [Space(10)]
         public float parabolaHeight = 2;
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Скорость снаряда",3)]
+        [YusamHelpBox("Скорость снаряда")]
 #endif        
         [Space(10)]
         public float bulletSpeed = 20;
        
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Радиус проверки на столкновения",3)]
+        [YusamHelpBox("Радиус проверки на столкновения")]
 #endif        
         [Space(10)]
         public float bulletHitRadius = .05f;
         
         [Space(10)]
 #if UNITY_EDITOR        
-        [YusamHelpBox("Время между выстрелами",3)]
+        [YusamHelpBox("Время между выстрелами")]
 #endif        
         [Space(10)]
         public float bulletReloadTime = .5f;
