@@ -25,7 +25,7 @@ namespace YusamPackage
         [Space(10)]
         public GameInputLayerSo[] availableLayerSoArray;
         
-        private bool _canUseGameInput;
+        private bool _isLayerAccessible;
         
         private void Awake()
         {
@@ -40,20 +40,20 @@ namespace YusamPackage
 
         private void GameInputSceneOnOnSceneLayerChanged(object sender, GameInputScene.OnSceneLayerChangedEventArgs e)
         {
-            _canUseGameInput = false;
+            _isLayerAccessible = false;
 
             foreach ( var gameInputLayerSo in availableLayerSoArray)
             {
                 if (gameInputLayerSo.key == e.LayerKey)
                 {
-                    _canUseGameInput = true;
+                    _isLayerAccessible = true;
                 }
             }
         }
 
-        public bool CanUseGameInput()
+        public bool IsLayerAccessible()
         {
-            return _canUseGameInput;
+            return _isLayerAccessible;
         }
         
         private void OnDestroy()

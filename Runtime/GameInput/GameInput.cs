@@ -25,7 +25,7 @@ namespace YusamPackage
 
         private YusamPackageGameInputActions _gameInputActions;
         private Mouse _virtualMouse;
-        private YusamDebugProperties _yusamDebugProperties;
+        private DebugProperties _debugProperties;
         public static bool HasInstance()
         {
             return Instance;
@@ -36,7 +36,7 @@ namespace YusamPackage
          */
         private void Awake()
         {
-            Debug.Log($"{GetType()} - Awake on Scene [ {SceneManager.GetActiveScene().name} ]");
+            //Debug.Log($"{GetType()} - Awake on Scene [ {SceneManager.GetActiveScene().name} ]");
             
             if (Instance)
             {
@@ -46,7 +46,7 @@ namespace YusamPackage
             
             LogErrorHelper.NotFoundWhatInIf(gameInputCursor == null, typeof(GameInputCursor).ToString(), this);
             
-            _yusamDebugProperties = GetComponent<YusamDebugProperties>();
+            _debugProperties = GetComponent<DebugProperties>();
             
             _gameInputActions = new YusamPackageGameInputActions();
             _gameInputActions.DefaultMap.Enable();
@@ -74,7 +74,7 @@ namespace YusamPackage
             
             _gameInputActions.Dispose();
             
-            Debug.Log($"{GetType()} - OnDestroy on Scene [ {SceneManager.GetActiveScene().name} ]");
+            //Debug.Log($"{GetType()} - OnDestroy on Scene [ {SceneManager.GetActiveScene().name} ]");
         }
         
         private void Update()
@@ -373,19 +373,19 @@ namespace YusamPackage
         
         private void OnGUI()
         {
-            if (!YusamDebugDisplay.HasInstance()) return;
-            if (!YusamDebugDisplay.Instance.DebugEnabled()) return;
+            if (!DebugDisplay.HasInstance()) return;
+            if (!DebugDisplay.Instance.DebugEnabled()) return;
             
-            YusamDebugDisplay.Instance.DisplayLog(
-                YusamDebugDisplay.GAME_INPUT_GET_MOUSE_POSITION,
+            DebugDisplay.Instance.DisplayLog(
+                DebugDisplay.GAME_INPUT_GET_MOUSE_POSITION,
                 $"Mouse Position: {GetMousePosition()}"
                 );
-            YusamDebugDisplay.Instance.DisplayLog(
-                YusamDebugDisplay.GAME_INPUT_GET_VIRTUAL_MOUSE_POSITION, 
+            DebugDisplay.Instance.DisplayLog(
+                DebugDisplay.GAME_INPUT_GET_VIRTUAL_MOUSE_POSITION, 
                 $"Virtual Mouse Position: {GetVirtualMousePosition()}"
                 );
-            YusamDebugDisplay.Instance.DisplayLog(
-                YusamDebugDisplay.GAME_INPUT_GET_RIGHT_STICK_MOUSE_POSITION, 
+            DebugDisplay.Instance.DisplayLog(
+                DebugDisplay.GAME_INPUT_GET_RIGHT_STICK_MOUSE_POSITION, 
                 $"Right Stick && Mouse Position: {GetRightStickMousePosition()}"
                 );
         }

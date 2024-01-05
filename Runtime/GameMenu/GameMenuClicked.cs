@@ -23,11 +23,7 @@ namespace YusamPackage
             {
                 case "exit":                
                 case "quit":
-                    if (Application.isEditor)
-                    {
-                        Debug.Log($"Application.Quit from {sender.name}");
-                    }
-                    Application.Quit();
+                    ApplicationHelper.QuitBuildAndEditor();
                     break;
             }
         }

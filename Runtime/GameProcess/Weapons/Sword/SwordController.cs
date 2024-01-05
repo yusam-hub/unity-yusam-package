@@ -30,7 +30,7 @@ namespace YusamPackage
 
         private void OnInputAction(InputAction.CallbackContext obj)
         {
-            if (!_gameInputController.CanUseGameInput()) return;
+            if (!_gameInputController.IsLayerAccessible()) return;
             
             _weaponAction.WeaponAction(transform);
         }

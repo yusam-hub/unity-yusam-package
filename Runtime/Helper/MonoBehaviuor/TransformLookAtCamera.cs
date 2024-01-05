@@ -19,11 +19,7 @@ namespace YusamPackage
         private void Awake()
         {
             _camera = Camera.main;
-            if (_camera == null)
-            {
-                Debug.LogError("Camera.main instance not found in [ " + this + "]");
-                gameObject.SetActive(false);
-            }            
+            LogErrorHelper.NotFoundWhatInIf(_camera == null, typeof(Camera).ToString(), this);
         }
 
         private void LateUpdate()

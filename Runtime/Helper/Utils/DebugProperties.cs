@@ -2,7 +2,7 @@
 
 namespace YusamPackage
 {
-    public class YusamDebugProperties : MonoBehaviour
+    public class DebugProperties : MonoBehaviour
     {
         [Space(10)]
 #if UNITY_EDITOR        

@@ -21,7 +21,7 @@ namespace YusamPackage
         
         private void Update()
         {
-            if (!_gameInputController.CanUseGameInput()) return;
+            if (!_gameInputController.IsLayerAccessible()) return;
             Movement();
         }
 

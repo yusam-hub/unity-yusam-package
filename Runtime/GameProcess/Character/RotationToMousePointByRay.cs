@@ -2,7 +2,7 @@
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(YusamDebugProperties))]
+    [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
     public class RotationToMousePointByRay : MonoBehaviour
@@ -11,7 +11,7 @@ namespace YusamPackage
         [SerializeField] private float rayCastDistance = 100f;
         private GameInputController _gameInputController;
 
-        private YusamDebugProperties _debugProperties;
+        private DebugProperties _debugProperties;
         private Vector3 _lookPosition;
         private Camera _camera;
 
@@ -19,7 +19,7 @@ namespace YusamPackage
         
         private void Awake()
         {
-            _debugProperties = GetComponent<YusamDebugProperties>();
+            _debugProperties = GetComponent<DebugProperties>();
             _gameInputController = GetComponent<GameInputController>();
             _camera = Camera.main;
             if (_camera == null)
@@ -37,7 +37,7 @@ namespace YusamPackage
         
         private void Update()
         {
-            if (!_gameInputController.CanUseGameInput()) return;
+            if (!_gameInputController.IsLayerAccessible()) return;
             RotateToMouse();
         }
 

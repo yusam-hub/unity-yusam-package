@@ -4,14 +4,14 @@ namespace YusamPackage
 {
     /*
      * USAGE:
-     *      YusamDebugDisplay.HasInstance()
-     *      YusamDebugDisplay.Instance.DisplayFirst($"Debug: {name}");
-     *      YusamDebugDisplay.Instance.DisplayLast($"Debug: {name}");
-     *      YusamDebugDisplay.Instance.DisplayLog(10,$"Debug: {name}");     
+     *      DebugDisplay.HasInstance()
+     *      DebugDisplay.Instance.DisplayFirst($"Debug: {name}");
+     *      DebugDisplay.Instance.DisplayLast($"Debug: {name}");
+     *      DebugDisplay.Instance.DisplayLog(10,$"Debug: {name}");     
      */
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(YusamDebugProperties))]
-    public class YusamDebugDisplay : MonoBehaviour
+    [RequireComponent(typeof(DebugProperties))]
+    public class DebugDisplay : MonoBehaviour
     {
 
         public const int GAME_INPUT_GET_MOUSE_POSITION = -4;
@@ -22,9 +22,9 @@ namespace YusamPackage
         
         private string[] _displayLines; 
         
-        public static YusamDebugDisplay Instance { get; private set; }
+        public static DebugDisplay Instance { get; private set; }
 
-        private YusamDebugProperties _yusamDebugProperties;
+        private DebugProperties _debugProperties;
         
         public static bool HasInstance()
         {
@@ -39,7 +39,7 @@ namespace YusamPackage
             }
             Instance = this;
             
-            _yusamDebugProperties = GetComponent<YusamDebugProperties>();
+            _debugProperties = GetComponent<DebugProperties>();
 
             _displayLines = new string[countLines];
         }
@@ -69,7 +69,7 @@ namespace YusamPackage
 
         public bool DebugEnabled()
         {
-            return _yusamDebugProperties.debugEnabled;
+            return _debugProperties.debugEnabled;
         }
 
         public void SetEmptyForAll()
@@ -82,16 +82,16 @@ namespace YusamPackage
         
         private void OnGUI()
         {
-            if (!_yusamDebugProperties.debugEnabled) return;       
+            if (!_debugProperties.debugEnabled) return;       
             
             GUILayout.BeginArea(new Rect(10,10, Screen.width-20, Screen.height-20));
             
             GUIStyle style = GUI.skin.label;
             style.fontSize = 12;
-            style.normal.textColor = _yusamDebugProperties.debugTextColor;
-            style.active.textColor = _yusamDebugProperties.debugTextColor;
-            style.hover.textColor = _yusamDebugProperties.debugTextColor;
-            style.focused.textColor = _yusamDebugProperties.debugTextColor;
+            style.normal.textColor = _debugProperties.debugTextColor;
+            style.active.textColor = _debugProperties.debugTextColor;
+            style.hover.textColor = _debugProperties.debugTextColor;
+            style.focused.textColor = _debugProperties.debugTextColor;
 
             foreach (string value in _displayLines)
             {

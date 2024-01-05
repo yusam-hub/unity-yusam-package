@@ -2,7 +2,7 @@
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(YusamDebugProperties))]
+    [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
     public class RotationByGamePadRightStick : MonoBehaviour
@@ -11,18 +11,18 @@ namespace YusamPackage
         [SerializeField] private bool isometricEnabled;
         private GameInputController _gameInputController;
 
-        private YusamDebugProperties _debugProperties;
+        private DebugProperties _debugProperties;
         
         
         private void Awake()
         {
-            _debugProperties = GetComponent<YusamDebugProperties>();
+            _debugProperties = GetComponent<DebugProperties>();
             _gameInputController = GetComponent<GameInputController>();
         }
 
         private void Update()
         {
-            if (!_gameInputController.CanUseGameInput()) return;
+            if (!_gameInputController.IsLayerAccessible()) return;
 
             RotateByRightStick();
         }
