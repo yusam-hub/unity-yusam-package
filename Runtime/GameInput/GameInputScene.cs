@@ -16,46 +16,11 @@ namespace YusamPackage
             public string SceneKey;
             public string LayerKey;
         }
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("GameInputScene - управляет слоями доступа к GameInput, должен быть статичным и один на сцене")]
-#endif        
-        [Space(10)]
-        [Header("References")] 
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Список доступных Scriptable Objects")]
-#endif        
-        [Space(10)]
         [SerializeField] private GameInputSceneSo[] availableGameInputSceneArray;
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Можно выбирать сцену в редакторе и в игре")]
-#endif        
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamDropdownInt("AvailableSceneStringList()")]
-#endif        
         [SerializeField] private int activeSceneIndex;
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Можно менять и видеть результ только в игре")]
-#endif        
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamDropdownInt("AvailableLayerStringList()")]
-#endif        
         [SerializeField] private int activeLayerIndex;
         
         [Serializable] public class SceneLayerChangedEvent : UnityEvent <string,string> {}
-
-        [Space(20)]
-        [Header("Events")] 
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("public void MethodName(string sceneKey, string layerKey)")]
-#endif        
-        [Space(10)]
         [SerializeField] private SceneLayerChangedEvent sceneLayerChangedEvent = new();
         public SceneLayerChangedEvent OnSceneLayerChangedEvent { get { return sceneLayerChangedEvent; } set { sceneLayerChangedEvent = value; } }
 

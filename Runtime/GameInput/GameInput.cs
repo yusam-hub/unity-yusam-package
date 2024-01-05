@@ -7,17 +7,7 @@ namespace YusamPackage
     [DisallowMultipleComponent]
     public class GameInput : MonoBehaviour
     {
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("GameInput - контроллер управления, быть статичным статичным и один на сцене")]
-#endif        
-        [Space(10)]
-#if UNITY_EDITOR        
-        [YusamHelpBox("Project Settings -> Player -> Active Input Handling = Both | Input System Package (New)")]
-#endif        
-        [Space(10)]
         [SerializeField] private GameInputCursor gameInputCursor;
-        [Space(10)]
         [SerializeField] private float virtualCursorSpeed = 1000;
 
         public static GameInput Instance { get; private set; }

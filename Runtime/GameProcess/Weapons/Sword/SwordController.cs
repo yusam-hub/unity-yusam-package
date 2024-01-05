@@ -12,12 +12,10 @@ namespace YusamPackage
 
         private GameInputController _gameInputController;
         private IWeaponAction _weaponAction;
+        
         private void Awake()
         {
-            if (prefabToBeSpawn == null)
-            {
-                Debug.LogError($"Prefab To Be Spawn property is null in component {name}");
-            }
+            LogErrorHelper.NotFoundWhatInIf(prefabToBeSpawn == null,typeof(Sword).ToString(), this);
             
             _gameInputController = GetComponent<GameInputController>();
 

@@ -61,16 +61,16 @@ namespace YusamPackage
             }
 
 
-            var lifeTimer = shootBulletSo.scriptLifeTime;
+            //var lifeTimer = shootBulletSo.scriptLifeTime;
             float currentDistance = 0;
             while (currentDistance <= maxDistance)
             {
-                lifeTimer -= Time.deltaTime;
+                /*lifeTimer -= Time.deltaTime;
                 if (lifeTimer <= 0)
                 {
                     SelfDestroy(null);
                     yield break; 
-                }
+                }*/
                 
                 float currentTransition;
                 Vector3 currentPosition;
@@ -150,7 +150,7 @@ namespace YusamPackage
                     shootBulletSo.bulletHitRadius, 
                     out var hitInfo
                     ,( fromPosition - toPosition ).magnitude
-                    ,shootBulletSo.hitLayerMask
+                    ,shootBulletSo.hitDamageLayerMask
                     )
                 ) {
                 return hitInfo;

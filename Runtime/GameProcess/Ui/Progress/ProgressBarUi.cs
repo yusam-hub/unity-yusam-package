@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 namespace YusamPackage
 {
+
     public class ProgressBarUi : MonoBehaviour
     {
         [SerializeField] private GameObject hasProgressGameObject;
@@ -13,14 +14,13 @@ namespace YusamPackage
         private void Awake()
         {
             _hasProgress = hasProgressGameObject.GetComponent<IHasProgress>();
+            
+            LogErrorHelper.NotFoundWhatInIf(_hasProgress == null,typeof(GameObject) + " : hasProgressGameObject", this);
 
-            if (_hasProgress == null)
+            if (_hasProgress != null)
             {
-                Debug.LogError("Game Object " + hasProgressGameObject +
-                               " does not have a component that implements IHasProgress!");
-                return;
+                _hasProgress.OnProgressChanged += HasProgressOnProgressChanged;
             }
-            _hasProgress.OnProgressChanged += HasProgressOnProgressChanged;
         }
 
         private void HasProgressOnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)

@@ -1,4 +1,6 @@
-﻿namespace YusamPackage
+﻿using UnityEngine;
+
+namespace YusamPackage
 {
     public static class ApplicationHelper
     {
@@ -6,9 +8,9 @@
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-#else            
-            Application.Quit();
 #endif
+            Application.Quit();
+            
         }
     }
 }
