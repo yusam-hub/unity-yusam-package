@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.SceneManagement;
 
 namespace YusamPackage
 {
@@ -35,12 +36,14 @@ namespace YusamPackage
          */
         private void Awake()
         {
+            Debug.Log($"{GetType()} - Awake on Scene [ {SceneManager.GetActiveScene().name} ]");
+            
             if (Instance)
             {
                 Destroy(Instance);
             }
             Instance = this;
-
+            
             LogErrorHelper.NotFoundWhatInIf(gameInputCursor == null, typeof(GameInputCursor).ToString(), this);
             
             _yusamDebugProperties = GetComponent<YusamDebugProperties>();
@@ -48,14 +51,11 @@ namespace YusamPackage
             _gameInputActions = new YusamPackageGameInputActions();
             _gameInputActions.DefaultMap.Enable();
             
-            Debug.Log($"{GetType()} - Awake AddDevice 1 ");
-            /*
-             * todo: при загрузке новой сцены сюда ругается
-             *      Could not find active control after binding resolution
-             *      UnityEngine.InputSystem.InputSystem:AddDevice (string,string,string)
-             */
+            InputSystem.settings.SetInternalFeatureFlag("USE_OPTIMIZED_CONTROLS", true);
+            InputSystem.settings.SetInternalFeatureFlag("USE_READ_VALUE_CACHING", true);
+            InputSystem.settings.SetInternalFeatureFlag("PARANOID_READ_VALUE_CACHING_CHECKS", true);
+            
             _virtualMouse = (Mouse)InputSystem.AddDevice("VirtualMouse");
-            Debug.Log($" {GetType()} - Awake AddDevice 2");
             
             InputState.Change(_virtualMouse.position, GetMousePosition());
             
@@ -67,12 +67,14 @@ namespace YusamPackage
          */
         private void OnDestroy()
         {
+            _gameInputActions.DefaultMap.Disable();
+            
             InputSystem.onAfterUpdate -= InputSystemOnAfterUpdate;
             InputSystem.RemoveDevice(_virtualMouse);
             
             _gameInputActions.Dispose();
             
-            Debug.Log($"{GetType()} - OnDestroy");
+            Debug.Log($"{GetType()} - OnDestroy on Scene [ {SceneManager.GetActiveScene().name} ]");
         }
         
         private void Update()
