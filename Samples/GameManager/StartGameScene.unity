@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Text: 'LOADED SCENE COMPLETE
 
 
-    PRESS ANY KEY'
+    PRESS [ SPASE ] KEY / GAMEPAD [ START]'
 --- !u!222 &142407509
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf1d73d2c474820bcb1c41f7393d467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentManagerStateEnum: 2
+  currentManagerStateEnum: 0
 --- !u!4 &208998508
 Transform:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 2055454155731230170}
-  pressKeyArray: 13000000
+  pressKeyArray: 1300000008000000
   loadedSceneUi: {fileID: 1465374064}
 --- !u!1 &298205067
 GameObject:
@@ -887,6 +887,11 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1084386260}
+    - target: {fileID: 5889750610966120534, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7032137876654712086, guid: 8eb657aca8c62964f8b62a8ec2971fd5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -949,7 +954,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1051646474}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee15dbb956034f0d97de803d9535e142, type: 3}
   m_Name: 

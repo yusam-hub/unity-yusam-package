@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 167988275}
   - component: {fileID: 167988277}
   m_Layer: 0
-  m_Name: Escape
+  m_Name: EscapeStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ce35bfc971446e9d774ae3cd3d01db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs: 12000000
+  inputs: 1200000008000000
   voidOutputs:
     m_PersistentCalls:
       m_Calls:

@@ -15,11 +15,5 @@ MonoBehaviour:
   gameMenuStructArray:
   - menuKey: resume
     menuText: RESUME
-  - menuKey: options
-    menuText: OPTIONS
-  - menuKey: develops
-    menuText: DEVELOPS
-  - menuKey: mainmenu
-    menuText: MAIN MENU
-  - menuKey: exit
-    menuText: EXIT
+  - menuKey: quit
+    menuText: QUIT

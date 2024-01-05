@@ -15,9 +15,5 @@ MonoBehaviour:
   gameMenuStructArray:
   - menuKey: start
     menuText: START
-  - menuKey: options
-    menuText: OPTIONS
-  - menuKey: develops
-    menuText: DEVELOPS
   - menuKey: quit
     menuText: QUIT
