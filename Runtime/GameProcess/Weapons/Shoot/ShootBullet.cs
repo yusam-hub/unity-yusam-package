@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace YusamPackage
 {
-    public class ShootBullet : MonoBehaviour, IWeaponActionToPoint, IShootBullet
+    [RequireComponent(typeof(DebugProperties))]
+    public class ShootBullet : MonoBehaviour
     {
         [SerializeField] private ShootBulletSo shootBulletSo;
+
+        private DebugProperties _debugProperties;
+        private void Awake()
+        {
+            _debugProperties = GetComponent<DebugProperties>();
+        }
 
         public void WeaponActionToPoint(Transform sourceTransform, Vector3 destinationPoint)
         {
@@ -103,7 +111,7 @@ namespace YusamPackage
                 RaycastHit? hitTest;
                 hitTest = TryGetHitInfo(transform.position, currentPosition);
                 if (hitTest.HasValue) {
-                    SelfDestroy(hitTest);
+                    HitAndSelfDestroy(hitTest.Value);
                     yield break;
                 }
 
@@ -113,32 +121,55 @@ namespace YusamPackage
                 yield return null;
             }
 
-            SelfDestroy( null );
+            if (_debugProperties.debugEnabled)
+            {
+                Debug.Log($"Raycast not found for [ Hit Damage Layer Mask ] in scriptable object [ {shootBulletSo.name} ]");
+            }
+
+            Destroy(gameObject);
         }
         
-        
-        private void HitEffect(Vector3 point)
+        private void HitAndSelfDestroy(RaycastHit hit)
         {
+            if (_debugProperties.debugEnabled)
+            {
+                Debug.Log($"Raycast hit on {hit.collider.name} from {GetType()}");
+            }
+            
+            TryHitEffect(hit.point);
+                
+            if (hit.collider.TryGetComponent(out IDamage damage))
+            {
+                damage.DoDamage(hit.collider, shootBulletSo.hitDamageVolume, shootBulletSo.hitDamageForce);
+            }
+            
+            Destroy(gameObject);
+        }
+        
+        private void TryHitEffect(Vector3 point)
+        {
+            if (_debugProperties.debugEnabled)
+            {
+                Debug.Log($"TryHitEffect on point {point}");
+            }
+            
             if (shootBulletSo.hitEffectPrefab) {
+                if (_debugProperties.debugEnabled)
+                {
+                    Debug.Log($"Instantiate prefab and will destroy throw time: {shootBulletSo.hitEffectDestroyTime}");
+                }
                 Destroy(
                     Instantiate(shootBulletSo.hitEffectPrefab, point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
                 );
             }
-        }
-        
-        private void SelfDestroy(RaycastHit? hitInfo)
-        {
-            if (hitInfo.HasValue)
+            else
             {
-                HitEffect(hitInfo.Value.point);
-                
-                if (hitInfo.Value.collider.TryGetComponent(out IDamage damage))
+                if (_debugProperties.debugEnabled)
                 {
-                    damage.DoDamage(hitInfo.Value.collider, shootBulletSo.hitDamageVolume, shootBulletSo.hitDamageForce);
+                    Debug.Log($"Hit Effect Prefab not found in {typeof(ShootBulletSo)}");
                 }
+
             }
-            
-            Destroy(gameObject);
         }
         
         private RaycastHit? TryGetHitInfo(Vector3 fromPosition, Vector3 toPosition)

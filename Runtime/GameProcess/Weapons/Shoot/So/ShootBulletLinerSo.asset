@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startEffectPrefab: {fileID: 0}
   startEffectDestroyTime: 1
-  hitLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   hitEffectPrefab: {fileID: 0}
   hitEffectDestroyTime: 1
+  hitDamageLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   hitDamageVolume: 10
   hitDamageForce: 1
   trajectory: 0
@@ -28,4 +28,4 @@ MonoBehaviour:
   parabolaHeight: 2
   bulletSpeed: 5
   bulletHitRadius: 0.05
-  bulletLifeTime: 1
+  bulletReloadTime: 0.5

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace YusamPackage
 {
-    public class Sword : MonoBehaviour, IWeaponAction, ISword
+    public class Sword : MonoBehaviour, IWeaponAction
     {
         [SerializeField] private SwordSo swordSo;
         [SerializeField] private Transform startPoint;

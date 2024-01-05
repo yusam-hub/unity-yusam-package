@@ -1903,7 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46b40c8894648bcb1172696f84c932d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugEnabled: 0
+  debugEnabled: 1
   debugLineColor: {r: 1, g: 0, b: 0, a: 1}
   debugTextColor: {r: 1, g: 0, b: 0, a: 1}
   debugDuration: 0.1

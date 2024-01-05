@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace YusamPackage
 {
-    public class Shield : MonoBehaviour, IWeaponAction, IShield
+    public class Shield : MonoBehaviour, IWeaponAction
     {
         [SerializeField] private ShieldSo shieldSo;
         public GameObject prefabToBeSpawn;
