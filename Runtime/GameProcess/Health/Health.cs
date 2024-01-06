@@ -85,6 +85,7 @@ namespace YusamPackage
                 _parentHealth.ResetHealth();
                 return;
             }
+            Debug.Log($"{GetType()}:{name}:ResetHealth");
             
             _healthVolume = healthSo.maxHealth;
             
@@ -98,6 +99,8 @@ namespace YusamPackage
                 _parentHealth.PlusHealth(volume);
                 return;
             }
+            
+            Debug.Log($"{GetType()}:PlusHealth({volume})");
             
             _healthVolume += volume;
             
@@ -116,6 +119,8 @@ namespace YusamPackage
                 _parentHealth.MinusHealth(volume);
                 return;
             }
+            
+            Debug.Log($"{GetType()}:MinusHealth({volume})");
             
             _healthVolume -= volume;
             

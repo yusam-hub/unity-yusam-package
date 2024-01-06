@@ -41,6 +41,7 @@ namespace YusamPackage
 
         private void ShieldDamageOnOnSelfDestroy(object sender, EventArgs e)
         {
+            Debug.Log("ShieldDamageOnOnSelfDestroy");
             _shieldIsSelfDestroying = true;
         }
 
@@ -48,34 +49,29 @@ namespace YusamPackage
         {
             if (!_shieldInProgress)
             {
-                StartCoroutine(ExecuteCoroutine(sourceTransform));
+                StartCoroutine(ShieldExecuteCoroutine(sourceTransform));
             }
         }
 
-        public float GetShieldActiveProgress()
-        {
-            return _shieldActiveProgress;
-        }
-
-        private IEnumerator ExecuteCoroutine(Transform sourceTransform)
+        private IEnumerator ShieldExecuteCoroutine(Transform sourceTransform)
         {
             _shieldActiveProgress = 0;
+            _shieldInProgress = true;
+            
             OnShowShield?.Invoke(this, new ProgressFloatEventArgs
             {
                 Progress = _shieldActiveProgress,
             });
 
-            _shieldInProgress = true;
-            
             var activeLifeTime = shieldSo.activeLifeTime;
             
-            var newGameObject = Instantiate(prefabToBeSpawn, sourceTransform);
+            var newGameObject = ShieldPrefabCreate(sourceTransform);
             
             while (activeLifeTime > 0)
             {
                 if (_shieldIsSelfDestroying)
                 {
-                    ShieldSelfDestroy(newGameObject);
+                    ShieldPrefabDestroy(newGameObject);
                     yield break;
                 }
                 
@@ -91,25 +87,30 @@ namespace YusamPackage
                 yield return null;
             }
 
-            ShieldSelfDestroy(newGameObject);
+            ShieldPrefabDestroy(newGameObject);
         }
 
-        private void ShieldSelfDestroy(GameObject newGameObject)
+        private GameObject ShieldPrefabCreate(Transform sourceTransform)
         {
-            Debug.Log($"ShieldSelfDestroy {newGameObject.name} - {newGameObject.GetType()}");
+           return Instantiate(prefabToBeSpawn, sourceTransform);
+        }
+        
+        private void ShieldPrefabDestroy(GameObject prefabGameObject)
+        {
+            Debug.Log($"ShieldPrefabDestroy");
             
             _shieldActiveProgress = 0;
             _shieldInProgress = false;
             _shieldIsSelfDestroying = false;
-            
-            Destroy(newGameObject);
-            
+
             OnHideShield?.Invoke(this, new ProgressFloatEventArgs
             {
                 Progress = _shieldActiveProgress
             });
             
             shieldHealth.ResetHealth();
+            
+            Destroy(prefabGameObject);
         }
         
         private void Update()

@@ -54,6 +54,7 @@ namespace YusamPackage
 
         private void ShieldOnOnShowShield(object sender, ProgressFloatEventArgs e)
         {
+            Debug.Log("Shield Show");
             _ownerDamage.SetParentDamage(_shield.shieldDamage);//устанавливаем прием повреждений
             _ownerHealth.SetParentHealth(_shield.shieldHealth);//устанавливаем шит в качестве здоровья
 
@@ -71,13 +72,14 @@ namespace YusamPackage
             
             _ownerDamage.SetParentDamage(null);//убираем прием повреждений
             _ownerHealth.SetParentHealth(null);//убираем шит в качестве здоровья
-
+            
+            Debug.Log("Shield Hide");
         }
         
         private void OnInputAction(InputAction.CallbackContext obj)
         {
             if (!_gameInputController.IsLayerAccessible()) return;
-
+    
             _shield.ShieldActivate(transform);
         }
 
