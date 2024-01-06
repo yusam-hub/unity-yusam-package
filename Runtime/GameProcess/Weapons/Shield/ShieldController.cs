@@ -71,6 +71,7 @@ namespace YusamPackage
             
             _ownerDamage.SetParentDamage(null);//убираем прием повреждений
             _ownerHealth.SetParentHealth(null);//убираем шит в качестве здоровья
+
         }
         
         private void OnInputAction(InputAction.CallbackContext obj)

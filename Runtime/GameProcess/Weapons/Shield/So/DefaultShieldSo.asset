@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3cc20c5e60e42af99fcf90d5da0a986, type: 3}
   m_Name: DefaultShieldSo
   m_EditorClassIdentifier: 
-  activeLifeTime: 60
+  activeLifeTime: 10
   endEffectPrefab: {fileID: 0}
   endEffectDestroyTime: 1

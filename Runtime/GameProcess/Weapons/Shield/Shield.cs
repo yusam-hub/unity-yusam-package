@@ -21,13 +21,27 @@ namespace YusamPackage
         [HideInInspector]
         public Health shieldHealth;
         
+        private bool _shieldIsSelfDestroying;
         private bool _shieldInProgress;
         private float _shieldActiveProgress;
 
         private void Awake()
         {
             shieldDamage = GetComponent<Damage>();
+            shieldDamage.doNotSelfDestroy = true;
+            shieldDamage.OnSelfDestroy += ShieldDamageOnOnSelfDestroy;
+            
             shieldHealth = GetComponent<Health>();
+        }
+
+        private void OnDestroy()
+        {
+            shieldDamage.OnSelfDestroy -= ShieldDamageOnOnSelfDestroy;
+        }
+
+        private void ShieldDamageOnOnSelfDestroy(object sender, EventArgs e)
+        {
+            _shieldIsSelfDestroying = true;
         }
 
         public void ShieldActivate(Transform sourceTransform)
@@ -59,6 +73,12 @@ namespace YusamPackage
             
             while (activeLifeTime > 0)
             {
+                if (_shieldIsSelfDestroying)
+                {
+                    ShieldSelfDestroy(newGameObject);
+                    yield break;
+                }
+                
                 activeLifeTime -= Time.deltaTime;
                 
                 _shieldActiveProgress = 1f - activeLifeTime / shieldSo.activeLifeTime;
@@ -70,19 +90,27 @@ namespace YusamPackage
                 
                 yield return null;
             }
+
+            ShieldSelfDestroy(newGameObject);
+        }
+
+        private void ShieldSelfDestroy(GameObject newGameObject)
+        {
+            Debug.Log($"ShieldSelfDestroy {newGameObject.name} - {newGameObject.GetType()}");
+            
+            _shieldActiveProgress = 0;
+            _shieldInProgress = false;
+            _shieldIsSelfDestroying = false;
             
             Destroy(newGameObject);
             
-            _shieldActiveProgress = 0;
             OnHideShield?.Invoke(this, new ProgressFloatEventArgs
             {
                 Progress = _shieldActiveProgress
             });
             
-            _shieldInProgress = false;
+            shieldHealth.ResetHealth();
         }
-
-        
         
         private void Update()
         {

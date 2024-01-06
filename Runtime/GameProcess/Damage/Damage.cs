@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace YusamPackage
 {
@@ -7,9 +8,14 @@ namespace YusamPackage
     {
         [SerializeField] private DamageSo damageSo;
 
-        private IHealth _health;
+        public event EventHandler<EventArgs> OnSelfDestroy;
 
+        [HideInInspector]
+        public bool doNotSelfDestroy;
+            
+        private IHealth _health;
         private IDamage _parentDamage;
+        private bool _selfDestroying;
 
         public void SetParentDamage(IDamage parentDamage)
         {
@@ -21,22 +27,31 @@ namespace YusamPackage
             _health = GetComponent<IHealth>();
         }
 
-        public void DoDamage(Collider collider, float volume, float force)
+        public void DoDamage(Collider hitCollider, float volume, float force)
         {
-            _health.MinusHealth(volume);
-
-            if (_health.GetHealth() == 0)
+            if (!_selfDestroying)
             {
-                if (_parentDamage == null)
-                {
-                    SelfDestroy(collider, force);
-                }
+                _health.MinusHealth(volume);
+            }
+
+            if (_health.GetHealth() == 0 && !_selfDestroying)
+            {
+                _selfDestroying = true;
+                SelfDestroy(hitCollider, force);
             }
         }
 
-        private void SelfDestroy(Collider collider, float force)
+        public void SelfDestroy(Collider hitCollider, float force)
         {
-            if (damageSo.hitEffectPrefab)
+            if (_parentDamage != null)
+            {
+                _parentDamage.SelfDestroy(hitCollider, force);
+                return;
+            }
+            
+            OnSelfDestroy?.Invoke(this, EventArgs.Empty);
+            
+            if (damageSo.hitEffectPrefab && hitCollider)
             {
                 Destroy(
                     Instantiate(damageSo.hitEffectPrefab, transform.position, Quaternion.identity),
@@ -44,7 +59,10 @@ namespace YusamPackage
                 );
             }
 
-            Destroy(gameObject);
+            if (!doNotSelfDestroy)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
