@@ -136,7 +136,7 @@ namespace YusamPackage
                 Debug.Log($"Raycast hit on {hit.collider.name} from {GetType()}");
             }
             
-            TryHitEffect(hit.point);
+            TryHitEffect(hit);
                 
             if (hit.collider.TryGetComponent(out IDamageable damage))
             {
@@ -146,11 +146,13 @@ namespace YusamPackage
             Destroy(gameObject);
         }
         
-        private void TryHitEffect(Vector3 point)
+        private void TryHitEffect(RaycastHit hit)
         {
+            Debug.DrawRay(transform.position, hit.normal, _debugProperties.debugLineColor,20);
+            
             if (_debugProperties.debugEnabled)
             {
-                Debug.Log($"TryHitEffect on point {point}");
+                Debug.Log($"TryHitEffect on point {hit.point}");
             }
             
             if (shootBulletSo.hitEffectPrefab) {
@@ -159,7 +161,7 @@ namespace YusamPackage
                     Debug.Log($"Instantiate prefab and will destroy throw time: {shootBulletSo.hitEffectDestroyTime}");
                 }
                 Destroy(
-                    Instantiate(shootBulletSo.hitEffectPrefab, point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
+                    Instantiate(shootBulletSo.hitEffectPrefab, hit.point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
                 );
             }
             else

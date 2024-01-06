@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2139838969379011804}
   - component: {fileID: 4524522095260059548}
   - component: {fileID: 2755672426820201535}
+  - component: {fileID: 1075855120025099771}
+  - component: {fileID: 1989059144054186038}
   m_Layer: 0
   m_Name: CubeShootBullet_050_parabola
   m_TagString: Untagged
@@ -97,3 +99,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootBulletSo: {fileID: 11400000, guid: 7c5899216102a4549b98b1d52e8eb6b0, type: 2}
+--- !u!114 &1075855120025099771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563231991121835315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46b40c8894648bcb1172696f84c932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugEnabled: 1
+  debugLineColor: {r: 1, g: 0, b: 0, a: 1}
+  debugTextColor: {r: 1, g: 0, b: 0, a: 1}
+  debugDuration: 0.1
+--- !u!114 &1989059144054186038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563231991121835315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce6a80dadfc4d308fa73e07dd1ab5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineLength: 2

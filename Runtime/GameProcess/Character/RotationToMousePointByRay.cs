@@ -64,7 +64,7 @@ namespace YusamPackage
                     {
                         Debug.DrawLine(lookAt, zeroY, _debugProperties.debugLineColor, _debugProperties.debugDuration);
                     }
-                    DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties.debugLineColor, _debugProperties.debugDuration);
+                    DebugHelper.DrawCircleXZ( zeroY, 1, 8, _debugProperties);
                 }
             }
         }

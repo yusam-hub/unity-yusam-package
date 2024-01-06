@@ -23,6 +23,12 @@ namespace YusamPackage
         
         private bool _shieldInProgress;
         private float _shieldActiveProgress;
+        private DebugProperties _debugProperties;
+
+        public void SetDebugProperties(DebugProperties debugProperties)
+        {
+            _debugProperties = debugProperties;
+        }
 
         private void Awake()
         {
@@ -127,7 +133,7 @@ namespace YusamPackage
             var startPos = transform.position;
             startPos.y = 0;
             
-            DebugHelper.DrawCircleXZ(startPos, shieldSo.radiusOnDestroyShield, 64, Color.red, 15);
+            DebugHelper.DrawCircleXZ(startPos, shieldSo.radiusOnDestroyShield, 64, _debugProperties);
             
             Collider[] colliders = Physics.OverlapSphere(transform.position, shieldSo.radiusOnDestroyShield, shieldSo.layerMaskOnDestroyShield);
             

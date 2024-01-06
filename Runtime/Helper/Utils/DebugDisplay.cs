@@ -57,12 +57,12 @@ namespace YusamPackage
             _displayLines[index] = $"{index} - {lineString}";
         }
         
-        public void DisplayFirst(int index, string lineString)
+        public void DisplayFirst(string lineString)
         {
             DisplayLog(0, lineString);
         }
         
-        public void DisplayLast(int index, string lineString)
+        public void DisplayLast(string lineString)
         {
             DisplayLog(_displayLines.Length-1, lineString);
         }

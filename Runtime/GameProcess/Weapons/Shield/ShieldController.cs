@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace YusamPackage
 {
+    [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [RequireComponent(typeof(Health))]
     [DisallowMultipleComponent]
@@ -23,6 +24,7 @@ namespace YusamPackage
         private GameInputController _gameInputController;
         private Shield _shield;
         private Health _ownerHealth;
+        private DebugProperties _debugProperties;
 
         private void Awake()
         {
@@ -37,6 +39,7 @@ namespace YusamPackage
             }
             
             _shield = Instantiate(prefabToBeSpawn, transform);
+            _shield.SetDebugProperties(_debugProperties);
             _shield.OnShieldShow += ShieldOnOnShowShield;
             _shield.OnShieldProgress += ShieldOnOnProgressShield;
             _shield.OnShieldHide += ShieldOnOnHideShield;
