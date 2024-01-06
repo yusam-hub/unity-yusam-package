@@ -89,6 +89,22 @@ namespace YusamPackage
             }
         }
         
+        public static void DrawCircleTubeAlongToPoint(Transform startT, Transform endT, Color color, float duration, int circleCount = 1, float radius = 0.5f, int circleSegments = 8)
+        {
+            var lookDirection = endT.position - startT.position;
+            var distance = lookDirection.magnitude;
+            var normal = lookDirection.normalized;
+            var segmentDistance = distance / (circleCount + 1);
+            Quaternion newRot = Quaternion.LookRotation(normal);
+
+            Vector3 tmpPoint = startT.position;
+            for (var i = 0; i < circleCount; i++)
+            {
+                tmpPoint += normal * segmentDistance;
+                DrawCircle(tmpPoint, newRot, radius, circleSegments, color, duration);
+            }
+        }
+        
         public static void DrawSphere(Vector3 position, Quaternion orientation, float radius, Color color, int duration, int segments = 4)
         {
             if(segments < 2)
