@@ -1,26 +1,49 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace YusamPackage
 {
-    public class Shield : MonoBehaviour, IWeaponAction
+    public class Shield : MonoBehaviour
     {
         [SerializeField] private ShieldSo shieldSo;
         public GameObject prefabToBeSpawn;
-        
-        private bool _weaponActionInProcess;
-        
-        public void WeaponAction(Transform sourceTransform)
+             
+        public class OnFloatEventArgs : EventArgs
         {
-            if (!_weaponActionInProcess)
+            public float Value;
+        }
+        public event EventHandler<OnFloatEventArgs> OnShowShield;
+        public event EventHandler<OnFloatEventArgs> OnProgressShield;
+        public event EventHandler<OnFloatEventArgs> OnHideShield;
+
+        private bool _shieldInProgress;
+        private float _shieldActiveProgress;
+        
+        public void ShieldActivate(Transform sourceTransform)
+        {
+            if (!_shieldInProgress)
             {
-                _weaponActionInProcess = true;
                 StartCoroutine(ExecuteCoroutine(sourceTransform));
             }
         }
 
+        public float GetShieldActiveProgress()
+        {
+            return _shieldActiveProgress;
+        }
+
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
+            _shieldActiveProgress = 0;
+            OnShowShield?.Invoke(this, new OnFloatEventArgs
+            {
+                Value = _shieldActiveProgress
+            });
+
+            _shieldInProgress = true;
+            
             var activeLifeTime = shieldSo.activeLifeTime;
             
             var newGameObject = Instantiate(prefabToBeSpawn, sourceTransform);
@@ -28,12 +51,26 @@ namespace YusamPackage
             while (activeLifeTime > 0)
             {
                 activeLifeTime -= Time.deltaTime;
+                
+                _shieldActiveProgress = 1f - activeLifeTime / shieldSo.activeLifeTime;
+                
+                OnProgressShield?.Invoke(this, new OnFloatEventArgs
+                {
+                    Value = _shieldActiveProgress
+                });
+                
                 yield return null;
             }
             
             Destroy(newGameObject);
             
-            _weaponActionInProcess = false;
+            _shieldActiveProgress = 0;
+            OnHideShield?.Invoke(this, new OnFloatEventArgs
+            {
+                Value = _shieldActiveProgress
+            });
+            
+            _shieldInProgress = false;
         }
 
         private void Update()
