@@ -6,7 +6,6 @@ namespace YusamPackage
     public class DeathZoneSo : ScriptableObject
     {
         public float damageVolume = 1f;
-        public float damageForce = 1f;
         public float damageReUseInterval = 0.5f;
     }
 }
