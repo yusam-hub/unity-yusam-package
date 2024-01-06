@@ -4,7 +4,7 @@ using UnityEngine;
 namespace YusamPackage
 {
     [RequireComponent(typeof(DebugProperties))]
-    public class DrawLineForward : MonoBehaviour
+    public class DrawLineAxis : MonoBehaviour
     {
         [SerializeField] private float lineLength = 2;
 
@@ -19,7 +19,11 @@ namespace YusamPackage
         {
             if (!_debugProperties.debugEnabled) return;
 
-            Debug.DrawRay(transform.position, transform.forward * lineLength, _debugProperties.debugLineColor, _debugProperties.debugDuration);
+            var tmp = transform;
+            var startPoint = tmp.position;
+            Debug.DrawRay(startPoint, tmp.forward * lineLength, Color.blue, _debugProperties.debugDuration);
+            Debug.DrawRay(startPoint, tmp.up * lineLength, Color.green, _debugProperties.debugDuration);
+            Debug.DrawRay(startPoint, tmp.right * lineLength, Color.red, _debugProperties.debugDuration);
         }
     }
 }
