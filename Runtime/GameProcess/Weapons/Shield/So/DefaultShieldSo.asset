@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3cc20c5e60e42af99fcf90d5da0a986, type: 3}
   m_Name: DefaultShieldSo
   m_EditorClassIdentifier: 
-  shieldActiveLifeTime: 5
+  shieldActiveLifeTime: 10
   prefabOnDestroyShield: {fileID: 0}
   lifeTimeOnDestroyShield: 5
   layerMaskOnDestroyShield:
     serializedVersion: 2
     m_Bits: 64
-  radiusOnDestroyShield: 100
+  radiusOnDestroyShield: 8
   damageVolumeOnDestroyShield: 10
