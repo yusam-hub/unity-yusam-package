@@ -8,15 +8,16 @@ namespace YusamPackage
         [SerializeField] private DamageSo damageSo;
 
         private IHealth _health;
-            
+
+        private IDamage _parentDamage;
+
+        public void SetParentDamage(IDamage parentDamage)
+        {
+            _parentDamage = parentDamage;
+        }
+        
         private void Awake()
         {
-            if (damageSo == null)
-            {
-                //Debug.LogError("Damage So prefab not found in [ " + this + "]");
-                gameObject.SetActive(false);
-            }
-            
             _health = GetComponent<IHealth>();
         }
 
@@ -26,8 +27,10 @@ namespace YusamPackage
 
             if (_health.GetHealth() == 0)
             {
-                //Debug.Log($"Destroy {name}");
-                SelfDestroy(collider, force);
+                if (_parentDamage == null)
+                {
+                    SelfDestroy(collider, force);
+                }
             }
         }
 

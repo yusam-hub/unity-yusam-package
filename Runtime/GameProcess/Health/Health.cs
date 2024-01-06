@@ -8,12 +8,18 @@ namespace YusamPackage
         [SerializeField] private HealthSo healthSo;
         [SerializeField] private FloatUnityEvent onProgressEvent = new();
         
-        private float _healthVolume;
-        private HasProgress _hasProgress; 
-        
         public event EventHandler<ProgressFloatEventArgs> OnProgressHealth;
 
+        private float _healthVolume;
+        private HasProgress _hasProgress; 
         private float _healthProgress;
+        
+        private IHealth _parentHealth;
+
+        public void SetParentHealth(IHealth parentHealth)
+        {
+            _parentHealth = parentHealth;
+        }
         
         private void Awake()
         {
@@ -49,11 +55,21 @@ namespace YusamPackage
 
         public float GetHealth()
         {
+            if (_parentHealth != null)
+            {
+                return _parentHealth.GetHealth();
+            }
             return _healthVolume;
         }
         
         public void PlusHealth(float volume)
         {
+            if (_parentHealth != null)
+            {
+                _parentHealth.PlusHealth(volume);
+                return;
+            }
+            
             _healthVolume += volume;
             
             if (_healthVolume > healthSo.maxHealth)
@@ -66,6 +82,12 @@ namespace YusamPackage
 
         public void MinusHealth(float volume)
         {
+            if (_parentHealth != null)
+            {
+                _parentHealth.MinusHealth(volume);
+                return;
+            }
+            
             _healthVolume -= volume;
             
             if (_healthVolume < 0)

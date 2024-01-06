@@ -12,13 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3cc20c5e60e42af99fcf90d5da0a986, type: 3}
   m_Name: DefaultShieldSo
   m_EditorClassIdentifier: 
-  startEffectPrefab: {fileID: 0}
-  startEffectDestroyTime: 1
-  hitLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  hitEffectPrefab: {fileID: 0}
-  hitEffectDestroyTime: 1
-  hitDamageVolume: 10
-  hitDamageForce: 1
-  scriptLifeTime: 5
+  activeLifeTime: 60
+  endEffectPrefab: {fileID: 0}
+  endEffectDestroyTime: 1

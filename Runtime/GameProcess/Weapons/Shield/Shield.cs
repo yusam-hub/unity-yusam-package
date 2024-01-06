@@ -11,12 +11,14 @@ namespace YusamPackage
     {
         [SerializeField] private ShieldSo shieldSo;
         public GameObject prefabToBeSpawn;
-             
+  
         public event EventHandler<ProgressFloatEventArgs> OnShowShield;
         public event EventHandler<ProgressFloatEventArgs> OnProgressShield;
         public event EventHandler<ProgressFloatEventArgs> OnHideShield;
 
+        [HideInInspector]
         public Damage shieldDamage;
+        [HideInInspector]
         public Health shieldHealth;
         
         private bool _shieldInProgress;
