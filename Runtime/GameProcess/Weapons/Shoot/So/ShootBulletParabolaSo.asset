@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b3e609768f49028d8ce341eab2e208, type: 3}
   m_Name: ShootBulletParabolaSo
   m_EditorClassIdentifier: 
+  trajectory: 1
+  rotateToTrajectory: 1
+  parallelMaxDistance: 20
+  parallelMinDistance: 5
+  parabolaHeight: 2
+  bulletSpeed: 15
+  bulletHitRadius: 0.05
+  bulletReloadTime: 0.1
   startEffectPrefab: {fileID: 0}
   startEffectDestroyTime: 1
   hitEffectPrefab: {fileID: 0}
@@ -21,11 +29,3 @@ MonoBehaviour:
     m_Bits: 64
   hitDamageVolume: 10
   hitDamageForce: 1
-  trajectory: 1
-  rotateToTrajectory: 1
-  parallelMaxDistance: 20
-  parallelMinDistance: 5
-  parabolaHeight: 2
-  bulletSpeed: 5
-  bulletHitRadius: 0.05
-  bulletReloadTime: 0.5

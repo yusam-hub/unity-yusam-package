@@ -1294,6 +1294,7 @@ GameObject:
   - component: {fileID: 627572177}
   - component: {fileID: 627572176}
   - component: {fileID: 627572175}
+  - component: {fileID: 627572179}
   m_Layer: 6
   m_Name: Cube_3x3x3 (3)
   m_TagString: Untagged
@@ -1344,8 +1345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62710cd82694f158030db64d20c869c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSo: {fileID: 11400000, guid: b03f508f0a3e58b40984df315f8fb4e2, type: 2}
-  doNotSelfDestroy: 0
 --- !u!114 &627572177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1359,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSo: {fileID: 11400000, guid: 749169f947a752445a792da5695ddccd, type: 2}
   onProgressEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onZeroHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxHealth:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &627572178
@@ -1383,6 +1388,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &627572179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627572173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547db2c29aaa417d96e215f6d26a650e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfDestroyOnHealthZero: 1
 --- !u!1 &758565754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,8 +2360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62710cd82694f158030db64d20c869c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSo: {fileID: 11400000, guid: a2b733a46dd9a464fbd1cc5a26add8f5, type: 2}
-  doNotSelfDestroy: 0
 --- !u!114 &1100545471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2372,6 +2388,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onZeroHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxHealth:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1100545472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3690,8 +3712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62710cd82694f158030db64d20c869c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSo: {fileID: 11400000, guid: b03f508f0a3e58b40984df315f8fb4e2, type: 2}
-  doNotSelfDestroy: 0
 --- !u!114 &1509619500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3706,6 +3726,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSo: {fileID: 11400000, guid: 749169f947a752445a792da5695ddccd, type: 2}
   onProgressEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onZeroHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxHealth:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1515479884
@@ -5126,6 +5152,7 @@ GameObject:
   - component: {fileID: 2104677826}
   - component: {fileID: 2104677825}
   - component: {fileID: 2104677824}
+  - component: {fileID: 2104677828}
   m_Layer: 6
   m_Name: Cube_3x3x3 (2)
   m_TagString: Untagged
@@ -5176,8 +5203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62710cd82694f158030db64d20c869c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSo: {fileID: 11400000, guid: b03f508f0a3e58b40984df315f8fb4e2, type: 2}
-  doNotSelfDestroy: 0
 --- !u!114 &2104677826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5192,6 +5217,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSo: {fileID: 11400000, guid: 749169f947a752445a792da5695ddccd, type: 2}
   onProgressEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onZeroHealth:
+    m_PersistentCalls:
+      m_Calls: []
+  onMaxHealth:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &2104677827
@@ -5215,6 +5246,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &2104677828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104677822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547db2c29aaa417d96e215f6d26a650e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfDestroyOnHealthZero: 1
 --- !u!1 &2138962598
 GameObject:
   m_ObjectHideFlags: 0
@@ -6124,6 +6168,7 @@ GameObject:
   - component: {fileID: 1509619500}
   - component: {fileID: 1509619499}
   - component: {fileID: 5064343382625932040}
+  - component: {fileID: 5064343382625932041}
   m_Layer: 6
   m_Name: Cube_3x3x3
   m_TagString: Untagged
@@ -6416,6 +6461,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d2ccc7fe154c71a40915f915ec81c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5064343382625932041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002339375078614277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547db2c29aaa417d96e215f6d26a650e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfDestroyOnHealthZero: 1
 --- !u!1001 &5225435269469705982
 PrefabInstance:
   m_ObjectHideFlags: 0
