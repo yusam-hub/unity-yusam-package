@@ -6,9 +6,12 @@ namespace YusamPackage
     public class ShieldSo : BaseWeaponSo
     {
         public float shieldActiveLifeTime = 5f;
-        public float shieldReloadLifeDeltaTime = .2f;
-        
-        public GameObject endEffectPrefab;
-        public float endEffectDestroyTime = 1f;
+
+        public GameObject prefabOnDestroyShield;
+        public float lifeTimeOnDestroyShield = 5f;
+
+        public LayerMask layerMaskOnDestroyShield;
+        public float radiusOnDestroyShield = 5f;
+        public float damageVolumeOnDestroyShield = 10f;
     }
 }

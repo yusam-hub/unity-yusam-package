@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 namespace YusamPackage
@@ -60,7 +59,7 @@ namespace YusamPackage
 
                 if (shieldHealth.GetHealth() <= 0)
                 {
-                    ShieldPrefabDestroy(newGameObject);
+                    ShieldPrefabDestroy(newGameObject, true);
                     yield break;
                 }
                 
@@ -94,7 +93,7 @@ namespace YusamPackage
            return Instantiate(shieldPrefabToBeSpawn, sourceTransform);
         }
         
-        private void ShieldPrefabDestroy(GameObject prefabGameObject)
+        private void ShieldPrefabDestroy(GameObject prefabGameObject, bool withHealthZero = false)
         {
             //Debug.Log($"ShieldPrefabDestroy");
             
@@ -108,12 +107,32 @@ namespace YusamPackage
             Destroy(prefabGameObject);
             
             StartCoroutine(ShieldReloadCoroutine());
+
+            if (withHealthZero)
+            {
+                if (shieldSo.prefabOnDestroyShield)
+                {
+                    Destroy(
+                        Instantiate(shieldSo.prefabOnDestroyShield, transform),
+                        shieldSo.lifeTimeOnDestroyShield
+                    );
+                }
+
+                TakeDamageForAllDamageable();
+            }
         }
         
-        private void Update()
+        private void TakeDamageForAllDamageable()
         {
-            //OverlapSphere будет использоваться при разрушение шита чтобы собрать все объекты и их уничтожить типа
-            // Collider[] colliders = Physics.OverlapSphere(transform.position, 3f, 0);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, shieldSo.radiusOnDestroyShield, shieldSo.layerMaskOnDestroyShield);
+            
+            foreach (var foundCollider in colliders)
+            {
+                if (foundCollider.TryGetComponent(out IDamageable damagable))
+                {
+                    damagable.TakeDamage(shieldSo.damageVolumeOnDestroyShield, foundCollider);
+                }
+            }
         }
         
     }
