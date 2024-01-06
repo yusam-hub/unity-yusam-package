@@ -5,22 +5,29 @@ using UnityEngine.EventSystems;
 
 namespace YusamPackage
 {
+    [RequireComponent(typeof(Damage))]
+    [RequireComponent(typeof(Health))]
     public class Shield : MonoBehaviour
     {
         [SerializeField] private ShieldSo shieldSo;
         public GameObject prefabToBeSpawn;
              
-        public class OnFloatEventArgs : EventArgs
-        {
-            public float Value;
-        }
-        public event EventHandler<OnFloatEventArgs> OnShowShield;
-        public event EventHandler<OnFloatEventArgs> OnProgressShield;
-        public event EventHandler<OnFloatEventArgs> OnHideShield;
+        public event EventHandler<ProgressFloatEventArgs> OnShowShield;
+        public event EventHandler<ProgressFloatEventArgs> OnProgressShield;
+        public event EventHandler<ProgressFloatEventArgs> OnHideShield;
 
+        public Damage shieldDamage;
+        public Health shieldHealth;
+        
         private bool _shieldInProgress;
         private float _shieldActiveProgress;
-        
+
+        private void Awake()
+        {
+            shieldDamage = GetComponent<Damage>();
+            shieldHealth = GetComponent<Health>();
+        }
+
         public void ShieldActivate(Transform sourceTransform)
         {
             if (!_shieldInProgress)
@@ -37,9 +44,9 @@ namespace YusamPackage
         private IEnumerator ExecuteCoroutine(Transform sourceTransform)
         {
             _shieldActiveProgress = 0;
-            OnShowShield?.Invoke(this, new OnFloatEventArgs
+            OnShowShield?.Invoke(this, new ProgressFloatEventArgs
             {
-                Value = _shieldActiveProgress
+                Progress = _shieldActiveProgress,
             });
 
             _shieldInProgress = true;
@@ -54,9 +61,9 @@ namespace YusamPackage
                 
                 _shieldActiveProgress = 1f - activeLifeTime / shieldSo.activeLifeTime;
                 
-                OnProgressShield?.Invoke(this, new OnFloatEventArgs
+                OnProgressShield?.Invoke(this, new ProgressFloatEventArgs
                 {
-                    Value = _shieldActiveProgress
+                    Progress = _shieldActiveProgress
                 });
                 
                 yield return null;
@@ -65,18 +72,21 @@ namespace YusamPackage
             Destroy(newGameObject);
             
             _shieldActiveProgress = 0;
-            OnHideShield?.Invoke(this, new OnFloatEventArgs
+            OnHideShield?.Invoke(this, new ProgressFloatEventArgs
             {
-                Value = _shieldActiveProgress
+                Progress = _shieldActiveProgress
             });
             
             _shieldInProgress = false;
         }
 
+        
+        
         private void Update()
         {
             //OverlapSphere будет использоваться при разрушение шита чтобы собрать все объекты и их уничтожить типа
             // Collider[] colliders = Physics.OverlapSphere(transform.position, 3f, 0);
         }
+        
     }
 }

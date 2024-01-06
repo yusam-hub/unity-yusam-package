@@ -13,10 +13,11 @@ namespace YusamPackage
         
         [Space(10)]
         
-        [SerializeField] private FloatUnityEvent onShowShieldEvent = new();
-        [SerializeField] private FloatUnityEvent onProgressShieldEvent = new();
-        [SerializeField] private FloatUnityEvent onHideShieldEvent = new();
+        [SerializeField] private FloatUnityEvent onShieldShowEvent = new();
+        [SerializeField] private FloatUnityEvent onShieldProgressEvent = new();
+        [SerializeField] private FloatUnityEvent onShieldHideEvent = new();
         
+        [SerializeField] private FloatUnityEvent onHealthProgressEvent = new();
         
         private GameInputController _gameInputController;
         private Shield _shield;
@@ -37,24 +38,29 @@ namespace YusamPackage
             _shield.OnShowShield += ShieldOnOnShowShield;
             _shield.OnProgressShield += ShieldOnOnProgressShield;
             _shield.OnHideShield += ShieldOnOnHideShield;
+            
+            _shield.shieldHealth.OnProgressHealth += ShieldHealthOnOnProgressHealth;
+            
         }
 
-        private void ShieldOnOnShowShield(object sender, Shield.OnFloatEventArgs e)
+        private void ShieldHealthOnOnProgressHealth(object sender, ProgressFloatEventArgs e)
         {
-            Debug.Log($"ShieldOnOnShowShield {e.Value}");
-            onShowShieldEvent?.Invoke(e.Value);
+            onHealthProgressEvent?.Invoke(e.Progress);
+        }
+
+        private void ShieldOnOnShowShield(object sender, ProgressFloatEventArgs e)
+        {
+            onShieldShowEvent?.Invoke(e.Progress);
         }
         
-        private void ShieldOnOnProgressShield(object sender, Shield.OnFloatEventArgs e)
+        private void ShieldOnOnProgressShield(object sender, ProgressFloatEventArgs e)
         {
-            Debug.Log($"ShieldOnOnProgressShield {e.Value}");
-            onProgressShieldEvent?.Invoke(e.Value);
+            onShieldProgressEvent?.Invoke(e.Progress);
         }
 
-        private void ShieldOnOnHideShield(object sender, Shield.OnFloatEventArgs e)
+        private void ShieldOnOnHideShield(object sender, ProgressFloatEventArgs e)
         {
-            Debug.Log($"ShieldOnOnHideShield {e.Value}");
-            onHideShieldEvent?.Invoke(e.Value);
+            onShieldHideEvent?.Invoke(e.Progress);
         }
         
         private void OnInputAction(InputAction.CallbackContext obj)
@@ -64,12 +70,14 @@ namespace YusamPackage
             _shield.ShieldActivate(transform);
         }
 
-
         private void OnDestroy()
         {
+            _shield.shieldHealth.OnProgressHealth -= ShieldHealthOnOnProgressHealth;
+            
             _shield.OnShowShield -= ShieldOnOnShowShield;
             _shield.OnProgressShield -= ShieldOnOnProgressShield;
             _shield.OnHideShield -= ShieldOnOnHideShield;
+            
             foreach(var gameInputPerformedEnum in inputs)
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 293710468735905905}
   - component: {fileID: 4035108386195339652}
+  - component: {fileID: 1225761749930014394}
+  - component: {fileID: -318327069956190490}
   m_Layer: 0
   m_Name: ShieldDefault
   m_TagString: Untagged
@@ -47,3 +49,29 @@ MonoBehaviour:
   shieldSo: {fileID: 11400000, guid: 1c6c19f88cf11b54a90c7591cc8f57d4, type: 2}
   prefabToBeSpawn: {fileID: 2038485882877477965, guid: 42779182e05184c448be7b7df0bd430e,
     type: 3}
+--- !u!114 &1225761749930014394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590489149106060545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594f88e29cbd44f1b7129cd0d3e34943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSo: {fileID: 11400000, guid: 5ecb2bb8d27123d48835250481ed6aab, type: 2}
+--- !u!114 &-318327069956190490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590489149106060545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62710cd82694f158030db64d20c869c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageSo: {fileID: 11400000, guid: fb7714e557c8b034d98d6444cee52abe, type: 2}

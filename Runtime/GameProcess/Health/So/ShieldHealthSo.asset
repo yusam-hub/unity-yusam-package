@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac2696ba4e345746a8952b5b8e76b20, type: 3}
-  m_Name: OnePointDeathZoneSo
+  m_Script: {fileID: 11500000, guid: f6bde2d5827b43afa192b7f47aa66f58, type: 3}
+  m_Name: ShieldHealthSo
   m_EditorClassIdentifier: 
-  damage: 1
-  force: 1
-  damageReUseInterval: 0.25
+  maxHealth: 100

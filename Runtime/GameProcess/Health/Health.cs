@@ -1,30 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace YusamPackage
 {
     public class Health : MonoBehaviour, IHealth
     {
         [SerializeField] private HealthSo healthSo;
+        [SerializeField] private FloatUnityEvent onProgressEvent = new();
         
         private float _healthVolume;
         private HasProgress _hasProgress; 
         
+        public event EventHandler<ProgressFloatEventArgs> OnProgressHealth;
+
+        private float _healthProgress;
+        
         private void Awake()
         {
-            if (healthSo == null)
-            {
-                //Debug.LogError("Health So prefab not found in [ " + this + "]");
-                gameObject.SetActive(false);
-            }
-            
             if (TryGetComponent(out HasProgress hasProgress))
             {
                 _hasProgress = hasProgress;
             }
             
             _healthVolume = healthSo.maxHealth;
-
-            //Debug.Log($"Start health {_healthVolume}");
         }
 
         private void Start()
@@ -34,9 +32,18 @@ namespace YusamPackage
 
         private void DoUpdateProgress()
         {
+            _healthProgress = _healthVolume / healthSo.maxHealth;
+            
+            OnProgressHealth?.Invoke(this, new ProgressFloatEventArgs
+            {
+                Progress = _healthProgress,
+            });
+            
+            onProgressEvent?.Invoke(_healthProgress);
+            
             if (_hasProgress)
             {
-                _hasProgress.DoProgressChanged(_healthVolume/healthSo.maxHealth);
+                _hasProgress.DoProgressChanged(_healthProgress);
             }
         }
 
@@ -55,8 +62,6 @@ namespace YusamPackage
             }
 
             DoUpdateProgress();
-            
-            //Debug.Log($"{name} plus health {volume} and current health became {_healthVolume} of max {healthSo.maxHealth}");  
         }
 
         public void MinusHealth(float volume)
@@ -69,8 +74,6 @@ namespace YusamPackage
             }
             
             DoUpdateProgress();
-
-            //Debug.Log($"{name} minus health {volume} and current health became {_healthVolume} of max {healthSo.maxHealth}");    
         }
     }
 }
