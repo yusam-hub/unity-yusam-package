@@ -25,10 +25,10 @@ namespace YusamPackage
             {
                 _damageReUseTimer = deathZoneSo.damageReUseInterval;
                 
-                IDamage[] damages = other.GetComponents<IDamage>();
+                IDamageable[] damages = other.GetComponents<IDamageable>();
                 foreach (var damage in damages)
                 {
-                    damage.DoDamage(_collider, deathZoneSo.damageVolume, deathZoneSo.damageForce);
+                    damage.TakeDamage(deathZoneSo.damageVolume);
                 }   
             }
         }

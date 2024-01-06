@@ -7,6 +7,8 @@ namespace YusamPackage
     {
         [SerializeField] private HealthSo healthSo;
         [SerializeField] private FloatUnityEvent onProgressEvent = new();
+        [SerializeField] private EmptyUnityEvent onZeroHealth = new();
+        [SerializeField] private EmptyUnityEvent onMaxHealth = new();
         
         public event EventHandler<ProgressFloatEventArgs> OnProgressHealth;
         public event EventHandler<EventArgs> OnZeroHealth;
@@ -87,6 +89,7 @@ namespace YusamPackage
             
             _healthVolume = healthSo.maxHealth;
             OnMaxHealth?.Invoke(this, EventArgs.Empty);
+            onMaxHealth?.Invoke(EventArgs.Empty);
             
             DoUpdateProgress();
         }
@@ -104,10 +107,11 @@ namespace YusamPackage
                 _healthVolume += volume;
             }
 
-            if (_healthVolume > healthSo.maxHealth)
+            if (_healthVolume >= healthSo.maxHealth)
             {
                 _healthVolume = healthSo.maxHealth;
                 OnMaxHealth?.Invoke(this, EventArgs.Empty);
+                onMaxHealth?.Invoke(EventArgs.Empty);
             }
 
             DoUpdateProgress();
@@ -126,10 +130,11 @@ namespace YusamPackage
                 _healthVolume -= volume;
             }
 
-            if (_healthVolume < 0)
+            if (_healthVolume <= 0)
             {
                 _healthVolume = 0;
                 OnZeroHealth?.Invoke(this, EventArgs.Empty);
+                onZeroHealth?.Invoke(EventArgs.Empty);
             }
             
             DoUpdateProgress();

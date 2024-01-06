@@ -71,8 +71,8 @@ namespace YusamPackage
                     
                     HitEffect(collider.transform.position);
                     
-                    collider.GetComponent<IDamage>()
-                        ?.DoDamage(collider, swordSo.hitDamageVolume, swordSo.hitDamageForce);
+                    collider.GetComponent<IDamageable>()
+                        ?.TakeDamage(swordSo.hitDamageVolume, collider, swordSo.hitDamageForce);
                 }
             }
             

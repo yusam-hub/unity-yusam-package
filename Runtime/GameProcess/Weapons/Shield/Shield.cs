@@ -2,10 +2,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(Damage))]
+    [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Health))]
     public class Shield : MonoBehaviour
     {
@@ -16,8 +17,8 @@ namespace YusamPackage
         public event EventHandler<ProgressFloatEventArgs> OnShieldProgress;
         public event EventHandler<ProgressFloatEventArgs> OnShieldHide;
 
-        [HideInInspector]
-        public Damage shieldDamage;
+        [FormerlySerializedAs("shieldDamage")] [HideInInspector]
+        public Damageable shieldDamageable;
         [HideInInspector]
         public Health shieldHealth;
         
@@ -26,7 +27,7 @@ namespace YusamPackage
 
         private void Awake()
         {
-            shieldDamage = GetComponent<Damage>();
+            shieldDamageable = GetComponent<Damageable>();
             shieldHealth = GetComponent<Health>();
         }
 
@@ -95,7 +96,7 @@ namespace YusamPackage
         
         private void ShieldPrefabDestroy(GameObject prefabGameObject)
         {
-            Debug.Log($"ShieldPrefabDestroy");
+            //Debug.Log($"ShieldPrefabDestroy");
             
             _shieldActiveProgress = 0;
 
