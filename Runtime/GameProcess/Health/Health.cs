@@ -18,25 +18,7 @@ namespace YusamPackage
 
         public void SetParentHealth(IHealth parentHealth)
         {
-            /*if (_parentHealth == null)
-            {
-                Debug.Log($"SetParentHealth OLD =  NULL");
-            }
-            else
-            {
-                Debug.Log($"SetParentHealth OLD =  {_parentHealth}");   
-            }*/
-            
             _parentHealth = parentHealth;
-
-            /*if (_parentHealth == null)
-            {
-                Debug.Log($"SetParentHealth NEW =  NULL");
-            }
-            else
-            {
-                Debug.Log($"SetParentHealth NEW =  {_parentHealth}");   
-            }*/
         }
         
         private void Awake()
@@ -85,7 +67,7 @@ namespace YusamPackage
                 _parentHealth.ResetHealth();
                 return;
             }
-            Debug.Log($"{GetType()}:{name}:ResetHealth");
+            //Debug.Log($"{GetType()}:{name}:ResetHealth");
             
             _healthVolume = healthSo.maxHealth;
             
@@ -100,7 +82,7 @@ namespace YusamPackage
                 return;
             }
             
-            Debug.Log($"{GetType()}:PlusHealth({volume})");
+            //Debug.Log($"{GetType()}:PlusHealth({volume})");
             
             _healthVolume += volume;
             
@@ -120,7 +102,7 @@ namespace YusamPackage
                 return;
             }
             
-            Debug.Log($"{GetType()}:MinusHealth({volume})");
+            //Debug.Log($"{GetType()}:MinusHealth({volume})");
             
             _healthVolume -= volume;
             

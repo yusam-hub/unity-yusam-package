@@ -39,9 +39,9 @@ namespace YusamPackage
             }
             
             _shield = Instantiate(prefabToBeSpawn, transform);
-            _shield.OnShowShield += ShieldOnOnShowShield;
-            _shield.OnProgressShield += ShieldOnOnProgressShield;
-            _shield.OnHideShield += ShieldOnOnHideShield;
+            _shield.OnShieldShow += ShieldOnOnShowShield;
+            _shield.OnShieldProgress += ShieldOnOnProgressShield;
+            _shield.OnShieldHide += ShieldOnOnHideShield;
 
             _shield.shieldHealth.OnProgressHealth += ShieldHealthOnOnProgressHealth;
             
@@ -87,9 +87,9 @@ namespace YusamPackage
         {
             _shield.shieldHealth.OnProgressHealth -= ShieldHealthOnOnProgressHealth;
             
-            _shield.OnShowShield -= ShieldOnOnShowShield;
-            _shield.OnProgressShield -= ShieldOnOnProgressShield;
-            _shield.OnHideShield -= ShieldOnOnHideShield;
+            _shield.OnShieldShow -= ShieldOnOnShowShield;
+            _shield.OnShieldProgress -= ShieldOnOnProgressShield;
+            _shield.OnShieldHide -= ShieldOnOnHideShield;
             
             foreach(var gameInputPerformedEnum in inputs)
             {

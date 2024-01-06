@@ -10,39 +10,24 @@ namespace YusamPackage
     public class Shield : MonoBehaviour
     {
         [SerializeField] private ShieldSo shieldSo;
-        public GameObject prefabToBeSpawn;
+        public GameObject shieldPrefabToBeSpawn;
   
-        public event EventHandler<ProgressFloatEventArgs> OnShowShield;
-        public event EventHandler<ProgressFloatEventArgs> OnProgressShield;
-        public event EventHandler<ProgressFloatEventArgs> OnHideShield;
+        public event EventHandler<ProgressFloatEventArgs> OnShieldShow;
+        public event EventHandler<ProgressFloatEventArgs> OnShieldProgress;
+        public event EventHandler<ProgressFloatEventArgs> OnShieldHide;
 
         [HideInInspector]
         public Damage shieldDamage;
         [HideInInspector]
         public Health shieldHealth;
         
-        private bool _shieldIsSelfDestroying;
         private bool _shieldInProgress;
         private float _shieldActiveProgress;
 
         private void Awake()
         {
             shieldDamage = GetComponent<Damage>();
-            shieldDamage.doNotSelfDestroy = true;
-            shieldDamage.OnSelfDestroy += ShieldDamageOnOnSelfDestroy;
-            
             shieldHealth = GetComponent<Health>();
-        }
-
-        private void OnDestroy()
-        {
-            shieldDamage.OnSelfDestroy -= ShieldDamageOnOnSelfDestroy;
-        }
-
-        private void ShieldDamageOnOnSelfDestroy(object sender, EventArgs e)
-        {
-            Debug.Log("ShieldDamageOnOnSelfDestroy");
-            _shieldIsSelfDestroying = true;
         }
 
         public void ShieldActivate(Transform sourceTransform)
@@ -58,7 +43,7 @@ namespace YusamPackage
             _shieldActiveProgress = 0;
             _shieldInProgress = true;
             
-            OnShowShield?.Invoke(this, new ProgressFloatEventArgs
+            OnShieldShow?.Invoke(this, new ProgressFloatEventArgs
             {
                 Progress = _shieldActiveProgress,
             });
@@ -67,23 +52,17 @@ namespace YusamPackage
             
             var newGameObject = ShieldPrefabCreate(sourceTransform);
             
-            while (activeLifeTime > 0)
+            while (activeLifeTime > 0 )
             {
-                if (_shieldIsSelfDestroying)
-                {
-                    ShieldPrefabDestroy(newGameObject);
-                    yield break;
-                }
-                
                 activeLifeTime -= Time.deltaTime;
                 
                 _shieldActiveProgress = 1f - activeLifeTime / shieldSo.activeLifeTime;
                 
-                OnProgressShield?.Invoke(this, new ProgressFloatEventArgs
+                OnShieldProgress?.Invoke(this, new ProgressFloatEventArgs
                 {
                     Progress = _shieldActiveProgress
                 });
-                
+
                 yield return null;
             }
 
@@ -92,7 +71,7 @@ namespace YusamPackage
 
         private GameObject ShieldPrefabCreate(Transform sourceTransform)
         {
-           return Instantiate(prefabToBeSpawn, sourceTransform);
+           return Instantiate(shieldPrefabToBeSpawn, sourceTransform);
         }
         
         private void ShieldPrefabDestroy(GameObject prefabGameObject)
@@ -101,9 +80,8 @@ namespace YusamPackage
             
             _shieldActiveProgress = 0;
             _shieldInProgress = false;
-            _shieldIsSelfDestroying = false;
 
-            OnHideShield?.Invoke(this, new ProgressFloatEventArgs
+            OnShieldHide?.Invoke(this, new ProgressFloatEventArgs
             {
                 Progress = _shieldActiveProgress
             });
