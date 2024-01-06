@@ -24,15 +24,6 @@ namespace YusamPackage
         {
             return shootBulletSo.bulletReloadTime;
         }
-        
-        private void StartEffect(Transform sourceTransform)
-        {
-            if (shootBulletSo.startEffectPrefab) {
-                Destroy(
-                    Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime
-                );
-            }
-        }
 
         private IEnumerator MoveBulletCoroutine(Transform fromTransform, Vector3 toPosition, ShootBulletSo.ShootBulletTrajectory trajectory)
         {
@@ -190,6 +181,15 @@ namespace YusamPackage
             }
             
             return null;
+        }
+        
+        private void StartEffect(Transform sourceTransform)
+        {
+            if (shootBulletSo.startEffectPrefab) {
+                Destroy(
+                    Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime
+                );
+            }
         }
     }
 }
