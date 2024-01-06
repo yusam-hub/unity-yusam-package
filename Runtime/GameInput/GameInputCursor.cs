@@ -8,7 +8,8 @@ namespace YusamPackage
         [SerializeField] private Sprite cursorSprite;
         [SerializeField] private GameInputCursorUi gameInputCursorUiPrefab;
         [SerializeField] private Color cursorColor = Color.red;
-
+        [SerializeField] private bool cursorVisibleToggleInEditorMode;    
+        
         private GameInputCursorUi _gameInputCursorUi;
         private RectTransform _canvasRectTransform;
 
@@ -40,7 +41,11 @@ namespace YusamPackage
         {
             if (_gameInputCursorUi)
             {
-                Cursor.visible = false;
+                if (!Application.isEditor || cursorVisibleToggleInEditorMode)
+                {
+                    Cursor.visible = false;
+                }
+
                 DoUpdateImageSpriteColor();
                 _gameInputCursorUi.gameObject.SetActive(true);
             }
@@ -50,7 +55,10 @@ namespace YusamPackage
         {
             if (_gameInputCursorUi)
             {
-                Cursor.visible = true;
+                if (!Application.isEditor || cursorVisibleToggleInEditorMode)
+                {
+                    Cursor.visible = true;
+                } 
                 _gameInputCursorUi.gameObject.SetActive(false);
             }
         }

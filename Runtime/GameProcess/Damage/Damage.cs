@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace YusamPackage
 {
@@ -8,40 +9,22 @@ namespace YusamPackage
         [SerializeField] private DamageSo damageSo;
 
         private IHealth _health;
-            
+        private IDamage _parentDamage;
+        private bool _selfDestroying;
+
+        public void SetParentDamage(IDamage parentDamage)
+        {
+            _parentDamage = parentDamage;
+        }
+        
         private void Awake()
         {
-            if (damageSo == null)
-            {
-                //Debug.LogError("Damage So prefab not found in [ " + this + "]");
-                gameObject.SetActive(false);
-            }
-            
             _health = GetComponent<IHealth>();
         }
 
-        public void DoDamage(Collider collider, float volume, float force)
+        public void DoDamage(Collider hitCollider, float volume, float force)
         {
             _health.MinusHealth(volume);
-
-            if (_health.GetHealth() == 0)
-            {
-                //Debug.Log($"Destroy {name}");
-                SelfDestroy(collider, force);
-            }
-        }
-
-        private void SelfDestroy(Collider collider, float force)
-        {
-            if (damageSo.hitEffectPrefab)
-            {
-                Destroy(
-                    Instantiate(damageSo.hitEffectPrefab, transform.position, Quaternion.identity),
-                    damageSo.hitEffectDestroyTime
-                );
-            }
-
-            Destroy(gameObject);
         }
     }
 }

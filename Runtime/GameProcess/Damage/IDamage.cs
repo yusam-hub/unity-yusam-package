@@ -4,6 +4,6 @@ namespace YusamPackage
 {
     public interface IDamage
     {
-        public void DoDamage(Collider collider, float volume, float force);
+        public void DoDamage(Collider hitCollider, float volume, float force);
     }
 }
