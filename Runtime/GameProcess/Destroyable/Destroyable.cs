@@ -6,7 +6,10 @@ namespace YusamPackage
     [RequireComponent(typeof(Health))]
     public class Destroyable : MonoBehaviour, IDestroyable
     {
+        [SerializeField] private DestroyableSo destroyableSo;
         [SerializeField] private bool selfDestroyOnHealthZero = true;
+        [SerializeField] private EmptyUnityEvent onDestroy;
+        [SerializeField] private IntUnityEvent onDestroyWithBonus;
         
         private Health _health;
         private void Awake()
@@ -17,7 +20,6 @@ namespace YusamPackage
 
         private void HealthOnZeroHealth(object sender, EventArgs e)
         {
-            Debug.Log("HealthOnZeroHealth");
             if (selfDestroyOnHealthZero)
             {
                 SelfDestroy();
@@ -26,6 +28,17 @@ namespace YusamPackage
 
         public void SelfDestroy()
         {
+            if (destroyableSo.prefabOnSelfDestroy)
+            {
+                Destroy(
+                    Instantiate(destroyableSo.prefabOnSelfDestroy, transform)
+                    , destroyableSo.prefabLifeTime
+                    );
+            }
+            
+            onDestroy?.Invoke(EventArgs.Empty);
+            onDestroyWithBonus?.Invoke(destroyableSo.destroyBonus);
+            
             Destroy(gameObject);
         }
     }
