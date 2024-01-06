@@ -2,9 +2,9 @@
 
 namespace YusamPackage
 {
-    public class DeathZone : MonoBehaviour, IDeathZone
+    public class HealthZone : MonoBehaviour, IHealthZone
     {
-        [SerializeField] private DeathZoneSo deathZoneSo;
+        [SerializeField] private HealthZoneSo healthZoneSo;
 
         private Collider _collider;
         private float _damageReUseTimer;
@@ -23,12 +23,12 @@ namespace YusamPackage
             
             if (_damageReUseTimer <= 0)
             {
-                _damageReUseTimer = deathZoneSo.damageReUseInterval;
+                _damageReUseTimer = healthZoneSo.healthReUseInterval;
                 
-                IDamageable[] damages = other.GetComponents<IDamageable>();
-                foreach (var damage in damages)
+                IHealthly[] healthlies = other.GetComponents<IHealthly>();
+                foreach (var healthly in healthlies)
                 {
-                    damage.TakeDamage(deathZoneSo.damageVolume);
+                    healthly.TakeHealth(healthZoneSo.healthVolume);
                 }   
             }
         }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(Damage))]
+    [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Health))]
     public class Shield : MonoBehaviour
     {
@@ -16,8 +16,8 @@ namespace YusamPackage
         public event EventHandler<ProgressFloatEventArgs> OnShieldProgress;
         public event EventHandler<ProgressFloatEventArgs> OnShieldHide;
 
-        [HideInInspector]
-        public Damage shieldDamage;
+        [FormerlySerializedAs("shieldDamage")] [HideInInspector]
+        public Damageable shieldDamageable;
         [HideInInspector]
         public Health shieldHealth;
         
@@ -26,7 +26,7 @@ namespace YusamPackage
 
         private void Awake()
         {
-            shieldDamage = GetComponent<Damage>();
+            shieldDamageable = GetComponent<Damageable>();
             shieldHealth = GetComponent<Health>();
         }
 
@@ -59,7 +59,7 @@ namespace YusamPackage
 
                 if (shieldHealth.GetHealth() <= 0)
                 {
-                    ShieldPrefabDestroy(newGameObject);
+                    ShieldPrefabDestroy(newGameObject, true);
                     yield break;
                 }
                 
@@ -93,9 +93,9 @@ namespace YusamPackage
            return Instantiate(shieldPrefabToBeSpawn, sourceTransform);
         }
         
-        private void ShieldPrefabDestroy(GameObject prefabGameObject)
+        private void ShieldPrefabDestroy(GameObject prefabGameObject, bool withHealthZero = false)
         {
-            Debug.Log($"ShieldPrefabDestroy");
+            //Debug.Log($"ShieldPrefabDestroy");
             
             _shieldActiveProgress = 0;
 
@@ -107,12 +107,40 @@ namespace YusamPackage
             Destroy(prefabGameObject);
             
             StartCoroutine(ShieldReloadCoroutine());
+
+            if (withHealthZero)
+            {
+                if (shieldSo.prefabOnDestroyShield)
+                {
+                    Destroy(
+                        Instantiate(shieldSo.prefabOnDestroyShield, transform),
+                        shieldSo.lifeTimeOnDestroyShield
+                    );
+                }
+
+                TakeDamageForAllDamageable();
+            }
         }
         
-        private void Update()
+        private void TakeDamageForAllDamageable()
         {
-            //OverlapSphere будет использоваться при разрушение шита чтобы собрать все объекты и их уничтожить типа
-            // Collider[] colliders = Physics.OverlapSphere(transform.position, 3f, 0);
+            var startPos = transform.position;
+            startPos.y = 0;
+            
+            DebugHelper.DrawCircleXZ(startPos, shieldSo.radiusOnDestroyShield, 64, Color.red, 15);
+            
+            Collider[] colliders = Physics.OverlapSphere(transform.position, shieldSo.radiusOnDestroyShield, shieldSo.layerMaskOnDestroyShield);
+            
+            foreach (var foundCollider in colliders)
+            {
+                if (foundCollider.TryGetComponent(out IDamageable damagable))
+                {
+                    var endPos = foundCollider.transform.position;
+                    endPos.y = 0;
+                    Debug.DrawLine(startPos, endPos, Color.red, 15);
+                    damagable.TakeDamage(shieldSo.damageVolumeOnDestroyShield, foundCollider);
+                }
+            }
         }
         
     }

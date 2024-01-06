@@ -23,7 +23,6 @@ namespace YusamPackage
         private GameInputController _gameInputController;
         private Shield _shield;
         private Health _ownerHealth;
-        private Damage _ownerDamage;
 
         private void Awake()
         {
@@ -31,7 +30,6 @@ namespace YusamPackage
             
             _gameInputController = GetComponent<GameInputController>();
             _ownerHealth = GetComponent<Health>();
-            _ownerDamage = GetComponent<Damage>();
             
             foreach(var gameInputPerformedEnum in inputs)
             {
@@ -54,7 +52,6 @@ namespace YusamPackage
 
         private void ShieldOnOnShowShield(object sender, ProgressFloatEventArgs e)
         {
-            _ownerDamage.SetParentDamage(_shield.shieldDamage);//устанавливаем прием повреждений
             _ownerHealth.SetParentHealth(_shield.shieldHealth);//устанавливаем шит в качестве здоровья
 
             onShieldShowEvent?.Invoke(e.Progress);
@@ -69,7 +66,6 @@ namespace YusamPackage
         {
             onShieldHideEvent?.Invoke(e.Progress);
             
-            _ownerDamage.SetParentDamage(null);//убираем прием повреждений
             _ownerHealth.SetParentHealth(null);//убираем шит в качестве здоровья
         }
         

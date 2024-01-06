@@ -138,9 +138,9 @@ namespace YusamPackage
             
             TryHitEffect(hit.point);
                 
-            if (hit.collider.TryGetComponent(out IDamage damage))
+            if (hit.collider.TryGetComponent(out IDamageable damage))
             {
-                damage.DoDamage(hit.collider, shootBulletSo.hitDamageVolume, shootBulletSo.hitDamageForce);
+                damage.TakeDamage(shootBulletSo.hitDamageVolume, hit.collider, shootBulletSo.hitDamageForce);
             }
             
             Destroy(gameObject);
