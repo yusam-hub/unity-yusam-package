@@ -9,7 +9,9 @@ namespace YusamPackage
         [SerializeField] private FloatUnityEvent onProgressEvent = new();
         
         public event EventHandler<ProgressFloatEventArgs> OnProgressHealth;
-
+        public event EventHandler<EventArgs> OnZeroHealth;
+        public event EventHandler<EventArgs> OnMaxHealth;
+        
         private float _healthVolume;
         private HasProgress _hasProgress; 
         private float _healthProgress;
@@ -50,6 +52,16 @@ namespace YusamPackage
                 _hasProgress.DoProgressChanged(_healthProgress);
             }
         }
+
+        public bool IsHealthZero()
+        {
+            return Mathf.RoundToInt(_healthVolume) == 0;
+        }
+
+        public bool IsHealthMax()
+        {
+            return Mathf.RoundToInt(_healthVolume) == Mathf.RoundToInt(healthSo.maxHealth);
+        }
         
         public float GetHealth()
         {
@@ -67,9 +79,9 @@ namespace YusamPackage
                 _parentHealth.ResetHealth();
                 return;
             }
-            //Debug.Log($"{GetType()}:{name}:ResetHealth");
             
             _healthVolume = healthSo.maxHealth;
+            OnMaxHealth?.Invoke(this, EventArgs.Empty);
             
             DoUpdateProgress();
         }
@@ -82,13 +94,15 @@ namespace YusamPackage
                 return;
             }
             
-            //Debug.Log($"{GetType()}:PlusHealth({volume})");
-            
-            _healthVolume += volume;
-            
+            if (_healthVolume < healthSo.maxHealth)
+            {
+                _healthVolume += volume;
+            }
+
             if (_healthVolume > healthSo.maxHealth)
             {
                 _healthVolume = healthSo.maxHealth;
+                OnMaxHealth?.Invoke(this, EventArgs.Empty);
             }
 
             DoUpdateProgress();
@@ -101,14 +115,16 @@ namespace YusamPackage
                 _parentHealth.MinusHealth(volume);
                 return;
             }
-            
-            //Debug.Log($"{GetType()}:MinusHealth({volume})");
-            
-            _healthVolume -= volume;
-            
+
+            if (_healthVolume > 0)
+            {
+                _healthVolume -= volume;
+            }
+
             if (_healthVolume < 0)
             {
                 _healthVolume = 0;
+                OnZeroHealth?.Invoke(this, EventArgs.Empty);
             }
             
             DoUpdateProgress();

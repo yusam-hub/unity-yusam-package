@@ -30,6 +30,7 @@ namespace YusamPackage
             shieldHealth = GetComponent<Health>();
         }
 
+
         public void ShieldActivate(Transform sourceTransform)
         {
             if (!_shieldInProgress)
@@ -52,9 +53,15 @@ namespace YusamPackage
             
             var newGameObject = ShieldPrefabCreate(sourceTransform);
             
-            while (activeLifeTime > 0 )
+            while (activeLifeTime > 0)
             {
                 activeLifeTime -= Time.deltaTime;
+
+                if (shieldHealth.GetHealth() <= 0)
+                {
+                    ShieldPrefabDestroy(newGameObject);
+                    yield break;
+                }
                 
                 _shieldActiveProgress = 1f - activeLifeTime / shieldSo.activeLifeTime;
                 
