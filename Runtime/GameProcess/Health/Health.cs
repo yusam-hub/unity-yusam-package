@@ -53,6 +53,11 @@ namespace YusamPackage
             }
         }
 
+        public float GetHealthMax()
+        {
+            return healthSo.maxHealth;
+        }
+        
         public bool IsHealthZero()
         {
             return Mathf.RoundToInt(_healthVolume) == 0;

@@ -2,6 +2,7 @@
 {
     public interface IHealth
     {
+        public float GetHealthMax();
         public bool IsHealthZero();
         public bool IsHealthMax();
         public float GetHealth();

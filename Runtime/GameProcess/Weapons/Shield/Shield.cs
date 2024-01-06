@@ -35,11 +35,11 @@ namespace YusamPackage
         {
             if (!_shieldInProgress)
             {
-                StartCoroutine(ShieldExecuteCoroutine(sourceTransform));
+                StartCoroutine(ShieldActivateCoroutine(sourceTransform));
             }
         }
 
-        private IEnumerator ShieldExecuteCoroutine(Transform sourceTransform)
+        private IEnumerator ShieldActivateCoroutine(Transform sourceTransform)
         {
             _shieldActiveProgress = 0;
             _shieldInProgress = true;
@@ -49,13 +49,13 @@ namespace YusamPackage
                 Progress = _shieldActiveProgress,
             });
 
-            var activeLifeTime = shieldSo.activeLifeTime;
+            var shieldActiveLifeTime = shieldSo.shieldActiveLifeTime;
             
             var newGameObject = ShieldPrefabCreate(sourceTransform);
             
-            while (activeLifeTime > 0)
+            while (shieldActiveLifeTime > 0)
             {
-                activeLifeTime -= Time.deltaTime;
+                shieldActiveLifeTime -= Time.deltaTime;
 
                 if (shieldHealth.GetHealth() <= 0)
                 {
@@ -63,7 +63,7 @@ namespace YusamPackage
                     yield break;
                 }
                 
-                _shieldActiveProgress = 1f - activeLifeTime / shieldSo.activeLifeTime;
+                _shieldActiveProgress = 1f - shieldActiveLifeTime / shieldSo.shieldActiveLifeTime;
                 
                 OnShieldProgress?.Invoke(this, new ProgressFloatEventArgs
                 {
@@ -74,6 +74,18 @@ namespace YusamPackage
             }
 
             ShieldPrefabDestroy(newGameObject);
+        }
+        
+        private IEnumerator ShieldReloadCoroutine()
+        {
+            while (shieldHealth.GetHealth() < shieldHealth.GetHealthMax())
+            {
+                shieldHealth.PlusHealth(1); //todo: нужно расчитать за какое время нужно восстановить здоровье щита
+                
+                yield return null;
+            }
+            
+            _shieldInProgress = false;
         }
 
         private GameObject ShieldPrefabCreate(Transform sourceTransform)
@@ -86,16 +98,15 @@ namespace YusamPackage
             Debug.Log($"ShieldPrefabDestroy");
             
             _shieldActiveProgress = 0;
-            _shieldInProgress = false;
 
             OnShieldHide?.Invoke(this, new ProgressFloatEventArgs
             {
                 Progress = _shieldActiveProgress
             });
             
-            shieldHealth.ResetHealth();
-            
             Destroy(prefabGameObject);
+            
+            StartCoroutine(ShieldReloadCoroutine());
         }
         
         private void Update()
