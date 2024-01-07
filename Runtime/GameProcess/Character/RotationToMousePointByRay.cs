@@ -63,8 +63,9 @@ namespace YusamPackage
                     if (lookAt.y != 0)
                     {
                         Debug.DrawLine(lookAt, zeroY, _debugProperties.debugLineColor, _debugProperties.debugDuration);
+                        DebugHelper.DrawCircle( zeroY, Quaternion.LookRotation(lookAt - zeroY), 1, 8, _debugProperties.debugLineColor, _debugProperties.debugDuration, true);
+                        Debug.DrawLine(transform.position, zeroY, _debugProperties.debugLineColor, _debugProperties.debugDuration);
                     }
-                    DebugHelper.DrawCircle( zeroY, Quaternion.identity, 1, 8, _debugProperties.debugLineColor, _debugProperties.debugDuration);
                 }
             }
         }
