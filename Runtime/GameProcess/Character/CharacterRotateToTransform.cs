@@ -8,7 +8,7 @@ namespace YusamPackage
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private GameObject target;
         [SerializeField] private string findGameObjectWithTag;
-        [SerializeField] private Vector3 offset;
+        [SerializeField] private Vector3 positionOffset;
         
         private Vector3 _lookPosition;
         
@@ -32,7 +32,7 @@ namespace YusamPackage
         private Vector3 GetTargetTransformPosition()
         {
             var pos = target.transform.position;
-            pos.y += offset.y;
+            pos.y += positionOffset.y;
             return pos;
         }
 
@@ -66,5 +66,5 @@ namespace YusamPackage
             }
             return Vector3.zero;
         }
- }
+    }
 }

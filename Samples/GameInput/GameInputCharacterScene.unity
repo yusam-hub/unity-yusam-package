@@ -2756,7 +2756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5804561085294bed91dce6b73b38586f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputCharacterRotateByMousePoint: {fileID: 1100545465}
 --- !u!114 &1100545474
 MonoBehaviour:
   m_ObjectHideFlags: 0
