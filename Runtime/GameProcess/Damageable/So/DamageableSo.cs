@@ -6,5 +6,6 @@ namespace YusamPackage
     public class DamageableSo : ScriptableObject
     {
         public string layerName = "Default";
+        public bool replaceLayer = true;
     }
 }

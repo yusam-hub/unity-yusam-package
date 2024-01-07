@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: DefaultDamageableSo
   m_EditorClassIdentifier: 
   layerName: Hit
+  replaceLayer: 1

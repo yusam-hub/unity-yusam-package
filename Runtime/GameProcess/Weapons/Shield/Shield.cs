@@ -16,7 +16,7 @@ namespace YusamPackage
         public event EventHandler<ProgressFloatEventArgs> OnShieldProgress;
         public event EventHandler<ProgressFloatEventArgs> OnShieldHide;
 
-        [FormerlySerializedAs("shieldDamage")] [HideInInspector]
+        [HideInInspector]
         public Damageable shieldDamageable;
         [HideInInspector]
         public Health shieldHealth;

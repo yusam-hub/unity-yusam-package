@@ -13,8 +13,12 @@ namespace YusamPackage
         {
             if (damageableSo)
             {
-                gameObject.layer = LayerMask.NameToLayer(damageableSo.layerName);
-                Debug.Log($"Assign layer name [ {damageableSo.layerName} ] to [ {name} ] from Scriptable Object [ {damageableSo.name} ]");
+                if (damageableSo.replaceLayer)
+                {
+                    gameObject.layer = LayerMask.NameToLayer(damageableSo.layerName);
+                    Debug.Log(
+                        $"Assign layer name [ {damageableSo.layerName} ] to [ {name} ] from Scriptable Object [ {damageableSo.name} ]");
+                }
             }
 
             _health = GetComponent<IHealth>();
