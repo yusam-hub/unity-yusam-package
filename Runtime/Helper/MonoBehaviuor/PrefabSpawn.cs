@@ -9,6 +9,10 @@ namespace YusamPackage
         
         private void Awake()
         {
+            Spawn();
+        }
+        private void Spawn()
+        {
             if (prefab != null && spawnPoint != null)
             {
                 Instantiate(prefab, spawnPoint);

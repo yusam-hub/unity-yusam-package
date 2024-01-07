@@ -2544,10 +2544,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1100545461}
   - component: {fileID: 1100545463}
+  - component: {fileID: 1100545473}
   - component: {fileID: 1100545466}
   - component: {fileID: 1100545467}
-  - component: {fileID: 1100545473}
-  - component: {fileID: 1100545468}
   - component: {fileID: 1100545472}
   - component: {fileID: 1100545464}
   - component: {fileID: 1100545465}
@@ -2669,20 +2668,6 @@ MonoBehaviour:
   gameInputScene: {fileID: 298523308}
   availableLayerSoArray:
   - {fileID: 11400000, guid: da4e5f6f7f362bc4f9cda913be6bc597, type: 2}
---- !u!114 &1100545468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100545460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 166cd503904d44b2b46f0ad3b647ae02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  spawnPoint: {fileID: 1100545461}
 --- !u!114 &1100545469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2771,6 +2756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5804561085294bed91dce6b73b38586f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputCharacterRotateByMousePoint: {fileID: 1100545465}
 --- !u!114 &1100545474
 MonoBehaviour:
   m_ObjectHideFlags: 0
