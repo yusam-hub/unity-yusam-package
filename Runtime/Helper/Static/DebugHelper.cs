@@ -18,7 +18,7 @@ namespace YusamPackage
         {
             Quaternion rotation = Quaternion.LookRotation(normal);
             DrawCross(position, rotation, radius, color, duration);
-            DrawNormal(position, normal, radius/2, color, duration);
+            DrawNormal(position, normal, radius, color, duration);
         }
         
         public static void DrawCircle(Vector3 position, Quaternion rotation, float radius, int segments, Color color, float duration, bool withStart = false)

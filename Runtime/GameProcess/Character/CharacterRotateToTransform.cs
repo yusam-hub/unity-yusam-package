@@ -58,7 +58,7 @@ namespace YusamPackage
             }
         }
 
-        public override Vector3 GetLookAtTargetPosition()
+        public override Vector3 GetMousePositionAsVector3()
         {
             if (target)
             {
