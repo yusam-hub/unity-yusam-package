@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trajectory: 1
   rotateToTrajectory: 1
-  parallelMaxDistance: 20
-  parallelMinDistance: 5
   parabolaHeight: 2
+  alternateParabola: 0
+  alternateMaxDistance: 20
+  alternateMinDistance: 3
   bulletSpeed: 4
   bulletHitRadius: 0.05
   bulletReloadTime: 0.1
