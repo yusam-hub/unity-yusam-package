@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -958437846921952737}
   - component: {fileID: -6419909416401407693}
   m_Layer: 0
-  m_Name: ShieldDefaultPrefabToBeSpawn
+  m_Name: ShieldPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3cc20c5e60e42af99fcf90d5da0a986, type: 3}
   m_Name: DefaultShieldSo
   m_EditorClassIdentifier: 
+  prefabOnActivateShield: {fileID: 2038485882877477965, guid: 42779182e05184c448be7b7df0bd430e,
+    type: 3}
   shieldActiveLifeTime: 10
+  shieldReloadLifeTime: 10
   prefabOnDestroyShield: {fileID: 0}
   lifeTimeOnDestroyShield: 5
   layerMaskOnDestroyShield:
