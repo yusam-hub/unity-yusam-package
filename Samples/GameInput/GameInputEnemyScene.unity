@@ -1293,6 +1293,41 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3755773408403040794, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onDestroy.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755773408403040794, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755773408403040794, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755773408403040794, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755773408403040794, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TakeDamageForAllDamageable
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755773408403040794, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: YusamPackage.ShieldEvents, Yusam.YusamPackage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755773408403040794, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onDestroy.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4447168616572679265, guid: a4673d973b21abb418024b50029e5997,
         type: 3}
       propertyPath: orthographic

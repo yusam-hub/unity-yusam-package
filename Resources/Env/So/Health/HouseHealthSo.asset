@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: HouseHealthSo
   m_EditorClassIdentifier: 
   maxHealth: 100
+  dieEffectPrefab: {fileID: 3168008692127461040, guid: c68bbf860dbbbc344aaa33945e212dfe,
+    type: 3}
+  dieEffectDestroyTime: 10
+  dieEffectRotateAngleStartY: 0
+  dieEffectRotateAngleEndY: 0

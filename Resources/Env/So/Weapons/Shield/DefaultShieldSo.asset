@@ -16,7 +16,8 @@ MonoBehaviour:
     type: 3}
   shieldActiveLifeTime: 10
   shieldReloadLifeTime: 10
-  prefabOnDestroyShield: {fileID: 0}
+  prefabOnDestroyShield: {fileID: 3168008692127461040, guid: c68bbf860dbbbc344aaa33945e212dfe,
+    type: 3}
   lifeTimeOnDestroyShield: 5
   layerMaskOnDestroyShield:
     serializedVersion: 2

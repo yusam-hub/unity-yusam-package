@@ -128,7 +128,7 @@ namespace YusamPackage
             }
         }
         
-        private void TakeDamageForAllDamageable()
+        public void TakeDamageForAllDamageable()
         {
             var startPos = transform.position;
             startPos.y = 0;
