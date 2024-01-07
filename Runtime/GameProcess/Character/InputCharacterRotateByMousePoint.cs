@@ -5,12 +5,13 @@ namespace YusamPackage
     [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
+    [AddComponentMenu("YusamPackage/Game Process/InputCharacterRotateByMousePoint")]
     public class InputCharacterRotateByMousePoint : LookAtTargetPosition
     {
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private float rayCastDistance = 100f;
-        private GameInputController _gameInputController;
 
+        private GameInputController _gameInputController;
         private DebugProperties _debugProperties;
         private Vector3 _mousePosition;
         private Camera _camera;
