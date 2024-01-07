@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 450
   target: {fileID: 0}
-  findTargetIfNull: 1
+  findGameObjectWithTag: Player
 --- !u!114 &1837723672010248125
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,11 +7,10 @@ namespace YusamPackage
     {
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private GameObject target;
-        [SerializeField] private bool findTargetIfNull = true;
+        [SerializeField] private string findGameObjectWithTag;
         
         private Vector3 _lookPosition;
         
-
         private void Awake()
         {
             if (target == null)
@@ -22,7 +21,11 @@ namespace YusamPackage
 
         private void FindTarget()
         {
-            target = GameObject.FindGameObjectWithTag("Player");
+            if (target != null) return;
+            if (findGameObjectWithTag != "")
+            {
+                target = GameObject.FindGameObjectWithTag(findGameObjectWithTag);
+            }
         }
 
         private void Update()
