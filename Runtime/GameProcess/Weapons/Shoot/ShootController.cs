@@ -58,7 +58,7 @@ namespace YusamPackage
                 _isReloading = true;
                 ShootBullet shootBullet = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
                 _reloadTimer = shootBullet.GetBulletReloadTime();
-                shootBullet.WeaponActionToPoint(nozzlePoint, lookAtTargetPosition.GetLookAtTargetPosition());
+                shootBullet.WeaponActionToPoint(nozzlePoint, lookAtTargetPosition.GetMousePositionAsVector3());
             }
         }
 

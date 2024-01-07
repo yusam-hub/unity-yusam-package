@@ -5,6 +5,6 @@ namespace YusamPackage
 {
     public interface ILookAtTargetPosition
     {
-        public Vector3 GetLookAtTargetPosition();
+        public Vector3 GetMousePositionAsVector3();
     }
 }

@@ -5,14 +5,15 @@ namespace YusamPackage
     [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
+    [AddComponentMenu("YusamPackage/Game Process/InputCharacterRotateByMousePoint")]
     public class InputCharacterRotateByMousePoint : LookAtTargetPosition
     {
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private float rayCastDistance = 100f;
-        private GameInputController _gameInputController;
 
+        private GameInputController _gameInputController;
         private DebugProperties _debugProperties;
-        private Vector3 _lookPosition;
+        private Vector3 _mousePosition;
         private Camera _camera;
 
         private void Awake()
@@ -22,7 +23,7 @@ namespace YusamPackage
             _camera = Camera.main;
         }
 
-        private Vector3 GetInputMousePosition()
+        private Vector2 GetInputMousePosition()
         {
             //return Input.mousePosition;
             return _gameInputController.gameInput.GetRightStickMousePosition();
@@ -36,9 +37,9 @@ namespace YusamPackage
 
         private void RotateToMouse()
         {
-            _lookPosition = MouseHelper.GetMouseLookPositionByRay(_lookPosition, GetInputMousePosition(), _camera, rayCastDistance);
+            _mousePosition = MouseHelper.GetMouseLookPositionByRay(_mousePosition, GetInputMousePosition(), _camera, rayCastDistance);
         
-            var lookAt = TransformHelper.LookAt(transform.position, _lookPosition);
+            var lookAt = TransformHelper.LookAt(transform.position, _mousePosition);
 
             if (lookAt != Vector3.zero)
             {
@@ -77,9 +78,9 @@ namespace YusamPackage
             }
         }
 
-        public override Vector3 GetLookAtTargetPosition()
+        public override Vector3 GetMousePositionAsVector3()
         {
-            return _lookPosition;
+            return _mousePosition;
         }
  
     }

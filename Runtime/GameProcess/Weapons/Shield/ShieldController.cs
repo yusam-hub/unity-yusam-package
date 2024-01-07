@@ -121,9 +121,7 @@ namespace YusamPackage
             {
                 if (shieldSo.prefabOnDestroyShield)
                 {
-                    Destroy(
-                        Instantiate(shieldSo.prefabOnDestroyShield, transform.position, Quaternion.identity), shieldSo.lifeTimeOnDestroyShield
-                    );
+                    Destroy(Instantiate(shieldSo.prefabOnDestroyShield, transform.position, Quaternion.identity), shieldSo.lifeTimeOnDestroyShield);
                 }
 
                 TakeDamageForAllDamageable();
