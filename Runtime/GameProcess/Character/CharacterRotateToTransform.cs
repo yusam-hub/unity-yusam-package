@@ -2,27 +2,45 @@
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(DebugProperties))]
     [DisallowMultipleComponent]
     public class CharacterRotateToTransform : LookAtTargetPosition
     {
         [SerializeField] private float rotationSpeed = 450;
-        [SerializeField] private Transform rotateTo;
+        [SerializeField] private GameObject target;
+        [SerializeField] private string findGameObjectWithTag;
+        [SerializeField] private Vector3 offset;
         
-        private DebugProperties _debugProperties;
         private Vector3 _lookPosition;
-
+        
         private void Awake()
         {
-            _debugProperties = GetComponent<DebugProperties>();
-            LogErrorHelper.NotFoundWhatInIf(rotateTo == null,typeof(Transform) + " : Nozzle Point", this);
+            if (target == null)
+            {
+                FindTarget();
+            }
+        }
+
+        private void FindTarget()
+        {
+            if (target != null) return;
+            if (findGameObjectWithTag != "")
+            {
+                target = GameObject.FindGameObjectWithTag(findGameObjectWithTag);
+            }
+        }
+
+        private Vector3 GetTargetTransformPosition()
+        {
+            var pos = target.transform.position;
+            pos.y += offset.y;
+            return pos;
         }
 
         private void Update()
         {
-            if (!rotateTo) return;
+            if (!target) return;
             
-            var lookAt = TransformHelper.LookAt(transform.position, rotateTo.position);
+            var lookAt = TransformHelper.LookAt(transform.position, GetTargetTransformPosition());
 
             if (lookAt != Vector3.zero)
             {
@@ -37,14 +55,16 @@ namespace YusamPackage
                                             rotationSpeed * Time.deltaTime
                                         );
 
-
-                
             }
         }
 
         public override Vector3 GetLookAtTargetPosition()
         {
-            return rotateTo.position;
+            if (target)
+            {
+                return GetTargetTransformPosition();
+            }
+            return Vector3.zero;
         }
  }
 }

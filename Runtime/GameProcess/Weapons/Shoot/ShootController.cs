@@ -11,6 +11,7 @@ namespace YusamPackage
         [SerializeField] private LookAtTargetPosition lookAtTargetPosition;
         [SerializeField] private Transform nozzlePoint;
         [SerializeField] private ShootBullet prefabToBeSpawn;
+
         [SerializeField] private GameInputPerformedEnum[] inputs;
 
         private float _reloadTimer;
