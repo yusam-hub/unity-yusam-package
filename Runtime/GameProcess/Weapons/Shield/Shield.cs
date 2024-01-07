@@ -24,6 +24,7 @@ namespace YusamPackage
         private bool _shieldInProgress;
         private float _shieldActiveProgress;
         private DebugProperties _debugProperties;
+        private SphereCollider _sphereCollider;
 
         public void SetDebugProperties(DebugProperties debugProperties)
         {
@@ -34,8 +35,15 @@ namespace YusamPackage
         {
             shieldDamageable = GetComponent<Damageable>();
             shieldHealth = GetComponent<Health>();
+            _sphereCollider = GetComponent<SphereCollider>();
+            //_sphereCollider.isTrigger = true;
+  
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            DebugDisplay.Instance.DisplayFirst(other.name);
+        }
 
         public void ShieldActivate(Transform sourceTransform)
         {
