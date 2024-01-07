@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intervalMax: 0.5
-  intervalMin: 3
+  intervalMin: 1
   onIntervalEvent:
     m_PersistentCalls:
       m_Calls:

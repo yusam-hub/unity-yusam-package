@@ -36,8 +36,6 @@ namespace YusamPackage
             shieldDamageable = GetComponent<Damageable>();
             shieldHealth = GetComponent<Health>();
             _sphereCollider = GetComponent<SphereCollider>();
-            //_sphereCollider.isTrigger = true;
-  
         }
 
         private void OnTriggerEnter(Collider other)

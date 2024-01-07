@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DefaultDestroyableSo
   m_EditorClassIdentifier: 
   destroyBonus: 5
-  prefabOnSelfDestroy: {fileID: 0}
+  prefabOnSelfDestroy: {fileID: 3168008692127461040, guid: c68bbf860dbbbc344aaa33945e212dfe,
+    type: 3}
   prefabLifeTime: 5
-  layerName: Hit
