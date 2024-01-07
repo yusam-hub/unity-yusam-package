@@ -8,6 +8,7 @@ namespace YusamPackage
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private GameObject target;
         [SerializeField] private string findGameObjectWithTag;
+        [SerializeField] private Vector3 offset;
         
         private Vector3 _lookPosition;
         
@@ -28,11 +29,18 @@ namespace YusamPackage
             }
         }
 
+        private Vector3 GetTargetTransformPosition()
+        {
+            var pos = target.transform.position;
+            pos.y += offset.y;
+            return pos;
+        }
+
         private void Update()
         {
             if (!target) return;
             
-            var lookAt = TransformHelper.LookAt(transform.position, target.transform.position);
+            var lookAt = TransformHelper.LookAt(transform.position, GetTargetTransformPosition());
 
             if (lookAt != Vector3.zero)
             {
@@ -54,7 +62,7 @@ namespace YusamPackage
         {
             if (target)
             {
-                return target.transform.position;
+                return GetTargetTransformPosition();
             }
             return Vector3.zero;
         }
