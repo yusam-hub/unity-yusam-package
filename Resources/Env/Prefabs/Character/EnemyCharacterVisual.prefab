@@ -310,7 +310,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6e2d69c4f03a8de49bed6f8d8578cd62, type: 2}
+  - {fileID: 2100000, guid: 0d8e56e12780acd428e411ecb2b5022d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -510,7 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4022540044764164140}
   m_Layer: 0
-  m_Name: DefaultCharacterVisual
+  m_Name: EnemyCharacterVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

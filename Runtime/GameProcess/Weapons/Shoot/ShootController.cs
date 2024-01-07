@@ -3,31 +3,31 @@ using UnityEngine.InputSystem;
 
 namespace YusamPackage
 {
-    [RequireComponent(typeof(GameInputController))]
-    [RequireComponent(typeof(RotationToMousePointByRay))]
+
     [DisallowMultipleComponent]
     public class ShootController : MonoBehaviour
     {
+        [SerializeField] private GameInputController gameInputController;
+        [SerializeField] private LookAtTargetPosition lookAtTargetPosition;
         [SerializeField] private Transform nozzlePoint;
         [SerializeField] private ShootBullet prefabToBeSpawn;
         [SerializeField] private GameInputPerformedEnum[] inputs;
 
-        private GameInputController _gameInputController;
-        private RotationToMousePointByRay _rotationToMousePointByRay;
         private float _reloadTimer;
         private bool _isReloading;
         
         private void Awake()
         {
+            LogErrorHelper.NotFoundWhatInIf(lookAtTargetPosition == null,typeof(Transform) + " : Look At Target", this);
             LogErrorHelper.NotFoundWhatInIf(nozzlePoint == null,typeof(Transform) + " : Nozzle Point", this);
-            LogErrorHelper.NotFoundWhatInIf(nozzlePoint == null,typeof(ShootBullet) + " : Prefab To Be Spawn", this);
-            
-            _gameInputController = GetComponent<GameInputController>();
-            _rotationToMousePointByRay = GetComponent<RotationToMousePointByRay>();
+            LogErrorHelper.NotFoundWhatInIf(prefabToBeSpawn == null,typeof(ShootBullet) + " : Prefab To Be Spawn", this);
 
-            foreach(GameInputPerformedEnum gameInputPerformedEnum in inputs)
+            if (gameInputController)
             {
-                _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
+                foreach (GameInputPerformedEnum gameInputPerformedEnum in inputs)
+                {
+                    gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
+                }
             }
         }
 
@@ -46,22 +46,29 @@ namespace YusamPackage
 
         private void OnInputAction(InputAction.CallbackContext obj)
         {
-            if (!_gameInputController.IsLayerAccessible()) return;
-            
+            if (!gameInputController.IsLayerAccessible()) return;
+            Shoot();
+        }
+
+        public void Shoot()
+        {
             if (!_isReloading)
             {
                 _isReloading = true;
                 ShootBullet shootBullet = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
                 _reloadTimer = shootBullet.GetBulletReloadTime();
-                shootBullet.WeaponActionToPoint(nozzlePoint, _rotationToMousePointByRay.GetMouseLookPosition());
+                shootBullet.WeaponActionToPoint(nozzlePoint, lookAtTargetPosition.GetLookAtTargetPosition());
             }
         }
 
         private void OnDestroy()
         {
-            foreach(GameInputPerformedEnum gameInputPerformedEnum in inputs)
+            if (gameInputController)
             {
-                _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
+                foreach (GameInputPerformedEnum gameInputPerformedEnum in inputs)
+                {
+                    gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
+                }
             }
         }
     }
