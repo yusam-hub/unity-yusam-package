@@ -112,9 +112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugEnabled: 1
-  debugLineColor: {r: 1, g: 0, b: 0, a: 1}
   debugTextColor: {r: 1, g: 0, b: 0, a: 1}
   debugDuration: 0.1
+  debugLineColor: {r: 1, g: 0, b: 0, a: 1}
+  debugLongDuration: 20
+  debugLongLineColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &4753991675853051880
 MonoBehaviour:
   m_ObjectHideFlags: 0

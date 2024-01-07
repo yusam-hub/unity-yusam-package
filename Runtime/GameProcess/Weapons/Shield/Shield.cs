@@ -132,9 +132,7 @@ namespace YusamPackage
         {
             var startPos = transform.position;
             startPos.y = 0;
-            
-            DebugHelper.DrawCircleXZ(startPos, shieldSo.radiusOnDestroyShield, 64, _debugProperties);
-            
+
             Collider[] colliders = Physics.OverlapSphere(transform.position, shieldSo.radiusOnDestroyShield, shieldSo.layerMaskOnDestroyShield);
             
             foreach (var foundCollider in colliders)
@@ -142,8 +140,12 @@ namespace YusamPackage
                 if (foundCollider.TryGetComponent(out IDamageable damagable))
                 {
                     var endPos = foundCollider.transform.position;
-                    endPos.y = 0;
-                    Debug.DrawLine(startPos, endPos, Color.red, 15);
+                    if (_debugProperties.debugEnabled)
+                    {
+                        endPos.y = 1;
+                        startPos.y = 1;
+                        Debug.DrawLine(startPos, endPos, _debugProperties.debugLongLineColor, _debugProperties.debugLongDuration);
+                    }
                     damagable.TakeDamage(shieldSo.damageVolumeOnDestroyShield, foundCollider);
                 }
             }

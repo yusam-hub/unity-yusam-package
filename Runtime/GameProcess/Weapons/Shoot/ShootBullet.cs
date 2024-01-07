@@ -124,6 +124,7 @@ namespace YusamPackage
         {
             if (_debugProperties.debugEnabled)
             {
+                DebugHelper.DrawCrossNormal(hit.point, hit.normal, 1f, _debugProperties.debugLongLineColor, _debugProperties.debugLongDuration);
                 Debug.Log($"Raycast hit on {hit.collider.name} from {GetType()}");
             }
             
@@ -139,8 +140,6 @@ namespace YusamPackage
         
         private void TryHitEffect(RaycastHit hit)
         {
-            Debug.DrawRay(transform.position, hit.normal, _debugProperties.debugLineColor,20);
-            
             if (_debugProperties.debugEnabled)
             {
                 Debug.Log($"TryHitEffect on point {hit.point}");

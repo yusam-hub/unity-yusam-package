@@ -32,6 +32,7 @@ namespace YusamPackage
             
             _gameInputController = GetComponent<GameInputController>();
             _ownerHealth = GetComponent<Health>();
+            _debugProperties = GetComponent<DebugProperties>();
             
             foreach(var gameInputPerformedEnum in inputs)
             {
