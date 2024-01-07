@@ -48,7 +48,6 @@ GameObject:
   - component: {fileID: 5019788513565092365}
   - component: {fileID: 1837723672010248125}
   - component: {fileID: 7108294515946426408}
-  - component: {fileID: 8356936040898393704}
   - component: {fileID: 3450630816459589366}
   m_Layer: 6
   m_Name: Enemy
@@ -144,6 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSo: {fileID: 11400000, guid: 42f21396c20c730409d59598df01852a, type: 2}
+  healthBarSo: {fileID: 11400000, guid: ea21b3e32f888a742ba855f3e92598a9, type: 2}
+  healthBarEnabled: 1
   onProgressEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -228,18 +229,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8356936040898393704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4743849761861515004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1d2ccc7fe154c71a40915f915ec81c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3450630816459589366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547db2c29aaa417d96e215f6d26a650e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyableSo: {fileID: 0}
+  destroyableSo: {fileID: 11400000, guid: 16f4ce12da5829845b397517f6072fe7, type: 2}
   selfDestroyOnHealthZero: 1
   onDestroy:
     m_PersistentCalls:

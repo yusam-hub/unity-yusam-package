@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5447782990525604020}
   - component: {fileID: 4341038256697052802}
   - component: {fileID: 8539843961736475826}
-  - component: {fileID: 5126319274386993121}
   - component: {fileID: 6984205420961669249}
   - component: {fileID: 1940142639321470603}
+  - component: {fileID: 5126319274386993121}
   m_Layer: 0
   m_Name: enemy_parabola
   m_TagString: Untagged
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5126319274386993121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4722818346746860803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f726eaec8b247b189b2c18abbfb16a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootBulletSo: {fileID: 11400000, guid: 257e09aa410e8f04eac16138a670d8ab, type: 2}
 --- !u!114 &6984205420961669249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +117,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineLength: 2
+--- !u!114 &5126319274386993121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722818346746860803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f726eaec8b247b189b2c18abbfb16a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootBulletSo: {fileID: 11400000, guid: 257e09aa410e8f04eac16138a670d8ab, type: 2}
