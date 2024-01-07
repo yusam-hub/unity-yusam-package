@@ -28,16 +28,19 @@ namespace YusamPackage
 
         public void SelfDestroy()
         {
-            if (destroyableSo.prefabOnSelfDestroy)
+            if (destroyableSo)
             {
-                Destroy(
-                    Instantiate(destroyableSo.prefabOnSelfDestroy, transform)
-                    , destroyableSo.prefabLifeTime
+                if (destroyableSo.prefabOnSelfDestroy)
+                {
+                    Destroy(
+                        Instantiate(destroyableSo.prefabOnSelfDestroy, transform)
+                        , destroyableSo.prefabLifeTime
                     );
+                }
+                onDestroyWithBonus?.Invoke(destroyableSo.destroyBonus);
             }
-            
+
             onDestroy?.Invoke(EventArgs.Empty);
-            onDestroyWithBonus?.Invoke(destroyableSo.destroyBonus);
             
             Destroy(gameObject);
         }
