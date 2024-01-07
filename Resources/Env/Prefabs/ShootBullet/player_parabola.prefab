@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6984205420961669249}
   - component: {fileID: 1940142639321470603}
   m_Layer: 0
-  m_Name: ShootBulletRed_050_parabola
+  m_Name: player_parabola
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0d8e56e12780acd428e411ecb2b5022d, type: 2}
+  - {fileID: 2100000, guid: e4146c555c95cd44794f2265bdbff516, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f726eaec8b247b189b2c18abbfb16a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootBulletSo: {fileID: 11400000, guid: 7c5899216102a4549b98b1d52e8eb6b0, type: 2}
+  shootBulletSo: {fileID: 11400000, guid: 75f3bce498fa4104f93207453f5ba1c8, type: 2}
 --- !u!114 &6984205420961669249
 MonoBehaviour:
   m_ObjectHideFlags: 0

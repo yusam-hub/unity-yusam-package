@@ -5,7 +5,7 @@ namespace YusamPackage
     [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
-    public class RotationToMousePointByRay : MonoBehaviour
+    public class InputCharacterRotateByMousePoint : LookAtTargetPosition
     {
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private float rayCastDistance = 100f;
@@ -63,14 +63,21 @@ namespace YusamPackage
                     if (lookAt.y != 0)
                     {
                         Debug.DrawLine(lookAt, zeroY, _debugProperties.debugLineColor, _debugProperties.debugDuration);
-                        DebugHelper.DrawCircle( zeroY, Quaternion.LookRotation(lookAt - zeroY), 1, 8, _debugProperties.debugLineColor, _debugProperties.debugDuration, true);
-                        Debug.DrawLine(transform.position, zeroY, _debugProperties.debugLineColor, _debugProperties.debugDuration);
+
+                        if (lookAt != zeroY)
+                        {
+                            var rot = Quaternion.LookRotation(lookAt - zeroY);
+                            DebugHelper.DrawCircle(zeroY, rot, 1, 8, _debugProperties.debugLineColor,
+                                _debugProperties.debugDuration, true);
+                            Debug.DrawLine(transform.position, zeroY, _debugProperties.debugLineColor,
+                                _debugProperties.debugDuration);
+                        }
                     }
                 }
             }
         }
 
-        public Vector3 GetMouseLookPosition()
+        public override Vector3 GetLookAtTargetPosition()
         {
             return _lookPosition;
         }
