@@ -9,6 +9,7 @@ namespace YusamPackage
     {
         [SerializeField] private GameInputCursor gameInputCursor;
         [SerializeField] private float virtualCursorSpeed = 1000;
+        [SerializeField] private bool debugInDisplay = false;
 
         public static GameInput Instance { get; private set; }
 
@@ -357,6 +358,7 @@ namespace YusamPackage
         
         private void OnGUI()
         {
+            if (!debugInDisplay) return;
             if (!DebugDisplay.HasInstance()) return;
             if (!DebugDisplay.Instance.DebugEnabled()) return;
             
