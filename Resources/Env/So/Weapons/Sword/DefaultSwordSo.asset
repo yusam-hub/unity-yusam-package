@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba12b5ed2f7a4c88a80607c0599ae3b6, type: 3}
   m_Name: DefaultSwordSo
   m_EditorClassIdentifier: 
+  startEffectPrefab: {fileID: 0}
+  startEffectDestroyTime: 1
+  hitEffectPrefab: {fileID: 0}
+  hitEffectDestroyTime: 1
+  hitDamageLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  hitDamageVolume: 10
+  hitDamageForce: 1
+  hitDamageDuration: 0.2
+  attackSpeed: 0.1

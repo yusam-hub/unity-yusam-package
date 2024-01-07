@@ -4,6 +4,7 @@ using UnityEngine;
 namespace YusamPackage
 {
     [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(Damageable))]
     public class Destroyable : MonoBehaviour, IDestroyable
     {
         [SerializeField] private DestroyableSo destroyableSo;
