@@ -25,18 +25,14 @@ namespace YusamPackage
         private void StartEffect(Transform sourceTransform)
         {
             if (swordSo.startEffectPrefab) {
-                Destroy(
-                    Instantiate(swordSo.startEffectPrefab, sourceTransform.transform), swordSo.startEffectDestroyTime
-                );
+                Destroy(Instantiate(swordSo.startEffectPrefab, sourceTransform.transform), swordSo.startEffectDestroyTime);
             }
         }
         
         private void HitEffect(Vector3 point)
         {
             if (swordSo.hitEffectPrefab) {
-                Destroy(
-                    Instantiate(swordSo.hitEffectPrefab, point, Quaternion.identity), swordSo.hitEffectDestroyTime
-                );
+                Destroy(Instantiate(swordSo.hitEffectPrefab, point, Quaternion.identity), swordSo.hitEffectDestroyTime);
             }
         }
         

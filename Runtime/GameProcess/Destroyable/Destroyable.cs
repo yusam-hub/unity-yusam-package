@@ -34,10 +34,7 @@ namespace YusamPackage
             {
                 if (destroyableSo.prefabOnSelfDestroy)
                 {
-                    Destroy(
-                        Instantiate(destroyableSo.prefabOnSelfDestroy, transform.position, Quaternion.identity)
-                        , destroyableSo.prefabLifeTime
-                    );
+                    Destroy(Instantiate(destroyableSo.prefabOnSelfDestroy, transform.position, Quaternion.identity), destroyableSo.prefabLifeTime);
                 }
                 onDestroyWithBonus?.Invoke(destroyableSo.destroyBonus);
             }

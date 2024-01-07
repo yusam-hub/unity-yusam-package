@@ -154,9 +154,7 @@ namespace YusamPackage
                 {
                     Debug.Log($"Instantiate prefab and will destroy throw time: {shootBulletSo.hitEffectDestroyTime}");
                 }
-                Destroy(
-                    Instantiate(shootBulletSo.hitEffectPrefab, hit.point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
-                );
+                Destroy(Instantiate(shootBulletSo.hitEffectPrefab, hit.point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime);
             }
             else
             {
@@ -189,9 +187,7 @@ namespace YusamPackage
         private void StartEffect(Transform sourceTransform)
         {
             if (shootBulletSo.startEffectPrefab) {
-                Destroy(
-                    Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime
-                );
+                Destroy(Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime);
             }
         }
     }
