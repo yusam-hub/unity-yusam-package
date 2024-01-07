@@ -12,7 +12,10 @@ namespace YusamPackage
         private void Awake()
         {
             _collider = GetComponent<Collider>();
-            _collider.isTrigger = true;
+            if (_collider)
+            {
+                _collider.isTrigger = true;
+            }
         }
 
         private void OnTriggerStay(Collider other)

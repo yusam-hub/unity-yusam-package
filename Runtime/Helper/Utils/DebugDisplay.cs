@@ -7,7 +7,7 @@ namespace YusamPackage
      *      DebugDisplay.HasInstance()
      *      DebugDisplay.Instance.DisplayFirst($"Debug: {name}");
      *      DebugDisplay.Instance.DisplayLast($"Debug: {name}");
-     *      DebugDisplay.Instance.DisplayLog(10,$"Debug: {name}");     
+     *      DebugDisplay.Instance.DisplayIndex(10,$"Debug: {name}");     
      */
     [DisallowMultipleComponent]
     [RequireComponent(typeof(DebugProperties))]
@@ -18,6 +18,7 @@ namespace YusamPackage
         public const int GAME_INPUT_GET_VIRTUAL_MOUSE_POSITION = -3;
         public const int GAME_INPUT_GET_RIGHT_STICK_MOUSE_POSITION = -2;
         
+        [SerializeField] private int fontSize = 12;
         [SerializeField] private int countLines = 42;
         
         private string[] _displayLines; 
@@ -44,7 +45,7 @@ namespace YusamPackage
             _displayLines = new string[countLines];
         }
 
-        public void DisplayLog(int index, string lineString)
+        public void DisplayIndex(int index, string lineString)
         {
             if (index < 0)
             {
@@ -57,14 +58,14 @@ namespace YusamPackage
             _displayLines[index] = $"{index} - {lineString}";
         }
         
-        public void DisplayFirst(int index, string lineString)
+        public void DisplayFirst(string lineString)
         {
-            DisplayLog(0, lineString);
+            DisplayIndex(0, lineString);
         }
         
-        public void DisplayLast(int index, string lineString)
+        public void DisplayLast(string lineString)
         {
-            DisplayLog(_displayLines.Length-1, lineString);
+            DisplayIndex(_displayLines.Length-1, lineString);
         }
 
         public bool DebugEnabled()
@@ -87,7 +88,7 @@ namespace YusamPackage
             GUILayout.BeginArea(new Rect(10,10, Screen.width-20, Screen.height-20));
             
             var style = GUI.skin.label;
-            style.fontSize = 12;
+            style.fontSize = fontSize;
             style.normal.textColor = _debugProperties.debugTextColor;
             style.active.textColor = _debugProperties.debugTextColor;
             style.hover.textColor = _debugProperties.debugTextColor;

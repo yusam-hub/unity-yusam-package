@@ -24,15 +24,6 @@ namespace YusamPackage
         {
             return shootBulletSo.bulletReloadTime;
         }
-        
-        private void StartEffect(Transform sourceTransform)
-        {
-            if (shootBulletSo.startEffectPrefab) {
-                Destroy(
-                    Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime
-                );
-            }
-        }
 
         private IEnumerator MoveBulletCoroutine(Transform fromTransform, Vector3 toPosition, ShootBulletSo.ShootBulletTrajectory trajectory)
         {
@@ -133,10 +124,11 @@ namespace YusamPackage
         {
             if (_debugProperties.debugEnabled)
             {
+                DebugHelper.DrawCrossNormal(hit.point, hit.normal, 1f, _debugProperties.debugLongLineColor, _debugProperties.debugLongDuration);
                 Debug.Log($"Raycast hit on {hit.collider.name} from {GetType()}");
             }
             
-            TryHitEffect(hit.point);
+            TryHitEffect(hit);
                 
             if (hit.collider.TryGetComponent(out IDamageable damage))
             {
@@ -146,11 +138,11 @@ namespace YusamPackage
             Destroy(gameObject);
         }
         
-        private void TryHitEffect(Vector3 point)
+        private void TryHitEffect(RaycastHit hit)
         {
             if (_debugProperties.debugEnabled)
             {
-                Debug.Log($"TryHitEffect on point {point}");
+                Debug.Log($"TryHitEffect on point {hit.point}");
             }
             
             if (shootBulletSo.hitEffectPrefab) {
@@ -159,7 +151,7 @@ namespace YusamPackage
                     Debug.Log($"Instantiate prefab and will destroy throw time: {shootBulletSo.hitEffectDestroyTime}");
                 }
                 Destroy(
-                    Instantiate(shootBulletSo.hitEffectPrefab, point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
+                    Instantiate(shootBulletSo.hitEffectPrefab, hit.point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime
                 );
             }
             else
@@ -188,6 +180,15 @@ namespace YusamPackage
             }
             
             return null;
+        }
+        
+        private void StartEffect(Transform sourceTransform)
+        {
+            if (shootBulletSo.startEffectPrefab) {
+                Destroy(
+                    Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime
+                );
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ MonoBehaviour:
   parallelMaxDistance: 20
   parallelMinDistance: 5
   parabolaHeight: 2
-  bulletSpeed: 15
+  bulletSpeed: 5
   bulletHitRadius: 0.05
   bulletReloadTime: 0.1
   startEffectPrefab: {fileID: 0}
