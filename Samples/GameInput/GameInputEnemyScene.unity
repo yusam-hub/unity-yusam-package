@@ -396,6 +396,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42779182e05184c448be7b7df0bd430e, type: 3}
+--- !u!114 &1916978666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8669502257047194050, guid: a4673d973b21abb418024b50029e5997,
+    type: 3}
+  m_PrefabInstance: {fileID: 4802624612912006823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4802624612912006823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -454,15 +466,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2810915261116926199, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: shieldSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c6c19f88cf11b54a90c7591cc8f57d4,
+        type: 2}
+    - target: {fileID: 2810915261116926199, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810915261116926199, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1916978666}
+    - target: {fileID: 2810915261116926199, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810915261116926199, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_fillAmount
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810915261116926199, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.UI.Image, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810915261116926199, guid: a4673d973b21abb418024b50029e5997,
+        type: 3}
+      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4467054332137268865, guid: a4673d973b21abb418024b50029e5997,
         type: 3}
       propertyPath: m_Name
       value: DemoProject
-      objectReference: {fileID: 0}
-    - target: {fileID: 7249969516832870618, guid: a4673d973b21abb418024b50029e5997,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7314261563444815734, guid: a4673d973b21abb418024b50029e5997,
         type: 3}
@@ -470,7 +513,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1256402571910221360, guid: a4673d973b21abb418024b50029e5997, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4673d973b21abb418024b50029e5997, type: 3}

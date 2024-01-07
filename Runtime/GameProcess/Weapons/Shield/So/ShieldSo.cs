@@ -5,7 +5,9 @@ namespace YusamPackage
     [CreateAssetMenu(menuName = "So/Yusam Package/Game Process/Shield")]
     public class ShieldSo : BaseWeaponSo
     {
-        public float shieldActiveLifeTime = 5f;
+        public GameObject prefabOnActivateShield;
+        public float shieldActiveLifeTime = 15f;
+        public float shieldReloadLifeTime = 10f;
 
         public GameObject prefabOnDestroyShield;
         public float lifeTimeOnDestroyShield = 5f;
