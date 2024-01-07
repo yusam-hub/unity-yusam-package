@@ -6,6 +6,9 @@ namespace YusamPackage
     public class Health : MonoBehaviour, IHealth
     {
         [SerializeField] private HealthSo healthSo;
+        [SerializeField] private HealthBarSo healthBarSo;
+        [SerializeField] private bool healthBarEnabled = false;
+        
         [SerializeField] private FloatUnityEvent onProgressEvent = new();
         [SerializeField] private EmptyUnityEvent onZeroHealth = new();
         [SerializeField] private EmptyUnityEvent onMaxHealth = new();
@@ -15,10 +18,9 @@ namespace YusamPackage
         public event EventHandler<EventArgs> OnMaxHealth;
         
         private float _healthVolume;
-        private HasProgress _hasProgress; 
         private float _healthProgress;
-        
         private IHealth _parentHealth;
+        private HealthBarUi _healthBarUi;
 
         public void SetParentHealth(IHealth parentHealth)
         {
@@ -27,9 +29,10 @@ namespace YusamPackage
         
         private void Awake()
         {
-            if (TryGetComponent(out HasProgress hasProgress))
+            if (healthBarEnabled && healthBarSo)
             {
-                _hasProgress = hasProgress;
+                _healthBarUi = Instantiate(healthBarSo.prefab, transform);
+                _healthBarUi.SetHealthBarSo(healthBarSo);
             }
         }
 
@@ -41,6 +44,11 @@ namespace YusamPackage
         private void DoUpdateProgress()
         {
             _healthProgress = _healthVolume / healthSo.maxHealth;
+
+            if (_healthBarUi)
+            {
+                _healthBarUi.SetProgress(_healthProgress);
+            }
             
             OnProgressHealth?.Invoke(this, new ProgressFloatEventArgs
             {
@@ -48,11 +56,6 @@ namespace YusamPackage
             });
             
             onProgressEvent?.Invoke(_healthProgress);
-            
-            if (_hasProgress)
-            {
-                _hasProgress.DoProgressChanged(_healthProgress);
-            }
         }
 
         public float GetHealthMax()

@@ -21,6 +21,7 @@ namespace YusamPackage
 
         private void HealthOnZeroHealth(object sender, EventArgs e)
         {
+
             if (selfDestroyOnHealthZero)
             {
                 SelfDestroy();
@@ -34,7 +35,7 @@ namespace YusamPackage
                 if (destroyableSo.prefabOnSelfDestroy)
                 {
                     Destroy(
-                        Instantiate(destroyableSo.prefabOnSelfDestroy, transform)
+                        Instantiate(destroyableSo.prefabOnSelfDestroy, transform.position, Quaternion.identity)
                         , destroyableSo.prefabLifeTime
                     );
                 }

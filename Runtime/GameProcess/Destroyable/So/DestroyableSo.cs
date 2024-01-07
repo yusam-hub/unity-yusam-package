@@ -8,6 +8,5 @@ namespace YusamPackage
         public int destroyBonus = 5;
         public GameObject prefabOnSelfDestroy;
         public float prefabLifeTime = 5f;
-        
     }
 }

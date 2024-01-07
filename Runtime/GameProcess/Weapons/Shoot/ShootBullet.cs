@@ -41,36 +41,35 @@ namespace YusamPackage
             maxDistance = currentDirection.magnitude;
             
             if (
-                shootBulletSo.parallelMinDistance > 0
+                currentTrajectory == ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory
                 &&
-                currentTrajectory != ShootBulletSo.ShootBulletTrajectory.ParallelTrajectory
+                shootBulletSo.alternateParabola != ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory
                 &&
-                maxDistance < shootBulletSo.parallelMinDistance
+                shootBulletSo.alternateMinDistance > 0
+                &&
+                maxDistance < shootBulletSo.alternateMinDistance
                 )
             {
-                currentTrajectory = ShootBulletSo.ShootBulletTrajectory.ParallelTrajectory;
+                currentTrajectory = shootBulletSo.alternateParabola;
             }
-
+            
             if (currentTrajectory == ShootBulletSo.ShootBulletTrajectory.ParallelTrajectory)
             {
                 endPos.y = startPos.y;
-                endPos = TransformHelper.NewEndPositionCalculateFromStartPosition(startPos, endPos, shootBulletSo.parallelMaxDistance);
+                endPos = TransformHelper.NewEndPositionCalculateFromStartPosition(startPos, endPos, shootBulletSo.alternateMaxDistance);
                 currentDirection = endPos - startPos;
                 maxDistance = currentDirection.magnitude;
             }
 
-
-            //var lifeTimer = shootBulletSo.scriptLifeTime;
+            if (currentTrajectory == ShootBulletSo.ShootBulletTrajectory.LinerTrajectory)
+            {
+                currentDirection = endPos - startPos;
+                maxDistance = currentDirection.magnitude;
+            }
+            
             float currentDistance = 0;
             while (currentDistance <= maxDistance)
             {
-                /*lifeTimer -= Time.deltaTime;
-                if (lifeTimer <= 0)
-                {
-                    SelfDestroy(null);
-                    yield break; 
-                }*/
-                
                 float currentTransition;
                 Vector3 currentPosition;
                 
@@ -104,6 +103,11 @@ namespace YusamPackage
                 if (hitTest.HasValue) {
                     HitAndSelfDestroy(hitTest.Value);
                     yield break;
+                }
+
+                if (_debugProperties.debugEnabled)
+                {
+                    Debug.DrawLine(startPos, endPos, _debugProperties.debugLineColor, _debugProperties.debugDuration);
                 }
 
                 transform.position = currentPosition;

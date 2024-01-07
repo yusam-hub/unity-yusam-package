@@ -11,18 +11,19 @@ namespace YusamPackage
             ParabolaTrajectory, //от точки а до б по параболе
             ParallelTrajectory //от точки а и по направлению Б параллельно
         }
-        public ShootBulletTrajectory trajectory = ShootBulletTrajectory.LinerTrajectory;
+        
+        public ShootBulletTrajectory trajectory = ShootBulletTrajectory.ParabolaTrajectory;
         public bool rotateToTrajectory = true;
         
-        public float parallelMaxDistance = 20f;
-        public float parallelMinDistance = 2f;
         public float parabolaHeight = 2;
-        
+
+        public ShootBulletTrajectory alternateParabola = ShootBulletTrajectory.LinerTrajectory;
+        public float alternateMaxDistance = 20f;
+        public float alternateMinDistance = 2f;
+
         public float bulletSpeed = 20;
         public float bulletHitRadius = .05f;
         public float bulletReloadTime = .5f;
-        
-        //public float scriptLifeTime;
         
         public GameObject startEffectPrefab;
         public float startEffectDestroyTime = 1f;

@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f2a5d4bfad413dbc4306b16144b1f3, type: 3}
-  m_Name: DefaultDestroyableSo
+  m_Script: {fileID: 11500000, guid: ed6e45c9c7434adf99b32065c734b514, type: 3}
+  m_Name: DefaultDamageableSo
   m_EditorClassIdentifier: 
-  destroyBonus: 5
-  prefabOnSelfDestroy: {fileID: 3168008692127461040, guid: c68bbf860dbbbc344aaa33945e212dfe,
-    type: 3}
-  prefabLifeTime: 5
+  layerName: Hit
+  replaceLayer: 1
