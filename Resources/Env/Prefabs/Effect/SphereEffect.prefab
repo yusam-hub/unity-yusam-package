@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2222579721584915454}
   - component: {fileID: 8626349699228907781}
   m_Layer: 0
-  m_Name: SpherePrefabOnDestroy
+  m_Name: SphereEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

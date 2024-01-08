@@ -19,11 +19,13 @@ MonoBehaviour:
   alternateMaxDistance: 20
   alternateMinDistance: 3
   bulletSpeed: 4
-  bulletHitRadius: 0.05
-  bulletReloadTime: 0.1
-  startEffectPrefab: {fileID: 0}
+  bulletHitRadius: 0.5
+  bulletReloadTime: 0.5
+  startEffectPrefab: {fileID: 3168008692127461040, guid: c68bbf860dbbbc344aaa33945e212dfe,
+    type: 3}
   startEffectDestroyTime: 1
-  hitEffectPrefab: {fileID: 0}
+  hitEffectPrefab: {fileID: 3168008692127461040, guid: c68bbf860dbbbc344aaa33945e212dfe,
+    type: 3}
   hitEffectDestroyTime: 1
   hitDamageLayerMask:
     serializedVersion: 2
