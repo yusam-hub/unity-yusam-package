@@ -11,7 +11,8 @@ namespace YusamPackage
         [SerializeField] private LookAtTargetPosition lookAtTargetPosition;
         [SerializeField] private Transform nozzlePoint;
         [SerializeField] private ShootBullet prefabToBeSpawn;
-
+        [SerializeField] private ShootBulletSo shootBulletSo;
+        
         [SerializeField] private GameInputPerformedEnum[] inputs;
 
         private float _reloadTimer;
@@ -31,6 +32,12 @@ namespace YusamPackage
                 }
             }
         }
+        
+        public void SetShootBulletSo(ShootBulletSo newShootBulletSo)
+        {
+            shootBulletSo = newShootBulletSo;
+        }
+
 
         private void Update()
         {
@@ -57,6 +64,8 @@ namespace YusamPackage
             {
                 _isReloading = true;
                 ShootBullet shootBullet = Instantiate(prefabToBeSpawn, nozzlePoint.position, nozzlePoint.rotation);
+                shootBullet.SetShootBulletSo(shootBulletSo);
+                
                 _reloadTimer = shootBullet.GetBulletReloadTime();
                 shootBullet.WeaponActionToPoint(nozzlePoint, lookAtTargetPosition.GetMousePositionAsVector3());
             }

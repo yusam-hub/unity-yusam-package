@@ -7,34 +7,27 @@ namespace YusamPackage
     [RequireComponent(typeof(DebugProperties))]
     public class ShootBullet : MonoBehaviour
     {
-        [SerializeField] private ShootBulletSo shootBulletSo;
+        private ShootBulletSo _shootBulletSo;
 
         private DebugProperties _debugProperties;
         private void Awake()
         {
             _debugProperties = GetComponent<DebugProperties>();
-
-            Experience.Instance.OnChangedExperience += InstanceOnOnChangedExperience;
         }
-
-        private void InstanceOnOnChangedExperience(object sender, Experience.OnChangedExperienceEventArgs e)
+        
+        public void SetShootBulletSo(ShootBulletSo newShootBulletSo)
         {
-            shootBulletSo = Experience.Instance.GetCurrentExperienceStruct().shootBulletSo;
-        }
-
-        private void OnDestroy()
-        {
-            Experience.Instance.OnChangedExperience -= InstanceOnOnChangedExperience;
+            _shootBulletSo = newShootBulletSo;
         }
         
         public void WeaponActionToPoint(Transform sourceTransform, Vector3 destinationPoint)
         {
-            StartCoroutine(MoveBulletCoroutine(sourceTransform, destinationPoint, shootBulletSo.trajectory));
+            StartCoroutine(MoveBulletCoroutine(sourceTransform, destinationPoint, _shootBulletSo.trajectory));
         }
 
         public float GetBulletReloadTime()
         {
-            return shootBulletSo.bulletReloadTime;
+            return _shootBulletSo.bulletReloadTime;
         }
 
         private IEnumerator MoveBulletCoroutine(Transform fromTransform, Vector3 toPosition, ShootBulletSo.ShootBulletTrajectory trajectory)
@@ -55,20 +48,20 @@ namespace YusamPackage
             if (
                 currentTrajectory == ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory
                 &&
-                shootBulletSo.alternateParabola != ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory
+                _shootBulletSo.alternateParabola != ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory
                 &&
-                shootBulletSo.alternateMinDistance > 0
+                _shootBulletSo.alternateMinDistance > 0
                 &&
-                maxDistance < shootBulletSo.alternateMinDistance
+                maxDistance < _shootBulletSo.alternateMinDistance
                 )
             {
-                currentTrajectory = shootBulletSo.alternateParabola;
+                currentTrajectory = _shootBulletSo.alternateParabola;
             }
             
             if (currentTrajectory == ShootBulletSo.ShootBulletTrajectory.ParallelTrajectory)
             {
                 endPos.y = startPos.y;
-                endPos = TransformHelper.NewEndPositionCalculateFromStartPosition(startPos, endPos, shootBulletSo.alternateMaxDistance);
+                endPos = TransformHelper.NewEndPositionCalculateFromStartPosition(startPos, endPos, _shootBulletSo.alternateMaxDistance);
                 currentDirection = endPos - startPos;
                 maxDistance = currentDirection.magnitude;
             }
@@ -89,7 +82,7 @@ namespace YusamPackage
                 {
                     case ShootBulletSo.ShootBulletTrajectory.ParabolaTrajectory:
                         currentTransition = currentDistance / maxDistance;
-                        var parabolicHeight = 4f * shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition);
+                        var parabolicHeight = 4f * _shootBulletSo.parabolaHeight * currentTransition * ( 1f - currentTransition);
                         currentPosition = Vector3.Lerp(startPos, endPos, currentTransition);
                         currentPosition.y += parabolicHeight;
                         break;
@@ -103,7 +96,7 @@ namespace YusamPackage
                         break;                        
                 }
                 
-                if (shootBulletSo.rotateToTrajectory) {
+                if (_shootBulletSo.rotateToTrajectory) {
                     var lookDir = currentPosition - transform.position;
                     if (lookDir.sqrMagnitude >= Mathf.Epsilon) {
                         transform.rotation = Quaternion.LookRotation(lookDir);
@@ -123,14 +116,14 @@ namespace YusamPackage
                 }
 
                 transform.position = currentPosition;
-                currentDistance += shootBulletSo.bulletSpeed * Time.deltaTime;
+                currentDistance += _shootBulletSo.bulletSpeed * Time.deltaTime;
 
                 yield return null;
             }
 
             if (_debugProperties.debugEnabled)
             {
-                Debug.Log($"Raycast not found for [ Hit Damage Layer Mask ] in scriptable object [ {shootBulletSo.name} ]");
+                Debug.Log($"Raycast not found for [ Hit Damage Layer Mask ] in scriptable object [ {_shootBulletSo.name} ]");
             }
 
             Destroy(gameObject);
@@ -148,7 +141,7 @@ namespace YusamPackage
                 
             if (hit.collider.TryGetComponent(out IDamageable damage))
             {
-                damage.TakeDamage(shootBulletSo.hitDamageVolume, hit.collider, shootBulletSo.hitDamageForce);
+                damage.TakeDamage(_shootBulletSo.hitDamageVolume, hit.collider, _shootBulletSo.hitDamageForce);
             }
             
             Destroy(gameObject);
@@ -161,12 +154,12 @@ namespace YusamPackage
                 Debug.Log($"TryHitEffect on point {hit.point}");
             }
             
-            if (shootBulletSo.hitEffectPrefab) {
+            if (_shootBulletSo.hitEffectPrefab) {
                 if (_debugProperties.debugEnabled)
                 {
-                    Debug.Log($"Instantiate prefab and will destroy throw time: {shootBulletSo.hitEffectDestroyTime}");
+                    Debug.Log($"Instantiate prefab and will destroy throw time: {_shootBulletSo.hitEffectDestroyTime}");
                 }
-                Destroy(Instantiate(shootBulletSo.hitEffectPrefab, hit.point, Quaternion.identity), shootBulletSo.hitEffectDestroyTime);
+                Destroy(Instantiate(_shootBulletSo.hitEffectPrefab, hit.point, Quaternion.identity), _shootBulletSo.hitEffectDestroyTime);
             }
             else
             {
@@ -184,10 +177,10 @@ namespace YusamPackage
 
             if (Physics.SphereCast(
                     castRay, 
-                    shootBulletSo.bulletHitRadius, 
+                    _shootBulletSo.bulletHitRadius, 
                     out var hitInfo
                     ,( fromPosition - toPosition ).magnitude
-                    ,shootBulletSo.hitDamageLayerMask
+                    ,_shootBulletSo.hitDamageLayerMask
                     )
                 ) {
                 return hitInfo;
@@ -198,8 +191,8 @@ namespace YusamPackage
         
         private void StartEffect(Transform sourceTransform)
         {
-            if (shootBulletSo.startEffectPrefab) {
-                Destroy(Instantiate(shootBulletSo.startEffectPrefab, sourceTransform.transform), shootBulletSo.startEffectDestroyTime);
+            if (_shootBulletSo.startEffectPrefab) {
+                Destroy(Instantiate(_shootBulletSo.startEffectPrefab, sourceTransform.transform), _shootBulletSo.startEffectDestroyTime);
             }
         }
     }

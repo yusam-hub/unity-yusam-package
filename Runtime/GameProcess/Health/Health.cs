@@ -22,6 +22,11 @@ namespace YusamPackage
         private IHealth _parentHealth;
         private HealthBarUi _healthBarUi;
 
+        public void SetHealthSo(HealthSo newHealthSo)
+        {
+            healthSo = newHealthSo;
+        }
+
         public void SetParentHealth(IHealth parentHealth)
         {
             _parentHealth = parentHealth;
@@ -34,18 +39,6 @@ namespace YusamPackage
                 _healthBarUi = Instantiate(healthBarSo.prefab, transform);
                 _healthBarUi.SetHealthBarSo(healthBarSo);
             }
-            
-            Experience.Instance.OnChangedExperience += InstanceOnOnChangedExperience;
-        }
-
-        private void InstanceOnOnChangedExperience(object sender, Experience.OnChangedExperienceEventArgs e)
-        {
-            healthSo = Experience.Instance.GetCurrentExperienceStruct().healthSo;
-        }
-
-        private void OnDestroy()
-        {
-            Experience.Instance.OnChangedExperience -= InstanceOnOnChangedExperience;
         }
 
         private void Start()

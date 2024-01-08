@@ -35,15 +35,13 @@ namespace YusamPackage
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
             }
-
-            Experience.Instance.OnChangedExperience += InstanceOnOnChangedExperience;
         }
 
-        private void InstanceOnOnChangedExperience(object sender, Experience.OnChangedExperienceEventArgs e)
+        public void SetShieldSo(ShieldSo newShieldSo)
         {
-            shieldSo = Experience.Instance.GetCurrentExperienceStruct().shieldSo;
+            shieldSo = newShieldSo;
         }
-
+        
         private void OnInputAction(InputAction.CallbackContext obj)
         {
             if (!_gameInputController.IsLayerAccessible()) return;
@@ -169,7 +167,6 @@ namespace YusamPackage
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
             }
-            Experience.Instance.OnChangedExperience -= InstanceOnOnChangedExperience;
         }
     }
 }

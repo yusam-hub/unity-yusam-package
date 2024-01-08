@@ -199,6 +199,7 @@ MonoBehaviour:
   nozzlePoint: {fileID: 3153753138094072573}
   prefabToBeSpawn: {fileID: 5126319274386993121, guid: 8b9d0ca1f0a9ce94ba91552288b9d8cf,
     type: 3}
+  shootBulletSo: {fileID: 11400000, guid: 257e09aa410e8f04eac16138a670d8ab, type: 2}
   inputs: 
 --- !u!114 &7108294515946426408
 MonoBehaviour:
