@@ -13,8 +13,20 @@ namespace YusamPackage
         private void Awake()
         {
             _debugProperties = GetComponent<DebugProperties>();
+
+            Experience.Instance.OnChangedExperience += InstanceOnOnChangedExperience;
         }
 
+        private void InstanceOnOnChangedExperience(object sender, Experience.OnChangedExperienceEventArgs e)
+        {
+            shootBulletSo = Experience.Instance.GetCurrentExperienceStruct().shootBulletSo;
+        }
+
+        private void OnDestroy()
+        {
+            Experience.Instance.OnChangedExperience -= InstanceOnOnChangedExperience;
+        }
+        
         public void WeaponActionToPoint(Transform sourceTransform, Vector3 destinationPoint)
         {
             StartCoroutine(MoveBulletCoroutine(sourceTransform, destinationPoint, shootBulletSo.trajectory));

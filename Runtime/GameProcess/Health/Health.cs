@@ -34,6 +34,18 @@ namespace YusamPackage
                 _healthBarUi = Instantiate(healthBarSo.prefab, transform);
                 _healthBarUi.SetHealthBarSo(healthBarSo);
             }
+            
+            Experience.Instance.OnChangedExperience += InstanceOnOnChangedExperience;
+        }
+
+        private void InstanceOnOnChangedExperience(object sender, Experience.OnChangedExperienceEventArgs e)
+        {
+            healthSo = Experience.Instance.GetCurrentExperienceStruct().healthSo;
+        }
+
+        private void OnDestroy()
+        {
+            Experience.Instance.OnChangedExperience -= InstanceOnOnChangedExperience;
         }
 
         private void Start()

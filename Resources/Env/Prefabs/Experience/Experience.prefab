@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3978084442980770525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8034581262911387675}
+  - component: {fileID: 9117064991217656265}
+  - component: {fileID: 5246285145023640297}
+  m_Layer: 0
+  m_Name: Experience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8034581262911387675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978084442980770525}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9117064991217656265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978084442980770525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e591eafdac5347b1875c5a5c683ce291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceStructArray:
+  - healthSo: {fileID: 11400000, guid: c1b96c976cae4504fb9394dd944f5d09, type: 2}
+    swordSo: {fileID: 11400000, guid: 418577c05ea2ad346a6ac594ac86c12c, type: 2}
+    shieldSo: {fileID: 11400000, guid: 1c6c19f88cf11b54a90c7591cc8f57d4, type: 2}
+    shootBulletSo: {fileID: 11400000, guid: 75f3bce498fa4104f93207453f5ba1c8, type: 2}
+  - healthSo: {fileID: 11400000, guid: c1b96c976cae4504fb9394dd944f5d09, type: 2}
+    swordSo: {fileID: 11400000, guid: 418577c05ea2ad346a6ac594ac86c12c, type: 2}
+    shieldSo: {fileID: 11400000, guid: 1c6c19f88cf11b54a90c7591cc8f57d4, type: 2}
+    shootBulletSo: {fileID: 11400000, guid: 75f3bce498fa4104f93207453f5ba1c8, type: 2}
+  - healthSo: {fileID: 11400000, guid: c1b96c976cae4504fb9394dd944f5d09, type: 2}
+    swordSo: {fileID: 11400000, guid: 418577c05ea2ad346a6ac594ac86c12c, type: 2}
+    shieldSo: {fileID: 11400000, guid: 1c6c19f88cf11b54a90c7591cc8f57d4, type: 2}
+    shootBulletSo: {fileID: 11400000, guid: 75f3bce498fa4104f93207453f5ba1c8, type: 2}
+  bonusToExperienceStructArray:
+  - experienceIndex: 0
+    bonusFrom: 0
+    bonusTo: 999
+  - experienceIndex: 1
+    bonusFrom: 1000
+    bonusTo: 1999
+  - experienceIndex: 2
+    bonusFrom: 2000
+    bonusTo: 1000000
+  currentExperienceIndex: 0
+  currentBonus: 0
+  onChangeExperience:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onChangeBonus:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5246285145023640297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978084442980770525}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a4062a132704e439ce90ea53d6b94d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalMax: 0.1
+  intervalMin: 0.1
+  onIntervalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9117064991217656265}
+        m_TargetAssemblyTypeName: YusamPackage.Experience, Yusam.YusamPackage
+        m_MethodName: AddBonus
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

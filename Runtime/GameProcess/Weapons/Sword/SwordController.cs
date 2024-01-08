@@ -29,6 +29,12 @@ namespace YusamPackage
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
             }
 
+            Experience.Instance.OnChangedExperience += InstanceOnOnChangedExperience;
+        }
+
+        private void InstanceOnOnChangedExperience(object sender, Experience.OnChangedExperienceEventArgs e)
+        {
+            swordSo = Experience.Instance.GetCurrentExperienceStruct().swordSo;
         }
 
         private void OnInputAction(InputAction.CallbackContext obj)
@@ -126,6 +132,7 @@ namespace YusamPackage
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
             }
+            Experience.Instance.OnChangedExperience -= InstanceOnOnChangedExperience;
         }
     }
 }

@@ -6,7 +6,11 @@ namespace YusamPackage
     public class DestroyableSo : ScriptableObject
     {
         public int destroyBonus = 5;
+        
         public GameObject prefabOnSelfDestroy;
         public float prefabLifeTime = 5f;
+        
+        public float prefabRotateAngleStartY;
+        public float prefabRotateAngleEndY;
     }
 }

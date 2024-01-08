@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace YusamPackage
 {
@@ -35,9 +36,13 @@ namespace YusamPackage
             {
                 if (destroyableSo.prefabOnSelfDestroy)
                 {
-                    Destroy(Instantiate(destroyableSo.prefabOnSelfDestroy, transform.position, Quaternion.identity), destroyableSo.prefabLifeTime);
+                    var rotY = Random.Range(destroyableSo.prefabRotateAngleStartY, destroyableSo.prefabRotateAngleEndY);
+                    var rotation = transform.rotation * Quaternion.Euler(0, rotY, 0);
+                    Destroy(Instantiate(destroyableSo.prefabOnSelfDestroy, transform.position, rotation), destroyableSo.prefabLifeTime);
                 }
+                
                 onDestroyWithBonus?.Invoke(destroyableSo.destroyBonus);
+                Experience.Instance.AddBonus(destroyableSo.destroyBonus);
             }
 
             onDestroy?.Invoke(EventArgs.Empty);
