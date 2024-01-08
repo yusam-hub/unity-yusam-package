@@ -92,16 +92,22 @@ namespace YusamPackage
                 Debug.Log($"Sword hit found [ {list.Count} ] colliders");
             }
             
+            List<IDamageable> damagablelist = new List<IDamageable>();
             foreach (var raycastHit in list)
             {
-                if (raycastHit.collider)
+                if (raycastHit.collider && raycastHit.collider.TryGetComponent(out IDamageable damageable))
                 {
-                    if (raycastHit.collider.TryGetComponent(out IDamageable damageable))
+                    if (damagablelist.IndexOf(damageable) < 0)
                     {
                         HitEffect(raycastHit.point);
-                        damageable.TakeDamage(swordSo.hitDamageVolume, raycastHit.collider, swordSo.hitDamageForce); 
+                        damagablelist.Add(damageable);
                     }
                 }
+            }
+            
+            foreach (var damageable in damagablelist)
+            {
+                damageable.TakeDamage(swordSo.hitDamageVolume); 
             }
 
             StartCoroutine(ExecuteReloadCoroutine());
