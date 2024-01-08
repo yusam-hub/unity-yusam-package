@@ -35,6 +35,13 @@ namespace YusamPackage
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
             }
+
+            Experience.Instance.OnChangedExperience += InstanceOnOnChangedExperience;
+        }
+
+        private void InstanceOnOnChangedExperience(object sender, Experience.OnChangedExperienceEventArgs e)
+        {
+            shieldSo = Experience.Instance.GetCurrentExperienceStruct().shieldSo;
         }
 
         private void OnInputAction(InputAction.CallbackContext obj)
@@ -162,6 +169,7 @@ namespace YusamPackage
             {
                 _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
             }
+            Experience.Instance.OnChangedExperience -= InstanceOnOnChangedExperience;
         }
     }
 }

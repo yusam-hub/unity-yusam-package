@@ -17,7 +17,6 @@ namespace YusamPackage
         public float hitDamageReloadLifeTime = 1f;
 
         public float hitDamageVolume = 10f;
-        public float hitDamageForce = 1f;
 
     }
 }
