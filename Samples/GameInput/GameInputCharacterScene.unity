@@ -205,18 +205,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!114 &459628209 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5517375307401552259, guid: a4673d973b21abb418024b50029e5997,
-    type: 3}
-  m_PrefabInstance: {fileID: 1371118439}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e591eafdac5347b1875c5a5c683ce291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &847785056
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,11 +343,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1006710198146293504, guid: a4673d973b21abb418024b50029e5997,
-        type: 3}
-      propertyPath: experience
-      value: 
-      objectReference: {fileID: 459628209}
     - target: {fileID: 1437281660250780393, guid: a4673d973b21abb418024b50029e5997,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -410,12 +393,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2753248095289148745, guid: a4673d973b21abb418024b50029e5997,
-        type: 3}
-      propertyPath: shootBulletSo
-      value: 
-      objectReference: {fileID: 11400000, guid: 75f3bce498fa4104f93207453f5ba1c8,
-        type: 2}
     - target: {fileID: 4467054332137268865, guid: a4673d973b21abb418024b50029e5997,
         type: 3}
       propertyPath: m_Name
