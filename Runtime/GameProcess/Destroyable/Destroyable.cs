@@ -5,6 +5,7 @@ namespace YusamPackage
 {
     [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(Damageable))]
+    [AddComponentMenu("YusamPackage/Game Process/Destroyable")]
     public class Destroyable : MonoBehaviour, IDestroyable
     {
         [SerializeField] private DestroyableSo destroyableSo;
