@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.SceneManagement;
@@ -40,3 +42,4 @@ namespace YusamPackage
 
     }
 }
+#endif
