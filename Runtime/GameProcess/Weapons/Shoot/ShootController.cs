@@ -7,8 +7,8 @@ namespace YusamPackage
     [DisallowMultipleComponent]
     public class ShootController : MonoBehaviour
     {
+        [SerializeField] private GameInputWorldPosition gameInputWorldPosition;
         [SerializeField] private GameInputController gameInputController;
-        [SerializeField] private LookAtTargetPosition lookAtTargetPosition;
         [SerializeField] private Transform nozzlePoint;
         [SerializeField] private ShootBullet prefabToBeSpawn;
         [SerializeField] private ShootBulletSo shootBulletSo;
@@ -20,7 +20,7 @@ namespace YusamPackage
         
         private void Awake()
         {
-            LogErrorHelper.NotFoundWhatInIf(lookAtTargetPosition == null,typeof(Transform) + " : Look At Target", this);
+            LogErrorHelper.NotFoundWhatInIf(gameInputWorldPosition == null,typeof(GameInputWorldPosition) + " : Game Input World Position", this);
             LogErrorHelper.NotFoundWhatInIf(nozzlePoint == null,typeof(Transform) + " : Nozzle Point", this);
             LogErrorHelper.NotFoundWhatInIf(prefabToBeSpawn == null,typeof(ShootBullet) + " : Prefab To Be Spawn", this);
 
@@ -67,7 +67,7 @@ namespace YusamPackage
                 shootBullet.SetShootBulletSo(shootBulletSo);
                 
                 _reloadTimer = shootBullet.GetBulletReloadTime();
-                shootBullet.WeaponActionToPoint(nozzlePoint, lookAtTargetPosition.GetMousePositionAsVector3());
+                shootBullet.WeaponActionToPoint(nozzlePoint, gameInputWorldPosition.GetInputWorldPosition()); //todo: shoot for target
             }
         }
 

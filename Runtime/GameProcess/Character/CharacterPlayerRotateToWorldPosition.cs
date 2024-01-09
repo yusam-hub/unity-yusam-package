@@ -6,7 +6,7 @@ namespace YusamPackage
     [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
-    public class CharacterPlayerRotateToWorldPosition : LookAtTargetPosition
+    public class CharacterPlayerRotateToWorldPosition : MonoBehaviour
     {
         [SerializeField] private GameInputWorldPosition gameInputWorldPosition;
         [SerializeField] private float rotationSpeed = 450;
@@ -33,7 +33,7 @@ namespace YusamPackage
         {
             if (!_rotatable.CanRotate()) return;
             
-            _worldPosition = gameInputWorldPosition.GetInputWorldPosition(_worldPosition);
+            _worldPosition = gameInputWorldPosition.GetInputWorldPosition();
 
             var lookAt = TransformHelper.LookAt(transform.position, _worldPosition);
 
@@ -73,11 +73,5 @@ namespace YusamPackage
                 }
             }
         }
-
-        public override Vector3 GetMousePositionAsVector3()
-        {
-            return _worldPosition;
-        }
- 
     }
 }

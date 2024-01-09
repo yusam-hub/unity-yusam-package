@@ -5,7 +5,7 @@ namespace YusamPackage
     
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Target))]
-    public class RotateToTarget : LookAtTargetPosition
+    public class RotateToTarget : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private string findGameObjectWithTag;
@@ -59,15 +59,6 @@ namespace YusamPackage
                                         );
 
             }
-        }
-
-        public override Vector3 GetMousePositionAsVector3()
-        {
-            if (_target.GetTarget())
-            {
-                return GetTargetTransformPosition();
-            }
-            return Vector3.zero;
         }
     }
 }

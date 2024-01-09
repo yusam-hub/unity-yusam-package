@@ -10,6 +10,7 @@ namespace YusamPackage
         [SerializeField] private float rayCastDistance = 100f;
 
         private GameInputController _gameInputController;
+        private Vector3 _lastInputWorldPosition;
         private void Awake()
         {
             _gameInputController = GetComponent<GameInputController>();
@@ -19,16 +20,16 @@ namespace YusamPackage
             }
         }
         
-        public override Vector3 GetInputWorldPosition(Vector3 lastInputWorldPosition)
+        public override Vector3 GetInputWorldPosition()
         {
             var ray = currentCamera.ScreenPointToRay(_gameInputController.gameInput.GetRightStickMousePosition());
 
             if (Physics.Raycast(ray, out var hit, rayCastDistance))
             {
-                return hit.point;
+                _lastInputWorldPosition = hit.point;
             }
             
-            return lastInputWorldPosition;
+            return _lastInputWorldPosition;
         }
     }
 }
