@@ -479,12 +479,12 @@ MonoBehaviour:
   bonusToExperienceStructArray:
   - experienceIndex: 0
     bonusFrom: 0
-    bonusTo: 999
+    bonusTo: 9
   - experienceIndex: 1
-    bonusFrom: 1000
-    bonusTo: 1999
+    bonusFrom: 10
+    bonusTo: 19
   - experienceIndex: 2
-    bonusFrom: 2000
+    bonusFrom: 20
     bonusTo: 1000000
   currentExperienceIndex: 0
   currentBonus: 0
@@ -961,6 +961,11 @@ PrefabInstance:
       propertyPath: onProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4415750145285494844}
+    - target: {fileID: 5241311369285325288, guid: 9d50d781b62080d43a857b4d5e01bee7,
+        type: 3}
+      propertyPath: experience
+      value: 
+      objectReference: {fileID: 5517375307401552259}
     - target: {fileID: 7003981955594516620, guid: 9d50d781b62080d43a857b4d5e01bee7,
         type: 3}
       propertyPath: m_LocalPosition.x

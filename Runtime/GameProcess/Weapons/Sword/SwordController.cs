@@ -82,6 +82,44 @@ namespace YusamPackage
                 var hits = Physics.RaycastAll(swordRayCastStartPoint.position, dir, dir.magnitude, swordSo.hitDamageLayerMask);
                 foreach (var hit in hits)
                 {
+                    if (hit.collider && hit.collider.TryGetComponent(out IDamageable damageable))
+                    {
+                        if (_debugProperties.debugEnabled)
+                        {
+                            Debug.Log($"Sword hit found [ Damageable :  {damageable} ]");
+                        }
+                        HitEffect(hit.point);
+                        damageable.TakeDamageWithPause(swordSo.hitDamageVolume); 
+                    }
+                }
+                
+                yield return null;
+            }
+            
+            StartCoroutine(ExecuteReloadCoroutine());
+        }
+        
+        private IEnumerator ExecuteCoroutineOld()
+        {
+            StartEffect();
+            
+            var timer = swordSo.hitDamageActiveLifeTime;
+            List<RaycastHit> list = new List<RaycastHit>();
+            
+            while (timer > 0)
+            {
+                timer -= Time.deltaTime;
+
+                var dir = swordRayCastEndPoint.position - swordRayCastStartPoint.position;
+
+                if (_debugProperties.debugEnabled)
+                {
+                    Debug.DrawLine(swordRayCastStartPoint.position, swordRayCastEndPoint.position, _debugProperties.debugLongLineColor, _debugProperties.debugLongDuration);
+                }
+                
+                var hits = Physics.RaycastAll(swordRayCastStartPoint.position, dir, dir.magnitude, swordSo.hitDamageLayerMask);
+                foreach (var hit in hits)
+                {
                     if (list.IndexOf(hit) < 0)
                     {
                         list.Add(hit);
