@@ -7,6 +7,7 @@ namespace YusamPackage
     [DisallowMultipleComponent]
     public class InputCharacterRotateByMousePoint : LookAtTargetPosition
     {
+        [SerializeField] private GameInputPosition gameInputPosition;
         [SerializeField] private float rotationSpeed = 450;
         [SerializeField] private float rayCastDistance = 100f;
 
@@ -36,8 +37,11 @@ namespace YusamPackage
 
         private void RotateToMouse()
         {
-            _mousePosition = MouseHelper.GetMouseLookPositionByRay(_mousePosition, GetInputMousePosition(), _camera, rayCastDistance);
-        
+
+            var v2 = gameInputPosition.GetInputPosition();
+            _mousePosition = MouseHelper.GetMouseLookPositionByRay(_mousePosition, v2, _camera, rayCastDistance);
+                
+            DebugDisplay.Instance.DisplayFirst($"{_mousePosition} = {v2}");
             var lookAt = TransformHelper.LookAt(transform.position, _mousePosition);
 
             if (lookAt != Vector3.zero)

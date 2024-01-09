@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 5241311369285325288}
   - component: {fileID: 5812151792028343874}
   - component: {fileID: 8064756294170358170}
+  - component: {fileID: -3493023339520922344}
   - component: {fileID: 8497085657399225171}
   - component: {fileID: 8802852903140194477}
   - component: {fileID: 4998727154302804567}
@@ -116,6 +117,7 @@ GameObject:
   - component: {fileID: 7081362811542783519}
   - component: {fileID: 4035439233172018105}
   - component: {fileID: 5124847155210952727}
+  - component: {fileID: 3885282558069787837}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,6 +218,18 @@ MonoBehaviour:
   gameInputScene: {fileID: 0}
   availableLayerSoArray:
   - {fileID: 11400000, guid: da4e5f6f7f362bc4f9cda913be6bc597, type: 2}
+--- !u!114 &-3493023339520922344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439118806997130802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc3e91aa6804d27a1bffc01d4de3d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8497085657399225171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ebedc9913d43bb9ffa8eae5f1f59cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameInputMovement: {fileID: -3493023339520922344}
   moveSpeed: 8
   isometricEnabled: 1
 --- !u!114 &8802852903140194477
@@ -384,6 +399,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ea17d166f14d949e963d338238ab9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3885282558069787837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439118806997130802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291379998a82463fb45087bba86b6d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMoving: 1
 --- !u!1 &8696237917886415800
 GameObject:
   m_ObjectHideFlags: 0

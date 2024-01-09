@@ -1,39 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace YusamPackage
 {
+    [RequireComponent(typeof(Movable))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
     public class InputCharacterMove : MonoBehaviour
     {
+        [SerializeField] private GameInputDirection gameInputDirection;
         [SerializeField] private float moveSpeed = 8;
         [SerializeField] private bool isometricEnabled;
         
         private CharacterController _characterController;
         private GameInputController _gameInputController;
+        private Movable _movable;
         
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
             _gameInputController = GetComponent<GameInputController>();
+            _movable = GetComponent<Movable>();
         }
         
         private void Update()
         {
             if (!_gameInputController.IsLayerAccessible()) return;
-            Movement();
-        }
-
-        private Vector3 GetInputMovement()
-        {
-            //return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            return _gameInputController.gameInput.GetLeftStickDirectionAsVector3();
+            CharacterControllerMove();
         }
         
-        private void Movement()
+        private void CharacterControllerMove()
         {
-            var input = GetInputMovement();
+            if (!_movable.CanMoving()) return;
+            
+            var input2 = gameInputDirection.GetInputDirection();
+            var input = new Vector3(input2.x, 0, input2.y);
             
             if (isometricEnabled)
             {
