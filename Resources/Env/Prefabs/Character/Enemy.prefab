@@ -198,12 +198,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInputWorldPosition: {fileID: -5611658869614448502}
-  gameInputController: {fileID: 0}
   nozzlePoint: {fileID: 3153753138094072573}
   prefabToBeSpawn: {fileID: 5126319274386993121, guid: 8b9d0ca1f0a9ce94ba91552288b9d8cf,
     type: 3}
   shootBulletSo: {fileID: 11400000, guid: 257e09aa410e8f04eac16138a670d8ab, type: 2}
-  inputs: 
 --- !u!114 &7108294515946426408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +221,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1837723672010248125}
         m_TargetAssemblyTypeName: YusamPackage.ShootController, Yusam.YusamPackage
-        m_MethodName: Shoot
+        m_MethodName: ShootAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
