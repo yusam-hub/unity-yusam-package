@@ -8,7 +8,7 @@ namespace YusamPackage
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(Target))]
     [DisallowMultipleComponent]
-    public class NavMeshMoveToTarget : MonoBehaviour
+    public class NavMeshAgentMoveToTarget : MonoBehaviour
     {
         private NavMeshAgent _agent;
         private Movable _movable;

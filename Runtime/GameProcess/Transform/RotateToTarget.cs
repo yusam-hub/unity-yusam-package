@@ -5,10 +5,9 @@ namespace YusamPackage
     
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Target))]
-    public class CharacterRotateToTransform : LookAtTargetPosition
+    public class RotateToTarget : LookAtTargetPosition
     {
         [SerializeField] private float rotationSpeed = 450;
-
         [SerializeField] private string findGameObjectWithTag;
         [SerializeField] private Vector3 positionOffset;
         

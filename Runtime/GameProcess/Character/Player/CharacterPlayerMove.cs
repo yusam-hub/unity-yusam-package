@@ -7,7 +7,7 @@ namespace YusamPackage
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
-    public class InputCharacterMove : MonoBehaviour
+    public class CharacterPlayerMove : MonoBehaviour
     {
         [SerializeField] private GameInputDirection gameInputDirection;
         [SerializeField] private float moveSpeed = 8;

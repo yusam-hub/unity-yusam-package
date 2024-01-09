@@ -6,7 +6,7 @@ namespace YusamPackage
     [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
-    public class InputCharacterRotateByMousePoint : LookAtTargetPosition
+    public class CharacterPlayerRotateToWorldPosition : LookAtTargetPosition
     {
         [SerializeField] private GameInputWorldPosition gameInputWorldPosition;
         [SerializeField] private float rotationSpeed = 450;
@@ -21,12 +21,6 @@ namespace YusamPackage
             _rotatable = GetComponent<Rotatable>();
             _debugProperties = GetComponent<DebugProperties>();
             _gameInputController = GetComponent<GameInputController>();
-        }
-
-        private Vector2 GetInputMousePosition()
-        {
-            //return Input.mousePosition;
-            return _gameInputController.gameInput.GetRightStickMousePosition();
         }
         
         private void Update()

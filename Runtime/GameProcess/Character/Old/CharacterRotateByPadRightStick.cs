@@ -5,12 +5,12 @@ namespace YusamPackage
     [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
-    public class InputCharacterRotateByPadRightStick : MonoBehaviour
+    public class CharacterRotateByPadRightStick : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed = 1000f;
         [SerializeField] private bool isometricEnabled;
-        private GameInputController _gameInputController;
 
+        private GameInputController _gameInputController;
         private DebugProperties _debugProperties;
         
         
