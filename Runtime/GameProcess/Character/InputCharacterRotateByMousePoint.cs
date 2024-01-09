@@ -2,25 +2,25 @@
 
 namespace YusamPackage
 {
+    [RequireComponent(typeof(Rotatable))]
     [RequireComponent(typeof(DebugProperties))]
     [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
     public class InputCharacterRotateByMousePoint : LookAtTargetPosition
     {
-        [SerializeField] private GameInputPosition gameInputPosition;
+        [SerializeField] private GameInputWorldPosition gameInputWorldPosition;
         [SerializeField] private float rotationSpeed = 450;
-        [SerializeField] private float rayCastDistance = 100f;
 
         private GameInputController _gameInputController;
         private DebugProperties _debugProperties;
-        private Vector3 _mousePosition;
-        private Camera _camera;
+        private Rotatable _rotatable;
+        private Vector3 _worldPosition;
 
         private void Awake()
         {
+            _rotatable = GetComponent<Rotatable>();
             _debugProperties = GetComponent<DebugProperties>();
             _gameInputController = GetComponent<GameInputController>();
-            _camera = Camera.main;
         }
 
         private Vector2 GetInputMousePosition()
@@ -37,12 +37,11 @@ namespace YusamPackage
 
         private void RotateToMouse()
         {
+            if (!_rotatable.CanRotate()) return;
+            
+            _worldPosition = gameInputWorldPosition.GetInputWorldPosition(_worldPosition);
 
-            var v2 = gameInputPosition.GetInputPosition();
-            _mousePosition = MouseHelper.GetMouseLookPositionByRay(_mousePosition, v2, _camera, rayCastDistance);
-                
-            DebugDisplay.Instance.DisplayFirst($"{_mousePosition} = {v2}");
-            var lookAt = TransformHelper.LookAt(transform.position, _mousePosition);
+            var lookAt = TransformHelper.LookAt(transform.position, _worldPosition);
 
             if (lookAt != Vector3.zero)
             {
@@ -83,7 +82,7 @@ namespace YusamPackage
 
         public override Vector3 GetMousePositionAsVector3()
         {
-            return _mousePosition;
+            return _worldPosition;
         }
  
     }

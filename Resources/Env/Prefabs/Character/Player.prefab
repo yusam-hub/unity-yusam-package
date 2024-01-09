@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4035439233172018105}
   - component: {fileID: 5124847155210952727}
   - component: {fileID: 3885282558069787837}
+  - component: {fileID: 842703839506083135}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -242,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ebedc9913d43bb9ffa8eae5f1f59cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameInputMovement: {fileID: -3493023339520922344}
+  gameInputDirection: {fileID: -3493023339520922344}
   moveSpeed: 8
   isometricEnabled: 1
 --- !u!114 &8802852903140194477
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9db283bf5342bb83480930d2cc8655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameInputWorldPosition: {fileID: 842703839506083135}
   rotationSpeed: 450
   rayCastDistance: 100
 --- !u!114 &4998727154302804567
@@ -412,6 +414,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMoving: 1
+--- !u!114 &842703839506083135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439118806997130802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a688efbb104453af80ce3a6f35c572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCamera: {fileID: 0}
+  rayCastDistance: 100
 --- !u!1 &8696237917886415800
 GameObject:
   m_ObjectHideFlags: 0
