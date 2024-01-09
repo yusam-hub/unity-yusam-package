@@ -6,18 +6,14 @@ using UnityEngine.InputSystem;
 namespace YusamPackage
 {
     [RequireComponent(typeof(DebugProperties))]
-    [RequireComponent(typeof(GameInputController))]
     [RequireComponent(typeof(Health))]
     [DisallowMultipleComponent]
     public class ShieldController : MonoBehaviour
     {
         [SerializeField] private ShieldSo shieldSo;
-        [SerializeField] private GameInputPerformedEnum[] inputs;
-        
         [SerializeField] private FloatUnityEvent onShieldProgressEvent = new();
         [SerializeField] private FloatUnityEvent onShieldReloadProgressEvent = new();
         
-        private GameInputController _gameInputController;
         private DebugProperties _debugProperties;
         private GameObject _shield;
         private Health _ownerHealth;
@@ -28,13 +24,7 @@ namespace YusamPackage
         private void Awake()
         {
             _debugProperties = GetComponent<DebugProperties>();
-            _gameInputController = GetComponent<GameInputController>();
             _ownerHealth = GetComponent<Health>();
-            
-            foreach(var gameInputPerformedEnum in inputs)
-            {
-                _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
-            }
         }
 
         public void SetShieldSo(ShieldSo newShieldSo)
@@ -42,14 +32,7 @@ namespace YusamPackage
             shieldSo = newShieldSo;
         }
         
-        private void OnInputAction(InputAction.CallbackContext obj)
-        {
-            if (!_gameInputController.IsLayerAccessible()) return;
-    
-            ShieldActivate();
-        }
-        
-        private void ShieldActivate()
+        public void ShieldAction()
         {
             if (!_shieldInProgress)
             {
@@ -133,7 +116,7 @@ namespace YusamPackage
             }
         }
         
-        public void TakeDamageForAllDamageable()
+        private void TakeDamageForAllDamageable()
         {
             var startPos = transform.position;
             startPos.y = 0;
@@ -158,14 +141,6 @@ namespace YusamPackage
                     }
                     damagable.TakeDamage(shieldSo.damageVolumeOnDestroyShield);
                 }
-            }
-        }
-        
-        private void OnDestroy()
-        {
-            foreach(var gameInputPerformedEnum in inputs)
-            {
-                _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
             }
         }
     }

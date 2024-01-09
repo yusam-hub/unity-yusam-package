@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace YusamPackage
 {
-
     [DisallowMultipleComponent]
     public class ShootController : MonoBehaviour
     {
@@ -40,7 +38,7 @@ namespace YusamPackage
             }
         }
 
-        public void Shoot()
+        public void ShootAction()
         {
             if (!_isReloading)
             {

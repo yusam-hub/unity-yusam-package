@@ -16,8 +16,8 @@ namespace YusamPackage
 
         private void Awake()
         {
-            _target = GetComponent<Target>();
             _agent = GetComponent<NavMeshAgent>();
+            _target = GetComponent<Target>();
             _movable = GetComponent<Movable>();
         }
 
