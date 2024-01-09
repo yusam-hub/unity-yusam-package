@@ -5,25 +5,29 @@ using UnityEngine.InputSystem;
 namespace YusamPackage
 {
 
+    [RequireComponent(typeof(GameInputController))]
     [DisallowMultipleComponent]
     public class InputShootController : MonoBehaviour
     {
-        [SerializeField] private GameInputController gameInputController;
         [SerializeField] private GameInputPerformedEnum[] inputs;
         [SerializeField] private EmptyUnityEvent onShootEvent;
 
+        private GameInputController _gameInputController;
+        
         private void Awake()
         {
+            _gameInputController = GetComponent<GameInputController>();
+            
             foreach (GameInputPerformedEnum gameInputPerformedEnum in inputs)
             {
-                gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
+                _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
             }
         }
 
         private void OnInputAction(InputAction.CallbackContext obj)
         {
-            if (!gameInputController.IsLayerAccessible()) return;
-            Debug.Log("OnInputAction");
+            if (!_gameInputController.IsLayerAccessible()) return;
+
             onShootEvent?.Invoke(EventArgs.Empty);
         }
 
@@ -31,7 +35,7 @@ namespace YusamPackage
         {
             foreach (GameInputPerformedEnum gameInputPerformedEnum in inputs)
             {
-                gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
+                _gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
             }
         }
     }
