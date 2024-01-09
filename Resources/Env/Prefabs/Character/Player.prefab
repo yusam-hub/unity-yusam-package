@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: -3493023339520922344}
   - component: {fileID: 8497085657399225171}
   - component: {fileID: 8802852903140194477}
+  - component: {fileID: -4270147459264918933}
   - component: {fileID: 4998727154302804567}
   - component: {fileID: 7165770109804940193}
   - component: {fileID: 5491576484478091196}
@@ -261,6 +262,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameInputWorldPosition: {fileID: 842703839506083135}
   rotationSpeed: 450
+--- !u!114 &-4270147459264918933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439118806997130802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c0f0bab07f49fabb5b6da84cae587f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameInputController: {fileID: 8064756294170358170}
+  inputs: 14000000
+  onShootEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7165770109804940193}
+        m_TargetAssemblyTypeName: YusamPackage.ShootController, Yusam.YusamPackage
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4998727154302804567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,13 +339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590731d4f06b46df9951ac0429bde1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameInputController: {fileID: 8064756294170358170}
-  lookAtTargetPosition: {fileID: 8802852903140194477}
+  gameInputWorldPosition: {fileID: 842703839506083135}
   nozzlePoint: {fileID: 8515561856394811694}
   prefabToBeSpawn: {fileID: 5126319274386993121, guid: fb00dabf02400a74db9b6c716ee0ba92,
     type: 3}
   shootBulletSo: {fileID: 11400000, guid: 75f3bce498fa4104f93207453f5ba1c8, type: 2}
-  inputs: 17000000
 --- !u!114 &5491576484478091196
 MonoBehaviour:
   m_ObjectHideFlags: 0

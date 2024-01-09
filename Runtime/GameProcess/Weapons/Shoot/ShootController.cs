@@ -8,29 +8,17 @@ namespace YusamPackage
     public class ShootController : MonoBehaviour
     {
         [SerializeField] private GameInputWorldPosition gameInputWorldPosition;
-        [SerializeField] private GameInputController gameInputController;
         [SerializeField] private Transform nozzlePoint;
         [SerializeField] private ShootBullet prefabToBeSpawn;
         [SerializeField] private ShootBulletSo shootBulletSo;
         
-        [SerializeField] private GameInputPerformedEnum[] inputs;
-
         private float _reloadTimer;
         private bool _isReloading;
         
         private void Awake()
         {
-            LogErrorHelper.NotFoundWhatInIf(gameInputWorldPosition == null,typeof(GameInputWorldPosition) + " : Game Input World Position", this);
             LogErrorHelper.NotFoundWhatInIf(nozzlePoint == null,typeof(Transform) + " : Nozzle Point", this);
             LogErrorHelper.NotFoundWhatInIf(prefabToBeSpawn == null,typeof(ShootBullet) + " : Prefab To Be Spawn", this);
-
-            if (gameInputController)
-            {
-                foreach (GameInputPerformedEnum gameInputPerformedEnum in inputs)
-                {
-                    gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed += OnInputAction;
-                }
-            }
         }
         
         public void SetShootBulletSo(ShootBulletSo newShootBulletSo)
@@ -52,12 +40,6 @@ namespace YusamPackage
             }
         }
 
-        private void OnInputAction(InputAction.CallbackContext obj)
-        {
-            if (!gameInputController.IsLayerAccessible()) return;
-            Shoot();
-        }
-
         public void Shoot()
         {
             if (!_isReloading)
@@ -67,18 +49,7 @@ namespace YusamPackage
                 shootBullet.SetShootBulletSo(shootBulletSo);
                 
                 _reloadTimer = shootBullet.GetBulletReloadTime();
-                shootBullet.WeaponActionToPoint(nozzlePoint, gameInputWorldPosition.GetInputWorldPosition()); //todo: shoot for target
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (gameInputController)
-            {
-                foreach (GameInputPerformedEnum gameInputPerformedEnum in inputs)
-                {
-                    gameInputController.gameInput.GetActionByEnum(gameInputPerformedEnum).performed -= OnInputAction;
-                }
+                shootBullet.WeaponActionToPoint(nozzlePoint, gameInputWorldPosition.GetInputWorldPosition());
             }
         }
     }
