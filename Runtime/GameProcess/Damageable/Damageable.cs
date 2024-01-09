@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace YusamPackage
 {
@@ -8,6 +9,8 @@ namespace YusamPackage
         [SerializeField] private DamageableSo damageableSo;
         
         private IHealth _health;
+        private bool _isPausing;
+        private float _pauseTimer;
         
         private void Awake()
         {
@@ -24,19 +27,33 @@ namespace YusamPackage
             _health = GetComponent<IHealth>();
         }
 
+        private void Update()
+        {
+            if (_isPausing)
+            {
+                _pauseTimer -= Time.deltaTime;
+                if (_pauseTimer < 0)
+                {
+                    _pauseTimer = 0;
+                    _isPausing = false;
+                }
+            }
+        }
+
         public void TakeDamage(float volume)
         {
             _health.MinusHealth(volume);
         }
         
-        public void TakeDamage(float volume, Collider hitCollider)
+        public void TakeDamageWithPause(float volume)
         {
-            _health.MinusHealth(volume);
-        }
-        
-        public void TakeDamage(float volume, Collider hitCollider, float force)
-        {
-            _health.MinusHealth(volume);
+            if (!_isPausing)
+            {
+                _isPausing = true;
+                _pauseTimer = damageableSo.pauseTakeDamage;
+                
+                _health.MinusHealth(volume);
+            }
         }
     }
 }

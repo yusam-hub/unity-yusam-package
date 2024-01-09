@@ -156,7 +156,7 @@ namespace YusamPackage
                         startPos.y = 1;
                         Debug.DrawLine(startPos, endPos, _debugProperties.debugLongLineColor, _debugProperties.debugLongDuration);
                     }
-                    damagable.TakeDamage(shieldSo.damageVolumeOnDestroyShield, foundCollider);
+                    damagable.TakeDamage(shieldSo.damageVolumeOnDestroyShield);
                 }
             }
         }

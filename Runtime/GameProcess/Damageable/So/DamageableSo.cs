@@ -7,5 +7,6 @@ namespace YusamPackage
     {
         public string layerName = "Default";
         public bool replaceLayer = true;
+        public float pauseTakeDamage = 0.3f;
     }
 }
