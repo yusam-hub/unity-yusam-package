@@ -2,19 +2,23 @@
 
 namespace YusamPackage
 {
+    
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(Target))]
     public class CharacterRotateToTransform : LookAtTargetPosition
     {
         [SerializeField] private float rotationSpeed = 450;
-        [SerializeField] private GameObject target;
+
         [SerializeField] private string findGameObjectWithTag;
         [SerializeField] private Vector3 positionOffset;
         
         private Vector3 _lookPosition;
+        private Target _target;
         
         private void Awake()
         {
-            if (target == null)
+            _target = GetComponent<Target>();
+            if (_target.GetTarget() == null)
             {
                 FindTarget();
             }
@@ -22,23 +26,23 @@ namespace YusamPackage
 
         private void FindTarget()
         {
-            if (target != null) return;
+            if (_target.GetTarget() != null) return;
             if (findGameObjectWithTag != "")
             {
-                target = GameObject.FindGameObjectWithTag(findGameObjectWithTag);
+                _target.SetTarget(GameObject.FindGameObjectWithTag(findGameObjectWithTag)?.transform);
             }
         }
 
         private Vector3 GetTargetTransformPosition()
         {
-            var pos = target.transform.position;
+            var pos = _target.GetTarget().transform.position;
             pos.y += positionOffset.y;
             return pos;
         }
 
         private void Update()
         {
-            if (!target) return;
+            if (!_target.GetTarget()) return;
             
             var lookAt = TransformHelper.LookAt(transform.position, GetTargetTransformPosition());
 
@@ -60,7 +64,7 @@ namespace YusamPackage
 
         public override Vector3 GetMousePositionAsVector3()
         {
-            if (target)
+            if (_target.GetTarget())
             {
                 return GetTargetTransformPosition();
             }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(Health))]
     public class Damageable : MonoBehaviour, IDamageable
     {

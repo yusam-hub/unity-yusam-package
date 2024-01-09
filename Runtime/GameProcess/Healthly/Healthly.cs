@@ -2,6 +2,7 @@
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(Health))]
     public class Healthly : MonoBehaviour, IHealthly
     {

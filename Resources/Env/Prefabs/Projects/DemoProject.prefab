@@ -945,17 +945,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2439118806997130802, guid: 9d50d781b62080d43a857b4d5e01bee7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4035439233172018105, guid: 9d50d781b62080d43a857b4d5e01bee7,
-        type: 3}
-      propertyPath: damageableSo
-      value: 
-      objectReference: {fileID: 11400000, guid: 95aa7382fe1c6f84a8e9b696c91d610c,
-        type: 2}
     - target: {fileID: 4998727154302804567, guid: 9d50d781b62080d43a857b4d5e01bee7,
         type: 3}
       propertyPath: onProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1018,16 +1007,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7081362811542783519, guid: 9d50d781b62080d43a857b4d5e01bee7,
         type: 3}
-      propertyPath: onShieldHideEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3498349652242079383}
-    - target: {fileID: 7081362811542783519, guid: 9d50d781b62080d43a857b4d5e01bee7,
-        type: 3}
-      propertyPath: onShieldShowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3498349652242079383}
-    - target: {fileID: 7081362811542783519, guid: 9d50d781b62080d43a857b4d5e01bee7,
-        type: 3}
       propertyPath: onShieldProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3498349652242079383}
@@ -1036,21 +1015,6 @@ PrefabInstance:
       propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4359239739207805835}
-    - target: {fileID: 7081362811542783519, guid: 9d50d781b62080d43a857b4d5e01bee7,
-        type: 3}
-      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_fillAmount
-      objectReference: {fileID: 0}
-    - target: {fileID: 7081362811542783519, guid: 9d50d781b62080d43a857b4d5e01bee7,
-        type: 3}
-      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.UI.Image, UnityEngine.UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 7081362811542783519, guid: 9d50d781b62080d43a857b4d5e01bee7,
-        type: 3}
-      propertyPath: onShieldReloadProgressEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8064756294170358170, guid: 9d50d781b62080d43a857b4d5e01bee7,
         type: 3}
       propertyPath: gameInput
@@ -1100,6 +1064,11 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 2627649197834696292}
+    - target: {fileID: 2520504506504217930, guid: 30473e4b514b3df4db8f6ba007f6e80e,
+        type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 3725835885659189184, guid: 30473e4b514b3df4db8f6ba007f6e80e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1149,6 +1118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8217136451425738574, guid: 30473e4b514b3df4db8f6ba007f6e80e,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8908922774615612116, guid: 30473e4b514b3df4db8f6ba007f6e80e,
         type: 3}

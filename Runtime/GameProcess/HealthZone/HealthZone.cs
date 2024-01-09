@@ -2,6 +2,7 @@
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     public class HealthZone : MonoBehaviour, IHealthZone
     {
         [SerializeField] private HealthZoneSo healthZoneSo;

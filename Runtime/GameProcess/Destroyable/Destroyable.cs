@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(Damageable))]
     [AddComponentMenu("YusamPackage/Game Process/Destroyable")]

@@ -49,6 +49,8 @@ GameObject:
   - component: {fileID: 1837723672010248125}
   - component: {fileID: 7108294515946426408}
   - component: {fileID: 3450630816459589366}
+  - component: {fileID: 7807926589438265109}
+  - component: {fileID: -2312535123731384989}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -250,6 +252,32 @@ MonoBehaviour:
   onDestroyWithBonus:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7807926589438265109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743849761861515004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291379998a82463fb45087bba86b6d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMoving: 1
+--- !u!114 &-2312535123731384989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743849761861515004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e76964d9e414e18a411376977153774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 1
 --- !u!1001 &5356814070773989030
 PrefabInstance:
   m_ObjectHideFlags: 0

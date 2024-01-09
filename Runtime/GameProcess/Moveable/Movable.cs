@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     public class Movable : MonoBehaviour, IMovable
     {
         [SerializeField] private bool canMoving = true;

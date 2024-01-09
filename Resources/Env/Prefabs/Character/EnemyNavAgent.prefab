@@ -45,12 +45,15 @@ GameObject:
   - component: {fileID: 7851356079578314209}
   - component: {fileID: 3821847947704329483}
   - component: {fileID: 6646015436220134600}
-  - component: {fileID: 5019788513565092365}
   - component: {fileID: 1837723672010248125}
   - component: {fileID: 7108294515946426408}
   - component: {fileID: 3450630816459589366}
   - component: {fileID: -5534622230810753773}
   - component: {fileID: 5580691781036293765}
+  - component: {fileID: 5019788513565092365}
+  - component: {fileID: 4262634554172770349}
+  - component: {fileID: -5117858792997907414}
+  - component: {fileID: 5497180414011473172}
   m_Layer: 0
   m_Name: EnemyNavAgent
   m_TagString: Enemy
@@ -168,22 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageableSo: {fileID: 11400000, guid: 95aa7382fe1c6f84a8e9b696c91d610c, type: 2}
---- !u!114 &5019788513565092365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4743849761861515004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028f1ce528d54b109db94bc6d9d311c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 450
-  target: {fileID: 0}
-  findGameObjectWithTag: Player
-  positionOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &1837723672010248125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +271,61 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6165c92de0482a9240535dd38a36df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &5019788513565092365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743849761861515004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028f1ce528d54b109db94bc6d9d311c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 450
+  target: {fileID: 0}
+  findGameObjectWithTag: Player
+  positionOffset: {x: 0, y: 1, z: 0}
+--- !u!114 &4262634554172770349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743849761861515004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291379998a82463fb45087bba86b6d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMoving: 1
+--- !u!114 &-5117858792997907414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743849761861515004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e76964d9e414e18a411376977153774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 1
+--- !u!114 &5497180414011473172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743849761861515004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4aff83c63e4b0d80b39a5caf7f1f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}

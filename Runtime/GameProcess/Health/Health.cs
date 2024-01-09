@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     public class Health : MonoBehaviour, IHealth
     {
         [SerializeField] private HealthSo healthSo;

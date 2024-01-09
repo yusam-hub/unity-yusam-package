@@ -2,6 +2,7 @@
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     public class DeathZone : MonoBehaviour, IDeathZone
     {
         [SerializeField] private DeathZoneSo deathZoneSo;

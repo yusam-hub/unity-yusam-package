@@ -21,7 +21,6 @@ MonoBehaviour:
   hitDamageLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  hitDamageVolume: 10
-  hitDamageForce: 1
-  hitDamageDuration: 0.2
-  attackSpeed: 0.1
+  hitDamageActiveLifeTime: 0.2
+  hitDamageReloadLifeTime: 1
+  hitDamageVolume: 50

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace YusamPackage
 {
+    [DisallowMultipleComponent]
     public class Rotatable : MonoBehaviour, IRotatable
     {
         [SerializeField] private bool canRotate = true;
